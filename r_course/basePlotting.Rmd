@@ -435,6 +435,40 @@ dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)
 ```
 
 ---
+
+##Box plots
+
+The final plot we will look at is a box and whisker plot. 
+
+Boxplots allow you to quickly review data distributions, showing the median and 1st/3rd quartile.
+
+![](imgs/box_whisker_describe.png)
+
+---
+
+First lets read in the gene expression data
+```{r,eval=T,fig.width=6,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
+exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
+head(exprs)
+```
+
+---
+
+Now we can use the **boxplot()** function on our data.frame to get our boxplot
+```{r,eval=T,fig.width=6,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+boxplot(exprs)
+```
+
+---
+
+Perhaps it would look better on a log scale. We can add addition colours and labels as with other plots.
+
+```{r,eval=T,fig.width=6,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+boxplot(log2(exprs),ylab="log2 Expression",
+        col=c("red","red","blue","blue"))
+```
+
+---
 ##Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 

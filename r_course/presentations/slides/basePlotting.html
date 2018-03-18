@@ -414,6 +414,57 @@ dotchart(t(data), color=c("red","blue","darkgreen"),
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-47-1.png" width="1920px" /&gt;
 
 ---
+
+##Box plots
+
+The final plot we will look at is a box and whisker plot. 
+
+Boxplots allow you to quickly review data distributions, showing the median and 1st/3rd quartile.
+
+![](imgs/box_whisker_describe.png)
+
+---
+
+First lets read in the gene expression data
+
+```r
+exprs &lt;- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
+head(exprs)
+```
+
+```
+##                    Untreated1 Untreated2  Treated1   Treated2
+## ENSDARG00000093639  0.8616832  1.9311442 0.1041508 0.14055604
+## ENSDARG00000094508  0.9857575  2.0256352 0.1549917 0.20301609
+## ENSDARG00000095893  0.8498889  1.9875580 0.2317969 0.20925123
+## ENSDARG00000095252  0.9242996  2.0857620 0.2562264 0.24669079
+## ENSDARG00000078878  0.3571734  0.4653908 0.1167221 0.09710237
+## ENSDARG00000079403  1.0604071  1.2581398 0.3884836 0.31567299
+```
+
+---
+
+Now we can use the **boxplot()** function on our data.frame to get our boxplot
+
+```r
+boxplot(exprs)
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-49-1.png" width="1920px" /&gt;
+
+---
+
+Perhaps it would look better on a log scale. We can add addition colours and labels as with other plots.
+
+
+```r
+boxplot(log2(exprs),ylab="log2 Expression",
+        col=c("red","red","blue","blue"))
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-50-1.png" width="1920px" /&gt;
+
+---
 ##Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
@@ -460,7 +511,7 @@ hist(data1$Untreated2)
 boxplot(data1$Treated1)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-51-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-54-1.png" width="490px" /&gt;
 
 ---
 ##Saving your plots
