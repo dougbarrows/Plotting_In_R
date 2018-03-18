@@ -128,9 +128,10 @@ ggplot(data=patients_clean,
 ```r
 library(ggplot2)
 
-patients_clean &lt;- read.delim("data/patient-data-cleaned.txt",sep="\t")
+patients_clean &lt;- read.delim("data/patient-data-cleaned.txt",
+                             sep="\t")
 ```
-
+---
 ## Our first ggplot2 graph
 
 As seen above, in order to produce a ggplot2 graph we need a minimum of:-
@@ -138,6 +139,7 @@ As seen above, in order to produce a ggplot2 graph we need a minimum of:-
 - Data to be used in graph
 - Mappings of data to the graph (aesthetic mapping)
 - What type of graph we want to use (The geom to use).
+
 ---
 In the code below we define the data as our cleaned patients data frame.
 
@@ -254,10 +256,7 @@ pcPlot &lt;- ggplot(data=patients_clean)
 
 pcPlot &lt;- pcPlot+aes(x=Height,y=Weight)
 pcPlot &lt;- pcPlot+geom_point()
-pcPlot
 ```
-
-![](ggplot2_files/figure-html/ggplot_aes_geomFS1-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -534,7 +533,7 @@ pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS5-1.png)&lt;!-- --&gt;
-```
+
 ---
 
 Again, for a comprehensive list of parameters and aesthetic mappings used in geom_*type*  functions see the ggplot2 documentation for individual geoms by using ?geom_*type*
@@ -571,7 +570,8 @@ facet_grid(Rows~Columns)
 
 
 ```r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,colour=Sex))+geom_point()
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
 pcPlot + facet_grid(Smokes~Sex)
 ```
 
@@ -586,7 +586,8 @@ facet_grid(~Columns)
 &lt;/div&gt; 
 
 ```r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,colour=Sex))+geom_point()
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
 pcPlot + facet_grid(~Sex)
 ```
 
@@ -602,7 +603,8 @@ facet_grid(Rows~.)
 
 
 ```r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,colour=Sex))+geom_point()
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
 pcPlot + facet_grid(Sex~.)
 ```
 
@@ -615,7 +617,8 @@ For *facet_wrap()* we follow as similar syntax to *facet_grid()*
 
 
 ```r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,colour=Sex))+geom_point()
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Smokes)
 ```
 
@@ -626,7 +629,8 @@ For more complex faceting both *facet_grid* and *facet_wrap* can accept combinat
 Using *facet_wrap*
 
 ```r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,colour=Sex))+geom_point()
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 ```
 
@@ -669,14 +673,14 @@ Depending on the message we want the plot to convey, we might want control over 
 
 
 ```r
-patients_clean$Sex &lt;- factor(patients_clean$Sex, levels=c("Male","Female"))
+patients_clean$Sex &lt;- factor(patients_clean$Sex, 
+                             levels=c("Male","Female"))
 ggplot(patients_clean,aes(x=Sex, y=Weight)) + geom_boxplot()
 ```
 
 ![](ggplot2_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 
-With the pipe syntax we just learnt about, we can change the variable on-the-fly and generate the plot 
 
 
 
@@ -874,7 +878,8 @@ The limits of the scale can also be controlled but it is important to note data 
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
-pcPlot + geom_point() + scale_size_continuous(range = c(3,6), limits = c(25,40))
+pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
+                                              limits = c(25,40))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsizeLimits-1.png)&lt;!-- --&gt;
@@ -927,7 +932,8 @@ Similarly we can use the scale_colour_gradient2 function which allows for the sp
 pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_colour_gradient2(low = "Blue",mid="Black", high="Red", midpoint = median(patients_clean$BMI))
+  scale_colour_gradient2(low = "Blue",mid="Black", high="Red",
+                         midpoint = median(patients_clean$BMI))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient2-1.png)&lt;!-- --&gt;
@@ -1019,7 +1025,8 @@ This behaviour can be overridden by specifying an aes within the stat_smooth() f
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
-pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",inherit.aes = F)
+pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
+                                inherit.aes = F)
 ```
 
 ![](ggplot2_files/figure-html/stat_smoothlmgroupsOverridden-1.png)&lt;!-- --&gt;
@@ -1034,7 +1041,8 @@ In this example we use it to plot the quantiles of the Female and Male Height da
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))+geom_jitter()
-pcPlot+stat_summary(fun.y=quantile,geom="point",colour="purple",size=8)
+pcPlot+stat_summary(fun.y=quantile,geom="point",
+                    colour="purple",size=8)
 ```
 
 ![](ggplot2_files/figure-html/stat_summary-1.png)&lt;!-- --&gt;
@@ -1352,7 +1360,8 @@ By default ggsave() will use the size of your current graphics window when savin
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
-ggsave(pcPlot,filename = "anExampleplot.png",width = 15,height = 15,units = "cm")
+ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
+       height = 15,units = "cm")
 ```
 ---
 
