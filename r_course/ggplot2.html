@@ -1,29 +1,24 @@
----
-title: "Introduction to ggplot2"
-author: "Rockefeller University, Bioinformatics Resource Centre"
-date: "http://rockefelleruniversity.github.io/Plotting_In_R/"
-output: 
-  xaringan::moon_reader:
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-  html_document:
-    toc: true # table of content true
-    toc_float: yes
-    depth: 3  # upto three depths of headings (specified by #, ## and ###)
-    number_sections: false  ## if you want number sections at each table header
-    theme: united  # many options for theme, this one is my favorite.
-    highlight: tango  # specifies the syntax highlighting style
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to ggplot2</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
 
+# Introduction to ggplot2
+### Rockefeller University, Bioinformatics Resource Centre
+### <a href="http://rockefelleruniversity.github.io/Plotting_In_R/" class="uri">http://rockefelleruniversity.github.io/Plotting_In_R/</a>
 
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-AsSlides <- TRUE
-```
+
+
 
 
 # Graphics in R
@@ -57,92 +52,84 @@ On top of this central philosophy ggplot2 has:
 
 # Grammar of Graphics
 
-<div align="center">
-<img src="imgs/Slide1.jpg" alt="igv" height="500" width="300">
-</div>
+&lt;div align="center"&gt;
+&lt;img src="imgs/Slide1.jpg" alt="igv" height="500" width="300"&gt;
+&lt;/div&gt;
 
 ---
 
 ## How ggplot2 builds a plot.
 
-<!-- ![](imgs/Slide2.jpg) -->
-<div align="center">
-<img src="imgs/Slide2.jpg" alt="igv" height="500" width="550">
-</div>
+&lt;!-- ![](imgs/Slide2.jpg) --&gt;
+&lt;div align="center"&gt;
+&lt;img src="imgs/Slide2.jpg" alt="igv" height="500" width="550"&gt;
+&lt;/div&gt;
 
 
 ---
 
 Overview of example code for the ggplot2 scatter plot.
 
-```{r complex,eval=F}
 
-ggplot(data = <default data set>, 
-       aes(x = <default x axis variable>,
-           y = <default y axis variable>,
-           ... <other default aesthetic mappings>),
-       ... <other plot defaults>) +
+```r
+ggplot(data = &lt;default data set&gt;, 
+       aes(x = &lt;default x axis variable&gt;,
+           y = &lt;default y axis variable&gt;,
+           ... &lt;other default aesthetic mappings&gt;),
+       ... &lt;other plot defaults&gt;) +
 
-       geom_scatter(aes(size = <size variable for this geom>, 
-                      ... <other aesthetic mappings>),
-                  data = <data for this point geom>,
-                  stat = <statistic string or function>,
-                  position = <position string or function>,
-                  color = <"fixed color specification">,
-                  <other arguments, possibly passed to the _stat_ function) +
+       geom_scatter(aes(size = &lt;size variable for this geom&gt;, 
+                      ... &lt;other aesthetic mappings&gt;),
+                  data = &lt;data for this point geom&gt;,
+                  stat = &lt;statistic string or function&gt;,
+                  position = &lt;position string or function&gt;,
+                  color = &lt;"fixed color specification"&gt;,
+                  &lt;other arguments, possibly passed to the _stat_ function) +
 
-  scale_<aesthetic>_<type>(name = <"scale label">,
-                     breaks = <where to put tick marks>,
-                     labels = <labels for tick marks>,
-                     ... <other options for the scale>) +
+  scale_&lt;aesthetic&gt;_&lt;type&gt;(name = &lt;"scale label"&gt;,
+                     breaks = &lt;where to put tick marks&gt;,
+                     labels = &lt;labels for tick marks&gt;,
+                     ... &lt;other options for the scale&gt;) +
   
   ggtitle("Graphics/Plot")+
   xlab("Weight")+
   ylab("Height")+
 
   theme(plot.title = element_text(colour = "gray"),
-        ... <other theme elements>)
-    
+        ... &lt;other theme elements&gt;)
 ```
 ---
 ## What users are required to specify in ggplot2.
 
-<!-- ![](imgs/Slide3.jpg) -->
-<div align="center">
-<img src="imgs/Slide3.jpg" alt="igv" height="500" width="550">
-</div>
+&lt;!-- ![](imgs/Slide3.jpg) --&gt;
+&lt;div align="center"&gt;
+&lt;img src="imgs/Slide3.jpg" alt="igv" height="500" width="550"&gt;
+&lt;/div&gt;
 
 ---
 Actual code for the ggplot2 scatter plot.
 
-```{r simple,eval=F}
 
+```r
 ggplot(data=patients_clean,
        aes(y=Weight,x=Height,colour=Sex,
            size=BMI,shape=Pet))
 +geom_point()
-
 ```
 
 ---
 # Getting started with ggplot2
 
 
-```{r load_packages, echo=FALSE, eval=TRUE,warning=F,message=F}
-suppressPackageStartupMessages(library(tidyr))
-suppressPackageStartupMessages(library(ggplot2))
-suppressPackageStartupMessages(library(dplyr))
-suppressPackageStartupMessages(library(stringr))
-suppressPackageStartupMessages(library(lubridate))
-```
 
 
-```{r present_clean}
+
+
+```r
 library(ggplot2)
 
-patients_clean <- read.delim("data/patient-data-cleaned.txt",
+patients_clean &lt;- read.delim("data/patient-data-cleaned.txt",
                              sep="\t")
-
 ```
 ---
 ## Our first ggplot2 graph
@@ -156,97 +143,175 @@ As seen above, in order to produce a ggplot2 graph we need a minimum of:-
 ---
 In the code below we define the data as our cleaned patients data frame.
 
-```{r ggplot_only,echo=!AsSlides,eval=!AsSlides}
-pcPlot <- ggplot(data=patients_clean)
+
+
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean)
 class(pcPlot)
-pcPlot$data[1:4,]
 ```
 
-```{r ggplot_onlyFS1,echo=AsSlides,eval=AsSlides}
-pcPlot <- ggplot(data=patients_clean)
-class(pcPlot)
+```
+## [1] "gg"     "ggplot"
 ```
 
 Now we can see that we have gg/ggplot object (pcPlot).
 ---
 
-```{r ggplot_onlyFS2,echo=AsSlides,eval=AsSlides}
+
+```r
 pcPlot$data[1:4,]
+```
+
+```
+##          ID    Name  Race  Sex     Smokes Height Weight      Birth
+## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57 1972-02-06
+## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43 1972-06-15
+## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48 1972-07-09
+## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54 1972-08-17
+##          State  Pet Grade  Died Count Date.Entered.Study Age   BMI
+## 1      Georgia  Dog     2 FALSE  0.01         2015-12-01  44 22.90
+## 2     Missouri  Dog     2 FALSE -1.31         2015-12-01  43 25.07
+## 3 Pennsylvania None     2 FALSE -0.17         2015-12-01  43 26.38
+## 4      Florida  Cat     1 FALSE -1.10         2015-12-01  43 30.64
+##   Overweight
+## 1      FALSE
+## 2       TRUE
+## 3       TRUE
+## 4       TRUE
 ```
 Within this gg/ggplot objec the data has been defined.
 
 ---
 Important information on how to map the data to the visual properties (aesthetics) of the plot as well as what type of plot to use (geom) have however yet to specified. 
 
-```{r missing_rest}
+
+```r
 pcPlot$mapping
+```
+
+```
+## Aesthetic mapping: 
+## &lt;empty&gt;
+```
+
+```r
 pcPlot$theme
+```
+
+```
+## list()
+```
+
+```r
 pcPlot$layers
+```
+
+```
+## list()
 ```
 
 ---
 The information to map the data to the plot can be added now using the aes() function.
-```{r ggplot_aes}
-pcPlot <- ggplot(data=patients_clean)
 
-pcPlot <- pcPlot+aes(x=Height,y=Weight)
+```r
+pcPlot &lt;- ggplot(data=patients_clean)
+
+pcPlot &lt;- pcPlot+aes(x=Height,y=Weight)
 
 pcPlot$mapping
+```
+
+```
+## Aesthetic mapping: 
+## * x -&gt; Height
+## * y -&gt; Weight
+```
+
+```r
 pcPlot$theme
+```
+
+```
+## list()
+```
+
+```r
 pcPlot$layers
+```
+
+```
+## list()
 ```
 
 But we are still missing the final component of our plot, the type of plot to use (geom).
 ---
 Below the geom_point function is used to specify a point plot, a scatter plot of Height values on the x-axis versus Weight values on the y values.
 
-```{r ggplot_aes_geom,fig.height=4,fig.width=7,eval=!AsSlides,echo=!AsSlides}
-pcPlot <- ggplot(data=patients_clean)
 
-pcPlot <- pcPlot+aes(x=Height,y=Weight)
-pcPlot <- pcPlot+geom_point()
-pcPlot
-pcPlot$mapping
-pcPlot$theme
-pcPlot$layers
 
-```
 
-```{r ggplot_aes_geomFS1,fig.height=5,fig.width=8,eval=AsSlides,echo=AsSlides}
-pcPlot <- ggplot(data=patients_clean)
+```r
+pcPlot &lt;- ggplot(data=patients_clean)
 
-pcPlot <- pcPlot+aes(x=Height,y=Weight)
-pcPlot <- pcPlot+geom_point()
-
+pcPlot &lt;- pcPlot+aes(x=Height,y=Weight)
+pcPlot &lt;- pcPlot+geom_point()
 ```
 
 ---
 
-```{r ggplot_aes_geomFS2,fig.height=5,fig.width=8,eval=AsSlides,echo=AsSlides}
 
+```r
 pcPlot$mapping
-pcPlot$theme
-pcPlot$layers
+```
 
+```
+## Aesthetic mapping: 
+## * x -&gt; Height
+## * y -&gt; Weight
+```
+
+```r
+pcPlot$theme
+```
+
+```
+## list()
+```
+
+```r
+pcPlot$layers
+```
+
+```
+## [[1]]
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity
 ```
 
 
 ---
 Now we have all the components of our plot, we need we can display the results.
 
-```{r ggplot_aes_geom_display,fig.height=6,fig.width=8}
-pcPlot
 
+```r
+pcPlot
 ```
+
+![](ggplot2_files/figure-html/ggplot_aes_geom_display-1.png)&lt;!-- --&gt;
 ---
 
 More typically, the data and aesthetics are defined within ggplot function and geoms applied afterwards.
 
-```{r ggplot_simple_geom_point, fig.height=6, fig.width=8}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point()
 ```
+
+![](ggplot2_files/figure-html/ggplot_simple_geom_point-1.png)&lt;!-- --&gt;
 ---
 
 # Geoms - Plot types
@@ -272,84 +337,105 @@ Several geoms are available in ggplot2:-
 
 
 
-```{r, line_simple, fig.height=5, fig.width=8}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 
-pcPlot_line <- pcPlot+geom_line() 
+pcPlot_line &lt;- pcPlot+geom_line() 
 
 pcPlot_line
-
 ```
+
+![](ggplot2_files/figure-html/line_simple-1.png)&lt;!-- --&gt;
 ---
-```{r, smooth_simple, fig.height=6, fig.width=8}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 
-pcPlot_smooth <- pcPlot+geom_smooth() 
+pcPlot_smooth &lt;- pcPlot+geom_smooth() 
 
 pcPlot_smooth
+```
 
 ```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](ggplot2_files/figure-html/smooth_simple-1.png)&lt;!-- --&gt;
 ---
 
 ## Geoms - Bar and frequency plots
 
-```{r, bar_simple, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex))
 
-pcPlot_bar <- pcPlot+geom_bar() 
+pcPlot_bar &lt;- pcPlot+geom_bar() 
 
 pcPlot_bar
-
-
 ```
+
+![](ggplot2_files/figure-html/bar_simple-1.png)&lt;!-- --&gt;
 ---
 
-```{r, histogram_simple, fig.height=6, fig.width=8,warning=FALSE}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Height))
 
-pcPlot_hist <- pcPlot+geom_histogram() 
+pcPlot_hist &lt;- pcPlot+geom_histogram() 
 
 pcPlot_hist
+```
 
 ```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](ggplot2_files/figure-html/histogram_simple-1.png)&lt;!-- --&gt;
 
 ---
-```{r, density_simple, fig.height=6, fig.width=8}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Height))
 
-pcPlot_density <- pcPlot+geom_density() 
+pcPlot_density &lt;- pcPlot+geom_density() 
 
 pcPlot_density
-
 ```
+
+![](ggplot2_files/figure-html/density_simple-1.png)&lt;!-- --&gt;
 
 ---
 ## Geoms - Box and violin plots
 
-```{r, boxplot_simple, fig.height=5, fig.width=8}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))
 
-pcPlot_boxplot <- pcPlot+geom_boxplot() 
+pcPlot_boxplot &lt;- pcPlot+geom_boxplot() 
 
 pcPlot_boxplot
 ```
----
-```{r, violin_simple, fig.height=6, fig.width=8}
 
-pcPlot <- ggplot(data=patients_clean,
+![](ggplot2_files/figure-html/boxplot_simple-1.png)&lt;!-- --&gt;
+---
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))
 
-pcPlot_violin <- pcPlot+geom_violin() 
+pcPlot_violin &lt;- pcPlot+geom_violin() 
 
 pcPlot_violin
 ```
+
+![](ggplot2_files/figure-html/violin_simple-1.png)&lt;!-- --&gt;
 ---
 An overview of geoms and thier arguments can be found at ggplot2 documentation or within the ggplot2 cheatsheet.
 
@@ -361,11 +447,14 @@ An overview of geoms and thier arguments can be found at ggplot2 documentation o
 
 In order to change the property on an aesthetic of a plot into a constant value (e.g. set colour of all points to red) we can supply the colour argument to the geom_point() function.
 
-```{r, scatter_coloured, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point(colour="red")
 ```
+
+![](ggplot2_files/figure-html/scatter_coloured-1.png)&lt;!-- --&gt;
 ---
 
 As we discussed earlier however, ggplot2 makes use of aesthetic mappings to assign variables in the data to the properties/aesthetics of the plot. This allows the properties of the plot to reflect variables in the data dynamically.
@@ -374,66 +463,83 @@ In these examples we supply additional information to the aes() function to defi
 
 First we can recreate the plot we saw earlier.
 
-```{r, scatter_simple, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point()
 ```
+
+![](ggplot2_files/figure-html/scatter_simple-1.png)&lt;!-- --&gt;
 ---
 Now we can adjust the aes mapping by supplying an argument to the colour parameter in the aes function. (Note that ggplot2 accepts "color" or "colour" as parameter name)
 
 
 This simple adjustment allows for identifaction of the separation between male and female measurements for height and weight.
 
-```{r, scatter_aes_sexColour, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight,colour=Sex))
 pcPlot+geom_point()
 ```
+
+![](ggplot2_files/figure-html/scatter_aes_sexColour-1.png)&lt;!-- --&gt;
 ---
 Similarly the shape of points may be adjusted.
 
-```{r, scatter_aes_sexShape, fig.height=6, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight,shape=Sex))
 pcPlot+geom_point()
 ```
+
+![](ggplot2_files/figure-html/scatter_aes_sexShape-1.png)&lt;!-- --&gt;
 ---
 The aesthetic mappings may be set directly in the geom_points() function as previously when specifying red. This can allow the same ggplot object to be used by different aesethetic mappings and varying geoms
 
-```{r, aes_in_geom,eval=!AsSlides,echo=!AsSlides}
-pcPlot <- ggplot(data=patients_clean)
+
+
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean)
+```
+---
+
+```r
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
+```
+
+![](ggplot2_files/figure-html/aes_in_geomFS2-1.png)&lt;!-- --&gt;
+---
+
+```r
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
+```
+
+![](ggplot2_files/figure-html/aes_in_geomFS3-1.png)&lt;!-- --&gt;
+---
+
+```r
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
+```
+
+![](ggplot2_files/figure-html/aes_in_geomFS4-1.png)&lt;!-- --&gt;
+---
+
+```r
 pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 ```
 
-```{r, aes_in_geomFS1,eval=AsSlides,echo=AsSlides}
-pcPlot <- ggplot(data=patients_clean)
-```
----
-```{r, aes_in_geomFS2,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
-```
----
-```{r, aes_in_geomFS3,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
-```
----
-```{r, aes_in_geomFS4,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
-```
----
-```{r, aes_in_geomFS5,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
-```
+![](ggplot2_files/figure-html/aes_in_geomFS5-1.png)&lt;!-- --&gt;
 
 ---
 
 Again, for a comprehensive list of parameters and aesthetic mappings used in geom_*type*  functions see the ggplot2 documentation for individual geoms by using ?geom_*type*
 
-```{r, helpforArguments}
+
+```r
 ?geom_point
 ```
 
@@ -458,99 +564,125 @@ The *facet_grid* function is well suited to splitting the data by two factors.
 
 Here we can plot the data with the Smokes variable as rows and Sex variable as columns.
 
-<div align="center">
+&lt;div align="center"&gt;
 facet_grid(Rows~Columns)
-</div>
+&lt;/div&gt;
 
-```{r, facet_grid_SmokesBySex, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_grid(Smokes~Sex)
 ```
+
+![](ggplot2_files/figure-html/facet_grid_SmokesBySex-1.png)&lt;!-- --&gt;
 
 ---
 
 To split by one factor we can apply the facet_grid() function ommiting the variable before the "~"" to facet along columns in plot.
 
-<div align="center">
+&lt;div align="center"&gt;
 facet_grid(~Columns)
-</div> 
-```{r, facet_grid_BySex, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+&lt;/div&gt; 
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_grid(~Sex)
 ```
+
+![](ggplot2_files/figure-html/facet_grid_BySex-1.png)&lt;!-- --&gt;
 
 ---
 
 To split along rows in plot, the variable is placed before the "~.".
 
-<div align="center">
+&lt;div align="center"&gt;
 facet_grid(Rows~.)
-</div> 
+&lt;/div&gt; 
 
-```{r, facet_grid_SexBy, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_grid(Sex~.)
 ```
+
+![](ggplot2_files/figure-html/facet_grid_SexBy-1.png)&lt;!-- --&gt;
 
 ---
 The *facet_wrap()* function offers a less grid based structure but is well suited to faceting data by one variable.
 
 For *facet_wrap()* we follow as similar syntax to *facet_grid()*
 
-```{r, facet_Wrap_BySmokes, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Smokes)
 ```
+
+![](ggplot2_files/figure-html/facet_Wrap_BySmokes-1.png)&lt;!-- --&gt;
 ---
 For more complex faceting both *facet_grid* and *facet_wrap* can accept combinations of variables.
 
 Using *facet_wrap*
-```{r, facet_wrap_smokesBySexandPet, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 ```
+
+![](ggplot2_files/figure-html/facet_wrap_smokesBySexandPet-1.png)&lt;!-- --&gt;
 ---
 Or in a nice grid format using facet_grid() and the Smokes variable against a combination of Gender and Pet.
 
-```{r, facet_grid_smokesBySexandPet, fig.height=6, fig.width=9}
+
+```r
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
+
+![](ggplot2_files/figure-html/facet_grid_smokesBySexandPet-1.png)&lt;!-- --&gt;
 
 ---
 # Change the plotting order in a boxplot
 
 We will shortly discuss how to change various aspects of the plot layout and appearance. However, a common-asked question is how to change the order in which R plots a categorical variable. Consider the boxplot to compare weights of males and females:-
 
-```{r, fig.height=4, fig.width=9}
+
+```r
 ggplot(patients_clean, aes(x=Sex, y=Weight)) + geom_boxplot()
 ```
+
+![](ggplot2_files/figure-html/unnamed-chunk-1-1.png)&lt;!-- --&gt;
 ---
 Here, R decides the order to arrange the boxes according to the `levels` of the categorical variable. By default this is the alphabetical order. i.e. Female before Male.
 
-```{r}
+
+```r
 summary(patients_clean$Sex)
+```
+
+```
+## Female   Male 
+##     55     45
 ```
 ---
 Depending on the message we want the plot to convey, we might want control over the order of boxes. The `factor` functions allows us to explictly change the order of the levels.
 
-```{r, fig.height=4, fig.width=9}
-patients_clean$Sex <- factor(patients_clean$Sex, 
+
+```r
+patients_clean$Sex &lt;- factor(patients_clean$Sex, 
                              levels=c("Male","Female"))
 ggplot(patients_clean,aes(x=Sex, y=Weight)) + geom_boxplot()
 ```
 
+![](ggplot2_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
 
 
-```{r,echo=FALSE,eval=FALSE}
-patients_clean %>% 
-  mutate(Sex = factor(Sex,levels=c("Male","Female"))) %>% 
-  ggplot(aes(x=Sex, y=Weight)) + geom_boxplot()
-```
+
+
 
 ---
 
@@ -599,8 +731,8 @@ scale_**(x/y)**_**(continous/discrete)**
 ---
 In this example we control the continuous sale on the x-axis by providing a name, X-axis limits, the positions of breaks (ticks/labels) and the  labels to place at breaks.
 
-```{r, facet_grid_smokesBySex_scalex, fig.height=4.5, fig.width=9}
 
+```r
 pcPlot +
   geom_point() +
   facet_grid(Smokes~Sex)+
@@ -608,38 +740,46 @@ pcPlot +
                      limits = c(100,200),
                      breaks=c(125,150,175),
                      labels=c("small","justright","tall"))
-
 ```
+
+![](ggplot2_files/figure-html/facet_grid_smokesBySex_scalex-1.png)&lt;!-- --&gt;
 ---
 Similary control over discrete scales is shown below.
 
-```{r, facet_grid_smokesBySex_scaleDisceteX, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Sex,y=Height))
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Sex,y=Height))
 pcPlot +
   geom_violin(aes(x=Sex,y=Height)) +
   scale_x_discrete(labels=c("Women", "Men"))
-
 ```
+
+![](ggplot2_files/figure-html/facet_grid_smokesBySex_scaleDisceteX-1.png)&lt;!-- --&gt;
 ---
 Multiple X/Y scales can be combined to give full control of axis marks.
 
-```{r, facet_grid_smokesBySex_scaleDisceteXContinuousY, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,aes(x=Sex,y=Height,fill=Smokes))
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,aes(x=Sex,y=Height,fill=Smokes))
 pcPlot +
   geom_violin(aes(x=Sex,y=Height)) +
   scale_x_discrete(labels=c("Women", "Men"))+
   scale_y_continuous(breaks=c(160,180),labels=c("Short", "Tall"))
 ```
+
+![](ggplot2_files/figure-html/facet_grid_smokesBySex_scaleDisceteXContinuousY-1.png)&lt;!-- --&gt;
 ---
 ## Controlling other scales.
 When using fill,colour,linetype, shape, size or alpha aesthetic mappings the scales are automatically selected for you and the appropriate legends created.
 
-```{r, facet_grid_height_weight, fig.height=3, fig.width=8}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=Sex))
 pcPlot + geom_point(size=4)
-                  
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight-1.png)&lt;!-- --&gt;
 
 In the above example the discrete colours for the Sex variable was selected by default.
 ---
@@ -648,14 +788,16 @@ In the above example the discrete colours for the Sex variable was selected by d
 Manual control of discrete variables can be performed using scale_*aes_Of_Interest*_**manual** with the *values* parameter.
 Additionally in this example an updated name for the legend is provided.
 
-```{r, facet_grid_height_weight_manualScale, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=Sex))
 pcPlot + geom_point(size=4) + 
   scale_color_manual(values = c("Green","Purple"),
                      name="Gender")
-                  
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_manualScale-1.png)&lt;!-- --&gt;
 ---
 ### Colorbrewer for discrete colour scale
 
@@ -676,13 +818,19 @@ The brewer set of scale functions allow the user to make use of a range of palet
  *Blues, BuGn, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn, PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd*
 
 ---
-```{r, facet_grid_height_weight_brewerScale, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=Pet))
 pcPlot + geom_point(size=4) + 
   scale_color_brewer(palette = "Set2")
-                  
 ```
+
+```
+## Warning: Removed 5 rows containing missing values (geom_point).
+```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_brewerScale-1.png)&lt;!-- --&gt;
 ---
 For more details on palette sizes and styles visit the colorbrewer website and ggplot2 reference page.
 
@@ -703,44 +851,53 @@ Both these functions accept the range of alpha/size to be used in plotting.
 
 Below the range of alpha to be used in plot is limited to between 0.5 and 1
 
-```{r, facet_grid_height_weight_BMIalpha, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,alpha=BMI))
 pcPlot + geom_point(size=4) + 
   scale_alpha_continuous(range = c(0.5,1))
-                  
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIalpha-1.png)&lt;!-- --&gt;
 ---
 Below the range of sizes to be used in plot is limited to between 3 and 6
-```{r, facet_grid_height_weight_BMIsize, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point(alpha=0.8) + 
   scale_size_continuous(range = c(3,6))
-                  
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsize-1.png)&lt;!-- --&gt;
 ---
 The limits of the scale can also be controlled but it is important to note data outside of scale is removed from plot.
 
-```{r, facet_grid_height_weight_BMIsizeLimits, fig.height=4, fig.width=9,warning=FALSE}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
                                               limits = c(25,40))
-                  
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsizeLimits-1.png)&lt;!-- --&gt;
 
 ---
 What points of scale to be labeled and labels text  can also be controlled.
 
-```{r, facet_grid_height_weight_BMIsizewithBreaks, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point() + 
   scale_size_continuous(range = c(3,6), 
                         breaks=c(25,30), 
                         labels=c("Good","Good but not 25"))
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsizewithBreaks-1.png)&lt;!-- --&gt;
 
 ---
 Control of colour/fill scales can be best achieved through the **gradient** subfunctions of scale.
@@ -758,28 +915,34 @@ Both functions take a common set of arguments:-
 ---
 An example using scale_colour_gradient below sets the low and high end colours to White and Red respectively
 
-```{r, facet_grid_height_weight_BMIgradient, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_colour_gradient(low = "White",high="Red")
-                  
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient-1.png)&lt;!-- --&gt;
 ---
 Similarly we can use the scale_colour_gradient2 function which allows for the specification of a midpoint value and its associated colour.
 
-```{r, facet_grid_height_weight_BMIgradient2, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_colour_gradient2(low = "Blue",mid="Black", high="Red",
                          midpoint = median(patients_clean$BMI))
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient2-1.png)&lt;!-- --&gt;
 ---
 As with previous continous scales, limits and custom labels in scale legend can be added.
 
-```{r, facet_grid_height_weight_BMIgradient2plus, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_colour_gradient2(low = "Blue",
@@ -789,11 +952,14 @@ pcPlot + geom_point(size=4,alpha=0.8) +
                          breaks=c(25,30),labels=c("Low","High"),
                          name="Body Mass Index")
 ```
+
+![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient2plus-1.png)&lt;!-- --&gt;
 ---
 Multiple scales may be combined to create high customisable plots and scales
 
-```{r, facet_grid_smokesBySex_scaleDisceteXContinuouswY, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI,shape=Sex))
 pcPlot + geom_point(size=4,alpha=0.8)+ 
   scale_shape_discrete(name="Gender") +
@@ -802,6 +968,8 @@ pcPlot + geom_point(size=4,alpha=0.8)+
                          breaks=c(25,30),labels=c("Low","High"),
                          name="Body Mass Index")
 ```
+
+![](ggplot2_files/figure-html/facet_grid_smokesBySex_scaleDisceteXContinuouswY-1.png)&lt;!-- --&gt;
 
 ---
 # Statistical transformations.
@@ -814,38 +982,54 @@ An example of statistical methods in ggplot2 which are very useful include the s
 
 The stat_smooth() function can be used to fit a line to the data being displayed.
 
-```{r, stat_smooth, fig.height=5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
 pcPlot+geom_point()+stat_smooth()
 ```
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](ggplot2_files/figure-html/stat_smooth-1.png)&lt;!-- --&gt;
 ---
 By default a "loess" smooth line is plotted by stat_smooth. Other methods available include lm, glm,gam,rlm.
 
-```{r, stat_smoothlm, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
 pcPlot+geom_point()+stat_smooth(method="lm")
 ```
+
+![](ggplot2_files/figure-html/stat_smoothlm-1.png)&lt;!-- --&gt;
 ---
 A useful feature of ggplot2 is that it uses previously defined grouping when performing smoothing.
 
 If colour by Sex is an aesthetic mapping then two smooth lines are drawn, one for each sex.
 
-```{r, stat_smoothlmgroups, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
 pcPlot+geom_point()+stat_smooth(method="lm")
 ```
+
+![](ggplot2_files/figure-html/stat_smoothlmgroups-1.png)&lt;!-- --&gt;
 ---
 This behaviour can be overridden by specifying an aes within the stat_smooth() function and setting inherit.aes to FALSE.
 
-```{r, stat_smoothlmgroupsOverridden, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
 pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
                                 inherit.aes = F)
 ```
+
+![](ggplot2_files/figure-html/stat_smoothlmgroupsOverridden-1.png)&lt;!-- --&gt;
 ---
 Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualised.
 
@@ -853,12 +1037,15 @@ The fun.y parameter specifies a function to apply to the y variables for every v
 
 In this example we use it to plot the quantiles of the Female and Male Height data
 
-```{r, stat_summary, fig.height=3.5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))+geom_jitter()
 pcPlot+stat_summary(fun.y=quantile,geom="point",
                     colour="purple",size=8)
 ```
+
+![](ggplot2_files/figure-html/stat_summary-1.png)&lt;!-- --&gt;
 ---
 # Themes
 
@@ -875,11 +1062,14 @@ Predefined themes can be applied to a ggplot2 object using a family of functions
 
 In the example below the minimal theme is applied to the scatter plot seen earlier.
 
-```{r, theme_minimal, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+theme_minimal()
 ```
+
+![](ggplot2_files/figure-html/theme_minimal-1.png)&lt;!-- --&gt;
 ---
 Several predifined themes are available within ggplot2 including:
 
@@ -946,9 +1136,9 @@ To demonstrate customising a theme, in the example below we alter one element of
 
 A detailed description of which elements are available and their associated element functions can be found by typing *?theme*.
 
-```{r, theme_custom, fig.height=3, fig.width=9}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+theme(
             text = element_text(colour="red"),
@@ -956,14 +1146,16 @@ pcPlot+theme(
            )
 ```
 
+![](ggplot2_files/figure-html/theme_custom-1.png)&lt;!-- --&gt;
+
 
 ---
 
 If we wished to set the y-axis label to be at an angle we can adjust that as well.
 
-```{r, theme_custom1, fig.height=3, fig.width=9}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+theme(
             text = element_text(colour="red"),
@@ -971,12 +1163,14 @@ pcPlot+theme(
             axis.title.y = element_text(angle=0)
            )
 ```
+
+![](ggplot2_files/figure-html/theme_custom1-1.png)&lt;!-- --&gt;
 ---
 Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background colour.
 
-```{r, theme_custom2, fig.height=3, fig.width=9}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+
   geom_point()+
   facet_grid(Sex~Smokes)
@@ -989,6 +1183,8 @@ pcPlot+theme(
             strip.background=element_rect(fill="cyan")
            )
 ```
+
+![](ggplot2_files/figure-html/theme_custom2-1.png)&lt;!-- --&gt;
 ---
 
 ## + and %+replace%
@@ -1004,20 +1200,23 @@ When using the **+** operator
 This makes the **+** operator useful for building up from old themes.
 ---
 In the example below, we maintain all elements set by theme_bw() but overwrite the theme element attribute of the colour of text.
-```{r, theme_custom8, fig.height=4, fig.width=9}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+
   theme_bw()+
   theme(text = element_text(colour="red"))
 ```
+
+![](ggplot2_files/figure-html/theme_custom8-1.png)&lt;!-- --&gt;
 ---
 The consequence can be seen comparing the effect of theme() on a plot with a default theme or theme_minimal.
 
 Since the default theme, theme_grey() contains a specification for axis.text colour, i will not replace it with "+" operator. 
 
-```{r, theme_customMiniVsBWDuck,echo=T,eval=F,collapse=TRUE}
+
+```r
 pcPlot+
   theme(text = element_text(colour="red"))
 
@@ -1026,16 +1225,7 @@ pcPlot+
   theme(text = element_text(colour="red"))
 ```
 
-```{r, theme_customMiniVsBW,echo=F,eval=T,collapse=FALSE,fig.height=4, fig.width=9,message=FALSE,warning=FALSE}
-library(gridExtra)
-p <- pcPlot+
-  theme(text = element_text(colour="red"))
-
-p2 <- pcPlot+
-  theme_minimal()+
-  theme(text = element_text(colour="red"))
-grid.arrange(p, p2, ncol=2)
-```
+![](ggplot2_files/figure-html/theme_customMiniVsBW-1.png)&lt;!-- --&gt;
 ---
 
 
@@ -1048,43 +1238,84 @@ When using the **%+replace%** operator
 
 - Theme elements in the old theme which have not been specified in new theme are also replaced by blank theme elements.
 
-```{r, theme_custom84,echo=!AsSlides,eval=!AsSlides}
-  oldTheme <- theme_bw()
+
+
+
+```r
+  oldTheme &lt;- theme_bw()
   
-  newTheme_Plus <- theme_bw() +
+  newTheme_Plus &lt;- theme_bw() +
   theme(text = element_text(colour="red"))
   
-  newTheme_Replace <- theme_bw() %+replace%
+  newTheme_Replace &lt;- theme_bw() %+replace%
   theme(text = element_text(colour="red"))
-  
+```
+---
+
+```r
   oldTheme$text
+```
+
+```
+## List of 11
+##  $ family       : chr ""
+##  $ face         : chr "plain"
+##  $ colour       : chr "black"
+##  $ size         : num 11
+##  $ hjust        : num 0.5
+##  $ vjust        : num 0.5
+##  $ angle        : num 0
+##  $ lineheight   : num 0.9
+##  $ margin       :Classes 'margin', 'unit'  atomic [1:4] 0 0 0 0
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##  $ debug        : logi FALSE
+##  $ inherit.blank: logi TRUE
+##  - attr(*, "class")= chr [1:2] "element_text" "element"
+```
+---
+
+```r
   newTheme_Plus$text
+```
+
+```
+## List of 11
+##  $ family       : chr ""
+##  $ face         : chr "plain"
+##  $ colour       : chr "red"
+##  $ size         : num 11
+##  $ hjust        : num 0.5
+##  $ vjust        : num 0.5
+##  $ angle        : num 0
+##  $ lineheight   : num 0.9
+##  $ margin       :Classes 'margin', 'unit'  atomic [1:4] 0 0 0 0
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##  $ debug        : logi FALSE
+##  $ inherit.blank: logi FALSE
+##  - attr(*, "class")= chr [1:2] "element_text" "element"
+```
+---
+
+```r
   newTheme_Replace$text
 ```
 
-```{r, theme_custom84FS1,echo=AsSlides,eval=AsSlides}
-  oldTheme <- theme_bw()
-  
-  newTheme_Plus <- theme_bw() +
-  theme(text = element_text(colour="red"))
-  
-  newTheme_Replace <- theme_bw() %+replace%
-  theme(text = element_text(colour="red"))
 ```
----
-```{r, theme_custom84FS2,echo=AsSlides,eval=AsSlides}
-  
-  oldTheme$text
-```
----
-```{r, theme_custom84FS3,echo=AsSlides,eval=AsSlides}
-  
-  newTheme_Plus$text
-```
----
-```{r, theme_custom84FS4,echo=AsSlides,eval=AsSlides}
-
-  newTheme_Replace$text
+## List of 11
+##  $ family       : NULL
+##  $ face         : NULL
+##  $ colour       : chr "red"
+##  $ size         : NULL
+##  $ hjust        : NULL
+##  $ vjust        : NULL
+##  $ angle        : NULL
+##  $ lineheight   : NULL
+##  $ margin       : NULL
+##  $ debug        : NULL
+##  $ inherit.blank: logi FALSE
+##  - attr(*, "class")= chr [1:2] "element_text" "element"
 ```
 
 ---
@@ -1097,21 +1328,25 @@ theme_get and theme_set
 
 So far no plot titles have been specified. Plot titles can be specified using the labs functions.
 
-```{r, theme_labs,fig.height=4, fig.width=9,}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 ```
+
+![](ggplot2_files/figure-html/theme_labs-1.png)&lt;!-- --&gt;
 ---
 or specified using the ggtitle and xlab/ylab functions.
 
-```{r, theme_ggtitle,fig.height=4, fig.width=9,}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot+ggtitle("Weight vs Height")+ylab("Height (cm)")
 ```
+
+![](ggplot2_files/figure-html/theme_ggtitle-1.png)&lt;!-- --&gt;
 ---
 ## Saving plots
 
@@ -1121,9 +1356,9 @@ The ggsave() function allows for additional arguments to be specified including 
 
 By default ggsave() will use the size of your current graphics window when saving plots so it may be important to specify width and height arguments desired. 
 
-```{r, ggsaving, eval=FALSE,fig.height=4, fig.width=9,}
 
-pcPlot <- ggplot(data=patients_clean,
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
        height = 15,units = "cm")
@@ -1154,5 +1389,40 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
 
-
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
