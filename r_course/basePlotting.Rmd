@@ -533,10 +533,10 @@ dev.off()
 
 ---
 
-Exercise on base plotting can be found [here](../exercises/Plotting_exercise.html)
+Exercise on base plotting can be found [here](../../exercises/Plotting_exercise.html)
 
 ---
 
-Answers for baseplotting can be found [here](../answers/Plotting_answers.html)
+Answers for baseplotting can be found [here](../../answers/Plotting_answers.html)
 
 ---

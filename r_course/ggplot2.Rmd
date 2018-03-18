@@ -549,13 +549,9 @@ patients_clean %>%
 
 # Exercise set 1
 
-[Link_to_exercises](ggplot2-exercises1.html)
+[Link_to_exercises](../../exercises/exercise_1.html)
 
-[Link_to_exercises_with_images](ggplot2-exercises1-images.html)
-
-[Link_to_Rmarkdown template](ggplot2-exercises1.Rmd)
-
-[Link_to_answers](ggplot2-solutions1.html)
+[Link_to_answers](../../answers/exercise_1.html)
 
 ---
 
@@ -1125,13 +1121,12 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,height = 15,units = "cm"
 # Exercise set 2
 
 
-[Link_to_exercises](ggplot2-exercises2.html)
+# Exercise set 2
 
-[Link_to_exercises_with_images](ggplot2-exercises2-images.html)
+[Link_to_exercises](../../exercises/exercise_2.html)
 
-[Link_to_Rmarkdown template](ggplot2-exercises2.Rmd)
+[Link_to_answers](../../answers/exercise_2.html)
 
-[Link_to_answers](ggplot2-solutions2.html)
 ---
 # References.
 
