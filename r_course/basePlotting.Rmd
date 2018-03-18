@@ -41,7 +41,7 @@ Lattice and ggplot2 packages are built on grid graphics package while the base g
 
 ## Line Charts
 
-First we'll produce a very simple graph using the values in the treatment vector:
+First we'll produce a very simple graph using the values in a treatment vector:
 
 ```{r}
 treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
@@ -50,7 +50,7 @@ treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 ---
 ##Line Plot
 
-Plot the treatment vector with default parameters
+Now we plot the treatment vector with default parameters
 
 ```{r,eval=FALSE}
 plot(treatment)
@@ -65,7 +65,7 @@ plot(treatment)
 ---
 Now, let's add a title, a line to connect the points, and some color:
 
-Plot treatment using blue points overlayed by a line
+Here we plot treatment using blue points overlayed by a line
 
 ```{r,eval=TRUE}
 plot(treatment, type="o", col="blue",main="Treatment")
@@ -196,7 +196,8 @@ title(ylab="Values", col.lab=rgb(0,0.5,0))
 Create a legend at (1, g_range[2]) that is slightly smaller (cex) and uses the same line colors and points used by the actual plots 
 
 ```{r,eval=FALSE}
-legend(1, g_range[2], c("treatment","control"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2);  
+legend(1, g_range[2], c("treatment","control"), cex=0.8,
+       col=c("blue","red"), pch=21:22, lty=1:2);  
 ```
 
 ```{r,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
@@ -239,11 +240,9 @@ data <- read.table("data/example.txt", header=T, sep="\t")
 
 ---
 
-
-Plot treatment with specified labels for axes.  Use blue borders and diagonal lines in bars.
-
 **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
-density	a vector giving the density of shading lines, in lines per inch, for the bars or bar components.
+
+**density** is	a vector giving the density of shading lines, in lines per inch, for the bars or bar components.
 
 
 ```{r,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
@@ -254,16 +253,16 @@ barplot(data$treatment, main="Treatment", xlab="Days",ylab="values",
 
 
 ---
-Graph data with adjacent bars using colors and place the legend at the top-left corner with no frame
+Now we can Graph data with adjacent bars using colors and place the legend at the top-left corner with no frame
 
 
 ```{r,eval=FALSE}
 barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, 
         col= c("lightblue", "mistyrose", "lightcyan","lavender",
                "cornsilk","maroon"))
-legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,bty="n", 
-       fill=  c("lightblue", "mistyrose", "lightcyan","lavender",
-                "cornsilk","maroon"));
+legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
+       bty="n", fill=  c("lightblue", "mistyrose", "lightcyan",
+                         "lavender","cornsilk","maroon"));
 ```
 
 
@@ -306,11 +305,10 @@ hist(all, col="lightblue", ylim=c(0,10))
 ```
 ---
 
----
 
-Now we can configure the breaks in the histogram using the **breaks** parameter.
+Now we can configure the groups in the histogram using the **breaks** parameter.
 
-For **breaks** we must supply a single number giving the number of cells for the histogram or open interval does not include its endpoints, and is indicated with parentheses.
+For **breaks** we must supply a single number giving the number of cells for the histogram or the open intervals as a vector.
 
 Compute the largest value used in the data
 
@@ -320,7 +318,7 @@ max_num <- max(all)
 
 ---
 
-Here we create a histogram setting breaks so each number  is in its own group, make x axis range from 0-max_num.
+Here we create a histogram setting breaks so each number is in its own group and make the x axis range from 0-max_num.
 
 
 ```{r,eval=TRUE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
@@ -331,7 +329,7 @@ hist(all, col=heat.colors(max_num), breaks=max_num,
 
 ---
 
-Here we set freq to be FALSE for probability densities instead of TRUE for the histogram graphic to be a representation of frequencies.
+Here we use the **freq** parameter to be FALSE for probability densities instead of TRUE for the histogram graphic to be a representation of frequencies.
 
 ```{r,echo=TRUE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 
@@ -359,7 +357,9 @@ Now let's add a heading, change the colours, and define our own labels:
 
 Create a pie chart with defined heading and  custom colours and labels
 ```{r,eval=FALSE}
-pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"),
+pie(treatment, main="Treatment", col= c("lightblue", "mistyrose",
+                                        "lightcyan","lavender", 
+                                        "cornsilk","maroon"),
     labels=c("Mon","Tue","Wed","Thu","Fri","Sat"))	
 ```
 
@@ -391,16 +391,18 @@ treatment_labels <- paste(treatment_labels, "%", sep="")
 Create a pie chart with defined heading and custom colors and labels
 
 ```{r,eval=FALSE}
-pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
+pie(treatment, main="treatment", col=colors, labels= treatment_labels,
+    cex=0.8)
 ```
 
 Create a legend at the right   
 ```{r,eval=FALSE}
-legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)	
+legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
+       fill=colors)	
 ```
 
 
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
+```{r,echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
 pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
 legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)  
 ```
@@ -411,8 +413,7 @@ legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)
 
 Let's start with a simple dot chart graphing the data: 
 
-Create a dot chart for data
-Function t returns the transpose of a matrix.
+Here we use the function **t** to return the transpose of a matrix.
 ```{r,eval=FALSE}
 dotchart(t(data))	
 ```
@@ -424,9 +425,10 @@ dotchart(t(data))
 
 Let's make the dotchart a little more colorful: 
 
-Create a colored dotchart for autos with smaller labels
+Now we create a colored dotchart for autos with smaller labels
 ```{r,eval=FALSE}
-dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)	
+dotchart(t(data), color=c("red","blue","darkgreen"),
+         main="Dotchart", cex=0.8)	
 ```
 ```{r,echo=FALSE,fig.width=6,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
 dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)  
@@ -435,8 +437,8 @@ dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)
 ---
 ##Combining Plots
 
-R makes it easy to combine multiple plots into one overall graph, using either the par( ) or layout( ) function. 
-With the par( ) function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
+R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
+With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
 mfcol=c(nrows, ncols) fills in the matrix by columns.
 
 Define a layout with 2 rows and 2 columns
