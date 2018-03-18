@@ -1,0 +1,542 @@
+---
+title: "Introduction to Plotting"
+author: "Rockefeller University, Bioinformatics Resource Centre"
+date: "http://rockefelleruniversity.github.io/Intro_To_R/"
+output: 
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+  html_document:
+    toc: true # table of content true
+    toc_float: yes
+    depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    number_sections: false  ## if you want number sections at each table header
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+AsSlides <- TRUE
+```
+
+
+
+# Plotting in R (Base graphics)
+##Introduction
+
+R has excellent graphics and plotting capabilities. They are mostly found in following three sources.
+ + base graphics
+ + the lattice package
+ +  the ggplot2 package
+ 
+Lattice and ggplot2 packages are built on grid graphics package while the base graphics routines adopt a pen and paper model for plotting.
+
+---
+
+## Line Charts
+
+First we'll produce a very simple graph using the values in the treatment vector:
+
+```{r}
+treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
+```
+
+---
+##Line Plot
+
+Plot the treatment vector with default parameters
+
+```{r,eval=FALSE}
+plot(treatment)
+```
+
+
+
+```{r, echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+plot(treatment)
+```
+
+---
+Now, let's add a title, a line to connect the points, and some color:
+
+Plot treatment using blue points overlayed by a line
+
+```{r,eval=TRUE}
+plot(treatment, type="o", col="blue",main="Treatment")
+```
+
+---
+
+Create a title with a red, bold/italic font
+```{r,eval=FALSE}
+title(main="Treatment", col.main="red", font.main=4)
+```
+
+```{r,echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+plot(treatment, type="o", col="blue")
+title(main="Treatment", col.main="red", font.main=4)
+```
+
+---
+Now let's add a red line for a control vector and specify the y-axis range directly so it will be large enough to fit the data:
+
+Define control vector
+```{r,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+control <- c(0, 20, 40, 60, 80,100)
+plot(treatment, type="o", col="blue", ylim=c(0,100))
+lines(control, type="o", pch=22, lty=2, col="red")
+```
+
+---
+Put it all together
+```{r,echo=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+plot(treatment, type="o", col="blue", ylim=c(0,100))
+lines(control, type="o", pch=22, lty=2, col="red")
+title(main="Expression Data", col.main="red", font.main=4)
+```
+
+---
+
+Next let's change the axes labels to match our data and add a legend. We'll also compute the y-axis values using the max function 
+so any changes to our data will be automatically reflected in our graph. 
+
+Calculate range from 0 to max value of data
+```{r}
+g_range <- range(0, treatment, control)
+```
+
+range() returns a vector containing the minimum and maximum of all the given arguments.
+
+---
+
+Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves.
+
+```{r,eval=TRUE}
+plot(treatment, type="o", col="blue", 
+     ylim=g_range,axes=FALSE, ann=FALSE)
+```
+
+---
+
+Make x axis using labels
+```{r,eval=FALSE}
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+```
+
+```{r,eval=TRUE,echo=FALSE}
+plot(treatment, type="o", col="blue", 
+     ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+
+```
+
+---
+
+Make y axis with horizontal labels that display ticks at every 20 marks. 
+
+```{r,eval=FALSE}
+axis(2, las=1, at=20*0:g_range[2])
+```
+
+```{r,eval=TRUE,echo=FALSE}
+plot(treatment, type="o", col="blue", 
+     ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(2, las=1, at=20*0:g_range[2])
+
+```
+
+---
+
+Create box around plot
+```{r,eval=FALSE}
+box()
+```
+
+```{r,eval=TRUE,echo=FALSE}
+plot(treatment, type="o", col="blue", 
+     ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(2, las=1, at=20*0:g_range[2])
+box()
+```
+
+
+---
+
+Add control data, main title and x/y axis titles
+
+```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
+lines(control, type="o", pch=22, lty=2, col="red")
+title(main="Data", col.main="red", font.main=4)
+title(xlab="Days", col.lab=rgb(0,0.5,0))
+title(ylab="Values", col.lab=rgb(0,0.5,0))
+```
+
+```{r,eval=TRUE,echo=FALSE,collapse=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+plot(treatment, type="o", col="blue", 
+     ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(2, las=1, at=20*0:g_range[2])
+box()
+lines(control, type="o", pch=22, lty=2, col="red")
+title(main="Data", col.main="red", font.main=4)
+title(xlab="Days", col.lab=rgb(0,0.5,0))
+title(ylab="Values", col.lab=rgb(0,0.5,0))
+```
+---
+
+
+Create a legend at (1, g_range[2]) that is slightly smaller (cex) and uses the same line colors and points used by the actual plots 
+
+```{r,eval=FALSE}
+legend(1, g_range[2], c("treatment","control"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2);  
+```
+
+```{r,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(2, las=1, at=20*0:g_range[2])
+box()
+
+lines(control, type="o", pch=22, lty=2, col="red")
+title(main="Data", col.main="red", font.main=4)
+title(xlab="Days", col.lab=rgb(0,0.5,0))
+title(ylab="Values", col.lab=rgb(0,0.5,0))
+legend(1, g_range[2], c("treatment","control"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2);  
+```
+---
+
+##Bar Charts	
+	
+	
+
+Let's start with a simple bar chart graphing the treatment vector: 
+Plot treatment
+
+```{r,eval=FALSE}
+barplot(treatment)
+```
+
+```{r,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+barplot(treatment)
+```
+
+---
+ 
+Let's now read the data from the example.txt data file, add labels, blue borders around the bars, and density lines: 
+
+Read values from tab-delimited example.txt
+```{r}
+data <- read.table("data/example.txt", header=T, sep="\t")
+```
+
+---
+
+
+Plot treatment with specified labels for axes.  Use blue borders and diagonal lines in bars.
+
+**names.arg**  is a vector of names to be plotted below each bar or group of bars. 
+density	a vector giving the density of shading lines, in lines per inch, for the bars or bar components.
+
+
+```{r,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+barplot(data$treatment, main="Treatment", xlab="Days",ylab="values", 
+        names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"), 
+        border="blue", density=c(10,20,30,40,50,60))
+```
+
+
+---
+Graph data with adjacent bars using colors and place the legend at the top-left corner with no frame
+
+
+```{r,eval=FALSE}
+barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, 
+        col= c("lightblue", "mistyrose", "lightcyan","lavender",
+               "cornsilk","maroon"))
+legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,bty="n", 
+       fill=  c("lightblue", "mistyrose", "lightcyan","lavender",
+                "cornsilk","maroon"));
+```
+
+
+```{r,echo=FALSE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
+legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,bty="n", 
+fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"));
+
+```
+
+---
+
+##Histograms
+
+
+Let's start with a simple histogram plotting the distribution of the treatment vector: 
+
+Create a histogram for treatment
+
+```{r,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+hist(treatment)  
+```
+
+
+---
+
+Concatenate the three vectors
+
+```{r}
+all <- c(data$control, data$treatment)
+```
+
+Create a histogram for data in light blue with the y axis ranging from 0-10
+```{r,eval=FALSE}
+hist(all, col="lightblue", ylim=c(0,10))
+```
+
+```{r,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+hist(all, col="lightblue", ylim=c(0,10))
+```
+---
+
+---
+
+Now we can configure the breaks in the histogram using the **breaks** parameter.
+
+For **breaks** we must supply a single number giving the number of cells for the histogram or open interval does not include its endpoints, and is indicated with parentheses.
+
+Compute the largest value used in the data
+
+```{r}
+max_num <- max(all)
+```
+
+---
+
+Here we create a histogram setting breaks so each number  is in its own group, make x axis range from 0-max_num.
+
+
+```{r,eval=TRUE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+hist(all, col=heat.colors(max_num), breaks=max_num, 
+     xlim=c(0,max_num),main="Histogram", las=1)	
+```
+
+
+---
+
+Here we set freq to be FALSE for probability densities instead of TRUE for the histogram graphic to be a representation of frequencies.
+
+```{r,echo=TRUE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+
+hist(all,breaks=max_num,xlim=c(0,max_num), 
+     main="Probability Density",las=1, cex.axis=0.8, freq=F)
+```
+
+---
+##Pie Charts
+
+
+Let's start with a simple pie chart graphing the treatment vector: 
+ Create a pie chart for treatment
+```{r,eval=FALSE}
+pie(treatment)
+```
+
+```{r,echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+pie(treatment)
+```
+
+---
+
+Now let's add a heading, change the colours, and define our own labels: 
+
+Create a pie chart with defined heading and  custom colours and labels
+```{r,eval=FALSE}
+pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"),
+    labels=c("Mon","Tue","Wed","Thu","Fri","Sat"))	
+```
+
+```{r,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"),labels=c("Mon","Tue","Wed","Thu","Fri","Sat"),cex=1)  
+```
+
+---
+
+Now let's change the colours, label using percentages, and create a legend: 
+
+Define some colours ideal for black & white print
+```{r}
+colors <- c("white","grey70","grey90","grey50","black")
+```
+
+Calculate the percentage for each day, rounded to one decimal place
+```{r}
+treatment_labels <- round(treatment/sum(treatment) * 100, 1)
+```
+
+Concatenate a '%' char after each value
+```{r}
+treatment_labels <- paste(treatment_labels, "%", sep="")
+```
+
+---
+
+Create a pie chart with defined heading and custom colors and labels
+
+```{r,eval=FALSE}
+pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
+```
+
+Create a legend at the right   
+```{r,eval=FALSE}
+legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)	
+```
+
+
+```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"}
+pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
+legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)  
+```
+
+---
+
+##Dot charts
+
+Let's start with a simple dot chart graphing the data: 
+
+Create a dot chart for data
+Function t returns the transpose of a matrix.
+```{r,eval=FALSE}
+dotchart(t(data))	
+```
+```{r,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+dotchart(t(data))  
+```
+
+---
+
+Let's make the dotchart a little more colorful: 
+
+Create a colored dotchart for autos with smaller labels
+```{r,eval=FALSE}
+dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)	
+```
+```{r,echo=FALSE,fig.width=6,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)  
+```
+
+---
+##Combining Plots
+
+R makes it easy to combine multiple plots into one overall graph, using either the par( ) or layout( ) function. 
+With the par( ) function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
+mfcol=c(nrows, ncols) fills in the matrix by columns.
+
+Define a layout with 2 rows and 2 columns
+
+```{r,eval=FALSE}
+par(mfrow=c(2,2))
+```
+
+---
+
+Here, we will use different dataset with two columns each for treated and untreated samples.
+
+```{r}
+data1 <- read.table("data/gene_data.txt", header=T, sep="\t")
+head(data1)
+```
+---
+
+Plot histograms for different columns in the data frame separately. This is not very efficient. 
+You could also do it more efficiently using for loop.
+
+```{r,eval=FALSE}
+par(mfrow=c(2,2))
+hist(data1$Untreated1)
+hist(data1$Treated2)
+hist(data1$Untreated2)
+boxplot(data1$Treated1)
+```
+
+```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
+par(mfrow=c(2,2))
+hist(data1$Untreated1)
+hist(data1$Treated2)
+hist(data1$Untreated2)
+boxplot(data1$Treated1)
+```
+
+---
+##Saving your plots
+
+
+
+There are many different ways of saving your plots in R. 
+
+The only argument you would need is name of file in which you want to save the plot.
+
+Plotting commands then can be entered as usual.
+The output would be redirected to the file. 
+
+When you're done with your plotting commands, enter the dev.off() command. 
+
+```{r,eval=FALSE}
+bmp(filename, width = 480, height = 480, units = "px", 
+    point-size = 12)
+jpeg(filename, width = 480, height = 480, units = "px", 
+     point-size = 12, quality = 75)
+```
+---
+
+Saving in bitmap format
+```{r,eval=FALSE}
+bmp(file = "control.bmp")
+plot(control)
+dev.off()
+```
+---
+Saving in jpeg format
+```{r,eval=FALSE}
+jpeg(file = "control.jpg", quality = 20)
+plot(control)
+dev.off()
+```
+
+---
+
+Saving in postscript format
+
+```{r,eval=FALSE}
+postscript(file = "control.ps")
+plot(control)
+dev.off()
+```
+
+---
+saving in pdf format
+
+```{r,eval=FALSE}
+
+pdf(file = "control.pdf", paper = "A4")
+plot(control)
+dev.off()
+```
+
+
+---
+
+Exercise on base plotting can be found [here](../exercises/Plotting_exercise.html)
+
+---
+
+Answers for baseplotting can be found [here](../answers/Plotting_answers.html)
+
+---

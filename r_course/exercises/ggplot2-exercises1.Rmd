@@ -1,6 +1,6 @@
 ---
 title: "Exercise Set 1 — Geoms and Aesthetics"
-author: "Name"
+author: "Rockefeller University"
 date: '`r format(Sys.time(), "Last modified: %d %b %Y")`'
 output: html_document
 ---
