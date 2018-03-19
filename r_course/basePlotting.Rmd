@@ -35,7 +35,7 @@ R has excellent graphics and plotting capabilities. They are mostly found in fol
  + the lattice package
  +  the ggplot2 package
  
-Lattice and ggplot2 packages are built on grid graphics package while the base graphics routines adopt a pen and paper model for plotting.
+Base R graphics uses a pen and paper model for plotting while Lattice and ggplot2 packages are built on the routines first used in grid graphics.
 
 ---
 
@@ -329,7 +329,7 @@ hist(all, col=heat.colors(max_num), breaks=max_num,
 
 ---
 
-Here we use the **freq** parameter to be FALSE for probability densities instead of TRUE for the histogram graphic to be a representation of frequencies.
+Here we set the **freq** parameter to be FALSE for probability densities instead of TRUE for the histogram graphic to be a representation of frequencies.
 
 ```{r,echo=TRUE,fig.width=4,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 

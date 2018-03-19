@@ -85,7 +85,8 @@ title(xlab="Days", col.lab=rgb(0,0.5,0))
 title(ylab="Values", col.lab=rgb(0,0.5,0))
 
 ## ----eval=FALSE----------------------------------------------------------
-## legend(1, g_range[2], c("treatment","control"), cex=0.8, col=c("blue","red"), pch=21:22, lty=1:2);
+## legend(1, g_range[2], c("treatment","control"), cex=0.8,
+##        col=c("blue","red"), pch=21:22, lty=1:2);
 
 ## ----echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
 plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
@@ -117,9 +118,9 @@ barplot(data$treatment, main="Treatment", xlab="Days",ylab="values",
 ## barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE,
 ##         col= c("lightblue", "mistyrose", "lightcyan","lavender",
 ##                "cornsilk","maroon"))
-## legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,bty="n",
-##        fill=  c("lightblue", "mistyrose", "lightcyan","lavender",
-##                 "cornsilk","maroon"));
+## legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
+##        bty="n", fill=  c("lightblue", "mistyrose", "lightcyan",
+##                          "lavender","cornsilk","maroon"));
 
 ## ----echo=FALSE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"----
 barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
@@ -158,7 +159,9 @@ hist(all,breaks=max_num,xlim=c(0,max_num),
 pie(treatment)
 
 ## ----eval=FALSE----------------------------------------------------------
-## pie(treatment, main="Treatment", col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"),
+## pie(treatment, main="Treatment", col= c("lightblue", "mistyrose",
+##                                         "lightcyan","lavender",
+##                                         "cornsilk","maroon"),
 ##     labels=c("Mon","Tue","Wed","Thu","Fri","Sat"))	
 
 ## ----echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"----
@@ -174,12 +177,14 @@ treatment_labels <- round(treatment/sum(treatment) * 100, 1)
 treatment_labels <- paste(treatment_labels, "%", sep="")
 
 ## ----eval=FALSE----------------------------------------------------------
-## pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
+## pie(treatment, main="treatment", col=colors, labels= treatment_labels,
+##     cex=0.8)
 
 ## ----eval=FALSE----------------------------------------------------------
-## legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)	
+## legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
+##        fill=colors)	
 
-## ----echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="1920px",height="1080px"----
+## ----echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"----
 pie(treatment, main="treatment", col=colors, labels= treatment_labels,cex=0.8)
 legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)  
 
@@ -190,10 +195,22 @@ legend(1.5, 0.5, c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,fill=colors)
 dotchart(t(data))  
 
 ## ----eval=FALSE----------------------------------------------------------
-## dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)	
+## dotchart(t(data), color=c("red","blue","darkgreen"),
+##          main="Dotchart", cex=0.8)	
 
 ## ----echo=FALSE,fig.width=6,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
 dotchart(t(data), color=c("red","blue","darkgreen"),main="Dotchart", cex=0.8)  
+
+## ----eval=T,fig.width=6,fig.height=5,dpi=300,out.width="1920px",height="1080px"----
+exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
+head(exprs)
+
+## ----eval=T,fig.width=6,fig.height=4,dpi=300,out.width="1920px",height="1080px"----
+boxplot(exprs)
+
+## ----eval=T,fig.width=6,fig.height=4,dpi=300,out.width="1920px",height="1080px"----
+boxplot(log2(exprs),ylab="log2 Expression",
+        col=c("red","red","blue","blue"))
 
 ## ----eval=FALSE----------------------------------------------------------
 ## par(mfrow=c(2,2))

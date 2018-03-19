@@ -110,12 +110,16 @@ ggplot(data = &lt;default data set&gt;,
 Actual code for the ggplot2 scatter plot.
 
 
+
+
 ```r
 ggplot(data=patients_clean,
        aes(y=Weight,x=Height,colour=Sex,
-           size=BMI,shape=Pet))
-+geom_point()
+           size=BMI,shape=Pet)) + 
+  geom_point()
 ```
+
+![](ggplot2_files/figure-html/simple-1.png)&lt;!-- --&gt;
 
 ---
 # Getting started with ggplot2
@@ -180,7 +184,7 @@ pcPlot$data[1:4,]
 ## 3       TRUE
 ## 4       TRUE
 ```
-Within this gg/ggplot objec the data has been defined.
+Within this gg/ggplot object the data has been defined.
 
 ---
 Important information on how to map the data to the visual properties (aesthetics) of the plot as well as what type of plot to use (geom) have however yet to specified. 
@@ -445,13 +449,13 @@ An overview of geoms and thier arguments can be found at ggplot2 documentation o
 ---
 # Aesthetics
 
-In order to change the property on an aesthetic of a plot into a constant value (e.g. set colour of all points to red) we can supply the colour argument to the geom_point() function.
+In order to change the property on an aesthetic of a plot into a constant value (e.g. set colour of all points to red) we can supply the color argument to the geom_point() function.
 
 
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point(colour="red")
+pcPlot+geom_point(color="red")
 ```
 
 ![](ggplot2_files/figure-html/scatter_coloured-1.png)&lt;!-- --&gt;
@@ -495,7 +499,7 @@ pcPlot &lt;- ggplot(data=patients_clean,
 pcPlot+geom_point()
 ```
 
-![](ggplot2_files/figure-html/scatter_aes_sexShape-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/scatter_aes_sexShapeB-1.png)&lt;!-- --&gt;
 ---
 The aesthetic mappings may be set directly in the geom_points() function as previously when specifying red. This can allow the same ggplot object to be used by different aesethetic mappings and varying geoms
 
@@ -706,7 +710,7 @@ Scale methods are divided into functions by combinations of
 * the type of data mapped to scale.
 
  
-  scale_**aesthetic**_**type**
+  scale_aesthetic_type
   
   Try typing in scale_ then *tab* to autocomplete. This will provide some examples of the scale functions available in ggplot2.
 
