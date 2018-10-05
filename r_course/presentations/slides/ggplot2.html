@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
-    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="metropolisCustom.css" type="text/css" />
+    <link rel="stylesheet" href="metropolis-fontsCustom.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -16,6 +17,7 @@ class: center, middle, inverse, title-slide
 ### <a href="http://rockefelleruniversity.github.io/Plotting_In_R/" class="uri">http://rockefelleruniversity.github.io/Plotting_In_R/</a>
 
 ---
+
 
 
 
@@ -195,8 +197,7 @@ pcPlot$mapping
 ```
 
 ```
-## Aesthetic mapping: 
-## &lt;empty&gt;
+## * NULL -&gt;
 ```
 
 ```r
@@ -227,7 +228,6 @@ pcPlot$mapping
 ```
 
 ```
-## Aesthetic mapping: 
 ## * x -&gt; Height
 ## * y -&gt; Weight
 ```
@@ -270,7 +270,6 @@ pcPlot$mapping
 ```
 
 ```
-## Aesthetic mapping: 
 ## * x -&gt; Height
 ## * y -&gt; Weight
 ```
@@ -364,7 +363,7 @@ pcPlot_smooth
 ```
 
 ```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+## `geom_smooth()` using method = 'loess'
 ```
 
 ![](ggplot2_files/figure-html/smooth_simple-1.png)&lt;!-- --&gt;
@@ -460,21 +459,27 @@ pcPlot+geom_point(color="red")
 
 ![](ggplot2_files/figure-html/scatter_coloured-1.png)&lt;!-- --&gt;
 ---
+.pull-left[
 
 As we discussed earlier however, ggplot2 makes use of aesthetic mappings to assign variables in the data to the properties/aesthetics of the plot. This allows the properties of the plot to reflect variables in the data dynamically.
 
 In these examples we supply additional information to the aes() function to define what information to display and how it is represented in the plot.
+]
+.pull-right[
 
 First we can recreate the plot we saw earlier.
 
 
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight))
+                 mapping=aes(x=Height,
+                             y=Weight))
 pcPlot+geom_point()
 ```
 
 ![](ggplot2_files/figure-html/scatter_simple-1.png)&lt;!-- --&gt;
+]
+
 ---
 Now we can adjust the aes mapping by supplying an argument to the colour parameter in the aes function. (Note that ggplot2 accepts "color" or "colour" as parameter name)
 
@@ -628,9 +633,8 @@ pcPlot + facet_wrap(~Smokes)
 
 ![](ggplot2_files/figure-html/facet_Wrap_BySmokes-1.png)&lt;!-- --&gt;
 ---
-For more complex faceting both *facet_grid* and *facet_wrap* can accept combinations of variables.
+For more complex faceting both *facet_grid* and *facet_wrap* can accept combinations of variables. Here we use *facet_wrap*.
 
-Using *facet_wrap*
 
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
@@ -737,9 +741,7 @@ In this example we control the continuous sale on the x-axis by providing a name
 
 
 ```r
-pcPlot +
-  geom_point() +
-  facet_grid(Smokes~Sex)+
+pcPlot + geom_point() + facet_grid(Smokes~Sex)+
   scale_x_continuous(name="height ('cm')",
                      limits = c(100,200),
                      breaks=c(125,150,175),
@@ -787,7 +789,7 @@ pcPlot + geom_point(size=4)
 
 In the above example the discrete colours for the Sex variable was selected by default.
 ---
-### Manual discrete colour scale
+## Manual discrete colour scale
 
 Manual control of discrete variables can be performed using scale_*aes_Of_Interest*_**manual** with the *values* parameter.
 Additionally in this example an updated name for the legend is provided.
@@ -803,7 +805,7 @@ pcPlot + geom_point(size=4) +
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_manualScale-1.png)&lt;!-- --&gt;
 ---
-### Colorbrewer for discrete colour scale
+## Colorbrewer for discrete colour scale
 
 Here we have specified the colours to be used (hence the manual) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colours from a scale of our choice.
 
@@ -994,7 +996,7 @@ pcPlot+geom_point()+stat_smooth()
 ```
 
 ```
-## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+## `geom_smooth()` using method = 'loess'
 ```
 
 ![](ggplot2_files/figure-html/stat_smooth-1.png)&lt;!-- --&gt;
@@ -1134,24 +1136,30 @@ A detailed description of controlling elements within a theme can be seen at the
 - [ggplot2 themes](http://docs.ggplot2.org/dev/vignettes/themes.html)
 
 ---
+.pull-left[
+
 To demonstrate customising a theme, in the example below we alter one element of theme. Here we will change the text colour for the plot.
 
 - Note because we are changing a *text* element we use the *element_text()* function.
 
 A detailed description of which elements are available and their associated element functions can be found by typing *?theme*.
+]
+.pull-right[
 
 
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot+theme(
-            text = element_text(colour="red"),
-            axis.text = element_text(colour="red")
-           )
+        mapping=aes(x=Weight,y=Height))+
+  geom_point()
+pcPlot+
+  theme(
+    text = element_text(colour="red"),
+    axis.text = element_text(colour="red")
+      )
 ```
 
 ![](ggplot2_files/figure-html/theme_custom-1.png)&lt;!-- --&gt;
-
+]
 
 ---
 
@@ -1161,11 +1169,9 @@ If we wished to set the y-axis label to be at an angle we can adjust that as wel
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot+theme(
-            text = element_text(colour="red"),
-            axis.text = element_text(colour="red"),
-            axis.title.y = element_text(angle=0)
-           )
+pcPlot + theme(text = element_text(colour="red"),
+        axis.text = element_text(colour="red"),
+        axis.title.y = element_text(angle=0))
 ```
 
 ![](ggplot2_files/figure-html/theme_custom1-1.png)&lt;!-- --&gt;
@@ -1178,17 +1184,21 @@ pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+
   geom_point()+
   facet_grid(Sex~Smokes)
-pcPlot+theme(
-            text = element_text(colour="red"),
-            axis.text = element_text(colour="red"),
-            axis.title.y = element_text(angle=0),
-            axis.line = element_line(linetype = 0),
-            panel.background=element_rect(fill="white"),
-            strip.background=element_rect(fill="cyan")
-           )
+pcPlot+
+  theme(
+    text = element_text(colour="red"),
+    axis.text = element_text(colour="red"),
+    axis.title.y = element_text(angle=0),
+    axis.line = element_line(linetype = 0),
+    panel.background=element_rect(fill="white"),
+    strip.background=element_rect(fill="cyan")
+    )
 ```
+---
 
-![](ggplot2_files/figure-html/theme_custom2-1.png)&lt;!-- --&gt;
+Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background colour.
+
+![](ggplot2_files/figure-html/theme_custom2.2-1.png)&lt;!-- --&gt;
 ---
 
 ## + and %+replace%
