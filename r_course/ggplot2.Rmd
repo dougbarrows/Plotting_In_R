@@ -4,6 +4,7 @@ author: "Rockefeller University, Bioinformatics Resource Centre"
 date: "http://rockefelleruniversity.github.io/Plotting_In_R/"
 output: 
   xaringan::moon_reader:
+    css: ["default", "metropolisCustom.css", "metropolis-fontsCustom.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -18,9 +19,11 @@ output:
     highlight: tango  # specifies the syntax highlighting style
 
 
+
 ---
 
-```{r setup, include=FALSE}
+
+```{r setup_ggplot2, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 AsSlides <- TRUE
 ```
@@ -249,7 +252,7 @@ pcPlot
 
 More typically, the data and aesthetics are defined within ggplot function and geoms applied afterwards.
 
-```{r ggplot_simple_geom_point, fig.height=6, fig.width=8}
+```{r ggplot_simple_geom_point, fig.height=5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point()
@@ -289,7 +292,7 @@ pcPlot_line
 
 ```
 ---
-```{r, smooth_simple, fig.height=6, fig.width=8}
+```{r, smooth_simple, fig.height=4.5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 
@@ -314,7 +317,7 @@ pcPlot_bar
 ```
 ---
 
-```{r, histogram_simple, fig.height=6, fig.width=8,warning=FALSE}
+```{r, histogram_simple, fig.height=4, fig.width=8,warning=FALSE}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
 
@@ -325,7 +328,7 @@ pcPlot_hist
 ```
 
 ---
-```{r, density_simple, fig.height=6, fig.width=8}
+```{r, density_simple, fig.height=4.5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
 
@@ -348,7 +351,7 @@ pcPlot_boxplot <- pcPlot+geom_boxplot()
 pcPlot_boxplot
 ```
 ---
-```{r, violin_simple, fig.height=6, fig.width=8}
+```{r, violin_simple, fig.height=4.5, fig.width=8}
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))
@@ -374,18 +377,24 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot+geom_point(color="red")
 ```
 ---
+.pull-left[
 
 As we discussed earlier however, ggplot2 makes use of aesthetic mappings to assign variables in the data to the properties/aesthetics of the plot. This allows the properties of the plot to reflect variables in the data dynamically.
 
 In these examples we supply additional information to the aes() function to define what information to display and how it is represented in the plot.
+]
+.pull-right[
 
 First we can recreate the plot we saw earlier.
 
-```{r, scatter_simple, fig.height=4, fig.width=9}
+```{r, scatter_simple, fig.height=4, fig.width=4,tidy=FALSE}
 pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight))
+                 mapping=aes(x=Height,
+                             y=Weight))
 pcPlot+geom_point()
 ```
+]
+
 ---
 Now we can adjust the aes mapping by supplying an argument to the colour parameter in the aes function. (Note that ggplot2 accepts "color" or "colour" as parameter name)
 
@@ -400,13 +409,13 @@ pcPlot+geom_point()
 ---
 Similarly the shape of points may be adjusted.
 
-```{r, scatter_aes_sexShape, fig.height=6, fig.width=9,eval=F,echo=T}
+```{r, scatter_aes_sexShape, fig.height=4.5, fig.width=9,eval=F,echo=T}
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight,shape=Sex))
 pcPlot+geom_point()
 ```
 
-```{r, scatter_aes_sexShapeB, fig.height=6, fig.width=9,eval=T,echo=FALSE}
+```{r, scatter_aes_sexShapeB, fig.height=4.5, fig.width=9,eval=T,echo=FALSE}
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight,shape=Sex))
 pcPlot+geom_point(size=2)
@@ -519,10 +528,9 @@ pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 pcPlot + facet_wrap(~Smokes)
 ```
 ---
-For more complex faceting both *facet_grid* and *facet_wrap* can accept combinations of variables.
+For more complex faceting both *facet_grid* and *facet_wrap* can accept combinations of variables. Here we use *facet_wrap*.
 
-Using *facet_wrap*
-```{r, facet_wrap_smokesBySexandPet, fig.height=5, fig.width=9}
+```{r, facet_wrap_smokesBySexandPet, fig.height=4.5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
@@ -530,7 +538,7 @@ pcPlot + facet_wrap(~Pet+Smokes+Sex)
 ---
 Or in a nice grid format using facet_grid() and the Smokes variable against a combination of Gender and Pet.
 
-```{r, facet_grid_smokesBySexandPet, fig.height=6, fig.width=9}
+```{r, facet_grid_smokesBySexandPet, fig.height=5, fig.width=9}
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
@@ -614,9 +622,7 @@ In this example we control the continuous sale on the x-axis by providing a name
 
 ```{r, facet_grid_smokesBySex_scalex, fig.height=4.5, fig.width=9}
 
-pcPlot +
-  geom_point() +
-  facet_grid(Smokes~Sex)+
+pcPlot + geom_point() + facet_grid(Smokes~Sex)+
   scale_x_continuous(name="height ('cm')",
                      limits = c(100,200),
                      breaks=c(125,150,175),
@@ -656,7 +662,7 @@ pcPlot + geom_point(size=4)
 
 In the above example the discrete colours for the Sex variable was selected by default.
 ---
-### Manual discrete colour scale
+## Manual discrete colour scale
 
 Manual control of discrete variables can be performed using scale_*aes_Of_Interest*_**manual** with the *values* parameter.
 Additionally in this example an updated name for the legend is provided.
@@ -670,7 +676,7 @@ pcPlot + geom_point(size=4) +
                   
 ```
 ---
-### Colorbrewer for discrete colour scale
+## Colorbrewer for discrete colour scale
 
 Here we have specified the colours to be used (hence the manual) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colours from a scale of our choice.
 
@@ -716,7 +722,7 @@ Both these functions accept the range of alpha/size to be used in plotting.
 
 Below the range of alpha to be used in plot is limited to between 0.5 and 1
 
-```{r, facet_grid_height_weight_BMIalpha, fig.height=5, fig.width=9}
+```{r, facet_grid_height_weight_BMIalpha, fig.height=4.5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,alpha=BMI))
 pcPlot + geom_point(size=4) + 
@@ -791,7 +797,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 ---
 As with previous continous scales, limits and custom labels in scale legend can be added.
 
-```{r, facet_grid_height_weight_BMIgradient2plus, fig.height=4, fig.width=9}
+```{r, facet_grid_height_weight_BMIgradient2plus, fig.height=3.5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -953,22 +959,28 @@ A detailed description of controlling elements within a theme can be seen at the
 - [ggplot2 themes](http://docs.ggplot2.org/dev/vignettes/themes.html)
 
 ---
+.pull-left[
+
 To demonstrate customising a theme, in the example below we alter one element of theme. Here we will change the text colour for the plot.
 
 - Note because we are changing a *text* element we use the *element_text()* function.
 
 A detailed description of which elements are available and their associated element functions can be found by typing *?theme*.
+]
+.pull-right[
 
-```{r, theme_custom, fig.height=3, fig.width=9}
+```{r, theme_custom, fig.height=7, fig.width=9,tidy=FALSE}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot+theme(
-            text = element_text(colour="red"),
-            axis.text = element_text(colour="red")
-           )
+        mapping=aes(x=Weight,y=Height))+
+  geom_point()
+pcPlot+
+  theme(
+    text = element_text(colour="red"),
+    axis.text = element_text(colour="red")
+      )
 ```
-
+]
 
 ---
 
@@ -978,29 +990,48 @@ If we wished to set the y-axis label to be at an angle we can adjust that as wel
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot+theme(
-            text = element_text(colour="red"),
-            axis.text = element_text(colour="red"),
-            axis.title.y = element_text(angle=0)
-           )
+pcPlot + theme(text = element_text(colour="red"),
+        axis.text = element_text(colour="red"),
+        axis.title.y = element_text(angle=0))
 ```
 ---
 Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background colour.
 
-```{r, theme_custom2, fig.height=3, fig.width=9}
+```{r, theme_custom2, fig.height=3, fig.width=9,eval=FALSE}
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+
   geom_point()+
   facet_grid(Sex~Smokes)
-pcPlot+theme(
-            text = element_text(colour="red"),
-            axis.text = element_text(colour="red"),
-            axis.title.y = element_text(angle=0),
-            axis.line = element_line(linetype = 0),
-            panel.background=element_rect(fill="white"),
-            strip.background=element_rect(fill="cyan")
-           )
+pcPlot+
+  theme(
+    text = element_text(colour="red"),
+    axis.text = element_text(colour="red"),
+    axis.title.y = element_text(angle=0),
+    axis.line = element_line(linetype = 0),
+    panel.background=element_rect(fill="white"),
+    strip.background=element_rect(fill="cyan")
+    )
+```
+---
+
+Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background colour.
+
+```{r, theme_custom2.2, fig.height=3, fig.width=9,eval=TRUE,echo=FALSE}
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height))+
+  geom_point()+
+  facet_grid(Sex~Smokes)
+pcPlot+
+  theme(
+    text = element_text(colour="red"),
+    axis.text = element_text(colour="red"),
+    axis.title.y = element_text(angle=0),
+    axis.line = element_line(linetype = 0),
+    panel.background=element_rect(fill="white"),
+    strip.background=element_rect(fill="cyan")
+    )
 ```
 ---
 
@@ -1039,7 +1070,7 @@ pcPlot+
   theme(text = element_text(colour="red"))
 ```
 
-```{r, theme_customMiniVsBW,echo=F,eval=T,collapse=FALSE,fig.height=4, fig.width=9,message=FALSE,warning=FALSE}
+```{r, theme_customMiniVsBW,echo=F,eval=T,collapse=FALSE,fig.height=3, fig.width=11,message=FALSE,warning=FALSE}
 library(gridExtra)
 p <- pcPlot+
   theme(text = element_text(colour="red"))
