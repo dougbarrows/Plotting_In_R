@@ -37,8 +37,17 @@ R has excellent graphics and plotting capabilities. They are mostly found in fol
 Base R graphics uses a pen and paper model for plotting while Lattice and ggplot2 packages are built on the routines first used in grid graphics.
 
 ---
+## A pen and paper model
 
-## Line Charts
+- Once plot is produced, can only add more elements, cannot remove.
+- Makes it hard to update.
+- But faster than more complex plotting systems.
+
+
+
+---
+
+## Scatter and linne Charts
 
 First we'll produce a very simple graph using the values in a numeric vector:
 
@@ -48,7 +57,7 @@ treatment &lt;- c(0.02,1.8, 17.5, 55,75.7, 80)
 ```
 
 ---
-##Line Plot
+##Scatter Plot
 
 Now we plot the treatment vector with default parameters
 
@@ -409,8 +418,35 @@ barplot(treatment)
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-37-1.png" width="1920px" /&gt;
 
 ---
+
+The **barchart()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
+
+
+
+```r
+barplot(treatment,
+        names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-38-1.png" width="1920px" /&gt;
+
+---
+
+If my vector was named however, then my vectors names would be used for labels. We use **names()** function to add names to our vector then we replot.
+
+
+
+```r
+names(treatment) &lt;- c("Mon","Tue","Wed","Thu","Fri","Sat")
+barplot(treatment)
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-39-1.png" width="1920px" /&gt;
+
+
+---
  
-Let's now read the data from the example.txt data file, add labels, blue borders around the bars, and density lines: 
+Let's now read the data from the example.txt data file.  
 
 Read values from tab-delimited example.txt
 
@@ -418,22 +454,10 @@ Read values from tab-delimited example.txt
 data &lt;- read.table("data/example.txt", header=T, sep="\t")
 ```
 
----
-
-**names.arg**  is a vector of names to be plotted below each bar or group of bars. 
-
-
-
-```r
-barplot(data$treatment,
-        names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-```
-
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-39-1.png" width="1920px" /&gt;
 
 
 ---
-Now we can plot data from a matrix with a stacked barchart. 
+We can now plot data from a matrix with a stacked barchart. Note we use **as.matrix()** function to convert our data.frame to a matrix.
 
 
 
@@ -441,7 +465,7 @@ Now we can plot data from a matrix with a stacked barchart.
 barplot(as.matrix(data))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-40-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-41-1.png" width="1920px" /&gt;
 
 ---
 Now we can plot data from a matrix with side-by-side barchart using the **beside** argument
@@ -452,10 +476,10 @@ Now we can plot data from a matrix with side-by-side barchart using the **beside
 barplot(as.matrix(data),beside=TRUE)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-41-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-42-1.png" width="1920px" /&gt;
 
 ---
-Now we can Graph data with adjacent bars using colors and place the legend at the top-left corner.
+Now we can put it together and plot data with adjacent bars using colors and place the legend at the top-left corner.
 
 
 
@@ -469,7 +493,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 ```
 
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-43-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-44-1.png" width="1920px" /&gt;
 
 ---
 
@@ -484,18 +508,18 @@ We can simply pass our numeric vector to this function to get our barchart.
 hist(treatment)  
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-44-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-45-1.png" width="1920px" /&gt;
 
 
 ---
 
-Similar cutomisation eixsts as for other plots.
+Similar cutomisation exists as for other plots.
 
 ```r
 hist(treatment, col="lightblue", ylim=c(0,10))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-46-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-47-1.png" width="1920px" /&gt;
 ---
 
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
@@ -504,7 +528,7 @@ We can create more fine grained histogram by specify the number of required bins
 hist(treatment, col="lightblue",breaks = 2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-48-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-49-1.png" width="1920px" /&gt;
 
 ---
 
@@ -518,19 +542,19 @@ Here we use the function **t** to return the transpose of a matrix.
 ```r
 dotchart(t(data))	
 ```
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-50-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-51-1.png" width="1920px" /&gt;
 
 ---
 
-Let's make the dotchart a little more colorful: 
+Let's make the dotchart a little more colourful: 
 
-Now we create a colored dotchart for autos with smaller labels
+Now we create a coloured dotchart for autos with smaller labels
 
 ```r
 dotchart(t(data), color=c("red","blue"),
          main="Dotchart", cex=0.8)	
 ```
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-52-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-53-1.png" width="1920px" /&gt;
 
 ---
 
@@ -569,7 +593,7 @@ Now we can use the **boxplot()** function on our data.frame to get our boxplot
 boxplot(exprs)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-54-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-55-1.png" width="1920px" /&gt;
 
 ---
 
@@ -581,7 +605,7 @@ boxplot(log2(exprs),ylab="log2 Expression",
         col=c("red","red","blue","blue"))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-55-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-56-1.png" width="1920px" /&gt;
 
 ---
 ##Combining Plots
@@ -630,7 +654,7 @@ hist(data1$Untreated2)
 boxplot(data1$Treated1)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-59-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-60-1.png" width="490px" /&gt;
 
 ---
 ##Saving your plots
