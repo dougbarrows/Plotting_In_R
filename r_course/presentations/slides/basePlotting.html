@@ -68,7 +68,7 @@ plot(treatment)
 
 
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-3-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/defaultPlotEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 Now, let's customise this plot a little. 
@@ -81,7 +81,7 @@ First we can plot treatment using points overlayed by a line. We control this wi
 plot(treatment, type="o")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-4-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotType_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 We have many type options available to us. 
@@ -94,7 +94,7 @@ To see a complete list we can use **?plot**
 plot(treatment, type="l")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-5-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotTypeSEval_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -102,7 +102,7 @@ plot(treatment, type="l")
 plot(treatment, type="p")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-6-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotTypeS_basePlotting-1.png" width="1000px" /&gt;
 ]
 ---
 
@@ -115,7 +115,7 @@ We add a title with **main** argument and or a sub-title with the **sub** argume
 plot(treatment, main="My Plot", sub="a plot")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-7-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotLabels_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -126,7 +126,7 @@ We can customise our x and y axis label with the **xlab** and **ylab** arguments
 plot(treatment, xlab="Position", ylab="score")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-8-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLabels_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -138,7 +138,7 @@ We can control the orientation of labels on axis using **las** argument.
 plot(treatment, las=1)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-9-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLasL_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -146,7 +146,7 @@ plot(treatment, las=1)
 plot(treatment, las=2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-10-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLasR_basePlotting-1.png" width="1000px" /&gt;
 ]
 
 ---
@@ -159,7 +159,7 @@ We can control the size of points in our plot using the **cex** parameter.
 plot(treatment, cex=2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-11-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisCexL_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -167,7 +167,7 @@ plot(treatment, cex=2)
 plot(treatment, cex=0.5)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-12-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisCexR_basePlotting-1.png" width="1000px" /&gt;
 ]
 
 ---
@@ -180,7 +180,7 @@ We can control the type of points in our plot using the **pch** parameter.
 plot(treatment, pch=1)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-13-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisPchL_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -188,7 +188,7 @@ plot(treatment, pch=1)
 plot(treatment, pch=20)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-14-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisPchR_basePlotting-1.png" width="1000px" /&gt;
 ]
 
 
@@ -202,7 +202,7 @@ Similarly when plotting a line we control size with **lwd** parameter.
 plot(treatment, type="l",lwd=10)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-15-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLwdL_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -210,7 +210,7 @@ plot(treatment, type="l",lwd=10)
 plot(treatment, type="l",lwd=0.5)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-16-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLwdR_basePlotting-1.png" width="1000px" /&gt;
 ]
 
 ---
@@ -223,7 +223,7 @@ We can also control the type of line with **lty** parameter.
 plot(treatment, type="l",lty=1)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-17-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLtyL_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -231,7 +231,7 @@ plot(treatment, type="l",lty=1)
 plot(treatment, type="l",lty=2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-18-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotAsisLtyR_basePlotting-1.png" width="1000px" /&gt;
 ]
 
 ---
@@ -246,7 +246,7 @@ plot(treatment, type="l",
      col="red")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-19-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotColL_basePlotting-1.png" width="1000px" /&gt;
 ]
 .pull-right[
 
@@ -255,7 +255,7 @@ plot(treatment, type="l",
      col="dodgerblue")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-20-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotColR_basePlotting-1.png" width="1000px" /&gt;
 ]
 
 ---
@@ -280,7 +280,7 @@ control &lt;- c(0, 20, 40, 60, 80,100)
 plot(treatment,control)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-21-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotTwoVectors_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -294,7 +294,7 @@ plot(treatment, type="o", col="blue")
 lines(control, type="o", pch=22, lty=2, col="red")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-22-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/lines_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 But the new line doesnt quite fit into our original plot.
@@ -309,7 +309,7 @@ plot(treatment, type="o", col="blue",ylim=c(0,100))
 lines(control, type="o", pch=22, lty=2, col="red")
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-23-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/yxlim_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -341,7 +341,7 @@ plot(treatment, type="o", col="blue",
      ylim=g_range,axes=FALSE, ann=FALSE)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-25-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/plotNoAxesNoAnnotation_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -352,7 +352,7 @@ We can now create our own X axis by using the **axis()** function. We specify th
 axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-27-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/axisEval_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -365,7 +365,7 @@ We specify our **side** and use **rep()** function to make axis tick postions fo
 axis(2, las=1, at=rep(0,g_range[2],by=20))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-29-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/axisSidesEval_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 
@@ -375,7 +375,7 @@ We can now add a box around our plot using the **box()** function.
 box()
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-31-1.png" width="1000px" /&gt;
+&lt;img src="basePlotting_files/figure-html/boxEval_basePlotting-1.png" width="1000px" /&gt;
 
 
 ---
@@ -388,7 +388,7 @@ lines(control, type="o", pch=22, lty=2, col="red")
 
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-33-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/addLinesEval_basePlotting-1.png" width="1920px" /&gt;
 ---
 
 Finally we may wish to add a legend to out plot. We can add a legend to current plot using the **legend()** function.
@@ -401,13 +401,13 @@ legend("topleft",legend=c("treatment","control"),
        col=c("blue","red"), pch=21:22, lty=1:2);  
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-35-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/legendEval_basePlotting-1.png" width="1920px" /&gt;
 ---
 
 ##Bar Charts	
 	
 	
-Base graphics has a useful built in function for bar charts. The **barchart()** function.
+Base graphics has a useful built in function for bar charts. The **barplot()** function.
 We can simply pass our numeric vector to this function to get our barchart.
 
 
@@ -415,11 +415,11 @@ We can simply pass our numeric vector to this function to get our barchart.
 barplot(treatment)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-37-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/barplotEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
-The **barchart()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
+The **barplot()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
 
 
 
@@ -428,7 +428,7 @@ barplot(treatment,
         names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-38-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/barplotNames_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
@@ -441,7 +441,7 @@ names(treatment) &lt;- c("Mon","Tue","Wed","Thu","Fri","Sat")
 barplot(treatment)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-39-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/barplotPreNames_basePlotting-1.png" width="1920px" /&gt;
 
 
 ---
@@ -465,7 +465,7 @@ We can now plot data from a matrix with a stacked barchart. Note we use **as.mat
 barplot(as.matrix(data))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-41-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/barplotMatrix_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 Now we can plot data from a matrix with side-by-side barchart using the **beside** argument
@@ -476,7 +476,7 @@ Now we can plot data from a matrix with side-by-side barchart using the **beside
 barplot(as.matrix(data),beside=TRUE)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-42-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/barplotMatrixBeside_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 Now we can put it together and plot data with adjacent bars using colors and place the legend at the top-left corner.
@@ -493,7 +493,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 ```
 
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-44-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/barplotComplexEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
@@ -508,7 +508,7 @@ We can simply pass our numeric vector to this function to get our barchart.
 hist(treatment)  
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-45-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/hist_basePlotting-1.png" width="1920px" /&gt;
 
 
 ---
@@ -519,7 +519,7 @@ Similar cutomisation exists as for other plots.
 hist(treatment, col="lightblue", ylim=c(0,10))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-47-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/histColourYlimEval_basePlotting-1.png" width="1920px" /&gt;
 ---
 
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
@@ -528,7 +528,7 @@ We can create more fine grained histogram by specify the number of required bins
 hist(treatment, col="lightblue",breaks = 2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-49-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
@@ -542,7 +542,7 @@ Here we use the function **t** to return the transpose of a matrix.
 ```r
 dotchart(t(data))	
 ```
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-51-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/dotchartEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
@@ -554,7 +554,7 @@ Now we create a coloured dotchart for autos with smaller labels
 dotchart(t(data), color=c("red","blue"),
          main="Dotchart", cex=0.8)	
 ```
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-53-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/dotchartColEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
@@ -593,7 +593,7 @@ Now we can use the **boxplot()** function on our data.frame to get our boxplot
 boxplot(exprs)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-55-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/Boxplot_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 
@@ -605,7 +605,7 @@ boxplot(log2(exprs),ylab="log2 Expression",
         col=c("red","red","blue","blue"))
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-56-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/BoxplotEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
 ##Combining Plots
@@ -654,7 +654,7 @@ hist(data1$Untreated2)
 boxplot(data1$Treated1)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-60-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/setParMfrowEval_basePlotting-1.png" width="490px" /&gt;
 
 ---
 ##Saving your plots

@@ -57,7 +57,7 @@ Base R graphics uses a pen and paper model for plotting while Lattice and ggplot
 
 First we'll produce a very simple graph using the values in a numeric vector:
 
-```{r}
+```{r treatmentVector_basePlotting}
 treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 ```
 
@@ -66,13 +66,13 @@ treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 
 Now we plot the treatment vector with default parameters
 
-```{r,eval=FALSE}
+```{r defaultPlot_basePlotting,eval=FALSE}
 plot(treatment)
 ```
 
 
 
-```{r, echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+```{r defaultPlotEval_basePlotting, echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
 plot(treatment)
 ```
 
@@ -82,7 +82,7 @@ Now, let's customise this plot a little.
 First we can plot treatment using points overlayed by a line. We control this with the **type** argument.
 
 
-```{r,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotType_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o")
 ```
 
@@ -92,12 +92,12 @@ We have many type options available to us.
 To see a complete list we can use **?plot**
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotTypeSEval_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l")
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotTypeS_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="p")
 ```
 ]
@@ -107,7 +107,7 @@ We can add additional labels to our plot's axis and main/sub-title too.
 
 We add a title with **main** argument and or a sub-title with the **sub** argument.
 
-```{r,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, main="My Plot", sub="a plot")
 ```
 
@@ -115,7 +115,7 @@ plot(treatment, main="My Plot", sub="a plot")
 
 We can customise our x and y axis label with the **xlab** and **ylab** arguments respectively.
 
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, xlab="Position", ylab="score")
 ```
 
@@ -124,12 +124,12 @@ plot(treatment, xlab="Position", ylab="score")
 We can control the orientation of labels on axis using **las** argument.
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLasL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, las=1)
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLasR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, las=2)
 ```
 ]
@@ -139,12 +139,12 @@ plot(treatment, las=2)
 We can control the size of points in our plot using the **cex** parameter.
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisCexL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, cex=2)
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisCexR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, cex=0.5)
 ```
 ]
@@ -154,12 +154,12 @@ plot(treatment, cex=0.5)
 We can control the type of points in our plot using the **pch** parameter.
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisPchL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, pch=1)
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisPchR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, pch=20)
 ```
 ]
@@ -170,12 +170,12 @@ plot(treatment, pch=20)
 Similarly when plotting a line we control size with **lwd** parameter.
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLwdL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lwd=10)
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLwdR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lwd=0.5)
 ```
 ]
@@ -185,12 +185,12 @@ plot(treatment, type="l",lwd=0.5)
 We can also control the type of line with **lty** parameter.
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLtyL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lty=1)
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotAsisLtyR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lty=2)
 ```
 ]
@@ -201,13 +201,13 @@ plot(treatment, type="l",lty=2)
 An important parameter we can control is colour. We can control colour or lines or points using the **col** argument.
 
 .pull-left[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotColL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",
      col="red")
 ```
 ]
 .pull-right[
-```{r,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotColR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",
      col="dodgerblue")
 ```
@@ -229,7 +229,7 @@ Review **?plot** and **?par** for complete list of options.
 
 The **plot** function vector will accept two vectors to be plotted against each other.
 
-```{r,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotTwoVectors_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 control <- c(0, 20, 40, 60, 80,100)
 plot(treatment,control)
 ```
@@ -240,7 +240,7 @@ But we often want mulitple lines in same plot. So if we want to plot scores for 
 
 We can add an addition line to our existing plot using the **lines()** function.
 
-```{r,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
+```{r lines_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue")
 lines(control, type="o", pch=22, lty=2, col="red")
 ```
@@ -251,7 +251,7 @@ But the new line doesnt quite fit into our original plot.
 
 We can extend our x or y axis by specifying values to **xlim** **ylim** arguments.
 
-```{r,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
+```{r yxlim_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 control <- c(0, 20, 40, 60, 80,100)
 plot(treatment, type="o", col="blue",ylim=c(0,100))
 lines(control, type="o", pch=22, lty=2, col="red")
@@ -266,7 +266,7 @@ range() returns a vector containing the minimum and maximum of all the given arg
 
 
 Calculate range from 0 to max value of data
-```{r}
+```{r range_basePlotting}
 g_range <- range(0, treatment, control)
 g_range
 ```
@@ -276,7 +276,7 @@ g_range
 
 Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves. We turn of axis and annotation plotting using **axes=FALSE** and **ann=FALSE**
 
-```{r,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+```{r plotNoAxesNoAnnotation_basePlotting,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue", 
      ylim=g_range,axes=FALSE, ann=FALSE)
 ```
@@ -285,11 +285,11 @@ plot(treatment, type="o", col="blue",
 
 We can now create our own X axis by using the **axis()** function. We specify the **side** argument for where to place axis, the **at** argument to specify where to put axis ticks and **lab** argument to specify labels for axis ticks.
 
-```{r,eval=FALSE}
+```{r axis_basePlotting,eval=FALSE}
 axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 ```
 
-```{r,eval=TRUE,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1000px",height="1080px"}
+```{r axisEval_basePlotting,eval=TRUE,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue", 
      ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -302,11 +302,11 @@ We can make our y axis with horizontal labels that display ticks at every 20 mar
 
 We specify our **side** and use **rep()** function to make axis tick postions for **at** argument.
 
-```{r,eval=FALSE}
+```{r axisSides_basePlotting,eval=FALSE}
 axis(2, las=1, at=rep(0,g_range[2],by=20))
 ```
 
-```{r,eval=TRUE,echo=FALSE,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
+```{r axisSidesEval_basePlotting,eval=TRUE,echo=FALSE,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue", 
      ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -317,11 +317,11 @@ axis(2, las=1, at=20*0:g_range[2])
 ---
 
 We can now add a box around our plot using the **box()** function.
-```{r,eval=FALSE}
+```{r box_basePlotting,eval=FALSE}
 box()
 ```
 
-```{r,eval=TRUE,echo=FALSE,fig.height=4,dpi=300,out.width="1000px",height="1080px"}
+```{r boxEval_basePlotting,eval=TRUE,echo=FALSE,fig.height=4,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue", 
      ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -334,12 +334,12 @@ box()
 
 Now i can add my control data using lines argument.
 
-```{r,eval=FALSE,echo=TRUE,collapse=TRUE}
+```{r addLines_basePlotting,eval=FALSE,echo=TRUE,collapse=TRUE}
 lines(control, type="o", pch=22, lty=2, col="red")
 
 ```
 
-```{r,eval=TRUE,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+```{r addLinesEval_basePlotting,eval=TRUE,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
 plot(treatment, type="o", col="blue", 
      ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -353,12 +353,12 @@ Finally we may wish to add a legend to out plot. We can add a legend to current 
 
 We need to specify where to place legend in plot, the names in legend to **legend** argument and any additional point/line type configuration we used, e.g blue/red.
 
-```{r,eval=FALSE}
+```{r legend_basePlotting,eval=FALSE}
 legend("topleft",legend=c("treatment","control"),
        col=c("blue","red"), pch=21:22, lty=1:2);  
 ```
 
-```{r,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+```{r legendEval_basePlotting,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
 plot(treatment, type="o", col="blue", ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 axis(2, las=1, at=20*0:g_range[2])
@@ -373,23 +373,23 @@ legend("topleft",legend=c("treatment","control"),
 ##Bar Charts	
 	
 	
-Base graphics has a useful built in function for bar charts. The **barchart()** function.
+Base graphics has a useful built in function for bar charts. The **barplot()** function.
 We can simply pass our numeric vector to this function to get our barchart.
 
-```{r,eval=FALSE}
+```{r barplot_basePlotting,eval=FALSE}
 barplot(treatment)
 ```
 
-```{r,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotEval_basePlotting,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(treatment)
 ```
 
 ---
 
-The **barchart()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
+The **barplot()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
 
 
-```{r,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotNames_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
 barplot(treatment,
         names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 ```
@@ -399,7 +399,7 @@ barplot(treatment,
 If my vector was named however, then my vectors names would be used for labels. We use **names()** function to add names to our vector then we replot.
 
 
-```{r,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotPreNames_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
 names(treatment) <- c("Mon","Tue","Wed","Thu","Fri","Sat")
 barplot(treatment)
 ```
@@ -410,7 +410,7 @@ barplot(treatment)
 Let's now read the data from the example.txt data file.  
 
 Read values from tab-delimited example.txt
-```{r}
+```{r readTable_basePlotting}
 data <- read.table("data/example.txt", header=T, sep="\t")
 ```
 
@@ -420,7 +420,7 @@ data <- read.table("data/example.txt", header=T, sep="\t")
 We can now plot data from a matrix with a stacked barchart. Note we use **as.matrix()** function to convert our data.frame to a matrix.
 
 
-```{r,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotMatrix_basePlotting,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(as.matrix(data))
 ```
 
@@ -428,7 +428,7 @@ barplot(as.matrix(data))
 Now we can plot data from a matrix with side-by-side barchart using the **beside** argument
 
 
-```{r,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotMatrixBeside_basePlotting,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(as.matrix(data),beside=TRUE)
 ```
 
@@ -436,7 +436,7 @@ barplot(as.matrix(data),beside=TRUE)
 Now we can put it together and plot data with adjacent bars using colors and place the legend at the top-left corner.
 
 
-```{r,eval=FALSE}
+```{r barplotComplex_basePlotting,eval=FALSE}
 barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, 
         col= c("lightblue", "mistyrose", "lightcyan","lavender",
                "cornsilk","maroon"))
@@ -446,7 +446,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 ```
 
 
-```{r,echo=FALSE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotComplexEval_basePlotting,echo=FALSE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
 legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"));
@@ -461,7 +461,7 @@ fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
 Base graphics has a useful built in function for histograms too. The **histogram()** function.
 We can simply pass our numeric vector to this function to get our barchart.
 
-```{r,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r hist_basePlotting,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 hist(treatment)  
 ```
 
@@ -469,21 +469,21 @@ hist(treatment)
 ---
 
 Similar cutomisation exists as for other plots.
-```{r,eval=FALSE}
+```{r histColourYlim_basePlotting,eval=FALSE}
 hist(treatment, col="lightblue", ylim=c(0,10))
 ```
 
-```{r,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r histColourYlimEval_basePlotting,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 hist(treatment, col="lightblue", ylim=c(0,10),cex=0.5,cex.main=0.8)
 ```
 ---
 
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
-```{r,eval=FALSE}
+```{r histBreaks_basePlotting,eval=FALSE}
 hist(treatment, col="lightblue",breaks = 2)
 ```
 
-```{r,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r histBreaksEval_basePlotting,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 hist(treatment, col="lightblue", ylim=c(0,10),cex=0.5,cex.main=0.8,breaks = 2)
 ```
 
@@ -495,10 +495,10 @@ Base graphics has a useful built in function for dotcharts too. The **dotchart()
 We can simply pass our numeric vector to this function to get our barchart.
 
 Here we use the function **t** to return the transpose of a matrix.
-```{r,eval=FALSE}
+```{r dotchart_basePlotting,eval=FALSE}
 dotchart(t(data))	
 ```
-```{r,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r dotchartEval_basePlotting,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 dotchart(t(data))  
 ```
 
@@ -507,11 +507,11 @@ dotchart(t(data))
 Let's make the dotchart a little more colourful: 
 
 Now we create a coloured dotchart for autos with smaller labels
-```{r,eval=FALSE}
+```{r dotchartCol_basePlotting,eval=FALSE}
 dotchart(t(data), color=c("red","blue"),
          main="Dotchart", cex=0.8)	
 ```
-```{r,echo=FALSE,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r dotchartColEval_basePlotting,echo=FALSE,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)  
 ```
 
@@ -528,7 +528,7 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 ---
 
 First lets read in the gene expression data
-```{r,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r readForBoxplot_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
 head(exprs)
 ```
@@ -536,7 +536,7 @@ head(exprs)
 ---
 
 Now we can use the **boxplot()** function on our data.frame to get our boxplot
-```{r,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r Boxplot_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 boxplot(exprs)
 ```
 
@@ -544,7 +544,7 @@ boxplot(exprs)
 
 Perhaps it would look better on a log scale. We can add addition colours and labels as with other plots.
 
-```{r,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r BoxplotEval_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 boxplot(log2(exprs),ylab="log2 Expression",
         col=c("red","red","blue","blue"))
 ```
@@ -558,7 +558,7 @@ mfcol=c(nrows, ncols) fills in the matrix by columns.
 
 Define a layout with 2 rows and 2 columns
 
-```{r,eval=FALSE}
+```{r parMfrow_basePlotting,eval=FALSE}
 par(mfrow=c(2,2))
 ```
 
@@ -566,7 +566,7 @@ par(mfrow=c(2,2))
 
 Here, we will use different dataset with two columns each for treated and untreated samples.
 
-```{r}
+```{r readForParMfrow_basePlotting}
 data1 <- read.table("data/gene_data.txt", header=T, sep="\t")
 head(data1)
 ```
@@ -575,7 +575,7 @@ head(data1)
 Plot histograms for different columns in the data frame separately. This is not very efficient. 
 You could also do it more efficiently using for loop.
 
-```{r,eval=FALSE}
+```{r setParMfrow_basePlotting,eval=FALSE}
 par(mfrow=c(2,2))
 hist(data1$Untreated1)
 hist(data1$Treated2)
@@ -583,7 +583,7 @@ hist(data1$Untreated2)
 boxplot(data1$Treated1)
 ```
 
-```{r,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
+```{r setParMfrowEval_basePlotting,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 par(mfrow=c(2,2))
 hist(data1$Untreated1)
 hist(data1$Treated2)
@@ -605,7 +605,7 @@ The output would be redirected to the file.
 
 When you're done with your plotting commands, enter the dev.off() command. 
 
-```{r,eval=FALSE}
+```{r save_basePlotting,eval=FALSE}
 bmp(filename, width = 480, height = 480, units = "px", 
     point-size = 12)
 jpeg(filename, width = 480, height = 480, units = "px", 
@@ -614,14 +614,14 @@ jpeg(filename, width = 480, height = 480, units = "px",
 ---
 
 Saving in bitmap format
-```{r,eval=FALSE}
+```{r save_bmp_basePlotting,eval=FALSE}
 bmp(file = "control.bmp")
 plot(control)
 dev.off()
 ```
 ---
 Saving in jpeg format
-```{r,eval=FALSE}
+```{r save_jpeg_basePlotting,eval=FALSE}
 jpeg(file = "control.jpg", quality = 20)
 plot(control)
 dev.off()
@@ -631,7 +631,7 @@ dev.off()
 
 Saving in postscript format
 
-```{r,eval=FALSE}
+```{r save_ps_basePlotting,eval=FALSE}
 postscript(file = "control.ps")
 plot(control)
 dev.off()
@@ -640,7 +640,7 @@ dev.off()
 ---
 saving in pdf format
 
-```{r,eval=FALSE}
+```{r save_pdf_basePlotting,eval=FALSE}
 
 pdf(file = "control.pdf", paper = "A4")
 plot(control)
