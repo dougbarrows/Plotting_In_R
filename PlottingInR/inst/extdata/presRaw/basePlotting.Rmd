@@ -428,7 +428,7 @@ barplot(as.matrix(data))
 Now we can plot data from a matrix with side-by-side barchart using the **beside** argument
 
 
-```{r barplotMatrix_basePlotting,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotMatrixBeside_basePlotting,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(as.matrix(data),beside=TRUE)
 ```
 
