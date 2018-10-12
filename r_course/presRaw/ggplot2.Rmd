@@ -956,7 +956,7 @@ and additionally element_blank() to set an element to "blank"
 
 A detailed description of controlling elements within a theme can be seen at the ggplot2 vignette and by typing *?theme* into the console.
 
-- [ggplot2 themes](http://docs.ggplot2.org/dev/vignettes/themes.html)
+- [ggplot2 themes](https://ggplot2.tidyverse.org/reference/index.html#section-themes)
 
 ---
 .pull-left[
@@ -1034,7 +1034,44 @@ pcPlot+
     )
 ```
 ---
+## Useful example for legend
 
+A useful example of using the theme can be seen in controlling the legend.
+By default the legend is in right of plot.
+
+```{r, legendD_ggplot2, fig.height=4, fig.width=9}
+pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
+pcPlot
+```
+
+
+---
+## Useful example for legend
+
+A useful example of using the theme can be seen in controlling the legend.
+By default the legend is in right of plot.
+
+```{r, legendleft_ggplot2, fig.height=4, fig.width=9}
+pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
+pcPlot+theme(legend.position="left")
+```
+
+---
+## Useful example for legend
+
+We can control all aspects of a legend as we can for other theme elements.
+
+```{r, legendText_ggplot2, fig.height=4, fig.width=9}
+pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+                                         colour=Sex))+geom_point()
+pcPlot+theme(legend.text = element_text(colour="darkred"),
+             legend.title = element_text(size=20)
+             )
+```
+
+---
 ## + and %+replace%
 
 When altering themes we have been using the **+** operator to add themes as we would adding geoms,scales and stats.
