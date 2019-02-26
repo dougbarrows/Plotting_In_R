@@ -17,17 +17,40 @@ output:
     number_sections: false  ## if you want number sections at each table header
     theme: united  # many options for theme, this one is my favorite.
     highlight: tango  # specifies the syntax highlighting style
-
-
+params:
+  isSlides: "no"
 
 ---
+
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
 class: inverse, center, middle
 
-# Plotting in R (Base graphics)
+# Plotting in R
+
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
 ---
-##Introduction
+"    
+  )
+}else{
+  cat("---
+
+# Plotting in R
+
+---
+"    
+  )
+  
+}
+
+```
+
+
+
+
+### Introduction
 
 ```{r setup_basePlotting, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -43,7 +66,7 @@ R has excellent graphics and plotting capabilities. They are mostly found in fol
 Base R graphics uses a pen and paper model for plotting while Lattice and ggplot2 packages are built on the routines first used in grid graphics.
 
 ---
-## A pen and paper model
+### A pen and paper model
 
 - Once plot is produced, can only add more elements, cannot remove.
 - Makes it hard to update.
@@ -53,7 +76,7 @@ Base R graphics uses a pen and paper model for plotting while Lattice and ggplot
 
 ---
 
-## Scatter and linne Charts
+### Scatter and linne Charts
 
 First we'll produce a very simple graph using the values in a numeric vector:
 
@@ -62,7 +85,7 @@ treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 ```
 
 ---
-##Scatter Plot
+### Scatter Plot
 
 Now we plot the treatment vector with default parameters
 
@@ -370,7 +393,7 @@ legend("topleft",legend=c("treatment","control"),
 ```
 ---
 
-##Bar Charts	
+### Bar Charts	
 	
 	
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
@@ -455,7 +478,7 @@ fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
 
 ---
 
-##Histograms
+### Histograms
 
 
 Base graphics has a useful built in function for histograms too. The **histogram()** function.
@@ -489,7 +512,7 @@ hist(treatment, col="lightblue", ylim=c(0,10),cex=0.5,cex.main=0.8,breaks = 2)
 
 ---
 
-##Dot charts
+### Dot charts
 
 Base graphics has a useful built in function for dotcharts too. The **dotchart()** function.
 We can simply pass our numeric vector to this function to get our barchart.
@@ -517,7 +540,7 @@ dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)
 
 ---
 
-##Box plots
+### Box plots
 
 The final plot we will look at is a box and whisker plot. 
 
@@ -550,7 +573,7 @@ boxplot(log2(exprs),ylab="log2 Expression",
 ```
 
 ---
-##Combining Plots
+### Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
 With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
@@ -592,7 +615,7 @@ boxplot(data1$Treated1)
 ```
 
 ---
-##Saving your plots
+### Saving your plots
 
 
 

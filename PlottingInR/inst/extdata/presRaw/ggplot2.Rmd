@@ -17,7 +17,8 @@ output:
     number_sections: false  ## if you want number sections at each table header
     theme: united  # many options for theme, this one is my favorite.
     highlight: tango  # specifies the syntax highlighting style
-
+params:
+  isSlides: "no"
 
 
 ---
@@ -29,7 +30,32 @@ AsSlides <- TRUE
 ```
 
 
-# Graphics in R
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Graphics in R with ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("---
+
+# Graphics in R with ggplot2
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Graphics in R
 
 The R language has extensive graphical capabilities.
 
@@ -45,7 +71,7 @@ ggplot2 builds on the concept of the "Grammar of Graphics" (Wilkinson 2005, Bert
 
 ---
 
-# Why use ggplot2
+### Why use ggplot2
 
 The structured syntax and high level of abstraction used by ggplot2 should allow for the user to concentrate on the visualisations instead of creating the underlying code.
 
@@ -58,7 +84,7 @@ On top of this central philosophy ggplot2 has:
 
 ---
 
-# Grammar of Graphics
+### Grammar of Graphics
 
 <div align="center">
 <img src="imgs/Slide1.jpg" alt="igv" height="500" width="300">
@@ -66,7 +92,7 @@ On top of this central philosophy ggplot2 has:
 
 ---
 
-## How ggplot2 builds a plot.
+### How ggplot2 builds a plot.
 
 <!-- ![](imgs/Slide2.jpg) -->
 <div align="center">
@@ -108,7 +134,7 @@ ggplot(data = <default data set>,
     
 ```
 ---
-## What users are required to specify in ggplot2.
+### What users are required to specify in ggplot2.
 
 <!-- ![](imgs/Slide3.jpg) -->
 <div align="center">
@@ -134,8 +160,33 @@ ggplot(data=patients_clean,
 
 ```
 
----
+
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
 # Getting started with ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("---
+
+## Getting started with ggplot2
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Getting started with ggplot2
 
 
 ```{r load_packages_ggplot2, echo=FALSE, eval=TRUE,warning=F,message=F}
@@ -155,7 +206,7 @@ patients_clean <- read.delim("data/patient-data-cleaned.txt",
 
 ```
 ---
-## Our first ggplot2 graph
+### Our first ggplot2 graph
 
 As seen above, in order to produce a ggplot2 graph we need a minimum of:-
 
@@ -259,7 +310,32 @@ pcPlot+geom_point()
 ```
 ---
 
-# Geoms - Plot types
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Plot types in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("---
+
+## Plot types in ggplot2
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Geoms - Plot types
 
 As we have seen, an important element of a ggplot is the geom used. Following the specification of data, the geom describes the type of plot used.
 
@@ -278,7 +354,7 @@ Several geoms are available in ggplot2:-
 * geom_violin() - Violin plots
 
 ---
-## Geoms - Line plots
+### Geoms - Line plots
 
 
 
@@ -303,7 +379,7 @@ pcPlot_smooth
 ```
 ---
 
-## Geoms - Bar and frequency plots
+### Geoms - Bar and frequency plots
 
 ```{r, bar_simple_ggplot2, fig.height=5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
@@ -339,7 +415,7 @@ pcPlot_density
 ```
 
 ---
-## Geoms - Box and violin plots
+### Geoms - Box and violin plots
 
 ```{r, boxplot_simple_ggplot2, fig.height=5, fig.width=8}
 
@@ -366,8 +442,34 @@ An overview of geoms and thier arguments can be found at ggplot2 documentation o
 -[ggplot2 documentation](http://docs.ggplot2.org/current/)
 
 -[ggplot2 Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
+
+
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Using aesthetics in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
 ---
-# Aesthetics
+"    
+  )
+}else{
+  cat("---
+
+## Using aesthetics in ggplot2
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Aesthetics
 
 In order to change the property on an aesthetic of a plot into a constant value (e.g. set colour of all points to red) we can supply the color argument to the geom_point() function.
 
@@ -465,9 +567,34 @@ or visit the ggplot2 documentations pages and cheatsheet
 
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
----
 
-# Facets
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Multipanel plots in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("---
+
+## Multipanel plots in ggplot2
+
+---
+"    
+  )
+  
+}
+
+```
+
+
+### Facets
 
 One very useful feature of ggplot is faceting. 
 This allows you to produce plots subset by variables in your data.
@@ -543,7 +670,7 @@ pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
 ---
-# Change the plotting order in a boxplot
+### Change the plotting order in a boxplot
 
 We will shortly discuss how to change various aspects of the plot layout and appearance. However, a common-asked question is how to change the order in which R plots a categorical variable. Consider the boxplot to compare weights of males and females:-
 
@@ -575,15 +702,42 @@ patients_clean %>%
 
 ---
 
-# Exercise set 1
+### Exercise set 1
 
 [Link_to_exercises](../../exercises/exercise_1.html)
 
 [Link_to_answers](../../answers/exercise_1.html)
 
----
 
-# Scales
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Controlling scales in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("---
+
+## Controlling scales in ggplot2
+
+
+---
+"    
+  )
+  
+}
+
+```
+
+
+
+### Scales
 
 Scales and their legends have so far been handled using ggplot2 defaults.
 ggplot2 offers functionality to have finer control over scales and legends using the *scale* methods.
@@ -611,7 +765,7 @@ Although different *scale* functions accept some variety in their arguments, com
 - labels - Label names at each break
 
 ---
-## Controlling the X and Y scale.
+### Controlling the X and Y scale.
 
 Both continous and discrete X/Y scales can be controlled in ggplot2 using the
 
@@ -650,7 +804,7 @@ pcPlot +
   scale_y_continuous(breaks=c(160,180),labels=c("Short", "Tall"))
 ```
 ---
-## Controlling other scales.
+### Controlling other scales.
 When using fill,colour,linetype, shape, size or alpha aesthetic mappings the scales are automatically selected for you and the appropriate legends created.
 
 ```{r scaleOthers_ggplot2, facet_grid_height_weight, fig.height=3, fig.width=8}
@@ -662,7 +816,7 @@ pcPlot + geom_point(size=4)
 
 In the above example the discrete colours for the Sex variable was selected by default.
 ---
-## Manual discrete colour scale
+### Manual discrete colour scale
 
 Manual control of discrete variables can be performed using scale_*aes_Of_Interest*_**manual** with the *values* parameter.
 Additionally in this example an updated name for the legend is provided.
@@ -676,7 +830,7 @@ pcPlot + geom_point(size=4) +
                   
 ```
 ---
-## Colorbrewer for discrete colour scale
+### Colorbrewer for discrete colour scale
 
 Here we have specified the colours to be used (hence the manual) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colours from a scale of our choice.
 
@@ -709,7 +863,7 @@ For more details on palette sizes and styles visit the colorbrewer website and g
 
 - [ggplot2 colour scales](http://docs.ggplot2.org/current/scale_brewer.html)
 ---
-### Continuous colour scales
+#### Continuous colour scales
 
 So far we have looked a qualitative scales but ggplot2 offers much functionality for continuous scales such as for size, alpha (transparancy), colour and fill.
 
@@ -822,8 +976,34 @@ pcPlot + geom_point(size=4,alpha=0.8)+
                          name="Body Mass Index")
 ```
 
+
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Statistical transformations in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
 ---
-# Statistical transformations.
+"    
+  )
+}else{
+  cat("---
+
+## Statistical transformations in ggplot2
+
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Statistical transformations.
 
 In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
 
@@ -878,8 +1058,34 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot+stat_summary(fun.y=quantile,geom="point",
                     colour="purple",size=8)
 ```
+
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Themes in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
 ---
-# Themes
+"    
+  )
+}else{
+  cat("---
+
+## Themes in ggplot2
+
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Themes
 
 
 Themes specify the details of data independent elements of the plot. 
@@ -888,7 +1094,7 @@ This includes titles, background colour, text fonts etc.
 The graphs created so far have all used the default themes, `theme_grey()`, 
 but ggplot2 allows for the specification of theme used.
 ---
-## Predefined themes
+### Predefined themes
 
 Predefined themes can be applied to a ggplot2 object using a family of functions theme_*style*()
 
@@ -919,7 +1125,7 @@ Several predifined themes are available within ggplot2 including:
 Packages such as [ggthemes](https://github.com/jrnold/ggthemes) also contain many useful collections of predined theme_*style* functions.
 
 ---
-## Creating your themes
+### Creating your themes
 
 As well as making use of predifened theme styles, ggplot2 allows for control over the attributes and elements within a plot through a collection of related functions and attributes.
 
@@ -1034,7 +1240,7 @@ pcPlot+
     )
 ```
 ---
-## Useful example for legend
+### Useful example for legend
 
 A useful example of using the theme can be seen in controlling the legend.
 By default the legend is in right of plot.
@@ -1047,7 +1253,7 @@ pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 
 
 ---
-## Useful example for legend
+### Useful example for legend
 
 A useful example of using the theme can be seen in controlling the legend.
 By default the legend is in right of plot.
@@ -1059,7 +1265,7 @@ pcPlot+theme(legend.position="left")
 ```
 
 ---
-## Useful example for legend
+### Useful example for legend
 
 We can control all aspects of a legend as we can for other theme elements.
 
@@ -1072,7 +1278,7 @@ pcPlot+theme(legend.text = element_text(colour="darkred"),
 ```
 
 ---
-## + and %+replace%
+### + and %+replace%
 
 When altering themes we have been using the **+** operator to add themes as we would adding geoms,scales and stats.
 
@@ -1174,7 +1380,7 @@ This means that %+replace% is most useful when creating new themes.
 
 theme_get and theme_set
 ---
-# Adding titles for plot and labels.
+### Adding titles for plot and labels.
 
 So far no plot titles have been specified. Plot titles can be specified using the labs functions.
 
@@ -1193,8 +1399,34 @@ pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot+ggtitle("Weight vs Height")+ylab("Height (cm)")
 ```
+
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
+class: inverse, center, middle
+
+# Saving plots in ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
 ---
-## Saving plots
+"    
+  )
+}else{
+  cat("---
+
+## Saving plots in ggplot2
+
+
+---
+"    
+  )
+  
+}
+
+```
+
+### Saving plots
 
 Plots produced by ggplot can be saved from the interactive viewer as with standard plots.
 
@@ -1211,17 +1443,17 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 ```
 ---
 
-# Exercise set 2
+### Exercise set 2
 
 
-# Exercise set 2
+#### Exercise set 2
 
 [Link_to_exercises](../../exercises/exercise_2.html)
 
 [Link_to_answers](../../answers/exercise_2.html)
 
 ---
-# References.
+### References.
 
 - [Layered grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.pdf)
 
