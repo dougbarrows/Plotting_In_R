@@ -20,19 +20,31 @@ output:
 
 
 
----
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("---
 class: inverse, center, middle
 
 # Plotting in R (Base graphics)
+
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
 ---
-##Introduction
+"    
+  )
+}else{
+  cat("---
 
-```{r setup_basePlotting, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-AsSlides <- TRUE
+# Plotting in R (Base graphics)
+
+---
+"    
+  )
+  
+}
+
 ```
+
 
 
 R has excellent graphics and plotting capabilities. They are mostly found in following three sources.
