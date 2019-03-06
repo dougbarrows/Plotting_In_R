@@ -387,7 +387,7 @@ legend("topleft",legend=c("treatment","control"),
 ```
 ---
 
-##Bar Charts	
+## Bar Charts	
 	
 	
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
@@ -472,7 +472,7 @@ fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
 
 ---
 
-##Histograms
+## Histograms
 
 
 Base graphics has a useful built in function for histograms too. The **histogram()** function.
