@@ -77,7 +77,8 @@ treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 ```
 
 ---
-##Scatter Plot
+
+## Scatter Plot
 
 Now we plot the treatment vector with default parameters
 
