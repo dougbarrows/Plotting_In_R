@@ -350,7 +350,7 @@ box()
 
 Now i can add my control data using lines argument.
 
-```{r addLines_basePlotting,eval=FALSE,echo=TRUE,collapse=TRUE}
+```{r addLines_basePlotting,eval=FALSE,echo=TRUE}
 lines(control, type="o", pch=22, lty=2, col="red")
 
 ```
@@ -363,6 +363,7 @@ axis(2, las=1, at=20*0:g_range[2])
 box()
 lines(control, type="o", pch=22, lty=2, col="red")
 ```
+
 ---
 
 Finally we may wish to add a legend to out plot. We can add a legend to current plot using the **legend()** function.
