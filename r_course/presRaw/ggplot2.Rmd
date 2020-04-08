@@ -44,7 +44,7 @@ The ggplot2 package was created by Hadley Wickham and provides a intuitive plott
 
 ggplot2 builds on the concept of the "Grammar of Graphics" (Wilkinson 2005, Bertin 1983) which describes a consistent syntax for the construction of a wide range of complex graphics by a concise description of their components.
 
-ggplot2 is a core part of the tidyverse, a group of packages designed to make datta science easy and functional in R. For an introduction to these concepts check out our [tidy workshop](https://rockefelleruniversity.github.io/RU_tidyverse/).
+ggplot2 is a core part of the tidyverse, a group of packages designed to make data science easy and functional in R. For an introduction to these concepts check out our [tidy workshop](https://rockefelleruniversity.github.io/RU_tidyverse/).
 
 ---
 ## Why use ggplot2
@@ -405,7 +405,7 @@ pcPlot+geom_point(color="red")
 As we discussed earlier however, ggplot2 makes use of aesthetic mappings to assign variables in the data to the properties/aesthetics of the plot. This allows the properties of the plot to reflect variables in the data *dynamically*.
 
 In these examples we supply additional information to the aes() function to define what information to display and how it is represented in the plot.
-]
+  ]
 .pull-right[
 
 First we can recreate the plot we saw earlier.
@@ -416,7 +416,7 @@ pcPlot <- ggplot(data=patients_clean,
                              y=Weight))
 pcPlot+geom_point()
 ```
-]
+  ]
 
 ---
 ## Aesthetics - Color
@@ -533,7 +533,7 @@ pcPlot + facet_grid(~Sex)
 ```
 
 ---
-## Facets - Split by 2 factor
+## Facets - Split by 1 factor
 
 To split along rows in plot, the variable is placed before the "~.".
 
@@ -670,6 +670,7 @@ pcPlot + geom_point() + facet_grid(Smokes~Sex)+
                      labels=c("small","justright","tall"))
 
 ```
+
 ---
 ## Discrete axes scales
 Similary control over discrete scales is shown below.
@@ -974,7 +975,7 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot
 ```
 
-]
+  ]
 .pull-right[
 
 ...and the same scatter plot with the minimal theme.
@@ -982,13 +983,7 @@ pcPlot
 ```{r, theme_minimal_ggplot2, fig.height=4, fig.width=4,tidy=FALSE}
 pcPlot+theme_minimal()
 ```
-]
-
-<!-- # ```{r, theme_minimal_ggplot2, fig.height=4, fig.width=9} -->
-<!-- # pcPlot <- ggplot(data=patients_clean, -->
-<!-- #         mapping=aes(x=Weight,y=Height))+geom_point() -->
-<!-- # pcPlot+theme_minimal() -->
-<!-- # ``` -->
+  ]
 
 ---
 ## Predefined themes
@@ -1018,23 +1013,24 @@ As well as making use of predefined theme styles, ggplot2 allows for control ove
 
 **theme()** is the global function used to set attributes for the collections of elements/components making up the current plot.
 
-Within the theme functions there are 4 general graphic elements which may be controlled:
+.pull-left[
+Within the theme functions there are 4 general graphic elements which may be controlled...
 
 - rect
 - line
 - text
 - title
+  ]
 
----
-## Custom themes
-
-and 5 groups of related elements:
+.pull-right[
+...and 5 groups of related elements:
 
 - axis
 - legend
 - strip
 - panel (plot panel)
 - plot (Global plot parameters)
+]
 
 ---
 ## Custom themes
@@ -1063,7 +1059,7 @@ To demonstrate customizing a theme, in the example below we alter one element of
 - Note because we are changing a *text* element we use the *element_text()* function.
 
 A detailed description of which elements are available and their associated element functions can be found by typing *?theme*.
-]
+  ]
 .pull-right[
 
 ```{r, theme_custom_ggplot2, fig.height=7, fig.width=9,tidy=FALSE}
@@ -1077,7 +1073,7 @@ pcPlot+
     axis.text = element_text(color="red")
       )
 ```
-]
+  ]
 
 ---
 ## Customizing your theme
@@ -1223,7 +1219,6 @@ p2 <- pcPlot+
 grid.arrange(p, p2, ncol=2)
 ```
 
-
 ---
 ## **%+replace%**
 
@@ -1259,16 +1254,17 @@ When using the **%+replace%** operator
   theme(text = element_text(color="red"))
 ```
 
+
+---
 ## + and %+replace%
 ### Original theme 
----
 ```{r, theme_custom84FS2_ggplot2,echo=AsSlides,eval=AsSlides}
   oldTheme$text
 ```
-
+---
 ## + and %+replace%
 ### Theme modified with **+**
----
+
 ```{r, theme_custom84FS3_ggplot2,echo=AsSlides,eval=AsSlides}
   newTheme_Plus$text
 ```
@@ -1304,7 +1300,7 @@ pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 ---
 ## Adding titles for plot and labels
 
-or specified using the ggtitle and xlab/ylab functions.
+You can also specify titles using the ggtitle and xlab/ylab functions.
 
 ```{r, theme_ggtitle_ggplot2,fig.height=4, fig.width=9,}
 
@@ -1334,10 +1330,10 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 # Exercise set 2
 
-
-# Exercise set 2
-
 [Link_to_exercises](../../exercises/exercise_2.html)
+
+---
+# Exercise set 2
 
 [Link_to_answers](../../answers/exercise_2.html)
 
