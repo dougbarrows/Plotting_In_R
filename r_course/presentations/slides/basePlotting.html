@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
     <title>Introduction to Plotting</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="metropolisCustom.css" type="text/css" />
@@ -18,36 +18,37 @@ class: center, middle, inverse, title-slide
 
 ---
 
-class: inverse, center, middle
 
-# Plotting in R (Base graphics)
-&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
+
+
+
+# Plotting in R
 
 ---
-##Introduction
 
 
+## Introduction
 
 
-R has excellent graphics and plotting capabilities. They are mostly found in following three sources.
+R has excellent graphics and plotting capabilities. In fact this is commonly seen as one of the advantages of R over other competing languages like python and matlab. They are mostly found in following three sources.
  + base graphics
  + the lattice package
- +  the ggplot2 package
+ + the ggplot2 package
  
 Base R graphics uses a pen and paper model for plotting while Lattice and ggplot2 packages are built on the routines first used in grid graphics.
 
 ---
-## A pen and paper model
+### A pen and paper model
 
 - Once plot is produced, can only add more elements, cannot remove.
 - Makes it hard to update.
 - But faster than more complex plotting systems.
 
-
+Building a new plot is often a stepwise process with gradual addition of features. It will likely require replotting many times. 
 
 ---
 
-## Scatter and linne Charts
+# Scatter and line Charts
 
 First we'll produce a very simple graph using the values in a numeric vector:
 
@@ -57,21 +58,19 @@ treatment &lt;- c(0.02,1.8, 17.5, 55,75.7, 80)
 ```
 
 ---
-##Scatter Plot
+## Scatter Plot
 
-Now we plot the treatment vector with default parameters
+Now we plot the treatment vector with default parameters.
 
 
 ```r
 plot(treatment)
 ```
 
-
-
 &lt;img src="basePlotting_files/figure-html/defaultPlotEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
-Now, let's customise this plot a little. 
+## Plot customization - Type
 
 First we can plot treatment using points overlayed by a line. We control this with the **type** argument.
 
@@ -84,7 +83,7 @@ plot(treatment, type="o")
 &lt;img src="basePlotting_files/figure-html/plotType_basePlotting-1.png" width="1000px" /&gt;
 
 ---
-We have many type options available to us. 
+## Plot customization - Type
 
 To see a complete list we can use **?plot**
 
@@ -105,8 +104,7 @@ plot(treatment, type="p")
 &lt;img src="basePlotting_files/figure-html/plotTypeS_basePlotting-1.png" width="1000px" /&gt;
 ]
 ---
-
-We can add additional labels to our plot's axis and main/sub-title too.
+## Plot customization - Title
 
 We add a title with **main** argument and or a sub-title with the **sub** argument.
 
@@ -118,8 +116,8 @@ plot(treatment, main="My Plot", sub="a plot")
 &lt;img src="basePlotting_files/figure-html/plotLabels_basePlotting-1.png" width="1000px" /&gt;
 
 ---
-
-We can customise our x and y axis label with the **xlab** and **ylab** arguments respectively.
+## Plot customization - Axis labels
+We can customize our x and y axis label with the **xlab** and **ylab** arguments respectively.
 
 
 ```r
@@ -129,7 +127,7 @@ plot(treatment, xlab="Position", ylab="score")
 &lt;img src="basePlotting_files/figure-html/plotAsisLabels_basePlotting-1.png" width="1000px" /&gt;
 
 ---
-
+## Plot customization - Axis labels
 We can control the orientation of labels on axis using **las** argument.
 
 .pull-left[
@@ -150,7 +148,7 @@ plot(treatment, las=2)
 ]
 
 ---
-
+## Plot customization - Point size
 We can control the size of points in our plot using the **cex** parameter.
 
 .pull-left[
@@ -171,7 +169,7 @@ plot(treatment, cex=0.5)
 ]
 
 ---
-
+## Plot customization - Point shape
 We can control the type of points in our plot using the **pch** parameter.
 
 .pull-left[
@@ -193,7 +191,7 @@ plot(treatment, pch=20)
 
 
 ---
-
+## Plot customization - Line weight
 Similarly when plotting a line we control size with **lwd** parameter.
 
 .pull-left[
@@ -214,7 +212,7 @@ plot(treatment, type="l",lwd=0.5)
 ]
 
 ---
-
+## Plot customization - Line type
 We can also control the type of line with **lty** parameter.
 
 .pull-left[
@@ -235,15 +233,14 @@ plot(treatment, type="l",lty=2)
 ]
 
 ---
+## Plot customization - Color
 
-
-An important parameter we can control is colour. We can control colour or lines or points using the **col** argument.
+An important parameter we can control is color. We can control color or lines or points using the **col** argument.
 
 .pull-left[
 
 ```r
-plot(treatment, type="l",
-     col="red")
+plot(treatment, type="l", col="red")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotColL_basePlotting-1.png" width="1000px" /&gt;
@@ -251,8 +248,7 @@ plot(treatment, type="l",
 .pull-right[
 
 ```r
-plot(treatment, type="l",
-     col="dodgerblue")
+plot(treatment, type="l", col="dodgerblue")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotColR_basePlotting-1.png" width="1000px" /&gt;
@@ -260,18 +256,17 @@ plot(treatment, type="l",
 
 ---
 
-You can find an extensive list of R colours here.
+You can find an extensive list of R colors here.
 
-[R colour Chart](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+[R color Chart](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
 
 ---
-
 
 Review **?plot** and **?par** for complete list of options.
 
 
 ---
-
+## Plot multiple vectors
 The **plot** function vector will accept two vectors to be plotted against each other.
 
 
@@ -283,10 +278,10 @@ plot(treatment,control)
 &lt;img src="basePlotting_files/figure-html/plotTwoVectors_basePlotting-1.png" width="1000px" /&gt;
 
 ---
-
+## Plot multiple vectors
 But we often want mulitple lines in same plot. So if we want to plot scores for control and treatment against position we will need a new method.
 
-We can add an addition line to our existing plot using the **lines()** function.
+We can add an additional line to our existing plot using the **lines()** function.
 
 
 ```r
@@ -297,10 +292,11 @@ lines(control, type="o", pch=22, lty=2, col="red")
 &lt;img src="basePlotting_files/figure-html/lines_basePlotting-1.png" width="1000px" /&gt;
 
 ---
-But the new line doesnt quite fit into our original plot.
+## Setting plot limits
 
+The new line doesn't quite fit into our original plot.
 
-We can extend our x or y axis by specifying values to **xlim** **ylim** arguments.
+We can extend our x or y axis by specifying values to **xlim** **ylim** arguments directly.
 
 
 ```r
@@ -312,9 +308,9 @@ lines(control, type="o", pch=22, lty=2, col="red")
 &lt;img src="basePlotting_files/figure-html/yxlim_basePlotting-1.png" width="1000px" /&gt;
 
 ---
+## Defining needed limits
 
-Next let's change the axes labels to match our data and add a legend. We'll also compute the y-axis values using the **range** function 
-so any changes to our data will be automatically reflected in our graph. 
+Instead of defining the axis limits explicitly we can compute the y-axis values using the **range** function. This means any updates to our data will be automatically reflected in our graph. 
 
 range() returns a vector containing the minimum and maximum of all the given arguments.
 
@@ -330,22 +326,22 @@ g_range
 ## [1]   0 100
 ```
 
-
 ---
-
-Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves. We turn of axis and annotation plotting using **axes=FALSE** and **ann=FALSE**
+## Custom axes
+To be able to customize axes we need to turn off axes and annotations (axis labels). We will then be able to specify them ourselves. We turn of axis and annotation plotting using **axes=FALSE** and **ann=FALSE**
 
 
 ```r
 plot(treatment, type="o", col="blue", 
-     ylim=g_range,axes=FALSE, ann=FALSE)
+     ylim=g_range, axes=FALSE, ann=FALSE)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotNoAxesNoAnnotation_basePlotting-1.png" width="1000px" /&gt;
 
 ---
+## Creating axes
 
-We can now create our own X axis by using the **axis()** function. We specify the **side** argument for where to place axis, the **at** argument to specify where to put axis ticks and **lab** argument to specify labels for axis ticks.
+We can create our own X axis by using the **axis()** function. We specify the **side** argument for where to place axis, the **at** argument to specify where to put axis ticks and **lab** argument to specify labels for axis ticks.
 
 
 ```r
@@ -355,10 +351,11 @@ axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 &lt;img src="basePlotting_files/figure-html/axisEval_basePlotting-1.png" width="1000px" /&gt;
 
 ---
+## Creating axes
 
 We can make our y axis with horizontal labels that display ticks at every 20 marks in a similar way.
 
-We specify our **side** and use **rep()** function to make axis tick postions for **at** argument.
+We specify our **side** and use **rep()** function to make axis tick postions for **at** argument. We can use our y-axis range again to help define how many ticks we need.
 
 
 ```r
@@ -368,7 +365,7 @@ axis(2, las=1, at=rep(0,g_range[2],by=20))
 &lt;img src="basePlotting_files/figure-html/axisSidesEval_basePlotting-1.png" width="1000px" /&gt;
 
 ---
-
+## Framing plots
 We can now add a box around our plot using the **box()** function.
 
 ```r
@@ -377,10 +374,10 @@ box()
 
 &lt;img src="basePlotting_files/figure-html/boxEval_basePlotting-1.png" width="1000px" /&gt;
 
-
 ---
+## Plot multiple lines
 
-Now i can add my control data using lines argument.
+Now I can add my control data using lines argument.
 
 
 ```r
@@ -388,12 +385,14 @@ lines(control, type="o", pch=22, lty=2, col="red")
 
 ```
 
-&lt;img src="basePlotting_files/figure-html/addLinesEval_basePlotting-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/addLinesEval_basePlotting-1.png" width="1000px" /&gt;
+
 ---
+## Legends
 
 Finally we may wish to add a legend to out plot. We can add a legend to current plot using the **legend()** function.
 
-We need to specify where to place legend in plot, the names in legend to **legend** argument and any additional point/line type configuration we used, e.g blue/red.
+We need to specify where to place legend in plot, the names in legend to **legend** argument and any additional point/line type configuration we used e.g the color and shape.
 
 
 ```r
@@ -402,13 +401,61 @@ legend("topleft",legend=c("treatment","control"),
 ```
 
 &lt;img src="basePlotting_files/figure-html/legendEval_basePlotting-1.png" width="1920px" /&gt;
----
 
-##Bar Charts	
-	
+---
+## Making plots readable
+
+In our line plot we have already done a good job of making it easier to differentiate the lines as we have different line styles and different shape points. 
+
+Other things we can do is also differentiate thickness.
+
+&lt;img src="basePlotting_files/figure-html/readability_basePlotting-1.png" width="1920px" /&gt;
+
+---
+## Color Blindness
+
+~1/25 of people have color blindness. In white males specifically this number raises to  above 1/10. Considering the unequal demographics in science that means you will have someone with a form of color blindness at most meetings.
+
+People with color blindness most often struggle to differentiate between red/green or blue/yellow.
+
+Packages exist that contain color blind friendly pallettes like [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). 
+
+There are many packages that contain color pallettes in them. To get colors you just have to call the function with the number of colors you want. 
+
+
+```
+## [1] "#440154FF" "#414487FF" "#2A788EFF" "#22A884FF" "#7AD151FF" "#FDE725FF"
+```
+
+```r
+install.packages('viridis')
+library(viridis)
+viridis(6)
+```
+![](basePlotting_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+## Good data visualization
+
+There are often a trade offs in creating good plots. 
+
+* Is it easy to digest and accesible to everyone?
+* Is it engaging and appealing?
+* Does it contain all the information with nothing superfluous?
+* Is it the best way to tell the story I want to tell?
+
+[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
+
+
+---
+# Bar Charts	
 	
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
 We can simply pass our numeric vector to this function to get our barchart.
+
+&lt;!-- # ```{r barplot_basePlotting,eval=FALSE} --&gt;
+&lt;!-- # barplot(treatment) --&gt;
+&lt;!-- # ``` --&gt;
 
 
 ```r
@@ -418,6 +465,7 @@ barplot(treatment)
 &lt;img src="basePlotting_files/figure-html/barplotEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
+## Barplot - Labels
 
 The **barplot()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
 
@@ -431,6 +479,7 @@ barplot(treatment,
 &lt;img src="basePlotting_files/figure-html/barplotNames_basePlotting-1.png" width="1920px" /&gt;
 
 ---
+## Barplot - Labels
 
 If my vector was named however, then my vectors names would be used for labels. We use **names()** function to add names to our vector then we replot.
 
@@ -445,20 +494,22 @@ barplot(treatment)
 
 
 ---
- 
-Let's now read the data from the example.txt data file.  
+## Barplot - Stacking
+
+Sometimes you want to have several data series stacked in a single barplot. The **barplot()** function handles this readily.
+
+Let's read the data from the example.txt data file.  
 
 Read values from tab-delimited example.txt
 
 ```r
-data &lt;- read.table("data/example.txt", header=T, sep="\t")
+data &lt;- read.table("data/example.txt", header=T, row.names=1, sep=",")
 ```
 
-
-
 ---
-We can now plot data from a matrix with a stacked barchart. Note we use **as.matrix()** function to convert our data.frame to a matrix.
+## Barplot - Stacking
 
+To build a stacked barplot we need to give the barplot funcion a matrix. We can use **as.matrix()** function to convert our data frame to a matrix.
 
 
 ```r
@@ -468,8 +519,9 @@ barplot(as.matrix(data))
 &lt;img src="basePlotting_files/figure-html/barplotMatrix_basePlotting-1.png" width="1920px" /&gt;
 
 ---
-Now we can plot data from a matrix with side-by-side barchart using the **beside** argument
+## Barplot - Grouping
 
+Now we can plot data from a matrix with grouped barchart using the **beside** argument.
 
 
 ```r
@@ -479,29 +531,31 @@ barplot(as.matrix(data),beside=TRUE)
 &lt;img src="basePlotting_files/figure-html/barplotMatrixBeside_basePlotting-1.png" width="1920px" /&gt;
 
 ---
-Now we can put it together and plot data with adjacent bars using colors and place the legend at the top-left corner.
+## Barplot - Customization
 
+Though a different function to plot(), barplot can be customized in much the same way. Most of the parameters have the same names. 
 
 
 ```r
-barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, 
-        col= c("lightblue", "mistyrose", "lightcyan","lavender",
-               "cornsilk","maroon"))
+barplot(as.matrix(data), main="Daily progression of X in\nControl and Treatment", ylab= "Total", beside=TRUE, 
+        col= viridis(6))
 legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
-        fill=  c("lightblue", "mistyrose", "lightcyan",
-                         "lavender","cornsilk","maroon"));
+        fill=  viridis(6))
 ```
-
 
 &lt;img src="basePlotting_files/figure-html/barplotComplexEval_basePlotting-1.png" width="1920px" /&gt;
 
+
+&lt;!-- ```{r barplotComplexEval_basePlotting, fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"} --&gt;
+&lt;!-- barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon")) --&gt;
+&lt;!-- legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8, --&gt;
+&lt;!-- fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon")); --&gt;
+
+&lt;!-- ``` --&gt;
+
 ---
-
-##Histograms
-
-
-Base graphics has a useful built in function for histograms too. The **histogram()** function.
-We can simply pass our numeric vector to this function to get our barchart.
+# Histograms
+Base graphics has a useful built-in function for histograms too. This is the **hist()** function, which just needs a numeric vector.
 
 
 ```r
@@ -512,53 +566,78 @@ hist(treatment)
 
 
 ---
-
-Similar cutomisation exists as for other plots.
+## Histograms - Customization
+Similar customization exists as for other plots.
 
 ```r
-hist(treatment, col="lightblue", ylim=c(0,10))
+hist(treatment, col="lightblue", ylim=c(0,5),cex.main=0.8)
 ```
 
-&lt;img src="basePlotting_files/figure-html/histColourYlimEval_basePlotting-1.png" width="1920px" /&gt;
----
+&lt;img src="basePlotting_files/figure-html/histcolorYlim_basePlotting-1.png" width="1920px" /&gt;
 
+---
+## Histograms - Breaks
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
 
+&lt;!-- ```{r histBreaks_basePlotting,eval=FALSE} --&gt;
+&lt;!-- hist(treatment, col="lightblue",breaks = 2) --&gt;
+&lt;!-- ``` --&gt;
+
+
+.pull-left[
+
 ```r
-hist(treatment, col="lightblue",breaks = 2)
+hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlotting-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlottingL_basePlotting-1.png" width="1000px" /&gt;
+]
+.pull-right[
+
+```r
+hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 10)
+```
+
+&lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlottingR_basePlotting-1.png" width="1000px" /&gt;
+]
 
 ---
+# Dot charts
 
-##Dot charts
+Base graphics has a useful built in function for dotcharts too. The **dotchart()** function. This enables direct comparison between paired data.First though we need to modify the matrix, as in dotplots we are comparing each paired data set versus each other as opposed to control versus treatment. 
 
-Base graphics has a useful built in function for dotcharts too. The **dotchart()** function.
-We can simply pass our numeric vector to this function to get our barchart.
+Here we use the function **t** to return the transpose of a matrix. This means rows are now columns and the columns are now rows. 
 
-Here we use the function **t** to return the transpose of a matrix.
+&lt;!-- # ```{r dotchart_basePlotting,eval=FALSE} --&gt;
+&lt;!-- # dotchart(t(data))	 --&gt;
+&lt;!-- # ``` --&gt;
+
 
 ```r
-dotchart(t(data))	
+dotchart(t(data))  
 ```
+
 &lt;img src="basePlotting_files/figure-html/dotchartEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
+# Dot charts - Customization
+Again we can use the arguments to modify the layout and appearance.
 
-Let's make the dotchart a little more colourful: 
+Now we create a colored dotchart for autos with smaller labels.
+&lt;!-- # ```{r dotchartCol_basePlotting,eval=FALSE} --&gt;
+&lt;!-- # dotchart(t(data), color=c("red","blue"), --&gt;
+&lt;!-- #          main="Dotchart", cex=0.8)	 --&gt;
+&lt;!-- # ``` --&gt;
 
-Now we create a coloured dotchart for autos with smaller labels
 
 ```r
-dotchart(t(data), color=c("red","blue"),
-         main="Dotchart", cex=0.8)	
+dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)
 ```
+
 &lt;img src="basePlotting_files/figure-html/dotchartColEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
-
-##Box plots
+# Box plots
 
 The final plot we will look at is a box and whisker plot. 
 
@@ -567,7 +646,7 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 ![](imgs/box_whisker_describe.png)
 
 ---
-
+## Boxplots - Read in bigger data
 First lets read in the gene expression data
 
 ```r
@@ -585,7 +664,8 @@ head(exprs)
 ## ENSDARG00000079403  1.0604071  1.2581398 0.3884836 0.31567299
 ```
 
----
+--- 
+## Boxplots 
 
 Now we can use the **boxplot()** function on our data.frame to get our boxplot
 
@@ -596,8 +676,9 @@ boxplot(exprs)
 &lt;img src="basePlotting_files/figure-html/Boxplot_basePlotting-1.png" width="1920px" /&gt;
 
 ---
+## Boxplots - Rescaling 
 
-Perhaps it would look better on a log scale. We can add addition colours and labels as with other plots.
+Perhaps it would look better on a log scale. We can add addition colors and labels as with other plots.
 
 
 ```r
@@ -608,10 +689,10 @@ boxplot(log2(exprs),ylab="log2 Expression",
 &lt;img src="basePlotting_files/figure-html/BoxplotEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
-##Combining Plots
+# Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
-With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
+With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows *x* ncols plots that are filled in by row.
 mfcol=c(nrows, ncols) fills in the matrix by columns.
 
 Define a layout with 2 rows and 2 columns
@@ -622,51 +703,102 @@ par(mfrow=c(2,2))
 ```
 
 ---
-
-Here, we will use different dataset with two columns each for treated and untreated samples.
-
-
-```r
-data1 &lt;- read.table("data/gene_data.txt", header=T, sep="\t")
-head(data1)
-```
-
-```
-##      ensembl_gene_id Untreated1 Untreated2  Treated1   Treated2
-## 1 ENSDARG00000093639  0.8616832  1.9311442 0.1041508 0.14055604
-## 2 ENSDARG00000094508  0.9857575  2.0256352 0.1549917 0.20301609
-## 3 ENSDARG00000095893  0.8498889  1.9875580 0.2317969 0.20925123
-## 4 ENSDARG00000095252  0.9242996  2.0857620 0.2562264 0.24669079
-## 5 ENSDARG00000078878  0.3571734  0.4653908 0.1167221 0.09710237
-## 6 ENSDARG00000079403  1.0604071  1.2581398 0.3884836 0.31567299
-```
----
+## Combining Plots
 
 Plot histograms for different columns in the data frame separately. This is not very efficient. 
-You could also do it more efficiently using for loop.
+
 
 
 ```r
 par(mfrow=c(2,2))
-hist(data1$Untreated1)
-hist(data1$Treated2)
-hist(data1$Untreated2)
-boxplot(data1$Treated1)
+hist(exprs$Untreated1)
+hist(exprs$Untreated2)
+hist(exprs$Treated1)
+hist(exprs$Treated2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/setParMfrowEval_basePlotting-1.png" width="490px" /&gt;
 
 ---
-##Saving your plots
+## Combining Plots
+
+You could also do it more efficiently using a for loop.
 
 
+```r
+par(mfrow=c(2,2))
+for (i in 1:4){
+hist(exprs[,i])
+}
+```
+
+&lt;img src="basePlotting_files/figure-html/setParMfrowEval_for_basePlotting-1.png" width="490px" /&gt;
+
+
+---
+## Other parameter options
+
+The **par()** function can control a variety of other graph parameters. 
+
+* mar - size of plot margins
+* mgp - spacing between margin elements i.e. axis labels and titles
+* fig - dimensions of whole plot
+
+--
+## Advanced customization - Text
+
+Custom text can be added to you plot using the *text()* function. Simply provide the position and the label. 
+
+You can use the data itself to label data points. The adj argument allows you to nudge the annotation a constant amount away from the defined position. 
+
+Any labels to be added to the margin need to use *mtext()* instead.
+
+
+```r
+plot(control, treatment)
+text(20,60, 'THIS IS MY PLOT', col='red')
+text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
+```
+
+![](basePlotting_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+--
+## Advanced customization - Lines
+
+*abline()* allows you to add specific straight lines. This is often useful to help demonstrate known linear relationships or thresholds as reference points for your data. 
+* h = horizontal line with y-intercept
+* v = vertical line with x-intercept
+* a,b = intercept and slope
+
+```r
+plot(control, treatment)
+abline(h=10, col='blue')
+abline(v=50, col='red', lwd=2)
+abline(a=0, b=1, lty=2)
+```
+
+![](basePlotting_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
+
+--
+## Advanced customization - Segments
+*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
+
+
+```r
+plot(control, treatment)
+polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
+```
+
+![](basePlotting_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
+# Saving your plots
 
 There are many different ways of saving your plots in R. 
 
-The only argument you would need is name of file in which you want to save the plot.
+The easiest way is to use the *export* button in the plot pane in RStudio. This is not good reproducible practice though as the code is not tied to the plot. 
 
-Plotting commands then can be entered as usual.
-The output would be redirected to the file. 
+To save plots through the console, the argument you would need is name of file in which you want to save the plot. Plotting commands then can be entered as usual. The output would be redirected to the file. 
 
 When you're done with your plotting commands, enter the dev.off() command. 
 
@@ -677,17 +809,19 @@ bmp(filename, width = 480, height = 480, units = "px",
 jpeg(filename, width = 480, height = 480, units = "px", 
      point-size = 12, quality = 75)
 ```
----
 
-Saving in bitmap format
+---
+## Saving in bitmap format
+
 
 ```r
 bmp(file = "control.bmp")
 plot(control)
 dev.off()
 ```
+
 ---
-Saving in jpeg format
+## Saving in jpeg format
 
 ```r
 jpeg(file = "control.jpg", quality = 20)
@@ -696,8 +830,7 @@ dev.off()
 ```
 
 ---
-
-Saving in postscript format
+## Saving in postscript format
 
 
 ```r
@@ -707,7 +840,11 @@ dev.off()
 ```
 
 ---
-saving in pdf format
+## Saving in pdf format
+
+PDFs are maybe the most useful format to export into. PDFs are vector based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
+
+PDFs can then be opened in imaging software like illustrator or inkscape. This allows full customization of aesthetic with a graphic user interface. Furthermore as it is scalable plots can be easily assembled into publication quality figures, without pixelation. 
 
 
 ```r
@@ -715,7 +852,6 @@ pdf(file = "control.pdf", paper = "A4")
 plot(control)
 dev.off()
 ```
-
 
 ---
 
@@ -726,7 +862,14 @@ Exercise on base plotting can be found [here](../../exercises/Plotting_exercise.
 Answers for baseplotting can be found [here](../../answers/Plotting_answers.html)
 
 ---
+
+# Help while plotting
+
+* Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+
+* Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -736,26 +879,121 @@ Answers for baseplotting can be found [here](../../answers/Plotting_answers.html
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
   }
-});
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  /* Replace <script> tags in slides area to make them executable
+   *
+   * Runs after post-processing of markdown source into slides and replaces only
+   * <script>s on the last slide of continued slides using the .has-continuation
+   * class added by xaringan. Finally, any <script>s in the slides area that
+   * aren't executed are commented out.
+   */
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container:not(.has-continuation) script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+  var scriptsNotExecuted = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container.has-continuation script'
+  );
+  if (!scriptsNotExecuted.length) return;
+  for (var i = 0; i < scriptsNotExecuted.length; i++) {
+    var comment = document.createComment(scriptsNotExecuted[i].outerHTML)
+    scriptsNotExecuted[i].parentElement.replaceChild(comment, scriptsNotExecuted[i])
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
 (function () {
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
   if (location.protocol !== 'file:' && /^https?:/.test(script.src))
     script.src  = script.src.replace(/^https?:/, '');
   document.getElementsByTagName('head')[0].appendChild(script);
