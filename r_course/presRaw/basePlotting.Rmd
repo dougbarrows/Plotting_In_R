@@ -30,8 +30,7 @@ AsSlides <- TRUE
 
 ```{r, results='asis',include=TRUE,echo=FALSE}
 if(params$isSlides == "yes"){
-  cat("---
-class: inverse, center, middle
+  cat("class: inverse, center, middle
 
 # Plotting in R
 
@@ -41,9 +40,7 @@ class: inverse, center, middle
 "    
   )
 }else{
-  cat("---
-
-# Plotting in R
+  cat("# Plotting in R
 
 ---
 "    
@@ -54,15 +51,13 @@ class: inverse, center, middle
 ```
 
 
+## Introduction
 
 
-### Introduction
-
-
-R has excellent graphics and plotting capabilities. They are mostly found in following three sources.
+R has excellent graphics and plotting capabilities. In fact this is commonly seen as one of the advantages of R over other competing languages like python and matlab. They are mostly found in following three sources.
  + base graphics
  + the lattice package
- +  the ggplot2 package
+ + the ggplot2 package
  
 Base R graphics uses a pen and paper model for plotting while Lattice and ggplot2 packages are built on the routines first used in grid graphics.
 
@@ -73,11 +68,11 @@ Base R graphics uses a pen and paper model for plotting while Lattice and ggplot
 - Makes it hard to update.
 - But faster than more complex plotting systems.
 
-
+Building a new plot is often a stepwise process with gradual addition of features. It will likely require replotting many times. 
 
 ---
 
-### Scatter and linne Charts
+# Scatter and line Charts
 
 First we'll produce a very simple graph using the values in a numeric vector:
 
@@ -86,22 +81,16 @@ treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 ```
 
 ---
-### Scatter Plot
+## Scatter Plot
 
-Now we plot the treatment vector with default parameters
+Now we plot the treatment vector with default parameters.
 
-```{r defaultPlot_basePlotting,eval=FALSE}
-plot(treatment)
-```
-
-
-
-```{r defaultPlotEval_basePlotting, echo=FALSE,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
+```{r defaultPlotEval_basePlotting,fig.width=8,fig.height=4.5,dpi=300,out.width="1920px",height="1080px"}
 plot(treatment)
 ```
 
 ---
-Now, let's customise this plot a little. 
+## Plot customization - Type
 
 First we can plot treatment using points overlayed by a line. We control this with the **type** argument.
 
@@ -111,7 +100,7 @@ plot(treatment, type="o")
 ```
 
 ---
-We have many type options available to us. 
+## Plot customization - Type
 
 To see a complete list we can use **?plot**
 
@@ -126,8 +115,7 @@ plot(treatment, type="p")
 ```
 ]
 ---
-
-We can add additional labels to our plot's axis and main/sub-title too.
+## Plot customization - Title
 
 We add a title with **main** argument and or a sub-title with the **sub** argument.
 
@@ -136,15 +124,15 @@ plot(treatment, main="My Plot", sub="a plot")
 ```
 
 ---
-
-We can customise our x and y axis label with the **xlab** and **ylab** arguments respectively.
+## Plot customization - Axis labels
+We can customize our x and y axis label with the **xlab** and **ylab** arguments respectively.
 
 ```{r plotAsisLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, xlab="Position", ylab="score")
 ```
 
 ---
-
+## Plot customization - Axis labels
 We can control the orientation of labels on axis using **las** argument.
 
 .pull-left[
@@ -159,7 +147,7 @@ plot(treatment, las=2)
 ]
 
 ---
-
+## Plot customization - Point size
 We can control the size of points in our plot using the **cex** parameter.
 
 .pull-left[
@@ -174,7 +162,7 @@ plot(treatment, cex=0.5)
 ]
 
 ---
-
+## Plot customization - Point shape
 We can control the type of points in our plot using the **pch** parameter.
 
 .pull-left[
@@ -190,7 +178,7 @@ plot(treatment, pch=20)
 
 
 ---
-
+## Plot customization - Line weight
 Similarly when plotting a line we control size with **lwd** parameter.
 
 .pull-left[
@@ -205,7 +193,7 @@ plot(treatment, type="l",lwd=0.5)
 ]
 
 ---
-
+## Plot customization - Line type
 We can also control the type of line with **lty** parameter.
 
 .pull-left[
@@ -220,37 +208,34 @@ plot(treatment, type="l",lty=2)
 ]
 
 ---
+## Plot customization - Color
 
-
-An important parameter we can control is colour. We can control colour or lines or points using the **col** argument.
+An important parameter we can control is color. We can control color or lines or points using the **col** argument.
 
 .pull-left[
 ```{r plotColL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
-plot(treatment, type="l",
-     col="red")
+plot(treatment, type="l", col="red")
 ```
 ]
 .pull-right[
 ```{r plotColR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
-plot(treatment, type="l",
-     col="dodgerblue")
+plot(treatment, type="l", col="dodgerblue")
 ```
 ]
 
 ---
 
-You can find an extensive list of R colours here.
+You can find an extensive list of R colors here.
 
-[R colour Chart](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
+[R color Chart](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
 
 ---
-
 
 Review **?plot** and **?par** for complete list of options.
 
 
 ---
-
+## Plot multiple vectors
 The **plot** function vector will accept two vectors to be plotted against each other.
 
 ```{r plotTwoVectors_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
@@ -259,10 +244,10 @@ plot(treatment,control)
 ```
 
 ---
-
+## Plot multiple vectors
 But we often want mulitple lines in same plot. So if we want to plot scores for control and treatment against position we will need a new method.
 
-We can add an addition line to our existing plot using the **lines()** function.
+We can add an additional line to our existing plot using the **lines()** function.
 
 ```{r lines_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue")
@@ -270,10 +255,11 @@ lines(control, type="o", pch=22, lty=2, col="red")
 ```
 
 ---
-But the new line doesnt quite fit into our original plot.
+## Setting plot limits
 
+The new line doesn't quite fit into our original plot.
 
-We can extend our x or y axis by specifying values to **xlim** **ylim** arguments.
+We can extend our x or y axis by specifying values to **xlim** **ylim** arguments directly.
 
 ```{r yxlim_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
 control <- c(0, 20, 40, 60, 80,100)
@@ -282,9 +268,9 @@ lines(control, type="o", pch=22, lty=2, col="red")
 ```
 
 ---
+## Defining needed limits
 
-Next let's change the axes labels to match our data and add a legend. We'll also compute the y-axis values using the **range** function 
-so any changes to our data will be automatically reflected in our graph. 
+Instead of defining the axis limits explicitly we can compute the y-axis values using the **range** function. This means any updates to our data will be automatically reflected in our graph. 
 
 range() returns a vector containing the minimum and maximum of all the given arguments.
 
@@ -295,19 +281,19 @@ g_range <- range(0, treatment, control)
 g_range
 ```
 
-
 ---
-
-Plot treatment using y axis that ranges from 0 to max value in treatment or control vector.  Turn off axes and annotations (axis labels) so we can specify them ourselves. We turn of axis and annotation plotting using **axes=FALSE** and **ann=FALSE**
+## Custom axes
+To be able to customize axes we need to turn off axes and annotations (axis labels). We will then be able to specify them ourselves. We turn of axis and annotation plotting using **axes=FALSE** and **ann=FALSE**
 
 ```{r plotNoAxesNoAnnotation_basePlotting,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue", 
-     ylim=g_range,axes=FALSE, ann=FALSE)
+     ylim=g_range, axes=FALSE, ann=FALSE)
 ```
 
 ---
+## Creating axes
 
-We can now create our own X axis by using the **axis()** function. We specify the **side** argument for where to place axis, the **at** argument to specify where to put axis ticks and **lab** argument to specify labels for axis ticks.
+We can create our own X axis by using the **axis()** function. We specify the **side** argument for where to place axis, the **at** argument to specify where to put axis ticks and **lab** argument to specify labels for axis ticks.
 
 ```{r axis_basePlotting,eval=FALSE}
 axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -321,10 +307,11 @@ axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 ```
 
 ---
+## Creating axes
 
 We can make our y axis with horizontal labels that display ticks at every 20 marks in a similar way.
 
-We specify our **side** and use **rep()** function to make axis tick postions for **at** argument.
+We specify our **side** and use **rep()** function to make axis tick postions for **at** argument. We can use our y-axis range again to help define how many ticks we need.
 
 ```{r axisSides_basePlotting,eval=FALSE}
 axis(2, las=1, at=rep(0,g_range[2],by=20))
@@ -339,7 +326,7 @@ axis(2, las=1, at=20*0:g_range[2])
 ```
 
 ---
-
+## Framing plots
 We can now add a box around our plot using the **box()** function.
 ```{r box_basePlotting,eval=FALSE}
 box()
@@ -353,17 +340,17 @@ axis(2, las=1, at=20*0:g_range[2])
 box()
 ```
 
-
 ---
+## Plot multiple lines
 
-Now i can add my control data using lines argument.
+Now I can add my control data using lines argument.
 
 ```{r addLines_basePlotting,eval=FALSE,echo=TRUE,collapse=TRUE}
 lines(control, type="o", pch=22, lty=2, col="red")
 
 ```
 
-```{r addLinesEval_basePlotting,eval=TRUE,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+```{r addLinesEval_basePlotting,eval=TRUE,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="o", col="blue", 
      ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -371,11 +358,13 @@ axis(2, las=1, at=20*0:g_range[2])
 box()
 lines(control, type="o", pch=22, lty=2, col="red")
 ```
+
 ---
+## Legends
 
 Finally we may wish to add a legend to out plot. We can add a legend to current plot using the **legend()** function.
 
-We need to specify where to place legend in plot, the names in legend to **legend** argument and any additional point/line type configuration we used, e.g blue/red.
+We need to specify where to place legend in plot, the names in legend to **legend** argument and any additional point/line type configuration we used e.g the color and shape.
 
 ```{r legend_basePlotting,eval=FALSE}
 legend("topleft",legend=c("treatment","control"),
@@ -392,23 +381,79 @@ lines(control, type="o", pch=22, lty=2, col="red")
 legend("topleft",legend=c("treatment","control"),
        col=c("blue","red"), pch=21:22, lty=1:2);  
 ```
----
 
-### Bar Charts	
-	
+---
+## Making plots readable
+
+In our line plot we have already done a good job of making it easier to differentiate the lines as we have different line styles and different shape points. 
+
+Other things we can do is also differentiate thickness.
+
+```{r readability_basePlotting,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+
+plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(2, las=1, at=20*0:g_range[2])
+box()
+
+lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
+legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
+```
+
+---
+## Color Blindness
+
+~1/25 of people have color blindness. In white males specifically this number raises to  above 1/10. Considering the unequal demographics in science that means you will have someone with a form of color blindness at most meetings.
+
+People with color blindness most often struggle to differentiate between red/green or blue/yellow.
+
+Packages exist that contain color blind friendly pallettes like [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). 
+
+There are many packages that contain color pallettes in them. To get colors you just have to call the function with the number of colors you want. 
+
+```{r, echo=F}
+library(viridis)
+viridis(6)
+```
+```{r, eval=F}
+install.packages('viridis')
+library(viridis)
+viridis(6)
+```
+```{r, echo=F}
+library(scales)
+show_col(viridis(6))
+```
+
+---
+## Good data visualization
+
+There are often a trade offs in creating good plots. 
+
+* Is it easy to digest and accesible to everyone?
+* Is it engaging and appealing?
+* Does it contain all the information with nothing superfluous?
+* Is it the best way to tell the story I want to tell?
+
+[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
+
+
+---
+# Bar Charts	
 	
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
 We can simply pass our numeric vector to this function to get our barchart.
 
-```{r barplot_basePlotting,eval=FALSE}
-barplot(treatment)
-```
+<!-- # ```{r barplot_basePlotting,eval=FALSE} -->
+<!-- # barplot(treatment) -->
+<!-- # ``` -->
 
-```{r barplotEval_basePlotting,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r barplotEval_basePlotting,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(treatment)
 ```
 
 ---
+## Barplot - Labels
 
 The **barplot()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
 
@@ -419,6 +464,7 @@ barplot(treatment,
 ```
 
 ---
+## Barplot - Labels
 
 If my vector was named however, then my vectors names would be used for labels. We use **names()** function to add names to our vector then we replot.
 
@@ -430,60 +476,58 @@ barplot(treatment)
 
 
 ---
- 
-Let's now read the data from the example.txt data file.  
+## Barplot - Stacking
+
+Sometimes you want to have several data series stacked in a single barplot. The **barplot()** function handles this readily.
+
+Let's read the data from the example.txt data file.  
 
 Read values from tab-delimited example.txt
 ```{r readTable_basePlotting}
-data <- read.table("data/example.txt", header=T, sep="\t")
+data <- read.table("data/example.txt", header=T, row.names=1, sep=",")
 ```
 
-
-
 ---
-We can now plot data from a matrix with a stacked barchart. Note we use **as.matrix()** function to convert our data.frame to a matrix.
+## Barplot - Stacking
 
+To build a stacked barplot we need to give the barplot funcion a matrix. We can use **as.matrix()** function to convert our data frame to a matrix.
 
 ```{r barplotMatrix_basePlotting,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(as.matrix(data))
 ```
 
 ---
-Now we can plot data from a matrix with side-by-side barchart using the **beside** argument
+## Barplot - Grouping
 
+Now we can plot data from a matrix with grouped barchart using the **beside** argument.
 
 ```{r barplotMatrixBeside_basePlotting,eval=TRUE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(as.matrix(data),beside=TRUE)
 ```
 
 ---
-Now we can put it together and plot data with adjacent bars using colors and place the legend at the top-left corner.
+## Barplot - Customization
 
+Though a different function to plot(), barplot can be customized in much the same way. Most of the parameters have the same names. 
 
-```{r barplotComplex_basePlotting,eval=FALSE}
-barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, 
-        col= c("lightblue", "mistyrose", "lightcyan","lavender",
-               "cornsilk","maroon"))
+```{r barplotComplexEval_basePlotting, fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+barplot(as.matrix(data), main="Daily progression of X in\nControl and Treatment", ylab= "Total", beside=TRUE, 
+        col= viridis(6))
 legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
-        fill=  c("lightblue", "mistyrose", "lightcyan",
-                         "lavender","cornsilk","maroon"));
+        fill=  viridis(6))
 ```
 
 
-```{r barplotComplexEval_basePlotting,echo=FALSE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
-barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"))
-legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
-fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon"));
+<!-- ```{r barplotComplexEval_basePlotting, fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"} -->
+<!-- barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon")) -->
+<!-- legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8, -->
+<!-- fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon")); -->
 
-```
+<!-- ``` -->
 
 ---
-
-### Histograms
-
-
-Base graphics has a useful built in function for histograms too. The **histogram()** function.
-We can simply pass our numeric vector to this function to get our barchart.
+# Histograms
+Base graphics has a useful built-in function for histograms too. This is the **hist()** function, which just needs a numeric vector.
 
 ```{r hist_basePlotting,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 hist(treatment)  
@@ -491,57 +535,65 @@ hist(treatment)
 
 
 ---
-
-Similar cutomisation exists as for other plots.
-```{r histColourYlim_basePlotting,eval=FALSE}
-hist(treatment, col="lightblue", ylim=c(0,10))
+## Histograms - Customization
+Similar customization exists as for other plots.
+```{r histcolorYlim_basePlotting,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+hist(treatment, col="lightblue", ylim=c(0,5),cex.main=0.8)
 ```
 
-```{r histColourYlimEval_basePlotting,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
-hist(treatment, col="lightblue", ylim=c(0,10),cex=0.5,cex.main=0.8)
-```
 ---
-
+## Histograms - Breaks
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
-```{r histBreaks_basePlotting,eval=FALSE}
-hist(treatment, col="lightblue",breaks = 2)
-```
 
-```{r histBreaksEval_basePlotting,echo=FALSE,fig.width=5,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
-hist(treatment, col="lightblue", ylim=c(0,10),cex=0.5,cex.main=0.8,breaks = 2)
+<!-- ```{r histBreaks_basePlotting,eval=FALSE} -->
+<!-- hist(treatment, col="lightblue",breaks = 2) -->
+<!-- ``` -->
+
+
+.pull-left[
+```{r histBreaksEval_basePlottingL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 2)
 ```
+]
+.pull-right[
+```{r histBreaksEval_basePlottingR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
+hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 10)
+```
+]
 
 ---
+# Dot charts
 
-### Dot charts
+Base graphics has a useful built in function for dotcharts too. The **dotchart()** function. This enables direct comparison between paired data.First though we need to modify the matrix, as in dotplots we are comparing each paired data set versus each other as opposed to control versus treatment. 
 
-Base graphics has a useful built in function for dotcharts too. The **dotchart()** function.
-We can simply pass our numeric vector to this function to get our barchart.
+Here we use the function **t** to return the transpose of a matrix. This means rows are now columns and the columns are now rows. 
 
-Here we use the function **t** to return the transpose of a matrix.
-```{r dotchart_basePlotting,eval=FALSE}
-dotchart(t(data))	
-```
-```{r dotchartEval_basePlotting,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+<!-- # ```{r dotchart_basePlotting,eval=FALSE} -->
+<!-- # dotchart(t(data))	 -->
+<!-- # ``` -->
+
+```{r dotchartEval_basePlotting,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 dotchart(t(data))  
 ```
 
 ---
+# Dot charts - Customization
+Again we can use the arguments to modify the layout and appearance.
 
-Let's make the dotchart a little more colourful: 
+Now we create a colored dotchart for autos with smaller labels.
+<!-- # ```{r dotchartCol_basePlotting,eval=FALSE} -->
+<!-- # dotchart(t(data), color=c("red","blue"), -->
+<!-- #          main="Dotchart", cex=0.8)	 -->
+<!-- # ``` -->
 
-Now we create a coloured dotchart for autos with smaller labels
-```{r dotchartCol_basePlotting,eval=FALSE}
-dotchart(t(data), color=c("red","blue"),
-         main="Dotchart", cex=0.8)	
-```
-```{r dotchartColEval_basePlotting,echo=FALSE,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
-dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)  
+```{r dotchartColEval_basePlotting,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+
+dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)
+
 ```
 
 ---
-
-### Box plots
+# Box plots
 
 The final plot we will look at is a box and whisker plot. 
 
@@ -550,14 +602,15 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 ![](imgs/box_whisker_describe.png)
 
 ---
-
+## Boxplots - Read in bigger data
 First lets read in the gene expression data
 ```{r readForBoxplot_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
 head(exprs)
 ```
 
----
+--- 
+## Boxplots 
 
 Now we can use the **boxplot()** function on our data.frame to get our boxplot
 ```{r Boxplot_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
@@ -565,8 +618,9 @@ boxplot(exprs)
 ```
 
 ---
+## Boxplots - Rescaling 
 
-Perhaps it would look better on a log scale. We can add addition colours and labels as with other plots.
+Perhaps it would look better on a log scale. We can add addition colors and labels as with other plots.
 
 ```{r BoxplotEval_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 boxplot(log2(exprs),ylab="log2 Expression",
@@ -574,10 +628,10 @@ boxplot(log2(exprs),ylab="log2 Expression",
 ```
 
 ---
-### Combining Plots
+# Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
-With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows x ncols plots that are filled in by row.
+With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows *x* ncols plots that are filled in by row.
 mfcol=c(nrows, ncols) fills in the matrix by columns.
 
 Define a layout with 2 rows and 2 columns
@@ -587,45 +641,92 @@ par(mfrow=c(2,2))
 ```
 
 ---
-
-Here, we will use different dataset with two columns each for treated and untreated samples.
-
-```{r readForParMfrow_basePlotting}
-data1 <- read.table("data/gene_data.txt", header=T, sep="\t")
-head(data1)
-```
----
+## Combining Plots
 
 Plot histograms for different columns in the data frame separately. This is not very efficient. 
-You could also do it more efficiently using for loop.
 
-```{r setParMfrow_basePlotting,eval=FALSE}
-par(mfrow=c(2,2))
-hist(data1$Untreated1)
-hist(data1$Treated2)
-hist(data1$Untreated2)
-boxplot(data1$Treated1)
-```
 
-```{r setParMfrowEval_basePlotting,echo=FALSE,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
+```{r setParMfrowEval_basePlotting,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 par(mfrow=c(2,2))
-hist(data1$Untreated1)
-hist(data1$Treated2)
-hist(data1$Untreated2)
-boxplot(data1$Treated1)
+hist(exprs$Untreated1)
+hist(exprs$Untreated2)
+hist(exprs$Treated1)
+hist(exprs$Treated2)
 ```
 
 ---
-### Saving your plots
+## Combining Plots
+
+You could also do it more efficiently using a for loop.
+
+```{r setParMfrowEval_for_basePlotting,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
+par(mfrow=c(2,2))
+for (i in 1:4){
+hist(exprs[,i])
+}
+```
 
 
+---
+## Other parameter options
+
+The **par()** function can control a variety of other graph parameters. 
+
+* mar - size of plot margins
+* mgp - spacing between margin elements i.e. axis labels and titles
+* fig - dimensions of whole plot
+
+--
+## Advanced customization - Text
+```{r, echo=F}
+par(mfrow=c(1,1))
+
+```
+Custom text can be added to you plot using the *text()* function. Simply provide the position and the label. 
+
+You can use the data itself to label data points. The adj argument allows you to nudge the annotation a constant amount away from the defined position. 
+
+Any labels to be added to the margin need to use *mtext()* instead.
+
+```{r}
+plot(control, treatment)
+text(20,60, 'THIS IS MY PLOT', col='red')
+text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
+
+```
+
+--
+## Advanced customization - Lines
+
+*abline()* allows you to add specific straight lines. This is often useful to help demonstrate known linear relationships or thresholds as reference points for your data. 
+* h = horizontal line with y-intercept
+* v = vertical line with x-intercept
+* a,b = intercept and slope
+```{r}
+plot(control, treatment)
+abline(h=10, col='blue')
+abline(v=50, col='red', lwd=2)
+abline(a=0, b=1, lty=2)
+
+```
+
+--
+## Advanced customization - Segments
+*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
+
+```{r}
+plot(control, treatment)
+polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
+```
+
+---
+# Saving your plots
 
 There are many different ways of saving your plots in R. 
 
-The only argument you would need is name of file in which you want to save the plot.
+The easiest way is to use the *export* button in the plot pane in RStudio. This is not good reproducible practice though as the code is not tied to the plot. 
 
-Plotting commands then can be entered as usual.
-The output would be redirected to the file. 
+To save plots through the console, the argument you would need is name of file in which you want to save the plot. Plotting commands then can be entered as usual. The output would be redirected to the file. 
 
 When you're done with your plotting commands, enter the dev.off() command. 
 
@@ -635,16 +736,18 @@ bmp(filename, width = 480, height = 480, units = "px",
 jpeg(filename, width = 480, height = 480, units = "px", 
      point-size = 12, quality = 75)
 ```
----
 
-Saving in bitmap format
+---
+## Saving in bitmap format
+
 ```{r save_bmp_basePlotting,eval=FALSE}
 bmp(file = "control.bmp")
 plot(control)
 dev.off()
 ```
+
 ---
-Saving in jpeg format
+## Saving in jpeg format
 ```{r save_jpeg_basePlotting,eval=FALSE}
 jpeg(file = "control.jpg", quality = 20)
 plot(control)
@@ -652,8 +755,7 @@ dev.off()
 ```
 
 ---
-
-Saving in postscript format
+## Saving in postscript format
 
 ```{r save_ps_basePlotting,eval=FALSE}
 postscript(file = "control.ps")
@@ -662,7 +764,11 @@ dev.off()
 ```
 
 ---
-saving in pdf format
+## Saving in pdf format
+
+PDFs are maybe the most useful format to export into. PDFs are vector based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
+
+PDFs can then be opened in imaging software like illustrator or inkscape. This allows full customization of aesthetic with a graphic user interface. Furthermore as it is scalable plots can be easily assembled into publication quality figures, without pixelation. 
 
 ```{r save_pdf_basePlotting,eval=FALSE}
 
@@ -670,7 +776,6 @@ pdf(file = "control.pdf", paper = "A4")
 plot(control)
 dev.off()
 ```
-
 
 ---
 
@@ -681,3 +786,9 @@ Exercise on base plotting can be found [here](../../exercises/Plotting_exercise.
 Answers for baseplotting can be found [here](../../answers/Plotting_answers.html)
 
 ---
+
+# Help while plotting
+
+* Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+
+* Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
