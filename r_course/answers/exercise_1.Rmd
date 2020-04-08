@@ -1,13 +1,16 @@
 ---
-title: "Exercise Set 1 — Geoms and Aesthetics"
-author: "Tom Carroll"
-output: html_document
+title: "Answer Set 1 — Geoms and Aesthetics"
+author: "Rockefeller University, Bioinformatics Resource Centre"
+date: "https://rockefelleruniversity.github.io/Plotting_In_R/"
+output: 
+  html_document:
+    number_sections: false  ## if you want number sections at each table header
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T,eval=T)
-```
-
+<p>&nbsp;</p>
+These answers are for the exercises that cover the Geoms and Aesthetics of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
 
 ## Exercise 1
 
@@ -17,7 +20,8 @@ These first few exercises will run through some of the simple principles of crea
 1. Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
 
 ```{r exerciseReadin, echo=T}
-patients_clean <- read.delim("../data/patients_clean_ggplot2.txt",sep="\t")
+getwd()
+patients_clean <- read.delim("./data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
 ### Scatterplots

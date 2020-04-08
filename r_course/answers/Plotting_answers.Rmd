@@ -1,9 +1,16 @@
 ---
-title: "Base plotting exercise"
-author: "Rockefeller University"
-date: '`r format(Sys.time(), "Last modified: %d %b %Y")`'
-output: html_document
+title: "Exercise Set - Base Plotting"
+author: "Rockefeller University, Bioinformatics Resource Centre"
+date: "https://rockefelleruniversity.github.io/Plotting_In_R/"
+output: 
+  html_document:
+    number_sections: false  ## if you want number sections at each table header
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
 ---
+
+<p>&nbsp;</p>
+Answers for the exercises that cover base plotting for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,eval=T)
@@ -14,12 +21,12 @@ knitr::opts_chunk$set(echo = TRUE,eval=T)
 Read in the data "timecourse.csv" as a data.frame and get a summary of column values
 
 ```{r,eval=TRUE,echo=FALSE,include=FALSE}
-timeCourse <- read.delim("../data/timecourse.csv",sep=",",header = T) 
+timeCourse <- read.delim("./data/timecourse.csv",sep=",",header = T) 
 summary(timeCourse)
 ```
 
 ```{r,eval=FALSE}
-timeCourse <- read.delim("../data/timecourse.csv",sep=",",header = T) 
+timeCourse <- read.delim("./data/timecourse.csv",sep=",",header = T) 
 summary(timeCourse)
 ```
 
