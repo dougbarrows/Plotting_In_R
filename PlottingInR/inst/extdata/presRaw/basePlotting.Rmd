@@ -108,12 +108,12 @@ To see a complete list we can use **?plot**
 ```{r plotTypeSEval_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l")
 ```
-]
+  ]
 .pull-right[
 ```{r plotTypeS_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="p")
 ```
-]
+  ]
 ---
 ## Plot customization - Title
 
@@ -139,12 +139,12 @@ We can control the orientation of labels on axis using **las** argument.
 ```{r plotAsisLasL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, las=1)
 ```
-]
+  ]
 .pull-right[
 ```{r plotAsisLasR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, las=2)
 ```
-]
+  ]
 
 ---
 ## Plot customization - Point size
@@ -154,12 +154,12 @@ We can control the size of points in our plot using the **cex** parameter.
 ```{r plotAsisCexL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, cex=2)
 ```
-]
+  ]
 .pull-right[
 ```{r plotAsisCexR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, cex=0.5)
 ```
-]
+  ]
 
 ---
 ## Plot customization - Point shape
@@ -169,12 +169,12 @@ We can control the type of points in our plot using the **pch** parameter.
 ```{r plotAsisPchL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, pch=1)
 ```
-]
+  ]
 .pull-right[
 ```{r plotAsisPchR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, pch=20)
 ```
-]
+  ]
 
 
 ---
@@ -185,12 +185,12 @@ Similarly when plotting a line we control size with **lwd** parameter.
 ```{r plotAsisLwdL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lwd=10)
 ```
-]
+  ]
 .pull-right[
 ```{r plotAsisLwdR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lwd=0.5)
 ```
-]
+  ]
 
 ---
 ## Plot customization - Line type
@@ -200,12 +200,12 @@ We can also control the type of line with **lty** parameter.
 ```{r plotAsisLtyL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lty=1)
 ```
-]
+  ]
 .pull-right[
 ```{r plotAsisLtyR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l",lty=2)
 ```
-]
+  ]
 
 ---
 ## Plot customization - Color
@@ -216,12 +216,12 @@ An important parameter we can control is color. We can control color or lines or
 ```{r plotColL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l", col="red")
 ```
-]
+  ]
 .pull-right[
 ```{r plotColR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
 plot(treatment, type="l", col="dodgerblue")
 ```
-]
+  ]
 
 ---
 
@@ -268,7 +268,7 @@ lines(control, type="o", pch=22, lty=2, col="red")
 ```
 
 ---
-## Defining needed limits
+## Defining your limits
 
 Instead of defining the axis limits explicitly we can compute the y-axis values using the **range** function. This means any updates to our data will be automatically reflected in our graph. 
 
@@ -401,30 +401,33 @@ legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22,
 ```
 
 ---
-## Color Blindness
+## Color blindness and palettes
 
-~1/25 of people have color blindness. In white males specifically this number raises to  above 1/10. Considering the unequal demographics in science that means you will have someone with a form of color blindness at most meetings.
+~4% of people are color blind. In white males this number raises to ~10%. With the demographics in science, there will likely be someone with color blindness at most meetings.
 
-People with color blindness most often struggle to differentiate between red/green or blue/yellow.
+Packages exist that contain color blind friendly palettes like [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). There are many color palettes packages like viridis. To get colors you just have to call the function with the number of colors you want. 
 
-Packages exist that contain color blind friendly pallettes like [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). 
-
-There are many packages that contain color pallettes in them. To get colors you just have to call the function with the number of colors you want. 
-
-```{r, echo=F}
+```{r, echo=F,warning=F,message=F}
 library(viridis)
-viridis(6)
+library(scales)
 ```
+
+.pull-left[
 ```{r, eval=F}
 install.packages('viridis')
 library(viridis)
-viridis(6)
+viridis(5)
 ```
 ```{r, echo=F}
-library(scales)
-show_col(viridis(6))
+viridis(5)
 ```
-
+  ]
+  
+.pull-right[
+```{r, echo=F}
+show_col(viridis(5))
+```
+  ]
 ---
 ## Good data visualization
 
@@ -444,10 +447,6 @@ There are often a trade offs in creating good plots.
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
 We can simply pass our numeric vector to this function to get our barchart.
 
-<!-- # ```{r barplot_basePlotting,eval=FALSE} -->
-<!-- # barplot(treatment) -->
-<!-- # ``` -->
-
 ```{r barplotEval_basePlotting,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
 barplot(treatment)
 ```
@@ -456,7 +455,6 @@ barplot(treatment)
 ## Barplot - Labels
 
 The **barplot()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
-
 
 ```{r barplotNames_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
 barplot(treatment,
@@ -517,14 +515,6 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
         fill=  viridis(6))
 ```
 
-
-<!-- ```{r barplotComplexEval_basePlotting, fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"} -->
-<!-- barplot(as.matrix(data), main="Data", ylab= "Total", beside=TRUE, col= c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon")) -->
-<!-- legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8, -->
-<!-- fill=  c("lightblue", "mistyrose", "lightcyan","lavender", "cornsilk","maroon")); -->
-
-<!-- ``` -->
-
 ---
 # Histograms
 Base graphics has a useful built-in function for histograms too. This is the **hist()** function, which just needs a numeric vector.
@@ -532,7 +522,6 @@ Base graphics has a useful built-in function for histograms too. This is the **h
 ```{r hist_basePlotting,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 hist(treatment)  
 ```
-
 
 ---
 ## Histograms - Customization
@@ -545,50 +534,42 @@ hist(treatment, col="lightblue", ylim=c(0,5),cex.main=0.8)
 ## Histograms - Breaks
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
 
-<!-- ```{r histBreaks_basePlotting,eval=FALSE} -->
-<!-- hist(treatment, col="lightblue",breaks = 2) -->
-<!-- ``` -->
-
-
 .pull-left[
 ```{r histBreaksEval_basePlottingL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
-hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 2)
+hist(treatment, col="lightblue", 
+     ylim=c(0,5), cex.main=0.8, 
+     breaks = 2)
 ```
-]
+  ]
+  
 .pull-right[
 ```{r histBreaksEval_basePlottingR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
-hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 10)
+hist(treatment, col="lightblue", 
+     ylim=c(0,5), cex.main=0.8, 
+     breaks = 10)
 ```
-]
+  ]
 
 ---
 # Dot charts
 
-Base graphics has a useful built in function for dotcharts too. The **dotchart()** function. This enables direct comparison between paired data.First though we need to modify the matrix, as in dotplots we are comparing each paired data set versus each other as opposed to control versus treatment. 
+Base graphics  also has a **dotchart()** function. Dot charts help compare paired data. First though we need to modify the matrix, as we are comparing in pairs as opposed to all control versus treatment. 
 
-Here we use the function **t** to return the transpose of a matrix. This means rows are now columns and the columns are now rows. 
+We use the function **t** to return the transpose of a matrix. This means rows are now columns and the columns are now rows. 
 
-<!-- # ```{r dotchart_basePlotting,eval=FALSE} -->
-<!-- # dotchart(t(data))	 -->
-<!-- # ``` -->
-
-```{r dotchartEval_basePlotting,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"}
+```{r dotchartEval_basePlotting,fig.width=8,fig.height=3,dpi=300,out.width="1500px",height="750px"}
 dotchart(t(data))  
 ```
 
 ---
-# Dot charts - Customization
+## Dot charts - Customization
 Again we can use the arguments to modify the layout and appearance.
 
 Now we create a colored dotchart for autos with smaller labels.
-<!-- # ```{r dotchartCol_basePlotting,eval=FALSE} -->
-<!-- # dotchart(t(data), color=c("red","blue"), -->
-<!-- #          main="Dotchart", cex=0.8)	 -->
-<!-- # ``` -->
 
 ```{r dotchartColEval_basePlotting,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 
-dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)
+dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
 
 ```
 
@@ -609,7 +590,8 @@ exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
 head(exprs)
 ```
 
---- 
+
+---
 ## Boxplots 
 
 Now we can use the **boxplot()** function on our data.frame to get our boxplot
@@ -676,45 +658,53 @@ The **par()** function can control a variety of other graph parameters.
 * mgp - spacing between margin elements i.e. axis labels and titles
 * fig - dimensions of whole plot
 
---
+---
 ## Advanced customization - Text
 ```{r, echo=F}
 par(mfrow=c(1,1))
 
 ```
+
+.pull-left[
 Custom text can be added to you plot using the *text()* function. Simply provide the position and the label. 
 
 You can use the data itself to label data points. The adj argument allows you to nudge the annotation a constant amount away from the defined position. 
 
 Any labels to be added to the margin need to use *mtext()* instead.
-
-```{r}
+  ]
+  
+.pull-right[
+```{r,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 plot(control, treatment)
 text(20,60, 'THIS IS MY PLOT', col='red')
 text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
 
 ```
-
---
+  ]
+---
 ## Advanced customization - Lines
 
+.pull-left[
 *abline()* allows you to add specific straight lines. This is often useful to help demonstrate known linear relationships or thresholds as reference points for your data. 
 * h = horizontal line with y-intercept
 * v = vertical line with x-intercept
 * a,b = intercept and slope
-```{r}
+
+  ]
+.pull-right[
+```{r,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 plot(control, treatment)
 abline(h=10, col='blue')
 abline(v=50, col='red', lwd=2)
 abline(a=0, b=1, lty=2)
 
 ```
-
---
+  ]
+---
 ## Advanced customization - Segments
 *polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
 
-```{r}
+```{r,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 plot(control, treatment)
 polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
 ```
@@ -766,9 +756,9 @@ dev.off()
 ---
 ## Saving in pdf format
 
-PDFs are maybe the most useful format to export into. PDFs are vector based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
+PDFs are maybe the most useful format to export into. PDFs are vector-based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
 
-PDFs can then be opened in imaging software like illustrator or inkscape. This allows full customization of aesthetic with a graphic user interface. Furthermore as it is scalable plots can be easily assembled into publication quality figures, without pixelation. 
+PDFs can then be opened in imaging software like illustrator or inkscape. This allows full customization of aesthetic with a graphic user interface. Furthermore as they are vector-based, they can be easily assembled into publication quality figures without pixelation. 
 
 ```{r save_pdf_basePlotting,eval=FALSE}
 

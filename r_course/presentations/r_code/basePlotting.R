@@ -1,12 +1,12 @@
 params <-
 list(isSlides = "no")
 
-## ----setup_basePlotting, include=FALSE--------------------------------------------------
+## ----setup_basePlotting, include=FALSE------------------------
 knitr::opts_chunk$set(echo = TRUE)
 AsSlides <- TRUE
 
 
-## ---- results='asis',include=TRUE,echo=FALSE--------------------------------------------
+## ---- results='asis',include=TRUE,echo=FALSE------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -28,7 +28,7 @@ if(params$isSlides == "yes"){
 
 
 
-## ----treatmentVector_basePlotting-------------------------------------------------------
+## ----treatmentVector_basePlotting-----------------------------
 treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 
 
@@ -120,7 +120,7 @@ plot(treatment, type="o", col="blue",ylim=c(0,100))
 lines(control, type="o", pch=22, lty=2, col="red")
 
 
-## ----range_basePlotting-----------------------------------------------------------------
+## ----range_basePlotting---------------------------------------
 g_range <- range(0, treatment, control)
 g_range
 
@@ -130,7 +130,7 @@ plot(treatment, type="o", col="blue",
      ylim=g_range, axes=FALSE, ann=FALSE)
 
 
-## ----axis_basePlotting,eval=FALSE-------------------------------------------------------
+## ----axis_basePlotting,eval=FALSE-----------------------------
 ## axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 
 
@@ -141,7 +141,7 @@ axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 
 
 
-## ----axisSides_basePlotting,eval=FALSE--------------------------------------------------
+## ----axisSides_basePlotting,eval=FALSE------------------------
 ## axis(2, las=1, at=rep(0,g_range[2],by=20))
 
 
@@ -153,7 +153,7 @@ axis(2, las=1, at=20*0:g_range[2])
 
 
 
-## ----box_basePlotting,eval=FALSE--------------------------------------------------------
+## ----box_basePlotting,eval=FALSE------------------------------
 ## box()
 
 
@@ -165,7 +165,7 @@ axis(2, las=1, at=20*0:g_range[2])
 box()
 
 
-## ----addLines_basePlotting,eval=FALSE,echo=TRUE,collapse=TRUE---------------------------
+## ----addLines_basePlotting,eval=FALSE,echo=TRUE,collapse=TRUE----
 ## lines(control, type="o", pch=22, lty=2, col="red")
 ## 
 
@@ -179,7 +179,7 @@ box()
 lines(control, type="o", pch=22, lty=2, col="red")
 
 
-## ----legend_basePlotting,eval=FALSE-----------------------------------------------------
+## ----legend_basePlotting,eval=FALSE---------------------------
 ## legend("topleft",legend=c("treatment","control"),
 ##        col=c("blue","red"), pch=21:22, lty=1:2);
 
@@ -206,18 +206,22 @@ lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
 legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
 
 
-## ---- echo=F----------------------------------------------------------------------------
+## ---- echo=F,warning=F,message=F------------------------------
 library(viridis)
-viridis(6)
+library(scales)
 
-## ---- eval=F----------------------------------------------------------------------------
+
+## ---- eval=F--------------------------------------------------
 ## install.packages('viridis')
 ## library(viridis)
-## viridis(6)
+## viridis(5)
 
-## ---- echo=F----------------------------------------------------------------------------
-library(scales)
-show_col(viridis(6))
+## ---- echo=F--------------------------------------------------
+viridis(5)
+
+
+## ---- echo=F--------------------------------------------------
+show_col(viridis(5))
 
 
 ## ----barplotEval_basePlotting,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"----
@@ -234,7 +238,7 @@ names(treatment) <- c("Mon","Tue","Wed","Thu","Fri","Sat")
 barplot(treatment)
 
 
-## ----readTable_basePlotting-------------------------------------------------------------
+## ----readTable_basePlotting-----------------------------------
 data <- read.table("data/example.txt", header=T, row.names=1, sep=",")
 
 
@@ -262,20 +266,24 @@ hist(treatment, col="lightblue", ylim=c(0,5),cex.main=0.8)
 
 
 ## ----histBreaksEval_basePlottingL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
-hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 2)
+hist(treatment, col="lightblue", 
+     ylim=c(0,5), cex.main=0.8, 
+     breaks = 2)
 
 
 ## ----histBreaksEval_basePlottingR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
-hist(treatment, col="lightblue", ylim=c(0,5), cex.main=0.8, breaks = 10)
+hist(treatment, col="lightblue", 
+     ylim=c(0,5), cex.main=0.8, 
+     breaks = 10)
 
 
-## ----dotchartEval_basePlotting,fig.width=8,fig.height=4,dpi=300,out.width="1920px",height="1080px"----
+## ----dotchartEval_basePlotting,fig.width=8,fig.height=3,dpi=300,out.width="1500px",height="750px"----
 dotchart(t(data))  
 
 
 ## ----dotchartColEval_basePlotting,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"----
 
-dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.8)
+dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
 
 
 
@@ -293,7 +301,7 @@ boxplot(log2(exprs),ylab="log2 Expression",
         col=c("red","red","blue","blue"))
 
 
-## ----parMfrow_basePlotting,eval=FALSE---------------------------------------------------
+## ----parMfrow_basePlotting,eval=FALSE-------------------------
 ## par(mfrow=c(2,2))
 
 
@@ -312,19 +320,19 @@ hist(exprs[,i])
 }
 
 
-## ---- echo=F----------------------------------------------------------------------------
+## ---- echo=F--------------------------------------------------
 par(mfrow=c(1,1))
 
 
 
-## ---------------------------------------------------------------------------------------
+## ----fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"----
 plot(control, treatment)
 text(20,60, 'THIS IS MY PLOT', col='red')
 text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
 
 
 
-## ---------------------------------------------------------------------------------------
+## ----fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"----
 plot(control, treatment)
 abline(h=10, col='blue')
 abline(v=50, col='red', lwd=2)
@@ -332,37 +340,37 @@ abline(a=0, b=1, lty=2)
 
 
 
-## ---------------------------------------------------------------------------------------
+## ----fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"----
 plot(control, treatment)
 polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
 
 
-## ----save_basePlotting,eval=FALSE-------------------------------------------------------
+## ----save_basePlotting,eval=FALSE-----------------------------
 ## bmp(filename, width = 480, height = 480, units = "px",
 ##     point-size = 12)
 ## jpeg(filename, width = 480, height = 480, units = "px",
 ##      point-size = 12, quality = 75)
 
 
-## ----save_bmp_basePlotting,eval=FALSE---------------------------------------------------
+## ----save_bmp_basePlotting,eval=FALSE-------------------------
 ## bmp(file = "control.bmp")
 ## plot(control)
 ## dev.off()
 
 
-## ----save_jpeg_basePlotting,eval=FALSE--------------------------------------------------
+## ----save_jpeg_basePlotting,eval=FALSE------------------------
 ## jpeg(file = "control.jpg", quality = 20)
 ## plot(control)
 ## dev.off()
 
 
-## ----save_ps_basePlotting,eval=FALSE----------------------------------------------------
+## ----save_ps_basePlotting,eval=FALSE--------------------------
 ## postscript(file = "control.ps")
 ## plot(control)
 ## dev.off()
 
 
-## ----save_pdf_basePlotting,eval=FALSE---------------------------------------------------
+## ----save_pdf_basePlotting,eval=FALSE-------------------------
 ## 
 ## pdf(file = "control.pdf", paper = "A4")
 ## plot(control)

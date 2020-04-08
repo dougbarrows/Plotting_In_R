@@ -38,7 +38,7 @@ The ggplot2 package was created by Hadley Wickham and provides a intuitive plott
 
 ggplot2 builds on the concept of the "Grammar of Graphics" (Wilkinson 2005, Bertin 1983) which describes a consistent syntax for the construction of a wide range of complex graphics by a concise description of their components.
 
-ggplot2 is a core part of the tidyverse, a group of packages designed to make datta science easy and functional in R. For an introduction to these concepts check out our [tidy workshop](https://rockefelleruniversity.github.io/RU_tidyverse/).
+ggplot2 is a core part of the tidyverse, a group of packages designed to make data science easy and functional in R. For an introduction to these concepts check out our [tidy workshop](https://rockefelleruniversity.github.io/RU_tidyverse/).
 
 ---
 ## Why use ggplot2
@@ -142,10 +142,14 @@ colnames(patients_clean)
 ```
 
 ```
-##  [1] "ID"                 "Name"               "Race"               "Sex"               
-##  [5] "Smokes"             "Height"             "Weight"             "Birth"             
-##  [9] "State"              "Pet"                "Grade"              "Died"              
-## [13] "Count"              "Date.Entered.Study" "Age"                "BMI"               
+##  [1] "ID"                 "Name"              
+##  [3] "Race"               "Sex"               
+##  [5] "Smokes"             "Height"            
+##  [7] "Weight"             "Birth"             
+##  [9] "State"              "Pet"               
+## [11] "Grade"              "Died"              
+## [13] "Count"              "Date.Entered.Study"
+## [15] "Age"                "BMI"               
 ## [17] "Overweight"
 ```
 
@@ -193,16 +197,21 @@ pcPlot$data[1:4,]
 ```
 
 ```
-##          ID    Name  Race  Sex     Smokes Height Weight      Birth        State  Pet
-## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57 1972-02-06      Georgia  Dog
-## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43 1972-06-15     Missouri  Dog
-## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48 1972-07-09 Pennsylvania None
-## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54 1972-08-17      Florida  Cat
-##   Grade  Died Count Date.Entered.Study Age   BMI Overweight
-## 1     2 FALSE  0.01         2015-12-01  44 22.90      FALSE
-## 2     2 FALSE -1.31         2015-12-01  43 25.07       TRUE
-## 3     2 FALSE -0.17         2015-12-01  43 26.38       TRUE
-## 4     1 FALSE -1.10         2015-12-01  43 30.64       TRUE
+##          ID    Name  Race  Sex     Smokes Height Weight
+## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57
+## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43
+## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48
+## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54
+##        Birth        State  Pet Grade  Died Count
+## 1 1972-02-06      Georgia  Dog     2 FALSE  0.01
+## 2 1972-06-15     Missouri  Dog     2 FALSE -1.31
+## 3 1972-07-09 Pennsylvania None     2 FALSE -0.17
+## 4 1972-08-17      Florida  Cat     1 FALSE -1.10
+##   Date.Entered.Study Age   BMI Overweight
+## 1         2015-12-01  44 22.90      FALSE
+## 2         2015-12-01  43 25.07       TRUE
+## 3         2015-12-01  43 26.38       TRUE
+## 4         2015-12-01  43 30.64       TRUE
 ```
 
 
@@ -422,7 +431,8 @@ pcPlot_hist
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 ```
 
 ![](ggplot2_files/figure-html/histogram_simple_ggplot2-1.png)&lt;!-- --&gt;
@@ -499,7 +509,7 @@ pcPlot+geom_point(color="red")
 As we discussed earlier however, ggplot2 makes use of aesthetic mappings to assign variables in the data to the properties/aesthetics of the plot. This allows the properties of the plot to reflect variables in the data *dynamically*.
 
 In these examples we supply additional information to the aes() function to define what information to display and how it is represented in the plot.
-]
+  ]
 .pull-right[
 
 First we can recreate the plot we saw earlier.
@@ -513,7 +523,7 @@ pcPlot+geom_point()
 ```
 
 ![](ggplot2_files/figure-html/scatter_simple_ggplot2-1.png)&lt;!-- --&gt;
-]
+  ]
 
 ---
 ## Aesthetics - Color
@@ -644,7 +654,7 @@ pcPlot + facet_grid(~Sex)
 ![](ggplot2_files/figure-html/facet_grid_BySex_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
-## Facets - Split by 2 factor
+## Facets - Split by 1 factor
 
 To split along rows in plot, the variable is placed before the "~.".
 
@@ -802,6 +812,7 @@ pcPlot + geom_point() + facet_grid(Smokes~Sex)+
 ```
 
 ![](ggplot2_files/figure-html/scaleCont_ggplot2, facet_grid_smokesBySex_scalex-1.png)&lt;!-- --&gt;
+
 ---
 ## Discrete axes scales
 Similary control over discrete scales is shown below.
@@ -1175,7 +1186,7 @@ pcPlot
 
 ![](ggplot2_files/figure-html/theme_default_ggplot2-1.png)&lt;!-- --&gt;
 
-]
+  ]
 .pull-right[
 
 ...and the same scatter plot with the minimal theme.
@@ -1186,13 +1197,7 @@ pcPlot+theme_minimal()
 ```
 
 ![](ggplot2_files/figure-html/theme_minimal_ggplot2-1.png)&lt;!-- --&gt;
-]
-
-&lt;!-- # ```{r, theme_minimal_ggplot2, fig.height=4, fig.width=9} --&gt;
-&lt;!-- # pcPlot &lt;- ggplot(data=patients_clean, --&gt;
-&lt;!-- #         mapping=aes(x=Weight,y=Height))+geom_point() --&gt;
-&lt;!-- # pcPlot+theme_minimal() --&gt;
-&lt;!-- # ``` --&gt;
+  ]
 
 ---
 ## Predefined themes
@@ -1222,23 +1227,24 @@ As well as making use of predefined theme styles, ggplot2 allows for control ove
 
 **theme()** is the global function used to set attributes for the collections of elements/components making up the current plot.
 
-Within the theme functions there are 4 general graphic elements which may be controlled:
+.pull-left[
+Within the theme functions there are 4 general graphic elements which may be controlled...
 
 - rect
 - line
 - text
 - title
+  ]
 
----
-## Custom themes
-
-and 5 groups of related elements:
+.pull-right[
+...and 5 groups of related elements:
 
 - axis
 - legend
 - strip
 - panel (plot panel)
 - plot (Global plot parameters)
+]
 
 ---
 ## Custom themes
@@ -1267,7 +1273,7 @@ To demonstrate customizing a theme, in the example below we alter one element of
 - Note because we are changing a *text* element we use the *element_text()* function.
 
 A detailed description of which elements are available and their associated element functions can be found by typing *?theme*.
-]
+  ]
 .pull-right[
 
 
@@ -1283,7 +1289,7 @@ pcPlot+
 ```
 
 ![](ggplot2_files/figure-html/theme_custom_ggplot2-1.png)&lt;!-- --&gt;
-]
+  ]
 
 ---
 ## Customizing your theme
@@ -1419,7 +1425,6 @@ pcPlot+
 
 ![](ggplot2_files/figure-html/theme_customMiniVsBW_ggplot2-1.png)&lt;!-- --&gt;
 
-
 ---
 ## **%+replace%**
 
@@ -1444,9 +1449,10 @@ When using the **%+replace%** operator
   theme(text = element_text(color="red"))
 ```
 
+
+---
 ## + and %+replace%
 ### Original theme 
----
 
 ```r
   oldTheme$text
@@ -1469,10 +1475,10 @@ When using the **%+replace%** operator
 ##  $ inherit.blank: logi TRUE
 ##  - attr(*, "class")= chr [1:2] "element_text" "element"
 ```
-
+---
 ## + and %+replace%
 ### Theme modified with **+**
----
+
 
 ```r
   newTheme_Plus$text
@@ -1545,7 +1551,7 @@ pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 ---
 ## Adding titles for plot and labels
 
-or specified using the ggtitle and xlab/ylab functions.
+You can also specify titles using the ggtitle and xlab/ylab functions.
 
 
 ```r
@@ -1577,10 +1583,10 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 # Exercise set 2
 
-
-# Exercise set 2
-
 [Link_to_exercises](../../exercises/exercise_2.html)
+
+---
+# Exercise set 2
 
 [Link_to_answers](../../answers/exercise_2.html)
 
