@@ -776,9 +776,12 @@ Exercise on base plotting can be found [here](../../exercises/Plotting_exercise.
 Answers for baseplotting can be found [here](../../answers/Plotting_answers.html)
 
 ---
-
 # Help while plotting
 
 * Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
 
 * Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
+
+
+
+
