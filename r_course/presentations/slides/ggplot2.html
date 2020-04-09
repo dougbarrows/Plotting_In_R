@@ -142,9 +142,12 @@ colnames(patients_clean)
 ```
 
 ```
-##  [1] "ID"                 "Name"               "Race"               "Sex"                "Smokes"             "Height"             "Weight"            
-##  [8] "Birth"              "State"              "Pet"                "Grade"              "Died"               "Count"              "Date.Entered.Study"
-## [15] "Age"                "BMI"                "Overweight"
+##  [1] "ID"                 "Name"               "Race"              
+##  [4] "Sex"                "Smokes"             "Height"            
+##  [7] "Weight"             "Birth"              "State"             
+## [10] "Pet"                "Grade"              "Died"              
+## [13] "Count"              "Date.Entered.Study" "Age"               
+## [16] "BMI"                "Overweight"
 ```
 
 ```r
@@ -191,11 +194,21 @@ pcPlot$data[1:4,]
 ```
 
 ```
-##          ID    Name  Race  Sex     Smokes Height Weight      Birth        State  Pet Grade  Died Count Date.Entered.Study Age   BMI Overweight
-## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57 1972-02-06      Georgia  Dog     2 FALSE  0.01         2015-12-01  44 22.90      FALSE
-## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43 1972-06-15     Missouri  Dog     2 FALSE -1.31         2015-12-01  43 25.07       TRUE
-## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48 1972-07-09 Pennsylvania None     2 FALSE -0.17         2015-12-01  43 26.38       TRUE
-## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54 1972-08-17      Florida  Cat     1 FALSE -1.10         2015-12-01  43 30.64       TRUE
+##          ID    Name  Race  Sex     Smokes Height Weight      Birth
+## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57 1972-02-06
+## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43 1972-06-15
+## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48 1972-07-09
+## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54 1972-08-17
+##          State  Pet Grade  Died Count Date.Entered.Study Age   BMI
+## 1      Georgia  Dog     2 FALSE  0.01         2015-12-01  44 22.90
+## 2     Missouri  Dog     2 FALSE -1.31         2015-12-01  43 25.07
+## 3 Pennsylvania None     2 FALSE -0.17         2015-12-01  43 26.38
+## 4      Florida  Cat     1 FALSE -1.10         2015-12-01  43 30.64
+##   Overweight
+## 1      FALSE
+## 2       TRUE
+## 3       TRUE
+## 4       TRUE
 ```
 
 
@@ -415,7 +428,8 @@ pcPlot_hist
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with
+## `binwidth`.
 ```
 
 ![](ggplot2_files/figure-html/histogram_simple_ggplot2-1.png)&lt;!-- --&gt;
@@ -1049,7 +1063,7 @@ pcPlot + geom_point(size=4,alpha=0.8)+
 ![](ggplot2_files/figure-html/facet_grid_smokesBySex_scaleDisceteXContinuouswY_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
-# Statistical transformations.
+# Statistical transformations
 
 In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
 
@@ -1568,9 +1582,6 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 [Link_to_exercises](../../exercises/exercise_2.html)
 
----
-# Exercise set 2
-
 [Link_to_answers](../../answers/exercise_2.html)
 
 ---
@@ -1587,6 +1598,11 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
+
+---
+# Contact
+
+Any suggestions, comments, edits or questions (about content or the slides themselves) please reach out to our [GitHub](https://github.com/RockefellerUniversity/Plotting_In_R/issues) and raise an issue.
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

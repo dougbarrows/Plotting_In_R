@@ -889,7 +889,7 @@ pcPlot + geom_point(size=4,alpha=0.8)+
 ```
 
 ---
-# Statistical transformations.
+# Statistical transformations
 
 In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
 
@@ -1332,9 +1332,6 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 [Link_to_exercises](../../exercises/exercise_2.html)
 
----
-# Exercise set 2
-
 [Link_to_answers](../../answers/exercise_2.html)
 
 ---
@@ -1352,4 +1349,7 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
 
+---
+# Contact
 
+Any suggestions, comments, edits or questions (about content or the slides themselves) please reach out to our [GitHub](https://github.com/RockefellerUniversity/Plotting_In_R/issues) and raise an issue.
