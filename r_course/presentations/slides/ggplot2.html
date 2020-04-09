@@ -142,15 +142,9 @@ colnames(patients_clean)
 ```
 
 ```
-##  [1] "ID"                 "Name"              
-##  [3] "Race"               "Sex"               
-##  [5] "Smokes"             "Height"            
-##  [7] "Weight"             "Birth"             
-##  [9] "State"              "Pet"               
-## [11] "Grade"              "Died"              
-## [13] "Count"              "Date.Entered.Study"
-## [15] "Age"                "BMI"               
-## [17] "Overweight"
+##  [1] "ID"                 "Name"               "Race"               "Sex"                "Smokes"             "Height"             "Weight"            
+##  [8] "Birth"              "State"              "Pet"                "Grade"              "Died"               "Count"              "Date.Entered.Study"
+## [15] "Age"                "BMI"                "Overweight"
 ```
 
 ```r
@@ -197,21 +191,11 @@ pcPlot$data[1:4,]
 ```
 
 ```
-##          ID    Name  Race  Sex     Smokes Height Weight
-## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57
-## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43
-## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48
-## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54
-##        Birth        State  Pet Grade  Died Count
-## 1 1972-02-06      Georgia  Dog     2 FALSE  0.01
-## 2 1972-06-15     Missouri  Dog     2 FALSE -1.31
-## 3 1972-07-09 Pennsylvania None     2 FALSE -0.17
-## 4 1972-08-17      Florida  Cat     1 FALSE -1.10
-##   Date.Entered.Study Age   BMI Overweight
-## 1         2015-12-01  44 22.90      FALSE
-## 2         2015-12-01  43 25.07       TRUE
-## 3         2015-12-01  43 26.38       TRUE
-## 4         2015-12-01  43 30.64       TRUE
+##          ID    Name  Race  Sex     Smokes Height Weight      Birth        State  Pet Grade  Died Count Date.Entered.Study Age   BMI Overweight
+## 1 AC/AH/001 Michael White Male Non-Smoker 182.87  76.57 1972-02-06      Georgia  Dog     2 FALSE  0.01         2015-12-01  44 22.90      FALSE
+## 2 AC/AH/017   Derek White Male Non-Smoker 179.12  80.43 1972-06-15     Missouri  Dog     2 FALSE -1.31         2015-12-01  43 25.07       TRUE
+## 3 AC/AH/020    Todd Black Male Non-Smoker 169.15  75.48 1972-07-09 Pennsylvania None     2 FALSE -0.17         2015-12-01  43 26.38       TRUE
+## 4 AC/AH/022  Ronald White Male Non-Smoker 175.66  94.54 1972-08-17      Florida  Cat     1 FALSE -1.10         2015-12-01  43 30.64       TRUE
 ```
 
 
@@ -431,8 +415,7 @@ pcPlot_hist
 ```
 
 ```
-## `stat_bin()` using `bins = 30`. Pick better value with
-## `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
 ![](ggplot2_files/figure-html/histogram_simple_ggplot2-1.png)&lt;!-- --&gt;
