@@ -383,7 +383,7 @@ pcPlot_violin
 ## There are a world of geoms 
 An overview of geoms and thier arguments can be found at ggplot2 documentation or within the ggplot2 cheatsheet.
 
-- [ggplot2 documentation](http://docs.ggplot2.org/current/)
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/)
 
 - [ggplot2 Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
