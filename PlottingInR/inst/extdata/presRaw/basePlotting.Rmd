@@ -26,17 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, tidy = T)
 ```
 
 ```{r, results='asis',include=TRUE,echo=FALSE}
-if(params$isSlides == "yes"){
-  cat("class: inverse, center, middle
-
-# Plotting in R
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
-
----
-"    
-  )
-}else{
+if(params$isSlides != "yes"){
   cat("# Plotting in R
 
 ---
@@ -47,7 +37,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Set Up
 
 All prerequisites, links to material and slides for this course can be found on github.
@@ -174,7 +163,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Type
 
 First we can plot treatment using points overlayed by a line. We control this with the **type** argument.
@@ -549,7 +537,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Bar Charts	
 	
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
@@ -647,7 +634,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Histograms
 Base graphics has a useful built-in function for histograms too. This is the **hist()** function, which just needs a numeric vector.
 
@@ -705,7 +691,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Dot charts
 
 Base graphics  also has a **dotchart()** function. Dot charts help compare paired data. First though we need to modify the matrix, as we are comparing in pairs as opposed to all control versus treatment. 
@@ -751,7 +736,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Box plots
 
 The final plot we will look at is a box and whisker plot. 
@@ -810,7 +794,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
@@ -882,7 +865,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Text
 ```{r, echo=F}
 par(mfrow=c(1,1))
@@ -957,7 +939,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Saving your plots
 
 There are many different ways of saving your plots in R. 

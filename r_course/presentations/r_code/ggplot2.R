@@ -8,17 +8,7 @@ if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 
 
 ## ---- results='asis',include=TRUE,echo=FALSE-----------------------------------------------------------
-if(params$isSlides == "yes"){
-  cat("class: inverse, center, middle
-
-# Plotting in R with ggplot2
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
-
-
-"    
-  )
-}else{
+if(params$isSlides != "yes"){
   cat("# Plotting in R with ggplot2
   
 
