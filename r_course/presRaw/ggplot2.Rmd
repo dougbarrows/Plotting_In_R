@@ -17,19 +17,37 @@ output:
     number_sections: false  ## if you want number sections at each table header
     theme: united  # many options for theme, this one is my favorite.
     highlight: tango  # specifies the syntax highlighting style
-
-
-
+params:
+  isSlides: "no"
 ---
-
-
-```{r setup_ggplot2, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-AsSlides <- TRUE
+```{r setup, include=FALSE}
+suppressPackageStartupMessages(require(knitr))
+knitr::opts_chunk$set(echo = TRUE, tidy = T)
 ```
 
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
 
-# Graphics in R
+# Plotting in R with ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Plotting in R with ggplot2
+  
+---
+"    
+  )
+  
+}
+
+```
+
+## Graphics in R
 
 The R language has extensive graphical capabilities.
 
@@ -59,16 +77,29 @@ On top of this central philosophy ggplot2 has:
 - Large user base -- Great documentation and active mailing list.
 
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
 
 # Grammar of Graphics
 
-<div align="center">
-<img src="imgs/Slide1.jpg" alt="igv" height="500" width="300">
-</div>
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
 ---
+"    
+  )
+}else{
+  cat("# Grammar of Graphics
+  
+---
+"    
+  )
+  
+}
 
-## How ggplot2 builds a plot.
+```
+
+## How ggplot2 builds a plot
 
 <!-- ![](imgs/Slide2.jpg) -->
 <div align="center">
@@ -137,7 +168,30 @@ ggplot(data=patients_clean,
 ```
 
 ---
-# Getting started with ggplot2
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Getting Started With ggplot2
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Getting Started With ggplot2
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Getting started with ggplot2
 
 ```{r load_packages_ggplot2, echo=FALSE, eval=TRUE,warning=F,message=F}
 suppressPackageStartupMessages(library(tidyr))
@@ -192,7 +246,6 @@ Within this gg/ggplot object the data has been defined.
 ```{r ggplot_onlyFS2_ggplot2,echo=AsSlides,eval=AsSlides}
 pcPlot$data[1:4,]
 ```
-
 
 ---
 ## Our first ggplot2 graph
@@ -274,7 +327,30 @@ pcPlot+geom_point()
 ```
 
 ---
-# Geoms - Plot types
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Geoms
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Geoms
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+# Plot types
 
 As we have seen, an important element of a ggplot is the geom used. Following the specification of data, the geom describes the type of plot used.
 
@@ -293,7 +369,7 @@ Several geoms are available in ggplot2:
 * geom_violin() - Violin plots
 
 ---
-## Geoms - Line plots
+## Line plots
 
 ```{r, line_simple_ggplot2, fig.height=5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
@@ -306,7 +382,7 @@ pcPlot_line
 ```
 
 ---
-## Geoms - Smoothed line plots
+## Smoothed line plots
 ```{r, smooth_simple_ggplot2, fig.height=4.5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
@@ -318,7 +394,7 @@ pcPlot_smooth
 ```
 
 ---
-## Geoms - Bar plots
+## Bar plots
 ```{r, bar_simple_ggplot2, fig.height=5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex))
@@ -331,7 +407,7 @@ pcPlot_bar
 ```
 
 ---
-## Geoms - Histograms
+## Histograms
 ```{r, histogram_simple_ggplot2, fig.height=4, fig.width=8,warning=FALSE}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
@@ -343,7 +419,7 @@ pcPlot_hist
 ```
 
 ---
-## Geoms - Density plots
+## Density plots
 ```{r, density_simple_ggplot2, fig.height=4.5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
@@ -355,7 +431,7 @@ pcPlot_density
 ```
 
 ---
-## Geoms - Box plots
+## Box plots
 
 ```{r, boxplot_simple_ggplot2, fig.height=5, fig.width=8}
 
@@ -368,7 +444,7 @@ pcPlot_boxplot
 ```
 
 ---
-## Geoms - Violin plots
+## GViolin plots
 ```{r, violin_simple_ggplot2, fig.height=4.5, fig.width=8}
 
 pcPlot <- ggplot(data=patients_clean,
@@ -387,8 +463,32 @@ An overview of geoms and thier arguments can be found at ggplot2 documentation o
 
 - [ggplot2 Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
+
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Aesthetics
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Aesthetics
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Aesthetics
 
 In order to change the property on an aesthetic of a plot into a *constant* value (e.g. set color of all points to red) we can supply the color argument to the geom_point() function.
 
@@ -399,7 +499,7 @@ pcPlot+geom_point(color="red")
 ```
 
 ---
-## Aesthetics - Plot properties
+## Plot properties
 .pull-left[
 
 As we discussed earlier however, ggplot2 makes use of aesthetic mappings to assign variables in the data to the properties/aesthetics of the plot. This allows the properties of the plot to reflect variables in the data *dynamically*.
@@ -419,7 +519,7 @@ pcPlot+geom_point()
   ]
 
 ---
-## Aesthetics - Color
+## Color
 Now we can adjust the aes mapping by supplying an argument to the color parameter in the aes function. (Note that ggplot2 accepts "color" or "color" as parameter name)
 
 This simple adjustment allows for identification of the separation between male and female measurements for height and weight.
@@ -431,7 +531,7 @@ pcPlot + geom_point()
 ```
 
 ---
-## Aesthetics - Point shape
+## Point shape
 Similarly the shape of points may be adjusted.
 
 ```{r, scatter_aes_sexShape_ggplot2, fig.height=4.5, fig.width=9,eval=F,echo=T}
@@ -493,8 +593,32 @@ or visit the ggplot2 documentations pages and cheatsheet
 
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
+
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Facets
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Facets
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Facets
 
 One very useful feature of ggplot is faceting. 
 This allows you to produce several plots that subset by variables in your data.
@@ -504,7 +628,7 @@ To facet our data into multiple plots we can use the *facet_wrap* or *facet_grid
 The *facet_grid* function is well suited to splitting the data by two factors.
 
 ---
-## Facets - Split by 2 factors
+## Split by 2 factors
 
 Here we can plot the data with the Smokes variable as rows and Sex variable as columns.
 
@@ -519,7 +643,7 @@ pcPlot + facet_grid(Smokes~Sex)
 ```
 
 ---
-## Facets - Split by 1 factor
+## Split by 1 factor
 
 To split by one factor we can apply the facet_grid() function ommiting the variable before the "~"" to facet along columns in plot.
 
@@ -533,7 +657,7 @@ pcPlot + facet_grid(~Sex)
 ```
 
 ---
-## Facets - Split by 1 factor
+## Split by 1 factor
 
 To split along rows in plot, the variable is placed before the "~.".
 
@@ -548,7 +672,7 @@ pcPlot + facet_grid(Sex~.)
 ```
 
 ---
-## Facets - facet_wrap()
+## facet_wrap()
 
 The *facet_wrap()* function offers a less grid-based structure but is well suited to faceting data by one variable.
 
@@ -561,7 +685,7 @@ pcPlot + facet_wrap(~Smokes)
 ```
 
 ---
-## Facets - Multiple variables
+## Multiple variables
 For more complex faceting both *facet_grid* and *facet_wrap* can accept combinations of variables. Here we use *facet_wrap*.
 
 ```{r, facet_wrap_smokesBySexandPet_ggplot2, fig.height=4.5, fig.width=9}
@@ -571,15 +695,39 @@ pcPlot + facet_wrap(~Pet+Smokes+Sex)
 ```
 
 ---
-## Facets - Multiple variables
+## Multiple variables
 Or in a nice grid format using facet_grid() and the Smokes variable against a combination of Gender and Pet.
 
 ```{r, facet_grid_smokesBySexandPet_ggplot2, fig.height=5, fig.width=9}
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
+
 ---
-# Plotting order in a boxplot
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Plotting Order
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Plotting Order
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Plotting order in a boxplot
 
 We will shortly discuss how to change various aspects of the plot layout and appearance. However, a common-asked question is how to change the order in which R plots a categorical variable. Consider the boxplot to compare weights of males and females:
 
@@ -622,7 +770,30 @@ patients_clean %>%
 [Link_to_answers](../../answers/exercise_1.html)
 
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Scales
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Scales
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Scales
 
 Scales and their legends have so far been handled using ggplot2 defaults.
 ggplot2 offers functionality to have finer control over scales and legends using the *scale* methods.
@@ -639,7 +810,7 @@ Scale methods are divided into functions by combinations of
   Try typing in scale_ then *tab* to autocomplete. This will provide some examples of the scale functions available in ggplot2.
 
 ---
-## Scales - Arguments
+## Arguments
 Although different *scale* functions accept some variety in their arguments, common arguments to scale functions include - 
 
 - name - The axis or legend title
@@ -651,7 +822,7 @@ Although different *scale* functions accept some variety in their arguments, com
 - labels - Label names at each break
 
 ---
-# Controlling the X and Y scale.
+## Controlling the X and Y scale.
 
 Both continuous and discrete X/Y scales can be controlled in ggplot2 using:
 
@@ -695,7 +866,7 @@ pcPlot +
 ```
 
 ---
-# Controlling other scales
+## Controlling other scales
 When using fill, color, linetype, shape, size or alpha aesthetic mappings the scales are automatically selected for you and the appropriate legends created.
 
 ```{r scaleOthers_ggplot2, facet_grid_height_weight, fig.height=3, fig.width=8}
@@ -761,6 +932,29 @@ For more details on palette sizes and styles visit the colorbrewer website and g
 - [ggplot2 color scales](http://docs.ggplot2.org/current/scale_brewer.html)
 
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Continuous Scales
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Continuous Scales
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
 ## Continuous scales
 
 So far we have looked a qualitative scales but ggplot2 offers much functionality for continuous scales such as for size, alpha (transparancy), color and fill.
@@ -770,7 +964,7 @@ So far we have looked a qualitative scales but ggplot2 offers much functionality
 - scale_size_continuous() - For control of size.
 
 ---
-## Continuous scales - alpha
+## alpha
 
 Both these functions accept the range of alpha/size to be used in plotting.
 
@@ -785,7 +979,7 @@ pcPlot + geom_point(size=4) +
 ```
 
 ---
-## Continuous scales - size
+## size
 Below the range of sizes to be used in plot is limited to between 3 and 6
 ```{r, facet_grid_height_weight_BMIsize_ggplot2, fig.height=5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
@@ -795,7 +989,7 @@ pcPlot + geom_point(alpha=0.8) +
                   
 ```
 ---
-## Continuous scale limits
+## Limits
 The limits of the scale can also be controlled but it is important to note data outside of scale is removed from plot.
 
 ```{r, facet_grid_height_weight_BMIsizeLimits_ggplot2, fig.height=4, fig.width=9,warning=FALSE}
@@ -807,7 +1001,7 @@ pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
 ```
 
 ---
-## Continuous scales - Labels
+## Labels
 What points of scale to be labeled and labels text can also be controlled.
 
 ```{r, facet_grid_height_weight_BMIsizewithBreaks_ggplot2, fig.height=4, fig.width=9}
@@ -820,7 +1014,7 @@ pcPlot + geom_point() +
 ```
 
 ---
-## Continuous scales - Color
+## Color
 Control of color/fill scales can be best achieved through the **gradient** subfunctions of scale.
 
 - scale_(color/fill)_*gradient* - 2 color gradient (eg. low to high BMI)
@@ -834,7 +1028,7 @@ Both functions take a common set of arguments:-
 - na.value - color for any NA values.
 
 ---
-## Continuous scales - Color
+## Color
 An example using scale\_color\_gradient below sets the low and high end colors to White and Red respectively
 
 ```{r, facet_grid_height_weight_BMIgradient_ggplot2, fig.height=4, fig.width=9}
@@ -846,7 +1040,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 ```
 
 ---
-## Continuous scales - Color
+## Color
 Similarly we can use the scale_color_gradient2 function which allows for the specification of a midpoint value and its associated color.
 
 ```{r, facet_grid_height_weight_BMIgradient2_ggplot2, fig.height=4, fig.width=9}
@@ -858,7 +1052,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 ```
 
 ---
-## Continuous scales - Labels
+## Labels
 As with previous continuous scales, limits and custom labels in scale legend can be added.
 
 ```{r, facet_grid_height_weight_BMIgradient2plus_ggplot2, fig.height=3.5, fig.width=9}
@@ -889,7 +1083,30 @@ pcPlot + geom_point(size=4,alpha=0.8)+
 ```
 
 ---
-# Statistical transformations
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Transformations
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Transformations
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Statistical transformations
 
 In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
 
@@ -953,7 +1170,30 @@ pcPlot + stat_summary(fun=quantile, geom="point",
 ```
 
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Themes
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Themes
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Themes
 
 Themes specify the details of data independent elements of the plot. 
 This includes titles, background color, text fonts etc.
@@ -1287,7 +1527,30 @@ In the examples we have shown you we have been modifying the theme for a specifi
 The active theme is automatically applied to every plot you draw. Use theme_get to get the current theme, and theme_set to completely override it
 
 ---
-# Adding titles for plot and labels
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Titles and Labels
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Titles and Labels
+  
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Adding titles for plot and labels
 
 So far no plot titles have been specified. Plot titles can be specified using the labs functions.
 
@@ -1297,6 +1560,7 @@ pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 ```
+
 ---
 ## Adding titles for plot and labels
 
@@ -1307,6 +1571,29 @@ You can also specify titles using the ggtitle and xlab/ylab functions.
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot+ggtitle("Weight vs Height")+ylab("Height (cm)")
+```
+
+---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Saving Plots
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Saving Plots
+  
+---
+"    
+  )
+  
+}
+
 ```
 
 ---

@@ -19,14 +19,11 @@ output:
     highlight: tango  # specifies the syntax highlighting style
 params:
   isSlides: "no"
-
 ---
-```{r setup_basePlotting, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-AsSlides <- TRUE
+```{r setup, include=FALSE}
+suppressPackageStartupMessages(require(knitr))
+knitr::opts_chunk$set(echo = TRUE, tidy = T)
 ```
-
-
 
 ```{r, results='asis',include=TRUE,echo=FALSE}
 if(params$isSlides == "yes"){
@@ -50,13 +47,12 @@ if(params$isSlides == "yes"){
 
 ```
 
-
 ---
 ## Set Up
 
 All prerequisites, links to material and slides for this course can be found on github.
 
-* [Intro_To_R_1](https://rockefelleruniversity.github.io/Plotting_In_R/)
+* [Plotting_In_R](https://rockefelleruniversity.github.io/Plotting_In_R/)
 
 Or can be downloaded as a zip archive from here.
 
@@ -77,7 +73,6 @@ R code in presentations.
 Practicals as HTML pages. 
 * **answers/**
 Practicals with answers as HTML pages and R code solutions. 
-
 
 ---
 ## Set the Working directory
@@ -106,7 +101,7 @@ R has excellent graphics and plotting capabilities. In fact this is commonly see
 Base R graphics uses a pen and paper model for plotting while Lattice and ggplot2 packages are built on the routines first used in grid graphics.
 
 ---
-### A pen and paper model
+## A pen and paper model
 
 - Once plot is produced, can only add more elements, cannot remove.
 - Makes it hard to update.
@@ -114,9 +109,31 @@ Base R graphics uses a pen and paper model for plotting while Lattice and ggplot
 
 Building a new plot is often a stepwise process with gradual addition of features. It will likely require replotting many times. 
 
+
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
 
 # Scatter and line Charts
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Scatter and line Charts
+
+---
+"    
+  )
+  
+}
+
+```
+
+## Scatter and line Charts
 
 First we'll produce a very simple graph using the values in a numeric vector:
 
@@ -133,8 +150,32 @@ Now we plot the treatment vector with default parameters.
 plot(treatment)
 ```
 
+
 ---
-## Plot customization - Type
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Plot Customization
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Plot Customization
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Type
 
 First we can plot treatment using points overlayed by a line. We control this with the **type** argument.
 
@@ -144,7 +185,7 @@ plot(treatment, type="o")
 ```
 
 ---
-## Plot customization - Type
+## Type
 
 To see a complete list we can use **?plot**
 
@@ -159,7 +200,7 @@ plot(treatment, type="p")
 ```
   ]
 ---
-## Plot customization - Title
+## Title
 
 We add a title with **main** argument and or a sub-title with the **sub** argument.
 
@@ -168,7 +209,7 @@ plot(treatment, main="My Plot", sub="a plot")
 ```
 
 ---
-## Plot customization - Axis labels
+## Axis labels
 We can customize our x and y axis label with the **xlab** and **ylab** arguments respectively.
 
 ```{r plotAsisLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"}
@@ -176,7 +217,7 @@ plot(treatment, xlab="Position", ylab="score")
 ```
 
 ---
-## Plot customization - Axis labels
+## Axis labels
 We can control the orientation of labels on axis using **las** argument.
 
 .pull-left[
@@ -191,7 +232,7 @@ plot(treatment, las=2)
   ]
 
 ---
-## Plot customization - Point size
+## Point size
 We can control the size of points in our plot using the **cex** parameter.
 
 .pull-left[
@@ -206,7 +247,7 @@ plot(treatment, cex=0.5)
   ]
 
 ---
-## Plot customization - Point shape
+## Point shape
 We can control the type of points in our plot using the **pch** parameter.
 
 .pull-left[
@@ -222,7 +263,7 @@ plot(treatment, pch=20)
 
 
 ---
-## Plot customization - Line weight
+## Line weight
 Similarly when plotting a line we control size with **lwd** parameter.
 
 .pull-left[
@@ -237,7 +278,7 @@ plot(treatment, type="l",lwd=0.5)
   ]
 
 ---
-## Plot customization - Line type
+## Line type
 We can also control the type of line with **lty** parameter.
 
 .pull-left[
@@ -252,7 +293,7 @@ plot(treatment, type="l",lty=2)
   ]
 
 ---
-## Plot customization - Color
+## Color
 
 An important parameter we can control is color. We can control color or lines or points using the **col** argument.
 
@@ -472,6 +513,7 @@ viridis(5)
 show_col(viridis(5))
 ```
   ]
+  
 ---
 ## Good data visualization
 
@@ -484,9 +526,31 @@ There are often a trade offs in creating good plots.
 
 [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
 
+---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Bar Charts
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
 ---
-# Bar Charts	
+"    
+  )
+}else{
+  cat("# Bar Charts
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Bar Charts	
 	
 Base graphics has a useful built in function for bar charts. The **barplot()** function.
 We can simply pass our numeric vector to this function to get our barchart.
@@ -496,7 +560,7 @@ barplot(treatment)
 ```
 
 ---
-## Barplot - Labels
+## Labels
 
 The **barplot()** function hasn't added any labels by default. We can speciy our own however using the **names.arg** argument. **names.arg**  is a vector of names to be plotted below each bar or group of bars. 
 
@@ -506,7 +570,7 @@ barplot(treatment,
 ```
 
 ---
-## Barplot - Labels
+## Labels
 
 If my vector was named however, then my vectors names would be used for labels. We use **names()** function to add names to our vector then we replot.
 
@@ -518,7 +582,7 @@ barplot(treatment)
 
 
 ---
-## Barplot - Stacking
+## Stacking
 
 Sometimes you want to have several data series stacked in a single barplot. The **barplot()** function handles this readily.
 
@@ -530,7 +594,7 @@ data <- read.table("data/example_plot.txt", header=T, row.names=1, sep=",")
 ```
 
 ---
-## Barplot - Stacking
+## Stacking
 
 To build a stacked barplot we need to give the barplot funcion a matrix. We can use **as.matrix()** function to convert our data frame to a matrix.
 
@@ -539,7 +603,7 @@ barplot(as.matrix(data))
 ```
 
 ---
-## Barplot - Grouping
+## Grouping
 
 Now we can plot data from a matrix with grouped barchart using the **beside** argument.
 
@@ -548,7 +612,7 @@ barplot(as.matrix(data),beside=TRUE)
 ```
 
 ---
-## Barplot - Customization
+## Customization
 
 Though a different function to plot(), barplot can be customized in much the same way. Most of the parameters have the same names. 
 
@@ -559,8 +623,32 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
         fill=  viridis(6))
 ```
 
+
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Histograms
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Histograms
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Histograms
 Base graphics has a useful built-in function for histograms too. This is the **hist()** function, which just needs a numeric vector.
 
 ```{r hist_basePlotting,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
@@ -568,14 +656,14 @@ hist(treatment)
 ```
 
 ---
-## Histograms - Customization
+## Customization
 Similar customization exists as for other plots.
 ```{r histcolorYlim_basePlotting,echo=TRUE,fig.width=8,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 hist(treatment, col="lightblue", ylim=c(0,5),cex.main=0.8)
 ```
 
 ---
-## Histograms - Breaks
+## Breaks
 We can create more fine grained histogram by specify the number of required bins to the **breaks** argument.
 
 .pull-left[
@@ -593,9 +681,32 @@ hist(treatment, col="lightblue",
      breaks = 10)
 ```
   ]
+  
+---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Dot Charts
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
 ---
-# Dot charts
+"    
+  )
+}else{
+  cat("# Dot Charts
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Dot charts
 
 Base graphics  also has a **dotchart()** function. Dot charts help compare paired data. First though we need to modify the matrix, as we are comparing in pairs as opposed to all control versus treatment. 
 
@@ -606,7 +717,7 @@ dotchart(t(data))
 ```
 
 ---
-## Dot charts - Customization
+## Customization
 Again we can use the arguments to modify the layout and appearance.
 
 Now we create a colored dotchart for autos with smaller labels.
@@ -618,7 +729,30 @@ dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
 ```
 
 ---
-# Box plots
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Box Plots
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Box Plots
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Box plots
 
 The final plot we will look at is a box and whisker plot. 
 
@@ -627,7 +761,7 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 ![](imgs/box_whisker_describe.png)
 
 ---
-## Boxplots - Read in bigger data
+## Read in bigger data
 First lets read in the gene expression data
 ```{r readForBoxplot_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
@@ -644,7 +778,7 @@ boxplot(exprs)
 ```
 
 ---
-## Boxplots - Rescaling 
+## Rescaling 
 
 Perhaps it would look better on a log scale. We can add addition colors and labels as with other plots.
 
@@ -654,7 +788,30 @@ boxplot(log2(exprs),ylab="log2 Expression",
 ```
 
 ---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Combining Plots
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Combining Plots
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Combining Plots
 
 R makes it easy to combine multiple plots into one overall graph, using either the **par( )** or **layout( )** function. 
 With the **par( )** function, you can include the option mfrow=c(nrows, ncols) to create a matrix of nrows *x* ncols plots that are filled in by row.
@@ -703,7 +860,30 @@ The **par()** function can control a variety of other graph parameters.
 * fig - dimensions of whole plot
 
 ---
-## Advanced customization - Text
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Other Customizations
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Other Customizations
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Text
 ```{r, echo=F}
 par(mfrow=c(1,1))
 
@@ -726,7 +906,7 @@ text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
 ```
   ]
 ---
-## Advanced customization - Lines
+## Lines
 
 .pull-left[
 *abline()* allows you to add specific straight lines. This is often useful to help demonstrate known linear relationships or thresholds as reference points for your data. 
@@ -744,8 +924,9 @@ abline(a=0, b=1, lty=2)
 
 ```
   ]
+  
 ---
-## Advanced customization - Segments
+## Shapes
 *polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
 
 ```{r,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
@@ -754,7 +935,30 @@ polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
 ```
 
 ---
-# Saving your plots
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Saving Plots
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Saving Plots
+
+---
+"    
+  )
+  
+}
+
+```
+
+---
+## Saving your plots
 
 There are many different ways of saving your plots in R. 
 
