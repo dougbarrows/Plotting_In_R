@@ -27,17 +27,7 @@ if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 ```
 
 ```{r, results='asis',include=TRUE,echo=FALSE}
-if(params$isSlides == "yes"){
-  cat("class: inverse, center, middle
-
-# Plotting in R with ggplot2
-
-<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
-
----
-"    
-  )
-}else{
+if(params$isSlides != "yes"){
   cat("# Plotting in R with ggplot2
   
 ---
@@ -191,7 +181,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Getting started with ggplot2
 
 ```{r load_packages_ggplot2, echo=FALSE, eval=TRUE,warning=F,message=F}
@@ -350,7 +339,7 @@ if(params$isSlides == "yes"){
 
 ```
 
----
+
 # Plot types
 
 As we have seen, an important element of a ggplot is the geom used. Following the specification of data, the geom describes the type of plot used.
@@ -488,7 +477,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Aesthetics
 
 In order to change the property on an aesthetic of a plot into a *constant* value (e.g. set color of all points to red) we can supply the color argument to the geom_point() function.
@@ -618,7 +606,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Facets
 
 One very useful feature of ggplot is faceting. 
@@ -727,7 +714,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Plotting order in a boxplot
 
 We will shortly discuss how to change various aspects of the plot layout and appearance. However, a common-asked question is how to change the order in which R plots a categorical variable. Consider the boxplot to compare weights of males and females:
@@ -793,7 +779,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Scales
 
 Scales and their legends have so far been handled using ggplot2 defaults.
@@ -955,7 +940,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Continuous scales
 
 So far we have looked a qualitative scales but ggplot2 offers much functionality for continuous scales such as for size, alpha (transparancy), color and fill.
@@ -1106,7 +1090,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Statistical transformations
 
 In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
@@ -1193,7 +1176,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Themes
 
 Themes specify the details of data independent elements of the plot. 
@@ -1550,7 +1532,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Adding titles for plot and labels
 
 So far no plot titles have been specified. Plot titles can be specified using the labs functions.
@@ -1597,7 +1578,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Saving plots
 
 Plots produced by ggplot can be saved in the same way as [base plots](../singlepage/basePlotting.html#saving-your-plots)
