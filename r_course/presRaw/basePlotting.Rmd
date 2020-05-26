@@ -970,9 +970,9 @@ When you're done with your plotting commands, enter the dev.off() command.
 
 ```{r save_basePlotting,eval=FALSE}
 bmp(filename, width = 480, height = 480, units = "px", 
-    point-size = 12)
+    pointsize = 12)
 jpeg(filename, width = 480, height = 480, units = "px", 
-     point-size = 12, quality = 75)
+     pointsize  = 12, quality = 75)
 ```
 
 ---
