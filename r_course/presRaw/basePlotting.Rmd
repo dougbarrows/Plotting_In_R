@@ -48,7 +48,7 @@ Or can be downloaded as a zip archive from here.
 * [Download zip](https://github.com/rockefelleruniversity/Plotting_In_R/zipball/master)
 
 ---
-## Presentations, source code and practicals
+## Course content
 
 Once the zip file in unarchived. All presentations as HTML slides and pages, their R code and HTML practical sheets will be available in the directories underneath.
 
