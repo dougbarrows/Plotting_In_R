@@ -81,7 +81,7 @@ patients_clean <- read.delim("data/patient-data-cleaned.txt",
 
 ## ----simple_ggplot2,eval=T,warning=FALSE,fig.height=4.5,fig.width=9------------------------------------
 ggplot(data=patients_clean,
-       aes(y=Weight,x=Height,color=Sex,
+       aes(y=Weight,x=Height,colour=Sex,
            size=BMI,shape=Pet)) + 
   geom_point()
 
@@ -119,14 +119,23 @@ suppressPackageStartupMessages(library(lubridate))
 
 ## ----present_clean_ggplot2-----------------------------------------------------------------------------
 library(ggplot2)
+patients_clean <- read.delim("data/patient-data-cleaned.txt",sep="\t")
 
-patients_clean <- read.delim("data/patient-data-cleaned.txt",
-                             sep="\t")
+class(patients_clean)
+dim(patients_clean)
 
-colnames(patients_clean)
 
-nrow(patients_clean)
+## ----present_clean2_ggplot2----------------------------------------------------------------------------
+patients_clean[1:2,]
 
+
+## ----present_clean3_ggplot2----------------------------------------------------------------------------
+patients_clean$Smokes[1:5]
+patients_clean$Height[1:5]
+
+
+## ----present_clean4_ggplot2----------------------------------------------------------------------------
+summary(patients_clean)
 
 
 ## ----ggplot_only_ggplot2,echo=!AsSlides,eval=!AsSlides-------------------------------------------------
@@ -314,10 +323,10 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- scatter_colored_ggplot2, fig.height=4, fig.width=9-----------------------------------------------
+## ---- scatter_coloured_ggplot2, fig.height=4, fig.width=9----------------------------------------------
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point(color="red")
+pcPlot+geom_point(colour="red")
 
 
 ## ---- scatter_simple_ggplot2, fig.height=4, fig.width=4,tidy=FALSE-------------------------------------
@@ -347,9 +356,9 @@ pcPlot+geom_point(size=2)
 
 ## ---- aes_in_geom_ggplot2,eval=!AsSlides,echo=!AsSlides------------------------------------------------
 pcPlot <- ggplot(data=patients_clean)
-pcPlot+geom_point(aes(x=Height,y=Weight,color=Sex))
-pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes))
-pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes,shape=Sex))
+pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
+pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
+pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
 pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 
 
@@ -358,15 +367,15 @@ pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 
 
 ## ---- aes_in_geomFS2_ggplot2,eval=AsSlides,echo=AsSlides-----------------------------------------------
-## pcPlot+geom_point(aes(x=Height,y=Weight,color=Sex))
+## pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
 
 
 ## ---- aes_in_geomFS3_ggplot2,eval=AsSlides,echo=AsSlides-----------------------------------------------
-## pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes))
+## pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
 
 
 ## ---- aes_in_geomFS4_ggplot2,eval=AsSlides,echo=AsSlides-----------------------------------------------
-## pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes,shape=Sex))
+## pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
 
 
 ## ---- aes_in_geomFS5_ggplot2,eval=AsSlides,echo=AsSlides-----------------------------------------------
@@ -401,31 +410,31 @@ if(params$isSlides == "yes"){
 
 ## ---- facet_grid_SmokesBySex_ggplot2, fig.height=4, fig.width=9----------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot + facet_grid(Smokes~Sex)
 
 
 ## ---- facet_grid_BySex_ggplot2, fig.height=4, fig.width=9----------------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot + facet_grid(~Sex)
 
 
 ## ---- facet_grid_SexBy_ggplot2, fig.height=4, fig.width=9----------------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot + facet_grid(Sex~.)
 
 
 ## ---- facet_Wrap_BySmokes_ggplot2, fig.height=4, fig.width=9-------------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Smokes)
 
 
 ## ---- facet_wrap_smokesBySexandPet_ggplot2, fig.height=4.5, fig.width=9--------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 
 
@@ -460,7 +469,7 @@ ggplot(patients_clean, aes(x=Sex, y=Weight)) + geom_boxplot()
 
 
 ## ----plotOrderCatBoxplot_ggplot2-----------------------------------------------------------------------
-summary(patients_clean$Sex)
+levels(patients_clean$Sex)
 
 
 ## ----plotOrderControlBoxplot_ggplot2, fig.height=4, fig.width=9----------------------------------------
@@ -525,25 +534,25 @@ pcPlot +
 
 ## ----scaleOthers_ggplot2, facet_grid_height_weight, fig.height=3, fig.width=8--------------------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Sex))
+                 aes(x=Height,y=Weight,colour=Sex))
 pcPlot + geom_point(size=4)
                   
 
 
 ## ---- facet_grid_height_weight_manualScale_ggplot2, fig.height=4, fig.width=9--------------------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Sex))
+                 aes(x=Height,y=Weight,colour=Sex))
 pcPlot + geom_point(size=4) + 
-  scale_color_manual(values = c("Green","Purple"),
+  scale_colour_manual(values = c("Green","Purple"),
                      name="Gender")
                   
 
 
 ## ---- facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9--------------------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Pet))
+                 aes(x=Height,y=Weight,colour=Pet))
 pcPlot + geom_point(size=4) + 
-  scale_color_brewer(palette = "Set2")
+  scale_colour_brewer(palette = "Set2")
                   
 
 
@@ -604,25 +613,25 @@ pcPlot + geom_point() +
 
 ## ---- facet_grid_height_weight_BMIgradient_ggplot2, fig.height=4, fig.width=9--------------------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
+                 aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient(low = "White",high="Red")
+  scale_colour_gradient(low = "White",high="Red")
                   
 
 
 ## ---- facet_grid_height_weight_BMIgradient2_ggplot2, fig.height=4, fig.width=9-------------------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
+                 aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient2(low = "Blue",mid="Black", high="Red",
+  scale_colour_gradient2(low = "Blue",mid="Black", high="Red",
                          midpoint = median(patients_clean$BMI))
 
 
 ## ---- facet_grid_height_weight_BMIgradient2plus_ggplot2, fig.height=3.5, fig.width=9-------------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
+                 aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient2(low = "Blue",
+  scale_colour_gradient2(low = "Blue",
                          mid="Black",
                          high="Red",
                          midpoint = median(patients_clean$BMI),
@@ -632,10 +641,10 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 
 ## ---- facet_grid_smokesBySex_scaleDisceteXContinuouswY_ggplot2, fig.height=4, fig.width=9--------------
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI,shape=Sex))
+                 aes(x=Height,y=Weight,colour=BMI,shape=Sex))
 pcPlot + geom_point(size=4,alpha=0.8)+ 
   scale_shape_discrete(name="Gender") +
-  scale_color_gradient2(low = "Blue",mid="Black",high="Red",
+  scale_colour_gradient2(low = "Blue",mid="Black",high="Red",
                          midpoint = median(patients_clean$BMI),
                          breaks=c(25,30),labels=c("Low","High"),
                          name="Body Mass Index")
@@ -677,13 +686,13 @@ pcPlot+geom_point()+stat_smooth(method="lm")
 
 ## ---- stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9-------------------------------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex))
+        mapping=aes(x=Weight,y=Height,colour=Sex))
 pcPlot+geom_point()+stat_smooth(method="lm")
 
 
 ## ---- stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9---------------------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex))
+        mapping=aes(x=Weight,y=Height,colour=Sex))
 pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
                                 inherit.aes = F)
 
@@ -692,7 +701,7 @@ pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height)) + geom_jitter()
 pcPlot + stat_summary(fun=quantile, geom="point",
-                    color="purple", size=8)
+                    colour="purple", size=8)
 
 
 ## ---- results='asis',include=TRUE,echo=FALSE-----------------------------------------------------------
@@ -734,8 +743,7 @@ pcPlot <- ggplot(data=patients_clean,
   geom_point()
 pcPlot+
   theme(
-    text = element_text(color="red"),
-    axis.text = element_text(color="red")
+    text = element_text(colour="red")
       )
 
 
@@ -743,8 +751,7 @@ pcPlot+
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot + theme(text = element_text(color="red"),
-        axis.text = element_text(color="red"),
+pcPlot + theme(text = element_text(colour="red"),
         axis.title.y = element_text(angle=0))
 
 
@@ -756,8 +763,7 @@ pcPlot + theme(text = element_text(color="red"),
 ##   facet_grid(Sex~Smokes)
 ## pcPlot+
 ##   theme(
-##     text = element_text(color="red"),
-##     axis.text = element_text(color="red"),
+##     text = element_text(colour="red"),
 ##     axis.title.y = element_text(angle=0),
 ##     axis.line = element_line(linetype = 0),
 ##     panel.background=element_rect(fill="white"),
@@ -773,8 +779,7 @@ pcPlot <- ggplot(data=patients_clean,
   facet_grid(Sex~Smokes)
 pcPlot+
   theme(
-    text = element_text(color="red"),
-    axis.text = element_text(color="red"),
+    text = element_text(colour="red"),
     axis.title.y = element_text(angle=0),
     axis.line = element_line(linetype = 0),
     panel.background=element_rect(fill="white"),
@@ -784,61 +789,41 @@ pcPlot+
 
 ## ---- legendD_ggplot2, fig.height=4, fig.width=9-------------------------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot
 
 
 ## ---- legendleft_ggplot2, fig.height=4, fig.width=9----------------------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+                                         colour=Sex))+geom_point()
 pcPlot+theme(legend.position="left")
 
 
 ## ---- legendText_ggplot2, fig.height=4, fig.width=9----------------------------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
-pcPlot+theme(legend.text = element_text(color="darkred"),
-             legend.title = element_text(size=20)
+                                         colour=Sex))+geom_point()
+pcPlot+theme(legend.text = element_text(colour="darkred"),
+             legend.title = element_text(size=20),
+             legend.position = "bottom"
              )
 
 
 ## ---- theme_custom8_ggplot2, fig.height=4, fig.width=9-------------------------------------------------
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
 pcPlot+
-  theme_bw()+
-  theme(text = element_text(color="red"))
-
-
-## ---- theme_customMiniVsBWDuck_ggplot2,echo=T,eval=F,collapse=TRUE-------------------------------------
-## pcPlot+
-##   theme(text = element_text(color="red"))
-## 
-## pcPlot+
-##   theme_minimal()+
-##   theme(text = element_text(color="red"))
-
-
-## ---- theme_customMiniVsBW_ggplot2,echo=F,eval=T,collapse=FALSE,fig.height=3, fig.width=11,message=FALSE,warning=FALSE----
-library(gridExtra)
-p <- pcPlot+
-  theme(text = element_text(color="red"))
-
-p2 <- pcPlot+
-  theme_minimal()+
-  theme(text = element_text(color="red"))
-grid.arrange(p, p2, ncol=2)
+  theme(text = element_text(colour="red"))
 
 
 ## ---- theme_custom84_ggplot2,echo=!AsSlides,eval=!AsSlides---------------------------------------------
   oldTheme <- theme_bw()
   
   newTheme_Plus <- theme_bw() +
-  theme(text = element_text(color="red"))
+  theme(text = element_text(colour="red"))
   
   newTheme_Replace <- theme_bw() %+replace%
-  theme(text = element_text(color="red"))
+  theme(text = element_text(colour="red"))
   
   oldTheme$text
   newTheme_Plus$text
@@ -849,10 +834,10 @@ grid.arrange(p, p2, ncol=2)
 ##   oldTheme <- theme_bw()
 ## 
 ##   newTheme_Plus <- theme_bw() +
-##   theme(text = element_text(color="red"))
+##   theme(text = element_text(colour="red"))
 ## 
 ##   newTheme_Replace <- theme_bw() %+replace%
-##   theme(text = element_text(color="red"))
+##   theme(text = element_text(colour="red"))
 
 
 ## ---- theme_custom84FS2_ggplot2,echo=AsSlides,eval=AsSlides--------------------------------------------
@@ -866,6 +851,12 @@ grid.arrange(p, p2, ncol=2)
 ## ---- theme_custom84FS4_ggplot2,echo=AsSlides,eval=AsSlides--------------------------------------------
 ## 
 ##   newTheme_Replace$text
+
+
+## ---- theme_custom84FS4wd_ggplot2,echo=AsSlides,eval=FALSE---------------------------------------------
+## newTheme <- theme_bw()
+## theme_set(newTheme)
+## myTheme <- theme_get()
 
 
 ## ---- results='asis',include=TRUE,echo=FALSE-----------------------------------------------------------
