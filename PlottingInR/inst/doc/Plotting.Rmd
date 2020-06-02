@@ -1,5 +1,5 @@
 ---
-title: "Exercise Set - Base Plotting"
+title: "Base Plotting"
 author: "Rockefeller University, Bioinformatics Resource Centre"
 date: "https://rockefelleruniversity.github.io/Plotting_In_R/"
 output: 
@@ -10,44 +10,44 @@ output:
 ---
 
 <p>&nbsp;</p>
-Answers for the exercises that cover base plotting for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
+These exercises cover base plotting for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,eval=T)
+```{r, setup,include=FALSE}
+toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
+message(toMessage)
 ```
 
-
-##Exercise 1
+## Exercise 1
 Read in the data "timecourse.csv" as a data.frame and get a summary of column values
 
-```{r,eval=TRUE,echo=FALSE,include=FALSE}
+```{r,echo=toMessage}
 timeCourse <- read.delim("./data/timecourse.csv",sep=",",header = T) 
 summary(timeCourse)
 ```
 
-```{r,eval=FALSE}
+```{r,echo=toMessage}
 timeCourse <- read.delim("./data/timecourse.csv",sep=",",header = T) 
 summary(timeCourse)
 ```
 
-##Exercise 2
+## Exercise 2
 Produce a histogram of the values for control and treatment samples
-```{r}
+```{r,echo=toMessage}
 hist(as.matrix(timeCourse)[,2:3],main = "Control",xlab = "Control")
 hist(as.matrix(timeCourse)[,4:5],main = "Treatment",xlab = "Treatment")
 ```
 
-##Exercise 3
+## Exercise 3
 Put these in the same plot with same X scale limits
-```{r}
+```{r,echo=toMessage}
 par(mfrow=c(2,1))
 hist(as.matrix(timeCourse)[,2:3],xlim = c(0,20),main = "Control",xlab = "Control")
 hist(as.matrix(timeCourse)[,4:5],xlim = c(0,20),main = "Treatment",xlab = "Treatment")
 ```
 
-##Exercise 4
+## Exercise 4
 Make a barplot of values in control sample 1 for every time point
-```{r}
+```{r,echo=toMessage}
 par(mfrow=c(1,1))
 
 control1 <- timeCourse[,2]
@@ -55,9 +55,9 @@ barplot(control1,names.arg = timeCourse[,2],xlab = "Time")
 
 ```
 
-##Exercise 5
+## Exercise 5
 Make a barplot of mean values in control and treatment samples side by side for every time point
-```{r}
+```{r,echo=toMessage}
 par(mfrow=c(1,1))
 
 controlMeans <- rowMeans(timeCourse[,c(2,3)])
@@ -72,7 +72,7 @@ legend("topleft",legend = c("Control","Treatment"),fill=c("blue","red"))
 ## Exercise 6
 Create a line graph showing control and treatment samples against time.
 
-```{r}
+```{r,echo=toMessage}
 topOfY <- max(timeCourse[,-1])+3
  
 plot(timeCourse[,2],type="o",xlab="Time",ylab="Score",pch=1,ylim=c(0,topOfY),col="blue") 
