@@ -1,5 +1,5 @@
 ---
-title: "Exercise Set 2 - Scales, Statistics and Themes"
+title: "Scales, Statistics and Themes"
 author: "Rockefeller University, Bioinformatics Resource Centre"
 date: "https://rockefelleruniversity.github.io/Plotting_In_R/"
 output: 
@@ -12,8 +12,10 @@ output:
 <p>&nbsp;</p>
 Answers for the exercises that cover the scales, statistics and themes of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, eval=T)
+
+```{r, setup,include=FALSE}
+toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
+message(toMessage)
 ```
 
 ## Exercise 2
@@ -24,7 +26,7 @@ In these exercises we look at adjusting the scales and themes of our plots.
 
 1. Using the patient dataset from earlier, generate a scatter plot of BMI versus Weight
 
-```{r exerciseReadin, echo=T,eval=T}
+```{r,echo=toMessage}
 library(ggplot2)
 
 patients_clean <- read.delim("./data/patients_clean_ggplot2.txt",sep="\t")
@@ -37,7 +39,7 @@ plot
 2. With the plot above, from exercise 1, adjust the BMI axis to show only labels for 20, 30, 40 and the weight axis to show breaks for 60 to 100 in steps of 5 as well as to specify units in y axis label. 
 
 
-```{r exercise1}
+```{r,echo=toMessage}
 plot <- ggplot(data=patients_clean,
                mapping=aes(x=BMI,y=Weight))+geom_point()
 plot+scale_x_continuous(breaks=c(20,30,40),label=c(20,30,40),limits=c(20,40))+
@@ -49,7 +51,7 @@ plot+scale_x_continuous(breaks=c(20,30,40),label=c(20,30,40),limits=c(20,40))+
 
 3. Create a violin plot of BMI by Age where violins are filled using a sequential colour palette.
 
-```{r exercise2}
+```{r,echo=toMessage}
 plot <- ggplot(data=patients_clean,
                mapping=aes(x=factor(Age),y=BMI))+geom_violin(aes(fill=factor(Age)))+
                scale_fill_brewer(palette="Blues", na.value="black")
@@ -58,7 +60,7 @@ plot <- ggplot(data=patients_clean,
 4. Create a scatterplot of BMI versus Weight and add a continuous colour scale for the height. Make the colour scale  with a midpoint (set to mean point) colour of gray and extremes of blue (low) and yellow (high).
 
 
-```{r exercise3}
+```{r,echo=toMessage}
 library(ggplot2)
 
 plot <- ggplot(data=patients_clean,
@@ -69,7 +71,7 @@ plot
 
 5. Adjust the plot from exercise 4 using scales to remove values greater than 180.
 
-```{r exercise4}
+```{r,echo=toMessage}
 library(ggplot2)
 
 plot <- ggplot(data=patients_clean,
@@ -83,7 +85,7 @@ plot
 
 6. Adjust the scale legend from plot in exercise 4 to show only 75%, median and min values in scale legend.
 
-```{r exercise5}
+```{r,echo=toMessage}
 library(ggplot2)
 
 plot <- ggplot(data=patients_clean,
@@ -103,7 +105,7 @@ plot
 6. With the plot from exercise 4, create another scatterplot with Count variable mapped to transparency/alpha and size illustrating whether a person is overweight. 
 Is there a better combination of aesthetic mappings?
 
-```{r exercise6}
+```{r,echo=toMessage}
 
 library(ggplot2)
 
@@ -117,7 +119,7 @@ plot
 7. Recreate the scatterplot of BMI by height. Colour by Age group and add fitted lines (but no SE lines) for each Age group. 
 
 
-```{r exercise7}
+```{r,echo=toMessage}
 
 library(ggplot2)
 
@@ -131,7 +133,7 @@ plot
 
 8. Remove the legend title from plot in exercise 7, change the background colours of legend panels to white and place legend at bottom of plot.
 
-```{r exercise8}
+```{r,echo=toMessage}
 
 
 plot <- ggplot(data=patients_clean,
@@ -144,7 +146,7 @@ plot
 
 9. Add a title to the plot, remove minor grid lines and save to 7 by 7 inch plot on disk.
 
-```{r exercise9}
+```{r,echo=toMessage}
 
 
 plot <- ggplot(data=patients_clean,
