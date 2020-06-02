@@ -1,0 +1,8 @@
+###  Plotting in with ggplot2
+
+In this session we introduce plotting using ggplot2.
+Session sections:
+
+* Introduction to Grammar of Graphics
+* Plotting using ggplot2
+* Custom themes and styles in ggplot2
