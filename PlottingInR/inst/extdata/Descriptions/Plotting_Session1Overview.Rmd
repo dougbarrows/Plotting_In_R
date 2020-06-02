@@ -1,0 +1,8 @@
+###  Plotting in R base
+
+This section focuses on plotting using R base graphics.
+Session sections:
+
+* Introduction to R plotting
+* Plot Types
+* Saving plots
