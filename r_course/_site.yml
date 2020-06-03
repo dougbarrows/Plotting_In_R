@@ -1,0 +1,56 @@
+output_dir: '.'
+navbar:
+  title: Plotting in R
+  left:
+  - text: Home
+    href: index.html
+  - text: Slides
+    menu:
+    - text: Session1
+      menu:
+      - text: Slide
+        href: presentations/slides/basePlotting.html
+      - text: Single Page
+        href: presentations/singlepage/basePlotting.html
+      - text: Code
+        href: presentations/r_code/basePlotting.R
+    - text: Session2
+      menu:
+      - text: Slide
+        href: presentations/slides/ggplot2.html
+      - text: Single Page
+        href: presentations/singlepage/ggplot2.html
+      - text: Code
+        href: presentations/r_code/ggplot2.R
+  - text: Exercises
+    menu:
+    - text: Plotting
+      menu:
+      - text: Exercise
+        href: exercises/exercises/Plotting_exercise.html
+      - text: Solution
+        href: exercises/answers/Plotting_answers.html
+    - text: ggplot2_1
+      menu:
+      - text: Exercise
+        href: exercises/exercises/ggplot2_1_exercise.html
+      - text: Solution
+        href: exercises/answers/ggplot2_1_answers.html
+    - text: ggplot2_2
+      menu:
+      - text: Exercise
+        href: exercises/exercises/ggplot2_2_exercise.html
+      - text: Solution
+        href: exercises/answers/ggplot2_2_answers.html
+  right:
+  - text: Getting help!
+    href: https://github.com//RockefellerUniversity/Plotting_In_R/issues
+  - href: https://twitter.com/Rockefeller_BRC
+    icon: ion-social-twitter
+output:
+  html_document:
+    toc: yes
+    theme: cosmo
+    toc_float: yes
+    highlight: textmate
+
