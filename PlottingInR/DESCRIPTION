@@ -1,14 +1,14 @@
 Package: PlottingInR
 Type: Package
 Title: Plotting in R
-Version: 0.1.2
+Version: 0.1.3
 Author: Ji-Dung Luo, Matt Paul, Wei Wang, Doug Barrows and Thomas Carroll.
 Maintainer: Thomas Carroll <tc.infomatics@gmail>
 Description: More about what it does (maybe more than one line)
 License: What license is it under?
 LazyData: TRUE
 biocViews: Training
-Depends: ggplot2, rmarkdown, viridis, scales, tidyR, lubridate
+Depends: ggplot2, rmarkdown, viridis, scales, tidyr, lubridate
 Suggests: knitr,
     rmarkdown,
     testthat,
