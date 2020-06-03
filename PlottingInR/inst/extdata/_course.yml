@@ -1,4 +1,5 @@
 Description:
+  CourseName: Plotting in R
   OverviewRmd: CourseOverview.Rmd
 Presentations:
   titles: Session1 Session2
