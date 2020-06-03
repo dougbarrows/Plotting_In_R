@@ -7,10 +7,12 @@ output:
     number_sections: false  ## if you want number sections at each table header
     theme: united  # many options for theme, this one is my favorite.
     highlight: tango  # specifies the syntax highlighting style
+params:
+  toMessage: false    
 ---
 
 <p>&nbsp;</p>
-These answers are for the exercises that cover the Geoms and Aesthetics of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
+These exercises cover the Geoms and Aesthetics of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
 
 ```{r, setup,include=FALSE}
 toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)

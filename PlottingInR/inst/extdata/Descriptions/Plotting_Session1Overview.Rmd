@@ -1,4 +1,6 @@
-###  Plotting in R base
+<br>
+
+####  **Plotting in R base**
 
 This section focuses on plotting using R base graphics.
 Session sections:
