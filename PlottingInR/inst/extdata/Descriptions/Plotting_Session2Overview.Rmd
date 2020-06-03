@@ -1,4 +1,6 @@
-###  Plotting in with ggplot2
+<br>
+
+####  **Plotting in with ggplot2**
 
 In this session we introduce plotting using ggplot2.
 Session sections:
