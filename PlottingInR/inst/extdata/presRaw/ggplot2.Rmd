@@ -783,9 +783,9 @@ patients_clean %>%
 
 # Exercise set 1
 
-[Link_to_exercises](../../exercises/ggplot2_1_exercise.html)
+[Link_to_exercises](../../exercises/exercises/ggplot2_1_exercise.html)
 
-[Link_to_answers](../../answers/ggplot2_1_answers.html)
+[Link_to_answers](../../exercises/answers/ggplot2_1_answers.html)
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -1613,9 +1613,9 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 # Exercise set 2
 
-[Link_to_exercises](../../exercises/ggplot2_2_exercise.html)
+[Link_to_exercises](../../exercises/exercises/ggplot2_2_exercise.html)
 
-[Link_to_answers](../../answers/ggplot2_2_answers.html)
+[Link_to_answers](../../exercises/answers/ggplot2_2_answers.html)
 
 ---
 # References
