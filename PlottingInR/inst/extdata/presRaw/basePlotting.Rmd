@@ -384,10 +384,10 @@ axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 
 We can make our y axis with horizontal labels that display ticks at every 20 marks in a similar way.
 
-We specify our **side** and use **rep()** function to make axis tick postions for **at** argument. We can use our y-axis range again to help define how many ticks we need.
+We specify our **side** and use **seq()** function to make axis tick postions for **at** argument. We can use our y-axis range again to help define how many ticks we need.
 
 ```{r axisSides_basePlotting,eval=FALSE}
-axis(2, las=1, at=rep(0,g_range[2],by=20))
+axis(2, las=1, at=seq(0,g_range[2],by=20))
 ```
 
 ```{r axisSidesEval_basePlotting,eval=TRUE,echo=FALSE,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"}
