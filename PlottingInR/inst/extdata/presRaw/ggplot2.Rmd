@@ -947,7 +947,7 @@ For more details on palette sizes and styles visit the colorbrewer website and g
 
 - [Colorbrewer](http://colorbrewer2.org/)
 
-- [ggplot2 colour scales](http://docs.ggplot2.org/current/scale_brewer.html)
+- [ggplot2 colour scales](https://ggplot2.tidyverse.org/reference/scale_brewer.html)
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
