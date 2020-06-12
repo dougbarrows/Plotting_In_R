@@ -1,7 +1,9 @@
 Description:
+  CourseName: Plotting in R
   OverviewRmd: CourseOverview.Rmd
 Presentations:
   titles: Session1 Session2
   PresRmd: basePlotting.Rmd ggplot2.Rmd
   PresOverviewRmd: Plotting_Session1Overview.Rmd Plotting_Session2Overview.Rmd
   Exercises: Plotting.Rmd ggplot2_1.Rmd,ggplot2_2.Rmd
+  

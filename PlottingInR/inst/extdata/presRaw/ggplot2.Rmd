@@ -783,9 +783,9 @@ patients_clean %>%
 
 # Exercise set 1
 
-[Link_to_exercises](../../exercises/ggplot2_1_exercise.html)
+[Link_to_exercises](../../exercises/exercises/ggplot2_1_exercise.html)
 
-[Link_to_answers](../../answers/ggplot2_1_answers.html)
+[Link_to_answers](../../exercises/answers/ggplot2_1_answers.html)
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -947,7 +947,7 @@ For more details on palette sizes and styles visit the colorbrewer website and g
 
 - [Colorbrewer](http://colorbrewer2.org/)
 
-- [ggplot2 colour scales](http://docs.ggplot2.org/current/scale_brewer.html)
+- [ggplot2 colour scales](https://ggplot2.tidyverse.org/reference/scale_brewer.html)
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -1059,13 +1059,8 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 ```
 
 ---
-<<<<<<< HEAD
 ## Color
 Similarly we can use the scale_color_gradient2 function which allows for the specification of a midpoint value and its associated color.
-=======
-## Continuous scales - colour
-Similarly we can use the scale_colour_gradient2 function which allows for the specification of a midpoint value and its associated colour.
->>>>>>> upstream/master
 
 ```{r, facet_grid_height_weight_BMIgradient2_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
@@ -1613,9 +1608,9 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 # Exercise set 2
 
-[Link_to_exercises](../../exercises/ggplot2_2_exercise.html)
+[Link_to_exercises](../../exercises/exercises/ggplot2_2_exercise.html)
 
-[Link_to_answers](../../answers/ggplot2_2_answers.html)
+[Link_to_answers](../../exercises/answers/ggplot2_2_answers.html)
 
 ---
 # References
