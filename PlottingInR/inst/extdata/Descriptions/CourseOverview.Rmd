@@ -17,7 +17,7 @@
 This course introduces plotting in R.
 
 The course consists of 2 sections, 1 on base R plotting and a second on plotting using ggplot2.
-Each section is presented as HTMl presentations or single page document. Exercises and answer sheets are included after all subsections to practice techniques and provide future reference examples.
+Each section is presented as HTML presentations or single page document. Exercises and answer sheets are included after all subsections to practice techniques and provide future reference examples.
 
 Course material and exercises are available to view as rendered HTML at https://rockefelleruniversity.github.io/Plotting_In_R/.
 All material is available to download under GPL v2 license.
