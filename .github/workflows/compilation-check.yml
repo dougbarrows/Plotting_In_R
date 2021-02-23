@@ -39,7 +39,7 @@ on:
       - master
       - 'RELEASE_*'
 
-name: R-CMD-check-bioc
+name: compilation-check
 
 ## These environment variables control whether to run GHA code later on that is
 ## specific to testthat, covr, and pkgdown.
@@ -69,7 +69,7 @@ jobs:
           echo $imagename
           ## Save the information for the next job
           echo "::set-output name=imagename::${imagename}"
-  R-CMD-check-bioc:
+  compilation-check:
     ## This job then checks the R package using the Bioconductor docker that
     ## was defined by the previous job. This job will determine what version of
     ## R to use for the macOS and Windows builds on the next job.
