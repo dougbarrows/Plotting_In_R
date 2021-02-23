@@ -65,7 +65,7 @@ jobs:
       - id: findinfo
         run: |
           ## Define the image name and print the information
-          imagename="bioconductor/bioconductor_docker
+          imagename="bioconductor/bioconductor_docker"
           echo $imagename
           ## Save the information for the next job
           echo "::set-output name=imagename::${imagename}"
@@ -133,12 +133,6 @@ jobs:
       - id: findrversion
         name: Find Bioc and R versions
         run: |
-          ## Find what branch we are working on
-          if echo "$GITHUB_REF" | grep -q "master"; then
-              biocversion="devel"
-          elif echo "$GITHUB_REF" | grep -q "RELEASE_"; then
-              biocversion="release"
-          fi
           ## Define the R and Bioconductor version numbers
           biocversionnum=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == 'release')[, 'Bioc']; cat(as.character(res))")
           rversion=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == 'release')[, 'R']; cat(as.character(res))")
