@@ -11,7 +11,7 @@ if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 if(params$isSlides != "yes"){
   cat("# Plotting in R with ggplot2
   
-
+---
 "    
   )
   
@@ -27,13 +27,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Grammar of Graphics
   
-
+---
 "    
   )
   
@@ -95,13 +95,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Getting Started With ggplot2
   
-
+---
 "    
   )
   
@@ -171,12 +171,6 @@ pcPlot
 
 
 
-## ----ggplot_simple_geom_point_ggplot2, fig.height=5, fig.width=8--------------
-pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point()
-
-
 ## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
@@ -185,18 +179,24 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Geoms
   
-
+---
 "    
   )
   
 }
 
+
+
+## ----ggplot_simple_geom_point_ggplot2, fig.height=5, fig.width=8--------------
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Height,y=Weight))
+pcPlot+geom_point()
 
 
 ## ---- line_simple_ggplot2, fig.height=5, fig.width=8--------------------------
@@ -278,13 +278,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Aesthetics
   
-
+---
 "    
   )
   
@@ -347,13 +347,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Facets
   
-
+---
 "    
   )
   
@@ -379,10 +379,16 @@ pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 pcPlot + facet_grid(Sex~.)
 
 
-## ---- facet_Wrap_BySmokes_ggplot2, fig.height=4, fig.width=9------------------
+## ---- facet_Wrap_BySmokes_ggplot2, fig.height=4, fig.width=9, eval=F----------
+## pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+##                                          colour=Sex))+geom_point()
+## pcPlot + facet_wrap(~Smokes)
+
+
+## ---- facet_Wrap_BySmokes_ggplot2_2, fig.height=4, fig.width=9, eval=T, echo=F----
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
-pcPlot + facet_wrap(~Smokes)
+pcPlot + facet_wrap(~Smokes)+ theme(strip.text.x = element_text(size = 8))
 
 
 ## ---- facet_wrap_smokesBySexandPet_ggplot2, fig.height=4.5, fig.width=9-------
@@ -391,7 +397,7 @@ pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 
 
-## ---- facet_grid_smokesBySexandPet_ggplot2, fig.height=5, fig.width=9---------
+## ---- facet_grid_smokesBySexandPet_ggplot2_2, fig.height=5, fig.width=12------
 pcPlot + facet_grid(Smokes~Sex+Pet)
 
 
@@ -403,13 +409,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Plotting Order
   
-
+---
 "    
   )
   
@@ -445,13 +451,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Scales
   
-
+---
 "    
   )
   
@@ -517,13 +523,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Continuous Scales
   
-
+---
 "    
   )
   
@@ -611,13 +617,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Transformations
   
-
+---
 "    
   )
   
@@ -665,13 +671,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Themes
   
-
+---
 "    
   )
   
@@ -700,7 +706,7 @@ pcPlot+
       )
 
 
-## ---- theme_custom1_ggplot2, fig.height=3, fig.width=9------------------------
+## ---- theme_custom1_ggplot2, fig.height=4.5, fig.width=9----------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
@@ -740,19 +746,19 @@ pcPlot+
     )
 
 
-## ---- legendD_ggplot2, fig.height=4, fig.width=9------------------------------
+## ---- legendD_ggplot2, fig.height=5, fig.width=9------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot
 
 
-## ---- legendleft_ggplot2, fig.height=4, fig.width=9---------------------------
+## ---- legendleft_ggplot2, fig.height=5, fig.width=9---------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot+theme(legend.position="left")
 
 
-## ---- legendText_ggplot2, fig.height=4, fig.width=9---------------------------
+## ---- legendText_ggplot2, fig.height=4, fig.width=8---------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot+theme(legend.text = element_text(colour="darkred"),
@@ -761,7 +767,7 @@ pcPlot+theme(legend.text = element_text(colour="darkred"),
              )
 
 
-## ---- theme_custom8_ggplot2, fig.height=4, fig.width=9------------------------
+## ---- theme_custom8_ggplot2, fig.height=5, fig.width=9------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
@@ -793,13 +799,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Titles and Labels
   
-
+---
 "    
   )
   
@@ -807,14 +813,14 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- theme_labs_ggplot2,fig.height=4, fig.width=9----------------------------
+## ---- theme_labs_ggplot2,fig.height=5, fig.width=9----------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 
 
-## ---- theme_ggtitle_ggplot2,fig.height=4, fig.width=9-------------------------
+## ---- theme_ggtitle_ggplot2,fig.height=5, fig.width=9-------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
@@ -829,13 +835,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Saving Plots
   
-
+---
 "    
   )
   
