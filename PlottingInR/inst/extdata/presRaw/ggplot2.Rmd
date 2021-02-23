@@ -702,7 +702,7 @@ pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 pcPlot + facet_wrap(~Smokes)
 ```
 
-```{r, facet_Wrap_BySmokes_ggplot2, fig.height=4, fig.width=9, eval=T, echo=F}
+```{r, facet_Wrap_BySmokes_ggplot2_2, fig.height=4, fig.width=9, eval=T, echo=F}
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Smokes)+ theme(strip.text.x = element_text(size = 8))
@@ -724,7 +724,7 @@ pcPlot + facet_wrap(~Pet+Smokes+Sex)
 ## Multiple variables
 Or in a nice grid format using facet_grid() and the Smokes variable against a combination of Gender and Pet.
 
-```{r, facet_grid_smokesBySexandPet_ggplot2, fig.height=5, fig.width=12}
+```{r, facet_grid_smokesBySexandPet_ggplot2_2, fig.height=5, fig.width=12}
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
