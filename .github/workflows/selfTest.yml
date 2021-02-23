@@ -140,8 +140,8 @@ jobs:
               biocversion="release"
           fi
           ## Define the R and Bioconductor version numbers
-          biocversionnum=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == "release")[, 'Bioc']; cat(as.character(res))")
-          rversion=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == "release")[, 'R']; cat(as.character(res))")
+          biocversionnum=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == 'release')[, 'Bioc']; cat(as.character(res))")
+          rversion=$(Rscript -e "info <- BiocManager:::.version_map_get_online('https://bioconductor.org/config.yaml'); res <- subset(info, BiocStatus == 'release')[, 'R']; cat(as.character(res))")
           ## Print the results
           echo $biocversionnum
           echo $rversion
