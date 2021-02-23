@@ -1,8 +1,18 @@
 ## Course Overview
 
+### Course Integrity
+**This course is compiled automatically on _`r Sys.Date()`_ **
 <br>
 [<img src="https://github.com/RockefellerUniversity/Plotting_In_R/workflows/R-CMD-check-bioc/badge.svg">](https://github.com/RockefellerUniversity/Plotting_In_R/actions?query=workflow%3AR-CMD-check-bioc)
 
+**The course is tested and available on MacOS, Windows and Ubuntu Linux for `r R.Version()$version.string`**
+<br>
+[<img src="https://github.com/RockefellerUniversity/Plotting_In_R/workflows/R-CMD-check/badge.svg">](https://github.com/RockefellerUniversity/Plotting_In_R/actions?query=workflow%3AR-CMD-check)
+
+<br>
+<br>
+
+### Overview
 
 This course introduces plotting in R.
 
