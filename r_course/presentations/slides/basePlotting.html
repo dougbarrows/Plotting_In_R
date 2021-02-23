@@ -4,6 +4,7 @@
     <title>Introduction to Plotting</title>
     <meta charset="utf-8" />
     <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="metropolisCustom.css" type="text/css" />
     <link rel="stylesheet" href="metropolis-fontsCustom.css" type="text/css" />
@@ -310,12 +311,14 @@ plot(treatment, type="l", col="dodgerblue")
   ]
 
 ---
+## Choosing colors
 
 You can find an extensive list of R colors here.
 
 [R color Chart](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf)
 
 ---
+## Other parameters
 
 Review **?plot** and **?par** for complete list of options.
 
@@ -334,7 +337,7 @@ plot(treatment,control)
 
 ---
 ## Plot multiple vectors
-But we often want mulitple lines in same plot. So if we want to plot scores for control and treatment against position we will need a new method.
+We often want multiple lines in same plot. So if we want to plot scores for control and treatment against position we will need a new method.
 
 We can add an additional line to our existing plot using the **lines()** function.
 
@@ -370,7 +373,8 @@ Instead of defining the axis limits explicitly we can compute the y-axis values 
 range() returns a vector containing the minimum and maximum of all the given arguments.
 
 
-Calculate range from 0 to max value of data
+Calculate range from 0 to max value of data.
+
 
 ```r
 g_range &lt;- range(0, treatment, control)
@@ -467,11 +471,25 @@ Other things we can do is also differentiate thickness.
 &lt;img src="basePlotting_files/figure-html/readability_basePlotting-1.png" width="1920px" /&gt;
 
 ---
+## Put it all together
+To make that final plot you can see that there are many lines of code we put together. 
+
+```r
+plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
+axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(2, las=1, at=20*0:g_range[2])
+box()
+
+lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
+legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
+```
+
+---
 ## Color blindness and palettes
 
-~4% of people are color blind. In white males this number raises to ~10%. With the demographics in science, there will likely be someone with color blindness at most meetings.
+~4% of people are color blind. In white males this number raises to ~10%. Considering the demographics in science, there will likely be someone with color blindness in your meeting.
 
-Packages exist that contain color blind friendly palettes like [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). There are many color palettes packages like viridis. To get colors you just have to call the function with the number of colors you want. 
+Palette packages exist that contain a curated collection colors. These can be themed for anything, from La Croix flavors to Pokemon. A list of palettes can be found [here](https://github.com/EmilHvitfeldt/paletteer). Some of the more useful palettes are designed to be color blind friendly, like [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). To get colors from the package you just have to call the function with the number of colors you want. 
 
 
 
@@ -681,7 +699,7 @@ We use the function **t** to return the transpose of a matrix. This means rows a
 dotchart(t(data))  
 ```
 
-&lt;img src="basePlotting_files/figure-html/dotchartEval_basePlotting-1.png" width="1500px" /&gt;
+&lt;img src="basePlotting_files/figure-html/dotchartEval_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 ## Customization
@@ -694,7 +712,7 @@ Now we create a colored dotchart for autos with smaller labels.
 dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
 ```
 
-&lt;img src="basePlotting_files/figure-html/dotchartColEval_basePlotting-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/dotchartColEval_basePlotting-1.png" width="1000px" /&gt;
 
 ---
 class: inverse, center, middle
@@ -946,7 +964,7 @@ dev.off()
 
 PDFs are maybe the most useful format to export into. PDFs are vector-based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
 
-PDFs can then be opened in imaging software like illustrator or inkscape. This allows full customization of aesthetic with a graphic user interface. Furthermore as they are vector-based, they can be easily assembled into publication quality figures without pixelation. 
+PDFs can then be opened in imaging software like illustrator or [inkscape](https://inkscape.org/) (this is a open source and free software). When you open a PDF in these programs you can fully customize the plots to your aesthetic with a graphic user interface. Furthermore as they are vector-based, they can be easily assembled into publication quality figures without resolution issues and pixelation. 
 
 
 ```r
@@ -964,16 +982,19 @@ Exercise on base plotting can be found [here](../../exercises/exercises/Plotting
 Answers for baseplotting can be found [here](../../exercises/answers/Plotting_answers.html)
 
 ---
-# Help while plotting
+## Help while plotting
 
 * Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
 
 * Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
 
 ---
-# Contact
+## Contact
 
 Any suggestions, comments, edits or questions (about content or the slides themselves) please reach out to our [GitHub](https://github.com/RockefellerUniversity/Plotting_In_R/issues) and raise an issue.
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

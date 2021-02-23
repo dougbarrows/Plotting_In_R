@@ -4,6 +4,7 @@
     <title>Introduction to ggplot2</title>
     <meta charset="utf-8" />
     <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="metropolisCustom.css" type="text/css" />
     <link rel="stylesheet" href="metropolis-fontsCustom.css" type="text/css" />
@@ -33,16 +34,16 @@ Graphics in R may be created by many different methods including base graphics a
 ---
 ## ggplot2
 
-The ggplot2 package was created by Hadley Wickham and provides a intuitive plotting system to rapidly generate publication quality graphics.
+The ggplot2 package was created by Hadley Wickham to provide an intuitive plotting system to rapidly generate publication quality graphics.
 
 ggplot2 builds on the concept of the "Grammar of Graphics" (Wilkinson 2005, Bertin 1983) which describes a consistent syntax for the construction of a wide range of complex graphics by a concise description of their components.
 
-ggplot2 is a core part of the tidyverse, a group of packages designed to make data science easy and functional in R. For an introduction to these concepts check out our [tidy workshop](https://rockefelleruniversity.github.io/RU_tidyverse/).
+ggplot2 is a core part of the Tidyverse, a group of packages designed to make data science easy and functional in R. To get an introduction to the core concepts of Tidyverse check out our training materials [here](https://rockefelleruniversity.github.io/RU_tidyverse_core/).
 
 ---
 ## Why use ggplot2
 
-The structured syntax and high level of abstraction used by ggplot2 should allow for the user to concentrate on the visualisations instead of creating the underlying code.
+The structured syntax and high level of abstraction used by ggplot2 should allow for the user to concentrate on the visualizations instead of creating the underlying code.
 
 On top of this central philosophy ggplot2 has:
 
@@ -429,18 +430,7 @@ pcPlot
 ```
 
 ![](ggplot2_files/figure-html/ggplot_aes_geom_display_ggplot2-1.png)&lt;!-- --&gt;
----
-## Our first ggplot2 graph
-More typically, the data and aesthetics are defined within ggplot function and geoms applied afterwards.
 
-
-```r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point()
-```
-
-![](ggplot2_files/figure-html/ggplot_simple_geom_point_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
 class: inverse, center, middle
@@ -451,12 +441,22 @@ class: inverse, center, middle
 
 ---
 
+---
+## Our first ggplot2 graph
+More typically, the data and aesthetics are defined within ggplot function and geoms applied afterwards. This makes it easier to switch between plot types to find the best way to visualize your data.
+
+
+```r
+pcPlot &lt;- ggplot(data=patients_clean,
+                 mapping=aes(x=Height,y=Weight))
+pcPlot+geom_point()
+```
+
+![](ggplot2_files/figure-html/ggplot_simple_geom_point_ggplot2-1.png)&lt;!-- --&gt;
 
 ## Plot types
 
-As we have seen, an important element of a ggplot is the geom used. Following the specification of data, the geom describes the type of plot used.
-
-Several geoms are available in ggplot2:
+There are many geoms available in ggplot2:
 
 * geom_point() - Scatter plots
 * geom_line() - Line plots
@@ -580,11 +580,11 @@ pcPlot_violin
 
 ---
 ## There are a world of geoms 
-An overview of geoms and thier arguments can be found at ggplot2 documentation or within the ggplot2 cheatsheet.
+An overview of geoms and thier arguments can be found in the ggplot2 documentation or within the ggplot2 quick reference guides.
 
 - [ggplot2 documentation](https://ggplot2.tidyverse.org/)
 
-- [ggplot2 Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
+- [ggplot2 guide](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 
 ---
@@ -634,7 +634,7 @@ pcPlot+geom_point()
 
 ---
 ## Color
-Now we can adjust the aes mapping by supplying an argument to the color parameter in the aes function. (Note that ggplot2 accepts "color" or "color" as parameter name)
+Now we can adjust the aes mapping by supplying an argument to the color parameter in the aes function. (Note that ggplot2 accepts "color" or "colour" as parameter name)
 
 
 This simple adjustment allows for identification of the separation between male and female measurements for height and weight.
@@ -710,11 +710,11 @@ Again, for a comprehensive list of parameters and aesthetic mappings used in geo
 ?geom_point
 ```
 
-or visit the ggplot2 documentations pages and cheatsheet
+or visit the ggplot2 documentations pages and quick reference:
 
 - [ggplot2 documentation](http://docs.ggplot2.org/current/)
 
-- [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
+- [Quick Reference](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 
 ---
@@ -756,7 +756,7 @@ pcPlot + facet_grid(Smokes~Sex)
 ---
 ## Split by 1 factor
 
-To split by one factor we can apply the facet_grid() function ommiting the variable before the "~"" to facet along columns in plot.
+To split by one factor we use the the facet_grid() function again, but omit the variable before the "~". This will facet along columns in plot.
 
 &lt;div align="center"&gt;
 facet_grid(~Columns)
@@ -773,7 +773,7 @@ pcPlot + facet_grid(~Sex)
 ---
 ## Split by 1 factor
 
-To split along rows in plot, the variable is placed before the "~.".
+Similarly, to split along rows in plot, the variable is placed before the "~.".
 
 &lt;div align="center"&gt;
 facet_grid(Rows~.)
@@ -802,7 +802,9 @@ pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 pcPlot + facet_wrap(~Smokes)
 ```
 
-![](ggplot2_files/figure-html/facet_Wrap_BySmokes_ggplot2-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/facet_Wrap_BySmokes_ggplot2_2-1.png)&lt;!-- --&gt;
+
+
 
 ---
 ## Multiple variables
@@ -826,7 +828,7 @@ Or in a nice grid format using facet_grid() and the Smokes variable against a co
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
-![](ggplot2_files/figure-html/facet_grid_smokesBySexandPet_ggplot2-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/facet_grid_smokesBySexandPet_ggplot2_2-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -852,7 +854,7 @@ ggplot(patients_clean, aes(x=Sex, y=Weight)) + geom_boxplot()
 ---
 ## Plotting order and factors
 
-Here, R decides the order to arrange the boxes according to the `levels` of the categorical variable. By default this is the alphabetical order. i.e. Female before Male.
+Here, R decides the order to arrange the boxes according to the `levels` of the categorical variable. If there are no levels or the levels are not ordered it defaults to the alphabetical order. i.e. Female before Male.
 
 
 ```r
@@ -865,7 +867,7 @@ levels(patients_clean$Sex)
 
 ---
 ## Plotting order and factors
-Depending on the message we want the plot to convey, we might want control over the order of boxes. The `factor` functions allows us to explictly change the order of the levels.
+Depending on the message we want the plot to convey, we might want control over the order of boxes. The `factor` functions allows us to explicitly change the order of the levels.
 
 
 ```r
@@ -880,12 +882,11 @@ ggplot(patients_clean,aes(x=Sex, y=Weight)) + geom_boxplot()
 
 
 ---
+Exercise on the principles of ggplot can be found [here](../../exercises/exercises/ggplot2_1_exercise.html)
 
-# Exercise set 1
+---
 
-[Link_to_exercises](../../exercises/exercises/ggplot2_1_exercise.html)
-
-[Link_to_answers](../../exercises/answers/ggplot2_1_answers.html)
+Answers for the principles of ggplot can be found [here](../../exercises/answers/ggplot2_1_answers.html)
 
 ---
 class: inverse, center, middle
@@ -914,7 +915,7 @@ Scale methods are divided into functions by combinations of
 
 ---
 ## Arguments
-Although different *scale* functions accept some variety in their arguments, common arguments to scale functions include - 
+Although different *scale* functions accept some variety in their arguments, common arguments to scale functions include: 
 
 - name - The axis or legend title
 
@@ -991,7 +992,7 @@ pcPlot + geom_point(size=4)
 In the above example the discrete colours for the Sex variable was selected by default.
 
 ---
-## Manual discrete colour scale
+## Manual discrete color scale
 
 Manual control of discrete variables can be performed using scale\_*aes_Of_Interest*\_**manual** with the *values* parameter.
 Additionally in this example an updated name for the legend is provided.
@@ -1007,7 +1008,7 @@ pcPlot + geom_point(size=4) +
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_manualScale_ggplot2-1.png)&lt;!-- --&gt;
 ---
-## Colorbrewer for colour scales
+## Colorbrewer for color scales
 
 Here we have specified the colours to be used (hence the manual) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colours from a scale of our choice.
 
@@ -1049,7 +1050,7 @@ For more details on palette sizes and styles visit the colorbrewer website and g
 
 - [Colorbrewer](http://colorbrewer2.org/)
 
-- [ggplot2 colour scales](https://ggplot2.tidyverse.org/reference/scale_brewer.html)
+- [ggplot2 color scales](https://ggplot2.tidyverse.org/reference/scale_brewer.html)
 
 ---
 class: inverse, center, middle
@@ -1062,18 +1063,18 @@ class: inverse, center, middle
 
 ## Continuous scales
 
-So far we have looked a qualitative scales but ggplot2 offers much functionality for continuous scales such as for size, alpha (transparancy), colour and fill.
+So far we have looked a qualitative scales but ggplot2 offers much functionality for continuous scales such as for size, alpha (transparency), color and fill.
 
-- scale_alpha_continuous() - For Transparancy
+- scale_alpha_continuous() - For transparency
 
 - scale_size_continuous() - For control of size.
 
 ---
-## alpha
+## Alpha
 
 Both these functions accept the range of alpha/size to be used in plotting.
 
-Below the range of alpha to be used in plot is limited to between 0.5 and 1
+Below the range of alpha to be used in plot is limited to between 0.5 and 1.
 
 
 ```r
@@ -1086,8 +1087,8 @@ pcPlot + geom_point(size=4) +
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIalpha_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
-## size
-Below the range of sizes to be used in plot is limited to between 3 and 6
+## Size
+Below the range of sizes to be used in plot is limited to between 3 and 6.
 
 ```r
 pcPlot &lt;- ggplot(data=patients_clean,
@@ -1193,7 +1194,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 
 ---
 ## Scales are very customizable
-Multiple scales may be combined to create high customisable plots and scales
+Multiple scales may be combined to create high customizable plots and scales
 
 
 ```r
@@ -1244,7 +1245,7 @@ pcPlot+geom_point()+stat_smooth()
 
 ---
 ## Loess and more
-By default a "loess" smooth line is plotted by stat_smooth. Other methods available include lm, glm,gam,rlm.
+By default a "loess" smooth line is plotted by stat_smooth. Other methods available include lm, glm, gam, rlm.
 
 
 ```r
@@ -1263,7 +1264,7 @@ pcPlot+geom_point()+stat_smooth(method="lm")
 ## Fitting lines in groups
 A useful feature of ggplot2 is that it uses previously defined grouping when performing smoothing.
 
-If colour by Sex is an aesthetic mapping then two smooth lines are drawn, one for each sex.
+If color by Sex is an aesthetic mapping then two smooth lines are drawn, one for each sex.
 
 
 ```r
@@ -1280,7 +1281,7 @@ pcPlot+geom_point()+stat_smooth(method="lm")
 
 ---
 ## Fitting lines in groups
-This behaviour can be overridden by specifying an aes within the stat_smooth() function and setting inherit.aes to FALSE.
+This behavior can be overridden by specifying an aes within the stat_smooth() function and setting inherit.aes to FALSE.
 
 
 ```r
@@ -1298,7 +1299,7 @@ pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
 
 ---
 ## Summary statistics
-Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualised.
+Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualized.
 
 The fun parameter specifies a function to apply to the y variables for every value of x. In this example we use it to plot the quantiles of the Female and Male Height data
 
@@ -1415,7 +1416,7 @@ These elements may be specified by the use of their appropriate element function
 - element_text()
 - element_rect()
 
-and additionally element_blank() to set an element to "blank"
+and additionally element_blank() to set an element to "blank".
 
 ---
 ## Custom themes
@@ -1569,7 +1570,7 @@ pcPlot+
 
 In contrast **%+replace%** replaces all elements within a theme regardless of whether they have been previously specfied in old theme.
 
-When using the **%+replace%** operator 
+When using the **%+replace%** operator: 
 
 - Theme elements specified in new scheme replace elements in old theme 
 
@@ -1670,7 +1671,7 @@ This means that %+replace% is most useful when creating new themes.
 
 In the examples we have shown you we have been modifying the theme for a specific plot. But once you have a theme that you really like you may want it to apply to every plot you draw. 
 
-The active theme is automatically applied to every plot you draw. Use theme_get to get the current theme, and theme_set to completely override it
+The active theme is automatically applied to every plot you draw. Use theme_get to get the current theme, and theme_set to completely override it.
 
 
 ```r
@@ -1742,14 +1743,14 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 
 ---
 
-# Exercise set 2
-
-[Link_to_exercises](../../exercises/exercises/ggplot2_2_exercise.html)
-
-[Link_to_answers](../../exercises/answers/ggplot2_2_answers.html)
+Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
 
 ---
-# References
+
+Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
+
+---
+## References
 
 - [Layered grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.pdf)
 
@@ -1764,7 +1765,7 @@ ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
 
 ---
-# Contact
+## Contact
 
 Any suggestions, comments, edits or questions (about content or the slides themselves) please reach out to our [GitHub](https://github.com/RockefellerUniversity/Plotting_In_R/issues) and raise an issue.
     </textarea>

@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides != "yes"){
   cat("# Plotting in R
 
-
+---
 "    
   )
   
@@ -31,13 +31,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Scatter and line Charts
 
-
+---
 "    
   )
   
@@ -61,13 +61,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Plot Customization
 
-
+---
 "    
   )
   
@@ -245,6 +245,17 @@ lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
 legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
 
 
+## ----plot_together ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", eval=F----
+## plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
+## axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+## axis(2, las=1, at=20*0:g_range[2])
+## box()
+## 
+## lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
+## legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
+## 
+
+
 ## ---- echo=F,warning=F,message=F----------------------------------------------
 library(viridis)
 library(scales)
@@ -271,13 +282,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Bar Charts
 
-
+---
 "    
   )
   
@@ -326,13 +337,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Histograms
 
-
+---
 "    
   )
   
@@ -368,13 +379,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Dot Charts
 
-
+---
 "    
   )
   
@@ -382,11 +393,11 @@ if(params$isSlides == "yes"){
 
 
 
-## ----dotchartEval_basePlotting,fig.width=8,fig.height=3,dpi=300,out.width="1500px",height="750px"----
+## ----dotchartEval_basePlotting,fig.width=8,fig.height=3,dpi=300,out.width="1000px",height="750px"----
 dotchart(t(data))  
 
 
-## ----dotchartColEval_basePlotting,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"----
+## ----dotchartColEval_basePlotting,fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"----
 
 dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
 
@@ -400,13 +411,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Box Plots
 
-
+---
 "    
   )
   
@@ -436,13 +447,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Combining Plots
 
-
+---
 "    
   )
   
@@ -477,13 +488,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Other Customizations
 
-
+---
 "    
   )
   
@@ -524,13 +535,13 @@ if(params$isSlides == "yes"){
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
-
+---
 "    
   )
 }else{
   cat("# Saving Plots
 
-
+---
 "    
   )
   
