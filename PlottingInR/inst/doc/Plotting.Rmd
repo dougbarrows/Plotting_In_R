@@ -53,7 +53,7 @@ Make a barplot of values in control sample 1 for every time point
 par(mfrow=c(1,1))
 
 control1 <- timeCourse[,2]
-barplot(control1,names.arg = timeCourse[,2],xlab = "Time")
+barplot(control1,names.arg = timeCourse[,1],xlab = "Time")
 
 ```
 

@@ -19,8 +19,8 @@ if(params$isSlides != "yes"){
 
 
 ## ----setwd_introtoR,eval=F----------------------------------------------------
-## setwd("/PathToMyDownload/Plotting_In_R/r_course")
-## # e.g. setwd("~/Downloads/Intro_To_R_1Day/r_course")
+## setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
+## # e.g. setwd("~/Downloads/Plotting_In_R-master/r_course")
 
 
 ## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
@@ -181,7 +181,7 @@ axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 
 
 ## ----axisSides_basePlotting,eval=FALSE----------------------------------------
-## axis(2, las=1, at=rep(0,g_range[2],by=20))
+## axis(2, las=1, at=seq(0,g_range[2],by=20))
 
 
 ## ----axisSidesEval_basePlotting,eval=TRUE,echo=FALSE,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"----
