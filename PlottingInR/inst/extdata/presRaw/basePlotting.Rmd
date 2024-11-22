@@ -596,7 +596,8 @@ show_col(rainbow(6))
 Many people have created there own palette packages along many themes including famous artworks, Wes Anderson movies and Birds. [Paleteer](https://r-graph-gallery.com/color-palette-finder) is a package in which many different palettes across many themes are collated. In this case we can grab a discrete palettes. This means it will have a limited number of options.  
 
 ```{R}
-my_colors <- paletteer::paletteer_d("wesanderson::Zissou1")
+library(paletteer)
+my_colors <- paletteer_d("wesanderson::Zissou1")
 
 my_colors
 

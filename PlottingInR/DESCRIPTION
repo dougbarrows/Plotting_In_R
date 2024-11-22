@@ -8,7 +8,7 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 LazyData: TRUE
 biocViews: Training
-Depends: ggplot2, rmarkdown, viridis, scales, tidyr, lubridate
+Depends: ggplot2, paletteer, RColorBrewer, rmarkdown, viridis, scales, tidyr, lubridate
 Suggests: knitr,
     rmarkdown,
     testthat,
