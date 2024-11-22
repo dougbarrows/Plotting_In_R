@@ -7,7 +7,7 @@ knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides != "yes"){
   cat("# Plotting in R with ggplot2
   
@@ -19,7 +19,7 @@ if(params$isSlides != "yes"){
 
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -42,33 +42,33 @@ if(params$isSlides == "yes"){
 
 
 ## ----complex_ggplot2,eval=F---------------------------------------------------
-## 
-## ggplot(data = <default data set>,
-##        aes(x = <default x axis variable>,
-##            y = <default y axis variable>,
-##            ... <other default aesthetic mappings>),
-##        ... <other plot defaults>) +
-## 
-##        geom_scatter(aes(size = <size variable for this geom>,
-##                       ... <other aesthetic mappings>),
-##                   data = <data for this point geom>,
-##                   stat = <statistic string or function>,
-##                   position = <position string or function>,
-##                   color = <"fixed color specification">,
-##                   <other arguments, possibly passed to the _stat_ function) +
-## 
-##   scale_<aesthetic>_<type>(name = <"scale label">,
-##                      breaks = <where to put tick marks>,
-##                      labels = <labels for tick marks>,
-##                      ... <other options for the scale>) +
-## 
-##   ggtitle("Graphics/Plot")+
-##   xlab("Weight")+
-##   ylab("Height")+
-## 
-##   theme(plot.title = element_text(color = "gray"),
-##         ... <other theme elements>)
-## 
+# 
+# ggplot(data = <default data set>,
+#        aes(x = <default x axis variable>,
+#            y = <default y axis variable>,
+#            ... <other default aesthetic mappings>),
+#        ... <other plot defaults>) +
+# 
+#        geom_scatter(aes(size = <size variable for this geom>,
+#                       ... <other aesthetic mappings>),
+#                   data = <data for this point geom>,
+#                   stat = <statistic string or function>,
+#                   position = <position string or function>,
+#                   color = <"fixed color specification">,
+#                   <other arguments, possibly passed to the _stat_ function) +
+# 
+#   scale_<aesthetic>_<type>(name = <"scale label">,
+#                      breaks = <where to put tick marks>,
+#                      labels = <labels for tick marks>,
+#                      ... <other options for the scale>) +
+# 
+#   ggtitle("Graphics/Plot")+
+#   xlab("Weight")+
+#   ylab("Height")+
+# 
+#   theme(plot.title = element_text(color = "gray"),
+#         ... <other theme elements>)
+# 
 
 
 ## ----present_cleanEralt_ggplot2, echo=FALSE-----------------------------------
@@ -87,7 +87,7 @@ ggplot(data=patients_clean,
 
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -171,7 +171,7 @@ pcPlot
 
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -199,7 +199,7 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot+geom_point()
 
 
-## ---- line_simple_ggplot2, fig.height=5, fig.width=8--------------------------
+## ----line_simple_ggplot2, fig.height=5, fig.width=8---------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 
@@ -209,7 +209,7 @@ pcPlot_line
 
 
 
-## ---- smooth_simple_ggplot2, fig.height=4.5, fig.width=8----------------------
+## ----smooth_simple_ggplot2, fig.height=4.5, fig.width=8-----------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 
@@ -219,7 +219,7 @@ pcPlot_smooth
 
 
 
-## ---- bar_simple_ggplot2, fig.height=5, fig.width=9---------------------------
+## ----bar_simple_ggplot2, fig.height=5, fig.width=9----------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex))
 
@@ -230,7 +230,7 @@ pcPlot_bar
 
 
 
-## ---- histogram_simple_ggplot2, fig.height=4, fig.width=8,warning=FALSE-------
+## ----histogram_simple_ggplot2, fig.height=4, fig.width=8,warning=FALSE--------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
 
@@ -240,7 +240,7 @@ pcPlot_hist
 
 
 
-## ---- density_simple_ggplot2, fig.height=4.5, fig.width=8---------------------
+## ----density_simple_ggplot2, fig.height=4.5, fig.width=8----------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
 
@@ -250,7 +250,7 @@ pcPlot_density
 
 
 
-## ---- boxplot_simple_ggplot2, fig.height=5, fig.width=8-----------------------
+## ----boxplot_simple_ggplot2, fig.height=5, fig.width=8------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))
@@ -260,7 +260,7 @@ pcPlot_boxplot <- pcPlot+geom_boxplot()
 pcPlot_boxplot
 
 
-## ---- violin_simple_ggplot2, fig.height=4.5, fig.width=8----------------------
+## ----violin_simple_ggplot2, fig.height=4.5, fig.width=8-----------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))
@@ -270,7 +270,7 @@ pcPlot_violin <- pcPlot+geom_violin()
 pcPlot_violin
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -292,32 +292,32 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- scatter_coloured_ggplot2, fig.height=4, fig.width=9---------------------
+## ----scatter_coloured_ggplot2, fig.height=4, fig.width=9----------------------
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point(colour="red")
 
 
-## ---- scatter_simple_ggplot2, fig.height=4, fig.width=4,tidy=FALSE------------
+## ----scatter_simple_ggplot2, fig.height=4, fig.width=4,tidy=FALSE-------------
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,
                              y=Weight))
 pcPlot+geom_point()
 
 
-## ---- scatter_aes_sexcolor_ggplot2, fig.height=4, fig.width=9-----------------
+## ----scatter_aes_sexcolor_ggplot2, fig.height=4, fig.width=9------------------
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot + geom_point()
 
 
-## ---- scatter_aes_sexShape_ggplot2, fig.height=4.5, fig.width=9,eval=F,echo=T----
-## pcPlot <- ggplot(data=patients_clean,
-##                  mapping=aes(x=Height,y=Weight,shape=Sex))
-## pcPlot+geom_point()
+## ----scatter_aes_sexShape_ggplot2, fig.height=4.5, fig.width=9,eval=F,echo=T----
+# pcPlot <- ggplot(data=patients_clean,
+#                  mapping=aes(x=Height,y=Weight,shape=Sex))
+# pcPlot+geom_point()
 
 
-## ---- scatter_aes_sexShapeB_ggplot2, fig.height=4.5, fig.width=9,eval=T,echo=FALSE----
+## ----scatter_aes_sexShapeB_ggplot2, fig.height=4.5, fig.width=9,eval=T,echo=FALSE----
 pcPlot <- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight,shape=Sex))
 pcPlot+geom_point(size=2)
@@ -335,11 +335,11 @@ pcPlot+geom_point(size=2)
 
 
 
-## ---- helpforArguments_ggplot2------------------------------------------------
+## ----helpforArguments_ggplot2-------------------------------------------------
 ?geom_point
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -361,47 +361,47 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- facet_grid_SmokesBySex_ggplot2, fig.height=4, fig.width=9---------------
+## ----facet_grid_SmokesBySex_ggplot2, fig.height=4, fig.width=9----------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_grid(Smokes~Sex)
 
 
-## ---- facet_grid_BySex_ggplot2, fig.height=4, fig.width=9---------------------
+## ----facet_grid_BySex_ggplot2, fig.height=4, fig.width=9----------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_grid(~Sex)
 
 
-## ---- facet_grid_SexBy_ggplot2, fig.height=4, fig.width=9---------------------
+## ----facet_grid_SexBy_ggplot2, fig.height=4, fig.width=9----------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_grid(Sex~.)
 
 
-## ---- facet_Wrap_BySmokes_ggplot2, fig.height=4, fig.width=9, eval=F----------
-## pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-##                                          colour=Sex))+geom_point()
-## pcPlot + facet_wrap(~Smokes)
+## ----facet_Wrap_BySmokes_ggplot2, fig.height=4, fig.width=9, eval=F-----------
+# pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
+#                                          colour=Sex))+geom_point()
+# pcPlot + facet_wrap(~Smokes)
 
 
-## ---- facet_Wrap_BySmokes_ggplot2_2, fig.height=4, fig.width=9, eval=T, echo=F----
+## ----facet_Wrap_BySmokes_ggplot2_2, fig.height=4, fig.width=9, eval=T, echo=F----
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Smokes)+ theme(strip.text.x = element_text(size = 8))
 
 
-## ---- facet_wrap_smokesBySexandPet_ggplot2, fig.height=4.5, fig.width=9-------
+## ----facet_wrap_smokesBySexandPet_ggplot2, fig.height=4.5, fig.width=9--------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 
 
-## ---- facet_grid_smokesBySexandPet_ggplot2_2, fig.height=5, fig.width=12------
+## ----facet_grid_smokesBySexandPet_ggplot2_2, fig.height=5, fig.width=12-------
 pcPlot + facet_grid(Smokes~Sex+Pet)
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -438,12 +438,12 @@ ggplot(patients_clean,aes(x=Sex, y=Weight)) + geom_boxplot()
 
 
 ## ----plotOrderControlBoxplotEval_ggplot2,echo=FALSE,eval=FALSE----------------
-## patients_clean %>%
-##   mutate(Sex = factor(Sex,levels=c("Male","Female"))) %>%
-##   ggplot(aes(x=Sex, y=Weight)) + geom_boxplot()
+# patients_clean %>%
+#   mutate(Sex = factor(Sex,levels=c("Male","Female"))) %>%
+#   ggplot(aes(x=Sex, y=Weight)) + geom_boxplot()
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -498,7 +498,7 @@ pcPlot + geom_point(size=4)
                   
 
 
-## ---- facet_grid_height_weight_manualScale_ggplot2, fig.height=4, fig.width=9----
+## ----facet_grid_height_weight_manualScale_ggplot2, fig.height=4, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=Sex))
 pcPlot + geom_point(size=4) + 
@@ -507,7 +507,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ---- facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9----
+## ----facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=Pet))
 pcPlot + geom_point(size=4) + 
@@ -515,7 +515,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -537,7 +537,7 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- facet_grid_height_weight_BMIalpha_ggplot2, fig.height=4.5, fig.width=9----
+## ----facet_grid_height_weight_BMIalpha_ggplot2, fig.height=4.5, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,alpha=BMI))
 pcPlot + geom_point(size=4) + 
@@ -545,7 +545,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ---- facet_grid_height_weight_BMIsize_ggplot2, fig.height=5, fig.width=9-----
+## ----facet_grid_height_weight_BMIsize_ggplot2, fig.height=5, fig.width=9------
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point(alpha=0.8) + 
@@ -553,7 +553,7 @@ pcPlot + geom_point(alpha=0.8) +
                   
 
 
-## ---- facet_grid_height_weight_BMIsizeLimits_ggplot2, fig.height=4, fig.width=9,warning=FALSE----
+## ----facet_grid_height_weight_BMIsizeLimits_ggplot2, fig.height=4, fig.width=9,warning=FALSE----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
@@ -561,7 +561,7 @@ pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
                   
 
 
-## ---- facet_grid_height_weight_BMIsizewithBreaks_ggplot2, fig.height=4, fig.width=9----
+## ----facet_grid_height_weight_BMIsizewithBreaks_ggplot2, fig.height=4, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point() + 
@@ -570,7 +570,7 @@ pcPlot + geom_point() +
                         labels=c("Good","Good but not 25"))
 
 
-## ---- facet_grid_height_weight_BMIgradient_ggplot2, fig.height=4, fig.width=9----
+## ----facet_grid_height_weight_BMIgradient_ggplot2, fig.height=4, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -578,7 +578,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
                   
 
 
-## ---- facet_grid_height_weight_BMIgradient2_ggplot2, fig.height=4, fig.width=9----
+## ----facet_grid_height_weight_BMIgradient2_ggplot2, fig.height=4, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -586,7 +586,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
                          midpoint = median(patients_clean$BMI))
 
 
-## ---- facet_grid_height_weight_BMIgradient2plus_ggplot2, fig.height=3.5, fig.width=9----
+## ----facet_grid_height_weight_BMIgradient2plus_ggplot2, fig.height=3.5, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -598,7 +598,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
                          name="Body Mass Index")
 
 
-## ---- facet_grid_smokesBySex_scaleDisceteXContinuouswY_ggplot2, fig.height=4, fig.width=9----
+## ----facet_grid_smokesBySex_scaleDisceteXContinuouswY_ggplot2, fig.height=4, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,colour=BMI,shape=Sex))
 pcPlot + geom_point(size=4,alpha=0.8)+ 
@@ -609,7 +609,7 @@ pcPlot + geom_point(size=4,alpha=0.8)+
                          name="Body Mass Index")
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -631,39 +631,39 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- stat_smooth_ggplot2, fig.height=5, fig.width=9--------------------------
+## ----stat_smooth_ggplot2, fig.height=5, fig.width=9---------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
 pcPlot+geom_point()+stat_smooth()
 
 
-## ---- stat_smoothlm_ggplot2, fig.height=4, fig.width=9------------------------
+## ----stat_smoothlm_ggplot2, fig.height=4, fig.width=9-------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
 pcPlot+geom_point()+stat_smooth(method="lm")
 
 
-## ---- stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9------------------
+## ----stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9-------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
 pcPlot+geom_point()+stat_smooth(method="lm")
 
 
-## ---- stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9--------
+## ----stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9---------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
 pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
                                 inherit.aes = F)
 
 
-## ---- stat_summary_ggplot2, fig.height=3.5, fig.width=9-----------------------
+## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height)) + geom_jitter()
 pcPlot + stat_summary(fun=quantile, geom="point",
                     colour="purple", size=8)
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -685,17 +685,17 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- theme_default_ggplot2, fig.height=4, fig.width=4------------------------
+## ----theme_default_ggplot2, fig.height=4, fig.width=4-------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot
 
 
-## ---- theme_minimal_ggplot2, fig.height=4, fig.width=4,tidy=FALSE-------------
+## ----theme_minimal_ggplot2, fig.height=4, fig.width=4,tidy=FALSE--------------
 pcPlot+theme_minimal()
 
 
-## ---- theme_custom_ggplot2, fig.height=7, fig.width=9,tidy=FALSE--------------
+## ----theme_custom_ggplot2, fig.height=7, fig.width=9,tidy=FALSE---------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+
@@ -706,7 +706,7 @@ pcPlot+
       )
 
 
-## ---- theme_custom1_ggplot2, fig.height=4.5, fig.width=9----------------------
+## ----theme_custom1_ggplot2, fig.height=4.5, fig.width=9-----------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
@@ -714,23 +714,23 @@ pcPlot + theme(text = element_text(colour="red"),
         axis.title.y = element_text(angle=0))
 
 
-## ---- theme_custom2_ggplot2, fig.height=3, fig.width=9,eval=FALSE-------------
-## 
-## pcPlot <- ggplot(data=patients_clean,
-##         mapping=aes(x=Weight,y=Height))+
-##   geom_point()+
-##   facet_grid(Sex~Smokes)
-## pcPlot+
-##   theme(
-##     text = element_text(colour="red"),
-##     axis.title.y = element_text(angle=0),
-##     axis.line = element_line(linetype = 0),
-##     panel.background=element_rect(fill="white"),
-##     strip.background=element_rect(fill="cyan")
-##     )
+## ----theme_custom2_ggplot2, fig.height=3, fig.width=9,eval=FALSE--------------
+# 
+# pcPlot <- ggplot(data=patients_clean,
+#         mapping=aes(x=Weight,y=Height))+
+#   geom_point()+
+#   facet_grid(Sex~Smokes)
+# pcPlot+
+#   theme(
+#     text = element_text(colour="red"),
+#     axis.title.y = element_text(angle=0),
+#     axis.line = element_line(linetype = 0),
+#     panel.background=element_rect(fill="white"),
+#     strip.background=element_rect(fill="cyan")
+#     )
 
 
-## ---- theme_custom22_ggplot2, fig.height=3, fig.width=9,eval=TRUE,echo=FALSE----
+## ----theme_custom22_ggplot2, fig.height=3, fig.width=9,eval=TRUE,echo=FALSE----
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+
@@ -746,19 +746,19 @@ pcPlot+
     )
 
 
-## ---- legendD_ggplot2, fig.height=5, fig.width=9------------------------------
+## ----legendD_ggplot2, fig.height=5, fig.width=9-------------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot
 
 
-## ---- legendleft_ggplot2, fig.height=5, fig.width=9---------------------------
+## ----legendleft_ggplot2, fig.height=5, fig.width=9----------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot+theme(legend.position="left")
 
 
-## ---- legendText_ggplot2, fig.height=4, fig.width=8---------------------------
+## ----legendText_ggplot2, fig.height=4, fig.width=8----------------------------
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          colour=Sex))+geom_point()
 pcPlot+theme(legend.text = element_text(colour="darkred"),
@@ -767,7 +767,7 @@ pcPlot+theme(legend.text = element_text(colour="darkred"),
              )
 
 
-## ---- theme_custom8_ggplot2, fig.height=5, fig.width=9------------------------
+## ----theme_custom8_ggplot2, fig.height=5, fig.width=9-------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
@@ -785,13 +785,13 @@ pcPlot+
 
 
 
-## ---- theme_custom84FS4wd_ggplot2,echo=AsSlides,eval=FALSE--------------------
-## newTheme <- theme_bw()
-## theme_set(newTheme)
-## myTheme <- theme_get()
+## ----theme_custom84FS4wd_ggplot2,echo=AsSlides,eval=FALSE---------------------
+# newTheme <- theme_bw()
+# theme_set(newTheme)
+# myTheme <- theme_get()
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -813,21 +813,21 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- theme_labs_ggplot2,fig.height=5, fig.width=9----------------------------
+## ----theme_labs_ggplot2,fig.height=5, fig.width=9-----------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
 pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 
 
-## ---- theme_ggtitle_ggplot2,fig.height=5, fig.width=9-------------------------
+## ----theme_ggtitle_ggplot2,fig.height=5, fig.width=9--------------------------
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot+ggtitle("Weight vs Height")+ylab("Height (cm)")
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -849,10 +849,10 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9------------------
-## 
-## pcPlot <- ggplot(data=patients_clean,
-##         mapping=aes(x=Weight,y=Height))+geom_point()
-## ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
-##        height = 15,units = "cm")
+## ----ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9-------------------
+# 
+# pcPlot <- ggplot(data=patients_clean,
+#         mapping=aes(x=Weight,y=Height))+geom_point()
+# ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
+#        height = 15,units = "cm")
 
