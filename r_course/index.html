@@ -14,7 +14,7 @@
 
 <title>Plotting in R</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
@@ -30,7 +30,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -146,11 +146,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -179,8 +183,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -188,16 +192,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -439,11 +436,11 @@ class="email">brc@rockefeller.edu</a></h4>
 <h2>Course Overview</h2>
 <div id="course-integrity" class="section level3">
 <h3>Course Integrity</h3>
-<p><strong>This course is compiled automatically on <em>2022-07-08</em>
+<p><strong>This course is compiled automatically on <em>2024-11-22</em>
 </strong> <br> <a
 href="https://github.com/RockefellerUniversity/Plotting_In_R/actions?query=workflow%3compilation-check"><img src="https://github.com/RockefellerUniversity/Plotting_In_R/workflows/compilation-check/badge.svg"></a></p>
 <p><strong>The course is tested and available on MacOS, Windows and
-Ubuntu Linux for R version 4.2.0 (2022-04-22)</strong> <br> <a
+Ubuntu Linux for R version 4.4.0 (2024-04-24)</strong> <br> <a
 href="https://github.com/RockefellerUniversity/Plotting_In_R/actions?query=workflow%3AOS-check"><img src="https://github.com/RockefellerUniversity/Plotting_In_R/workflows/OS-check/badge.svg"></a></p>
 <p><br> <br></p>
 </div>
@@ -472,20 +469,14 @@ All material is available to download under GPL v2 license.</p>
 <h4>Install R</h4>
 <p>R can be installed from the R-project website.</p>
 <p>The R website can be found here <a href="http://www.r-project.org/"
-class="uri">http://www.r-project.org/</a>.</p>
-<p>The download links and associated installation instructions for
-multiple platforms can be found below provided by Revolution Analytics.
-<a href="https://cran.revolutionanalytics.com"
-class="uri">https://cran.revolutionanalytics.com</a></p>
-<p>We recommend installing R 4.2.0 as this is the version used to
-compile the course. Direct downloads for R 4.2.0 for the main platforms
-can be found below:</p>
+class="uri">http://www.r-project.org/</a>. This website has all the
+latest information about R updates, conferences and installation</p>
+<p>You can use this direct links to the install for each major OS:</p>
 <ul>
+<li><a href="https://cloud.r-project.org/bin/macosx/">Mac</a></li>
 <li><a
-href="https://cran.revolutionanalytics.com/bin/macosx/R-4.2.0.pkg">Mac</a></li>
-<li><a
-href="https://cran.revolutionanalytics.com/bin/windows/base/old/4.2.0/R-4.2.0-win.exe">Windows</a></li>
-<li><a href="https://cran.revolutionanalytics.com">Linux
+href="https://cloud.r-project.org/bin/windows/base/release.html">Windows</a></li>
+<li><a href="https://cloud.r-project.org/bin/linux/">Linux
 platforms</a></li>
 </ul>
 <p><br></p>
@@ -500,19 +491,25 @@ class="uri">http://www.rstudio.com/</a></p>
 class="uri">https://rstudio.com/products/rstudio/download/</a></p>
 <p><br></p>
 </div>
-<div id="install-required-packages" class="section level4">
-<h4><strong>Install required packages</strong></h4>
-</div>
-<div id="from-the-course-package" class="section level4">
-<h4>From the course package</h4>
-<pre class="{r}"><code>install.packages(&#39;BiocManager&#39;)
+<div id="install-required-r-packages" class="section level4">
+<h4><strong>Install required R packages</strong></h4>
+<p>R Packages can be installed from the course package <em>or</em> from
+CRAN/Bioconductor. These commands should be written into the R console.
+Once R and RStudio is installed, you can copy and paste these install
+commands into lower left pane of RStudio which should be labelled
+“Console”. If you run into any errors, do this one line at a time.</p>
+<div id="from-the-course-package" class="section level5">
+<h5>From the course package</h5>
+<pre><code>install.packages(&#39;BiocManager&#39;)
+install.packages(&#39;remotes&#39;)
 BiocManager::install(&#39;RockefellerUniversity/Plotting_In_R&#39;,subdir=&#39;PlottingInR&#39;)</code></pre>
-<p><br></p>
 </div>
-<div id="from-cran-and-bioconductor" class="section level4">
-<h4>From CRAN and Bioconductor</h4>
-<pre class="{r}"><code>install.packages(&#39;BiocManager&#39;)
+<div id="from-cran-and-bioconductor" class="section level5">
+<h5>From CRAN and Bioconductor</h5>
+<pre><code>install.packages(&#39;BiocManager&#39;)
 BiocManager::install(&#39;ggplot2&#39;)
+BiocManager::install(&#39;paletteer&#39;)
+BiocManager::install(&#39;RColorBrewer&#39;)
 BiocManager::install(&#39;rmarkdown&#39;)
 BiocManager::install(&#39;viridis&#39;)
 BiocManager::install(&#39;scales&#39;)
@@ -521,7 +518,7 @@ BiocManager::install(&#39;lubridate&#39;)
 BiocManager::install(&#39;knitr&#39;)
 BiocManager::install(&#39;testthat&#39;)
 BiocManager::install(&#39;yaml&#39;)</code></pre>
-<p><br></p>
+</div>
 </div>
 <div id="download-the-material" class="section level4">
 <h4><strong>Download the material</strong></h4>

@@ -6,7 +6,7 @@ suppressPackageStartupMessages(require(knitr))
 knitr::opts_chunk$set(echo = TRUE, tidy = T)
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides != "yes"){
   cat("# Plotting in R
 
@@ -19,11 +19,11 @@ if(params$isSlides != "yes"){
 
 
 ## ----setwd_introtoR,eval=F----------------------------------------------------
-## setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
-## # e.g. setwd("~/Downloads/Plotting_In_R-master/r_course")
+# setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
+# # e.g. setwd("~/Downloads/Plotting_In_R-master/r_course")
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -53,7 +53,7 @@ treatment <- c(0.02,1.8, 17.5, 55,75.7, 80)
 plot(treatment)
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -75,6 +75,43 @@ if(params$isSlides == "yes"){
 
 
 
+## ----echo=F-------------------------------------------------------------------
+par(mar=c(3,3,3,3))
+num <- 0 ; 
+num1 <- 0
+plot(main= "https://r-graph-gallery.com/",0,0 , xlim=c(0,21) , ylim=c(0.5,6.5), col="white" , yaxt="n" , ylab="" , xlab="")
+ 
+#fill the graph
+for (i in seq(1,20)){
+  points(i,1 , pch=i , cex=3)
+  points(i,2 , col=i , pch=16 , cex=3)
+  points(i,3 , col="black" , pch=16 , cex=i*0.25)
+  
+  #lty
+  if(i %in% c(seq(1,18,3))){
+        num=num+1
+    points(c(i,i+2), c(4,4) , col="black" , lty=num , type="l" , lwd=2)
+        text(i+1.1 , 4.15 , num)
+        }
+  
+  #type and lwd 
+  if(i %in% c(seq(1,20,5))){
+    num1=num1+1
+    points(c(i,i+1,i+2,i+3), c(5,5,5,5) , col="black"  , type=c("p","l","b","o")[num1] , lwd=2)
+    text(i+1.1 , 5.2 , c("p","l","b","o")[num1] )
+    points(c(i,i+1,i+2,i+3), c(6,6,6,6) , col="black"  , type="l",  lwd=num1)
+    text(i+1.1 , 6.2 , num1 )
+ 
+    }
+  }
+ 
+#add axis
+axis(2, at = c(1,2,3,4,5,6), labels = c("pch" , "col" , "cex" , "lty", "type" , "lwd" ), 
+     tick = TRUE, col = "black", las = 1, cex.axis = 0.8)
+
+
+
+
 ## ----plotType_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"----
 plot(treatment, type="o")
 
@@ -85,22 +122,6 @@ plot(treatment, type="l")
 
 ## ----plotTypeS_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
 plot(treatment, type="p")
-
-
-## ----plotLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"----
-plot(treatment, main="My Plot", sub="a plot")
-
-
-## ----plotAsisLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
-plot(treatment, xlab="Position", ylab="score")
-
-
-## ----plotAsisLasL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
-plot(treatment, las=1)
-
-
-## ----plotAsisLasR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
-plot(treatment, las=2)
 
 
 ## ----plotAsisCexL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
@@ -140,7 +161,23 @@ plot(treatment, type="l", col="red")
 
 
 ## ----plotColR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
-plot(treatment, type="l", col="dodgerblue")
+plot(treatment, type="l", col="blue")
+
+
+## ----plotLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"----
+plot(treatment, main="My Plot", sub="a plot")
+
+
+## ----plotAsisLabels_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
+plot(treatment, xlab="Position", ylab="score")
+
+
+## ----plotAsisLasL_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
+plot(treatment, las=1)
+
+
+## ----plotAsisLasR_basePlotting,eval=TRUE,fig.width=8,fig.height=4.5,dpi=300,out.width="1000px",height="1080px"----
+plot(treatment, las=2)
 
 
 ## ----plotTwoVectors_basePlotting,eval=TRUE,collapse=TRUE,fig.width=8,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"----
@@ -170,7 +207,7 @@ plot(treatment, type="o", col="blue",
 
 
 ## ----axis_basePlotting,eval=FALSE---------------------------------------------
-## axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+# axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 
 
 ## ----axisEval_basePlotting,eval=TRUE,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1000px",height="1080px"----
@@ -181,7 +218,7 @@ axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
 
 
 ## ----axisSides_basePlotting,eval=FALSE----------------------------------------
-## axis(2, las=1, at=seq(0,g_range[2],by=20))
+# axis(2, las=1, at=seq(0,g_range[2],by=20))
 
 
 ## ----axisSidesEval_basePlotting,eval=TRUE,echo=FALSE,fig.height=3.5,dpi=300,out.width="1000px",height="1080px"----
@@ -193,7 +230,7 @@ axis(2, las=1, at=20*0:g_range[2])
 
 
 ## ----box_basePlotting,eval=FALSE----------------------------------------------
-## box()
+# box()
 
 
 ## ----boxEval_basePlotting,eval=TRUE,echo=FALSE,fig.height=4,dpi=300,out.width="1000px",height="1080px"----
@@ -205,8 +242,8 @@ box()
 
 
 ## ----addLines_basePlotting,eval=FALSE,echo=TRUE,collapse=TRUE-----------------
-## lines(control, type="o", pch=22, lty=2, col="red")
-## 
+# lines(control, type="o", pch=22, lty=2, col="red")
+# 
 
 
 ## ----addLinesEval_basePlotting,eval=TRUE,echo=FALSE,fig.width=8,fig.height=4,dpi=300,out.width="1000px",height="1080px"----
@@ -219,8 +256,8 @@ lines(control, type="o", pch=22, lty=2, col="red")
 
 
 ## ----legend_basePlotting,eval=FALSE-------------------------------------------
-## legend("topleft",legend=c("treatment","control"),
-##        col=c("blue","red"), pch=21:22, lty=1:2);
+# legend("topleft",legend=c("treatment","control"),
+#        col=c("blue","red"), pch=21:22, lty=1:2);
 
 
 ## ----legendEval_basePlotting,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
@@ -246,35 +283,87 @@ legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22,
 
 
 ## ----plot_together ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", eval=F----
-## plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
-## axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-## axis(2, las=1, at=20*0:g_range[2])
-## box()
-## 
-## lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
-## legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
-## 
+# plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
+# axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+# axis(2, las=1, at=20*0:g_range[2])
+# box()
+# 
+# lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
+# legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
+# 
 
 
-## ---- echo=F,warning=F,message=F----------------------------------------------
-library(viridis)
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Colors
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Colors
+
+---
+"    
+  )
+  
+}
+
+
+
+## -----------------------------------------------------------------------------
+
+rainbow(2)
+
+
+## -----------------------------------------------------------------------------
+
+rainbow(6)
+
+
+## ----echo=F-------------------------------------------------------------------
 library(scales)
+show_col(rainbow(6))
 
 
-## ---- eval=F------------------------------------------------------------------
-## install.packages('viridis')
-## library(viridis)
-## viridis(5)
+## -----------------------------------------------------------------------------
+library(paletteer)
+my_colors <- paletteer_d("wesanderson::Zissou1")
 
-## ---- echo=F------------------------------------------------------------------
+my_colors
+
+plot(1:length(my_colors), col = my_colors, cex = 5, pch =15)
+
+
+## -----------------------------------------------------------------------------
+library(RColorBrewer)
+
+my_pal <- colorRampPalette(c("Red","White","Blue"))(25)
+
+plot(1:length(my_pal), col = my_pal, cex = 5, pch =15)
+
+
+
+## ----echo=F,warning=F,message=F-----------------------------------------------
+library(viridis)
+
+
+
+## ----eval=F-------------------------------------------------------------------
+# install.packages('viridis')
+# library(viridis)
+# viridis(5)
+
+
+## ----echo=F-------------------------------------------------------------------
 viridis(5)
 
 
-## ---- echo=F------------------------------------------------------------------
-show_col(viridis(5))
-
-
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -329,7 +418,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
         fill=  viridis(6))
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -371,7 +460,7 @@ hist(treatment, col="lightblue",
      breaks = 10)
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -403,7 +492,7 @@ dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
 
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -439,7 +528,29 @@ boxplot(log2(exprs),ylab="log2 Expression",
         col=c("red","red","blue","blue"))
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Going Beyond Base Plotting
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Going Beyond Base Plotting
+
+---
+"    
+  )
+  
+}
+
+
+
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -462,7 +573,7 @@ if(params$isSlides == "yes"){
 
 
 ## ----parMfrow_basePlotting,eval=FALSE-----------------------------------------
-## par(mfrow=c(2,2))
+# par(mfrow=c(2,2))
 
 
 ## ----setParMfrowEval_basePlotting,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"----
@@ -480,7 +591,7 @@ hist(exprs[,i])
 }
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -502,7 +613,7 @@ if(params$isSlides == "yes"){
 
 
 
-## ---- echo=F------------------------------------------------------------------
+## ----echo=F-------------------------------------------------------------------
 par(mfrow=c(1,1))
 
 
@@ -527,7 +638,7 @@ plot(control, treatment)
 polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
 
 
-## ---- results='asis',include=TRUE,echo=FALSE----------------------------------
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
@@ -550,33 +661,33 @@ if(params$isSlides == "yes"){
 
 
 ## ----save_basePlotting,eval=FALSE---------------------------------------------
-## bmp(filename, width = 480, height = 480, units = "px",
-##     pointsize = 12)
-## jpeg(filename, width = 480, height = 480, units = "px",
-##      pointsize  = 12, quality = 75)
+# bmp(filename, width = 480, height = 480, units = "px",
+#     pointsize = 12)
+# jpeg(filename, width = 480, height = 480, units = "px",
+#      pointsize  = 12, quality = 75)
 
 
 ## ----save_bmp_basePlotting,eval=FALSE-----------------------------------------
-## bmp(file = "control.bmp")
-## plot(control)
-## dev.off()
+# bmp(file = "control.bmp")
+# plot(control)
+# dev.off()
 
 
 ## ----save_jpeg_basePlotting,eval=FALSE----------------------------------------
-## jpeg(file = "control.jpg", quality = 20)
-## plot(control)
-## dev.off()
+# jpeg(file = "control.jpg", quality = 20)
+# plot(control)
+# dev.off()
 
 
 ## ----save_ps_basePlotting,eval=FALSE------------------------------------------
-## postscript(file = "control.ps")
-## plot(control)
-## dev.off()
+# postscript(file = "control.ps")
+# plot(control)
+# dev.off()
 
 
 ## ----save_pdf_basePlotting,eval=FALSE-----------------------------------------
-## 
-## pdf(file = "control.pdf", paper = "A4")
-## plot(control)
-## dev.off()
+# 
+# pdf(file = "control.pdf", paper = "A4")
+# plot(control)
+# dev.off()
 
