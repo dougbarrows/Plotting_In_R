@@ -146,7 +146,7 @@ vioplot(length_millimeters~common_name, data = salmon, use.cols=F, main="Distrib
 - Lets make a heatmap. The data we currently have read in is not right for a heatmap. Luckily we have another example data set that corresponds to what we have been looking at: salmon_mercury.csv. Read it in and inspect the object. When you read the object in, set the row names as column 1.  
 
 ```{R}
-library(pheatmap)
+
 salmon_mercury <- read.csv("data/salmon_mercury.csv", row.names = 1)
 
 ```
@@ -154,6 +154,7 @@ salmon_mercury <- read.csv("data/salmon_mercury.csv", row.names = 1)
 - Lets make a heatmap. The data we currently have read in is not right for a heatmap. Luckily we have another example data set that corresponds to what we have been looking at: salmon_mercury.csv. Read it in and inspect the object. 
 
 ```{R}
+library(pheatmap)
 pheatmap(salmon_mercury)
 
 ```
@@ -192,6 +193,6 @@ library(RColorBrewer)
 
 my_pal <- colorRampPalette(c("Blue","White","Red"))(60)
 
-pheatmap(salmon_mercury, scale ="row", breaks = seq(-1.5,1.5,0.05), color = my_pal, cluster_cols = F, "Z-scores of Mercury levels (ppm) in Salmon species over time")
+pheatmap(salmon_mercury, scale ="row", breaks = seq(-1.5,1.5,0.05), color = my_pal, cluster_cols = F, main="Z-scores of Mercury levels (ppm) in Salmon species over time")
 
 ```
