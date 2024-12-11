@@ -561,10 +561,10 @@ if(params$isSlides == "yes"){
 
 ```
 
----
+
 ## Named Colors and hex codes
 
-Most colors can simply be defined by writing them in as a chracter vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+Most colors can simply be defined by writing them in as a character vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 
 You can also use hex codes: a hexadecimal format for identifying colors. This gives greater variety of options as they use the full color spectrum. Each pair of characters corresponds to the Red, Green and Blue content for the color i.e. #ffe4c4 (also known as Bisque) is composed of 100% red, 89.4% green and 76.9% blue. Resources like this [color picker](https://htmlcolorcodes.com/color-picker/) can be used to help you find specific shades, and even create complementary palettes. 
 
@@ -580,6 +580,9 @@ Here we can look at the rainbow palette that comes with R. Often the palettes ar
 rainbow(2)
 ```
 
+---
+## Palettes
+
 Rainbow is continuous so we it will pull as many colors as you ask from the color space, along a specific gradient defined by the palette. 
 
 ```{r}
@@ -593,15 +596,23 @@ show_col(rainbow(6))
 ```
 
 
+---
+## Palettes
+
 Many people have created there own palette packages along many themes including famous artworks, Wes Anderson movies and Birds. [Paleteer](https://r-graph-gallery.com/color-palette-finder) is a package in which many different palettes across many themes are collated. In this case we can grab a discrete palettes. This means it will have a limited number of options.  
 
-```{R}
+```{r}
+
 library(paletteer)
 my_colors <- paletteer_d("wesanderson::Zissou1")
 
 my_colors
+```
 
-plot(1:length(my_colors), col = my_colors, cex = 5, pch =15)
+```{r, fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
+
+show_col(my_colors)
+
 ```
 
 
@@ -610,17 +621,19 @@ plot(1:length(my_colors), col = my_colors, cex = 5, pch =15)
 
 R color brewer is another popular option. It has many built-in [palettes](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). What makes this package special though is the ability to customize continuous color palettes with the *colorRampPalette()* function. 
 
-```{r}
+```{r }
 library(RColorBrewer)
 
 my_pal <- colorRampPalette(c("Red","White","Blue"))(25)
+```
 
-plot(1:length(my_pal), col = my_pal, cex = 5, pch =15)
+```{r, fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
+show_col(my_pal)
 
 ```
 
 ---
-## Color blindness and perceptually uniformity 
+## Color blindness + Uniform Perception
 
 Using custom colors is great and can really help a make a piece of work cohesive and stand out. But you have to be careful. 
 
@@ -629,7 +642,7 @@ Using custom colors is great and can really help a make a piece of work cohesive
 Furthermore, when we pick gradients the ability to see patterns in the data varies depending on the color scales used, even in sighted people.
 
 ---
-## Color blindness and perceptually uniformity 
+## Color blindness + Uniform Perception
 
 ![palettes](imgs/uniform_colors.png)
 
@@ -664,7 +677,7 @@ viridis(5)
 
 Viridis gradients are great, but there is not an good divergent color scheme. 
 
-The [*batlow* package](https://cran.r-project.org/web/packages/khroma/vignettes/crameri.html) is a similarly derived collection of colors, with even more options like divergent palettes. 
+The [*khroma* package](https://cran.r-project.org/web/packages/khroma/vignettes/crameri.html) is a similarly derived collection of colors, with even more options like divergent palettes. 
   
 ---
 ## Good data visualization
@@ -1003,7 +1016,7 @@ heatmap(exprs_mat, cexCol=0.75)
 
 An issue with this heatmap is there no color scale bar. Unfortunately there is no argument or straightforward alternative for adding it to our plot. Luckily there are specialist packages that compensate for some of the holes in base R.
 
-```{r plot_heat ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
+```{r,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
 
 exprs_mat <- as.matrix(exprs)
 heatmap(exprs_mat, cexCol=0.75)
