@@ -851,9 +851,9 @@ hist(treatment, col="lightblue",
 Unlike histograms, there is not a density plot function within base R. Instead we call the *density()* to calculate the density values. We can then just pass this straight to the basic plot function. 
 
 
-```{r}
+```{r, fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"}
 
-d <- density(treatment,width = 20) # returns the density data
+d <- density(treatment) # returns the density data
 plot(d) 
 
 ```
@@ -865,7 +865,7 @@ plot(d)
 Similar to bins, we can alter the resolution using the width argument. 
 
 
-```{r}
+```{r, fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"}
 
 d <- density(treatment,width = 20) # returns the density data
 plot(d) 
@@ -1089,8 +1089,17 @@ To do this we need to specify the number of colors and the breaks for those colo
 library(RColorBrewer)
 
 my_pal <- colorRampPalette(c("Blue","White","Red"))(60)
+my_breaks = seq(-1.5,1.5,0.05)
 
-pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = seq(-1.5,1.5,0.05), color = my_pal)
+```
+
+---
+## Heatmaps
+
+We can give our new colors and breaks to the pheatmap function. 
+
+```{r ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
 
 ```
 
@@ -1100,9 +1109,13 @@ pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = seq(-1.5,1.5,0.05)
 
 Violin plots are often preferred to box plots as they show the underlying distribution.
 
-```{r}
+```{r, warning=F, message=F}
 
 library(vioplot)
+
+```
+
+```{r}
  
 vioplot(log2(exprs),main="distribution of log2(expression)")
 
@@ -1126,9 +1139,9 @@ head(mat)
 ---
 ## Venn Diagram
 
-First we cacluate the euler fit. Then we can plot it. 
+First we cacluate the euler fit with the *euler()* function. Then we can use *plot()* to make the plot. 
 
-```{r}
+```{r ,fig.width=3,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 fit2 <- euler(mat)
 plot(fit2)
 
@@ -1274,7 +1287,7 @@ abline(a=0, b=1, lty=2)
   
 ---
 ## Shapes
-*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
+*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the density argument there will be a hash fill. 
 
 ```{r,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 plot(control, treatment)
