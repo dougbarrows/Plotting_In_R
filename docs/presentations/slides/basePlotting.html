@@ -810,11 +810,11 @@ Unlike histograms, there is not a density plot function within base R. Instead w
 
 
 ``` r
-d &lt;- density(treatment,width = 20) # returns the density data
+d &lt;- density(treatment) # returns the density data
 plot(d) 
 ```
 
-![](basePlotting_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-18-1.png" width="1000px" /&gt;
 
 
 ---
@@ -829,7 +829,7 @@ d &lt;- density(treatment,width = 20) # returns the density data
 plot(d) 
 ```
 
-![](basePlotting_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-19-1.png" width="1000px" /&gt;
 
 
 ---
@@ -1014,11 +1014,20 @@ To do this we need to specify the number of colors and the breaks for those colo
 library(RColorBrewer)
 
 my_pal &lt;- colorRampPalette(c("Blue","White","Red"))(60)
-
-pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = seq(-1.5,1.5,0.05), color = my_pal)
+my_breaks = seq(-1.5,1.5,0.05)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-26-1.png" width="1920px" /&gt;
+---
+## Heatmaps
+
+We can give our new colors and breaks to the pheatmap function. 
+
+
+``` r
+pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-27-1.png" width="1920px" /&gt;
 
 
 ---
@@ -1031,34 +1040,12 @@ Violin plots are often preferred to box plots as they show the underlying distri
 library(vioplot)
 ```
 
-```
-## Loading required package: sm
-```
-
-```
-## Package 'sm', version 2.2-6.0: type help(sm) for summary information
-```
-
-```
-## Loading required package: zoo
-```
-
-```
-## 
-## Attaching package: 'zoo'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     as.Date, as.Date.numeric
-```
 
 ``` r
 vioplot(log2(exprs),main="distribution of log2(expression)")
 ```
 
-![](basePlotting_files/figure-html/unnamed-chunk-27-1.png)&lt;!-- --&gt;
+![](basePlotting_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
 
 ---
 ## Venn Diagram
@@ -1078,18 +1065,18 @@ head(mat)
 
 ```
 ##          A     B     C
-## [1,] FALSE FALSE  TRUE
+## [1,]  TRUE  TRUE FALSE
 ## [2,]  TRUE  TRUE FALSE
-## [3,] FALSE  TRUE FALSE
+## [3,]  TRUE  TRUE FALSE
 ## [4,]  TRUE  TRUE FALSE
-## [5,]  TRUE FALSE FALSE
-## [6,]  TRUE  TRUE FALSE
+## [5,] FALSE FALSE FALSE
+## [6,]  TRUE FALSE FALSE
 ```
 
 ---
 ## Venn Diagram
 
-First we cacluate the euler fit. Then we can plot it. 
+First we cacluate the euler fit with the *euler()* function. Then we can use *plot()* to make the plot. 
 
 
 ``` r
@@ -1097,7 +1084,7 @@ fit2 &lt;- euler(mat)
 plot(fit2)
 ```
 
-![](basePlotting_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-31-1.png" width="1920px" /&gt;
 
 ---
 class: inverse, center, middle
@@ -1191,7 +1178,7 @@ text(20,60, 'THIS IS MY PLOT', col='red')
 text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-33-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-35-1.png" width="490px" /&gt;
   ]
 ---
 ## Lines
@@ -1212,12 +1199,12 @@ abline(v=50, col='red', lwd=2)
 abline(a=0, b=1, lty=2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-34-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-36-1.png" width="490px" /&gt;
   ]
   
 ---
 ## Shapes
-*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
+*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the density argument there will be a hash fill. 
 
 
 ``` r
@@ -1225,7 +1212,7 @@ plot(control, treatment)
 polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-35-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-37-1.png" width="490px" /&gt;
 
 ---
 class: inverse, center, middle
