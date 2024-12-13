@@ -1099,7 +1099,7 @@ library(vioplot)
 
 ```
 
-```{r}
+```{r fig.width=5,fig.height=2.5.5,dpi=300,out.width="1920px",height="1080px"}
  
 vioplot(log2(exprs),main="distribution of log2(expression)")
 
@@ -1125,7 +1125,7 @@ head(mat)
 
 First we cacluate the euler fit with the *euler()* function. Then we can use *plot()* to make the plot. 
 
-```{r ,fig.width=3,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
+```{r ,fig.width=2,fig.height=2,dpi=300,out.width="920px",height="580px"}
 fit2 <- euler(mat)
 plot(fit2)
 
