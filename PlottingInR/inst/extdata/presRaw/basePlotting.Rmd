@@ -506,26 +506,10 @@ legend("topleft",legend=c("treatment","control"),
 ```
 
 ---
-## Making plots readable
-
-In our line plot we have already done a good job of making it easier to differentiate the lines as we have different line styles and different shape points. 
-
-Other things we can do is also differentiate thickness.
-
-```{r readability_basePlotting,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
-
-plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
-axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-axis(2, las=1, at=20*0:g_range[2])
-box()
-
-lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
-legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
-```
-
----
 ## Put it all together
-To make that final plot you can see that there are many lines of code we put together. 
+
+Though we can make a okay plot in a single line, this example demonstrates how you can make something custom and ready to share with others. To make that final plot you can see that there are many lines of code we put together. 
+
 ```{r plot_together ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", eval=F}
 plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -689,7 +673,7 @@ There are often a trade offs in creating good plots.
 * Does it contain all the information with nothing superfluous?
 * Is it the best way to tell the story I want to tell, without being misleading?
 
-[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
+[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -752,7 +736,7 @@ Sometimes you want to have several data series stacked in a single barplot. The 
 
 Let's read the data from the example_plot.txt data file.  
 
-Read values from tab-delimited example_plot.txt
+Read values from comma-seperated example_plot.txt
 ```{r readTable_basePlotting}
 data <- read.table("data/example_plot.txt", header=T, row.names=1, sep=",")
 ```
@@ -1359,7 +1343,7 @@ Answers for base plotting can be found [here](../../exercises/answers/Plotting_a
 ---
 ## Help while plotting
 
-* Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+* Data visualization theory - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
 
 * Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
 
