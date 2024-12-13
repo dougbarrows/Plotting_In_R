@@ -467,14 +467,14 @@ hist(treatment, col="lightblue",
      breaks = 10)
 
 
-## -----------------------------------------------------------------------------
+## ----fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"-------
 
-d <- density(treatment,width = 20) # returns the density data
+d <- density(treatment) # returns the density data
 plot(d) 
 
 
 
-## -----------------------------------------------------------------------------
+## ----fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"-------
 
 d <- density(treatment,width = 20) # returns the density data
 plot(d) 
@@ -623,14 +623,22 @@ pheatmap(exprs_mat, scale ="row", show_rownames = F)
 library(RColorBrewer)
 
 my_pal <- colorRampPalette(c("Blue","White","Red"))(60)
+my_breaks = seq(-1.5,1.5,0.05)
 
-pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = seq(-1.5,1.5,0.05), color = my_pal)
+
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
+pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
+
+
+
+## ----warning=F, message=F-----------------------------------------------------
+
+library(vioplot)
 
 
 
 ## -----------------------------------------------------------------------------
-
-library(vioplot)
  
 vioplot(log2(exprs),main="distribution of log2(expression)")
 
@@ -646,7 +654,7 @@ mat <- cbind(
 head(mat)
 
 
-## -----------------------------------------------------------------------------
+## ----fig.width=3,fig.height=3,dpi=300,out.width="1920px",height="1080px"------
 fit2 <- euler(mat)
 plot(fit2)
 
