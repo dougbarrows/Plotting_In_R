@@ -132,6 +132,7 @@ ggplot(data = <default data set>,
         ... <other theme elements>)
     
 ```
+
 ---
 ## What users are required to specify
 
@@ -891,6 +892,7 @@ pcPlot +
   scale_x_discrete(labels=c("Women", "Men"))
 
 ```
+
 ---
 ## Combining axes scales
 Multiple X/Y scales can be combined to give full control of axis marks.
@@ -1291,6 +1293,7 @@ pcPlot +
                         label.x = 80, label.y = 160, aes(label = after_stat(rr.label)), formula = y ~ x)  
   
 ```
+
 ---
 
 ## Displaying stats on the plot
@@ -1307,6 +1310,7 @@ stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
 
 data.frame(stat.test)
 ```
+
 ---
 
 ## Displaying stats on the plot
@@ -1412,7 +1416,7 @@ pcPlot+theme_minimal()
 ---
 ## Predefined themes
 
-Several predifined themes are available within ggplot2 including:
+Several predefined themes are available within ggplot2 including:
 
 - theme_bw
 
@@ -1428,7 +1432,50 @@ Several predifined themes are available within ggplot2 including:
 
 - theme_minimal
 
-Packages such as [ggthemes](https://github.com/jrnold/ggthemes) also contain many useful collections of predined theme_*style* functions.
+You can review them [here](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+
+---
+## Theme packages
+
+There are many themes you can gain access to through installing additional packages. Packages such as [ggthemes](https://github.com/jrnold/ggthemes) also contain many useful collections of predefined theme_*style* functions.
+
+Other alternatives include:
+* [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) - focuses on controlling typography
+* [ggthemr](https://github.com/Mikata-Project/ggthemr) - A large collection of themes - includes dark options
+* [ggpomologica](https://www.garrickadenbuie.com/project/ggpomological/) - Hand drawn plots
+* [tvthemes](https://ryo-n7.github.io/tvthemes/) - TV shows
+
+
+---
+## ggthemes
+
+After we have loaded in the ggthemes packages we can then simply use the new themes available to using the theme_*style* convention of function.
+
+.pull-left[
+
+Here is a scatter with the default theme...
+```{r, theme_default_ggplot2_2, fig.height=4, fig.width=4}
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height)) + geom_point()
+pcPlot
+```
+
+  ]
+.pull-right[
+
+...and the same scatter plot with the Wall Street Journal theme.
+
+```{r, eval=F}
+install.packages("ggthemes")
+
+```
+
+```{r, ggthemes, fig.height=4, fig.width=4,tidy=FALSE}
+library(ggthemes)
+pcPlot+theme_wsj()
+```
+  ]
+
 
 ---
 ## Custom themes
@@ -1767,9 +1814,49 @@ By default ggsave() will use the size of your current graphics window when savin
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
+
 ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
        height = 15,units = "cm")
 ```
+
+
+---
+## Saving in pdf format
+
+PDFs are maybe the most useful format to export into. PDFs are vector-based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
+
+PDFs can then be opened in imaging software like illustrator or [inkscape](https://inkscape.org/) (this is a open source and free equivalent). When you open a PDF in these programs you can fully customize the plots to your aesthetic with a graphic user interface. Furthermore as they are vector-based, they can be easily assembled into publication quality figures without resolution issues and pixelation. 
+
+```{r save_pdf_basePlotting,eval=FALSE}
+
+pdf(file = "anExampleplot.pdf", paper = "A4")
+plot(control)
+dev.off()
+```
+
+---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Interactive Plots
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Interactive Plots
+  
+---
+"    
+  )
+  
+}
+
+```
+
 
 ---
 
