@@ -1099,7 +1099,7 @@ library(vioplot)
 
 ```
 
-```{r fig.width=5,fig.height=2.5.5,dpi=300,out.width="1920px",height="1080px"}
+```{r fig.width=5,fig.height=2.5,dpi=300,out.width="1920px",height="1080px"}
  
 vioplot(log2(exprs),main="distribution of log2(expression)")
 
