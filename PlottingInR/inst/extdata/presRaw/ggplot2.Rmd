@@ -190,6 +190,8 @@ suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(stringr))
 suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(ggpubr))
+
 ```
 
 First we need a dataset. Here we read some data from the *data* directory using the **read.delim()** function.
@@ -1011,7 +1013,8 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,alpha=BMI))
 pcPlot + geom_point(size=4) + 
   scale_alpha_continuous(range = c(0.5,1))
-                  
+
+                 
 ```
 
 ---
@@ -1128,8 +1131,8 @@ We can also use an ifelse conditional statement to apply discrete color cutoffs 
 
 ```{r, conditional_colors_scales, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,shape=Sex, colour=ifelse(BMI > 30, "high",
-                                                                ifelse(BMI < 25, "low", "middle"))))
+                 aes(x=Height,y=Weight,shape=Sex, colour=ifelse(BMI > 30, "High",
+                                                                ifelse(BMI < 25, "Low", "Middle"))))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_shape_discrete(name="Gender") +
   scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
@@ -1160,7 +1163,7 @@ if(params$isSlides == "yes"){
 
 ## Statistical transformations
 
-In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
+In ggplot2, many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
 
 An example of statistical methods in ggplot2 which are very useful include the stat_smooth() and stat_summary() functions.
 
@@ -1172,7 +1175,8 @@ The stat_smooth() function can be used to fit a line to the data being displayed
 ```{r, stat_smooth_ggplot2, fig.height=5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
-pcPlot+geom_point()+stat_smooth()
+pcPlot+geom_point() + 
+  stat_smooth()
 ```
 
 ---
@@ -1182,7 +1186,8 @@ By default a "loess" smooth line is plotted by stat_smooth. Other methods availa
 ```{r, stat_smoothlm_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
-pcPlot+geom_point()+stat_smooth(method="lm")
+pcPlot+geom_point() + 
+  stat_smooth(method="lm")
 
 ```
 
@@ -1195,7 +1200,8 @@ If color by Sex is an aesthetic mapping then two smooth lines are drawn, one for
 ```{r, stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
-pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height), method="lm")
+pcPlot+geom_point() +
+  stat_smooth(method="lm")
 ```
 
 ---
@@ -1218,7 +1224,7 @@ Plots for either the X or Y axis variables can easily be added to the margins of
 ```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F}
 library(ggExtra)
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
+                 mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
 ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE)
 ```
 
@@ -1253,25 +1259,27 @@ pcPlot +
 ---
 
 ## Displaying fitted line statistics
-The ggpubr package has many handy functions to make publication quality graphics by displaying statistics. Here we add the equation and the R squared value for the line of best fit
+The ggpubr package contains functions to make publication quality graphics by displaying statistics. Here we add the equation and the R squared value for the line of best fit. 
+
+The after_stat function is required to tell ggplot to map the aesthetics after a function has computed the relevant statistics. 
  
 
 ```{r, line_eqn, fig.height=3, fig.width=8}
 library(ggpubr)
-
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height)) +
   geom_point() + 
   stat_smooth(method="lm", formula = y ~ x)  
 pcPlot +
-  stat_regline_equation(label.y = 185, aes(label = paste("Eqn: ", after_stat(eq.label))), formula = y ~ x) +
+  stat_regline_equation(label.y = 185, aes(label = after_stat(eq.label)), formula = y ~ x) +
   stat_regline_equation(label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x)
+
 ```
 
 ---
 
 ## Displaying fitted line statistics
-By giving subsets of the data to the stat_regline_equation() function, we can display statistics for each group that we make a line of best fit 
+By giving subsets of the data to the stat_regline_equation() function, we can display statistics for each group that we make a line of best fit. 
 
 ```{r, line_eqn_groups, fig.height=3, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
