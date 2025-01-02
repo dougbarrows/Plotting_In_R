@@ -331,12 +331,17 @@ show_col(rainbow(6))
 
 
 ## -----------------------------------------------------------------------------
+
 library(paletteer)
 my_colors <- paletteer_d("wesanderson::Zissou1")
 
 my_colors
 
-plot(1:length(my_colors), col = my_colors, cex = 5, pch =15)
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F----
+
+show_col(my_colors)
+
 
 
 ## -----------------------------------------------------------------------------
@@ -344,7 +349,9 @@ library(RColorBrewer)
 
 my_pal <- colorRampPalette(c("Red","White","Blue"))(25)
 
-plot(1:length(my_pal), col = my_pal, cex = 5, pch =15)
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F----
+show_col(my_pal)
 
 
 
@@ -422,7 +429,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
-# Histograms
+# Histograms and Density Plots
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
@@ -430,7 +437,7 @@ if(params$isSlides == "yes"){
 "    
   )
 }else{
-  cat("# Histograms
+  cat("# Histograms and Density Plots
 
 ---
 "    
@@ -458,6 +465,20 @@ hist(treatment, col="lightblue",
 hist(treatment, col="lightblue", 
      ylim=c(0,5), cex.main=0.8, 
      breaks = 10)
+
+
+## ----fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"-------
+
+d <- density(treatment) # returns the density data
+plot(d) 
+
+
+
+## ----fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"-------
+
+d <- density(treatment,width = 20) # returns the density data
+plot(d) 
+
 
 
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
@@ -532,6 +553,42 @@ boxplot(log2(exprs),ylab="log2 Expression",
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
+# Heatmaps
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Heatmaps
+
+---
+"    
+  )
+  
+}
+
+
+
+## ----plot_heat ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
+
+exprs_mat <- as.matrix(exprs)
+heatmap(exprs_mat, cexCol=0.75)
+
+
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F----
+
+exprs_mat <- as.matrix(exprs)
+heatmap(exprs_mat, cexCol=0.75)
+
+
+
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Going Beyond Base Plotting
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
@@ -547,6 +604,61 @@ if(params$isSlides == "yes"){
   )
   
 }
+
+
+
+## ----plot_heat2 ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
+library(pheatmap)
+pheatmap(exprs_mat)
+
+
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
+library(pheatmap)
+pheatmap(exprs_mat, scale ="row", show_rownames = F)
+
+
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
+library(RColorBrewer)
+
+my_pal <- colorRampPalette(c("Blue","White","Red"))(60)
+my_breaks = seq(-1.5,1.5,0.05)
+
+
+
+## ----fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
+pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
+
+
+
+## ----warning=F, message=F-----------------------------------------------------
+
+library(vioplot)
+
+
+
+## -----------------------------------------------------------------------------
+ 
+vioplot(log2(exprs),main="distribution of log2(expression)")
+
+
+
+## -----------------------------------------------------------------------------
+library(eulerr)
+mat <- cbind(
+  A = sample(c(TRUE, TRUE, FALSE), 50, TRUE),
+  B = sample(c(TRUE, FALSE), 50, TRUE),
+  C = sample(c(TRUE, FALSE, FALSE, FALSE), 50, TRUE)
+)
+head(mat)
+
+
+## ----fig.width=3,fig.height=3,dpi=300,out.width="1920px",height="1080px"------
+fit2 <- euler(mat)
+plot(fit2)
+
+
 
 
 
@@ -661,26 +773,8 @@ if(params$isSlides == "yes"){
 
 
 ## ----save_basePlotting,eval=FALSE---------------------------------------------
-# bmp(filename, width = 480, height = 480, units = "px",
-#     pointsize = 12)
 # jpeg(filename, width = 480, height = 480, units = "px",
 #      pointsize  = 12, quality = 75)
-
-
-## ----save_bmp_basePlotting,eval=FALSE-----------------------------------------
-# bmp(file = "control.bmp")
-# plot(control)
-# dev.off()
-
-
-## ----save_jpeg_basePlotting,eval=FALSE----------------------------------------
-# jpeg(file = "control.jpg", quality = 20)
-# plot(control)
-# dev.off()
-
-
-## ----save_ps_basePlotting,eval=FALSE------------------------------------------
-# postscript(file = "control.ps")
 # plot(control)
 # dev.off()
 

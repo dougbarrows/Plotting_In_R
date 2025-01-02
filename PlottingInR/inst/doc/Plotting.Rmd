@@ -19,46 +19,53 @@ toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
 message(toMessage)
 ```
 
-## Exercise 1
-Read in the data "timecourse.csv" as a data.frame and get a summary of column values
+**Exercise 1** - **Base Plots**
+
+- Read in the data "timecourse.csv" as a data.frame and get a summary of column values
 
 ```{r,echo=toMessage}
 timeCourse <- read.delim("./data/timecourse.csv",sep=",",header = T) 
 summary(timeCourse)
 ```
 
-```{r,echo=toMessage}
-timeCourse <- read.delim("./data/timecourse.csv",sep=",",header = T) 
-summary(timeCourse)
-```
-
-## Exercise 2
-Produce a histogram of the values for control and treatment samples
+- Produce a histogram of the values for control and treatment samples
 ```{r,echo=toMessage}
 hist(as.matrix(timeCourse)[,2:3],main = "Control",xlab = "Control")
 hist(as.matrix(timeCourse)[,4:5],main = "Treatment",xlab = "Treatment")
 ```
 
-## Exercise 3
-Put these in the same plot with same X scale limits
+
+- Put these in the same plot with same X scale limits by modifying the parameters. 
 ```{r,echo=toMessage}
 par(mfrow=c(2,1))
 hist(as.matrix(timeCourse)[,2:3],xlim = c(0,20),main = "Control",xlab = "Control")
 hist(as.matrix(timeCourse)[,4:5],xlim = c(0,20),main = "Treatment",xlab = "Treatment")
 ```
 
-## Exercise 4
-Make a barplot of values in control sample 1 for every time point
+- Make a barplot of values in control sample 1 for every time point. Add a title and color scheme from a palette of your choice.
 ```{r,echo=toMessage}
+library(viridis)
 par(mfrow=c(1,1))
 
 control1 <- timeCourse[,2]
-barplot(control1,names.arg = timeCourse[,1],xlab = "Time")
+barplot(control1,names.arg = timeCourse[,1],xlab = "Time", main = "Values over Time Course - Control Sample 1", col=viridis(11))
 
 ```
 
-## Exercise 5
-Make a barplot of mean values in control and treatment samples side by side for every time point
+- Use a for loop to plot all 4 samples on a single plot
+```{r,echo=toMessage}
+library(viridis)
+par(mfrow=c(2,2))
+
+for (i in 2:5){
+control1 <- timeCourse[,i]
+barplot(control1, names.arg = timeCourse[,1],xlab = "Time", main = paste("Values over Time Course \n",colnames(timeCourse)[i]), col=viridis(11))
+}
+
+```
+
+
+- Make a barplot of mean values in control and treatment samples side by side for every time point
 ```{r,echo=toMessage}
 par(mfrow=c(1,1))
 
@@ -71,17 +78,121 @@ legend("topleft",legend = c("Control","Treatment"),fill=c("blue","red"))
 
 ```
 
-## Exercise 6
-Create a line graph showing control and treatment samples against time.
+
+- Create a line graph showing control and treatment samples against time. Use different 
 
 ```{r,echo=toMessage}
 topOfY <- max(timeCourse[,-1])+3
  
-plot(timeCourse[,2],type="o",xlab="Time",ylab="Score",pch=1,ylim=c(0,topOfY),col="blue") 
+plot(timeCourse[,2],type="b",xlab="Time",ylab="Score",pch=1,ylim=c(0,topOfY),col="blue") 
 lines(timeCourse[,3],pch=1,col="blue",type="o") 
-lines(timeCourse[,4],pch=1,col="red",type="o") 
+lines(timeCourse[,4],pch=1,col="red",type="b") 
 lines(timeCourse[,5],pch=1,col="red",type="o") 
 legend("topleft",legend = c("Control","Treatment"),col=c("blue","red"),lwd = 2)
 ```
 
+**Exercise 2** - **A working example**
 
+- We will work through some basic analysis of a ecology dataset: salmon catch data. Lets read it in: *salmon_catch_data.csv*. Have a look at what is in the data.
+
+```{R}
+salmon <- read.csv("data/salmon_catch_data.csv")
+head(salmon)
+summary(salmon)
+```
+
+- Lets make a barplot that gives the number of observation for each salmon species. Make sure to include The table() might be useful for this. 
+
+```{r}
+
+barplot(table(salmon$common_name), col="salmon", ylab = "Number Caught", main="Observed Numbers of Salmon Species")
+```
+
+- The two main quantitative measures are length and weight. Lets check if they correlate. Draw a scatter plot to compare these two metrics.  
+
+```{R}
+
+plot(salmon$length_millimeters, salmon$weight_grams, col="salmon", ylab = "Weight (g)", xlab = "Length (mm)", pch=5, main="Correlation between weight and length of salmon", las=2)
+
+```
+
+
+- For quantitative measures we often want to check their distribution. We've shown how to do this in a couple of ways i.e. histograms and violin plots. We want to check the distribution for each species of salmon separately. First lets draw 4 histograms in a grid to show the distribution of length values. Make sure they have the same X axis range. 
+
+```{r}
+par(mfrow=c(2,2))
+
+salmon_types <- unique(salmon$common_name)
+for (i in 1:4){
+toplot <- salmon[salmon$common_name %in% salmon_types[i],]
+hist(toplot$length_millimeters, xlab = "length(mm)", main = paste("Salmon Length (mm)\n",salmon_types[i]), xlim= c(50,450), col="salmon")
+}
+
+
+```
+
+- Next lets do the same but plot them all on the same violin plot. The data is a different shape to what we used before. Turn off *use.cols* and instead provide a formula *length_millimeters~common_name*. This means look at values of length, split by common_name. Check the help page for more insight in using vioplot().
+
+```{r}
+
+par(mfrow=c(1,1))
+library(vioplot)
+ 
+vioplot(length_millimeters~common_name, data = salmon, use.cols=F, main="Distribution of lengths", col="salmon", cex.axis=0.8)
+
+
+```
+
+- Lets make a heatmap. The data we currently have read in is not right for a heatmap. Luckily we have another example data set that corresponds to what we have been looking at: salmon_mercury.csv. Read it in and inspect the object. When you read the object in, set the row names as column 1.  
+
+```{R}
+
+salmon_mercury <- read.csv("data/salmon_mercury.csv", row.names = 1)
+
+```
+
+- Lets make a heatmap. The data we currently have read in is not right for a heatmap. Luckily we have another example data set that corresponds to what we have been looking at: salmon_mercury.csv. Read it in and inspect the object. 
+
+```{R}
+library(pheatmap)
+pheatmap(salmon_mercury)
+
+```
+
+- Add a custom color gradient that better fits with data. 
+
+```{R}
+
+pheatmap(salmon_mercury, color = viridis(20))
+
+```
+
+
+- Turn off the clustering of clumns so the time series is better represented. Also add a title. 
+
+```{R}
+
+pheatmap(salmon_mercury, color = viridis(20), cluster_cols = F, main="Mercury levels (ppm) in Salmon species over time")
+
+```
+
+- The plot is great so far. It is clear Steelhead have greater levels of Mercury. If we want to see trends though it will be useful to instead scale the data by row.
+
+```{R}
+
+pheatmap(salmon_mercury, scale ="row", cluster_cols = F, main="Z-scores of Mercury levels (ppm) in Salmon species over time")
+
+```
+
+- We can see a nice trend that wasn't apparent before. Several salmon species seem to have had increasing mercury, while Steelhead is decreasing. Lets finish by updating the color palette to center on white instead of yellow. This will help accurate perception of the color gradient. 
+
+
+```{R}
+
+library(RColorBrewer)
+
+my_pal <- colorRampPalette(c("Blue","White","Red"))(60)
+
+pheatmap(salmon_mercury, scale ="row", breaks = seq(-1.5,1.5,0.05), color = my_pal, cluster_cols = F, main="Z-scores of Mercury levels (ppm) in Salmon species over time")
+
+```

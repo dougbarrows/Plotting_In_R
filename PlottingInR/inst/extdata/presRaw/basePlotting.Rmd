@@ -506,26 +506,10 @@ legend("topleft",legend=c("treatment","control"),
 ```
 
 ---
-## Making plots readable
-
-In our line plot we have already done a good job of making it easier to differentiate the lines as we have different line styles and different shape points. 
-
-Other things we can do is also differentiate thickness.
-
-```{r readability_basePlotting,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
-
-plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
-axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-axis(2, las=1, at=20*0:g_range[2])
-box()
-
-lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
-legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
-```
-
----
 ## Put it all together
-To make that final plot you can see that there are many lines of code we put together. 
+
+Though we can make a okay plot in a single line, this example demonstrates how you can make something custom and ready to share with others. To make that final plot you can see that there are many lines of code we put together. 
+
 ```{r plot_together ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", eval=F}
 plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
 axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -561,10 +545,10 @@ if(params$isSlides == "yes"){
 
 ```
 
----
+
 ## Named Colors and hex codes
 
-Most colors can simply be defined by writing them in as a chracter vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+Most colors can simply be defined by writing them in as a character vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 
 You can also use hex codes: a hexadecimal format for identifying colors. This gives greater variety of options as they use the full color spectrum. Each pair of characters corresponds to the Red, Green and Blue content for the color i.e. #ffe4c4 (also known as Bisque) is composed of 100% red, 89.4% green and 76.9% blue. Resources like this [color picker](https://htmlcolorcodes.com/color-picker/) can be used to help you find specific shades, and even create complementary palettes. 
 
@@ -573,14 +557,17 @@ You can also use hex codes: a hexadecimal format for identifying colors. This gi
 
 Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
 
-Here we acn look at the rainbow palette that comes with R. Often the palettes are functions where we can simply ask for how many colors we want and it pull appropraite numbers back.  
+Here we can look at the rainbow palette that comes with R. Often the palettes are functions where we can simply ask for how many colors we want and it pull appropriate numbers back.  
 
 ```{r}
 
 rainbow(2)
 ```
 
-Rainbow is continuous so we it will pull as many colors as you ask from the color space, along a specifc gradient defined by the palette. 
+---
+## Palettes
+
+Rainbow is continuous so we it will pull as many colors as you ask from the color space, along a specific gradient defined by the palette. 
 
 ```{r}
 
@@ -593,42 +580,57 @@ show_col(rainbow(6))
 ```
 
 
+---
+## Palettes
+
 Many people have created there own palette packages along many themes including famous artworks, Wes Anderson movies and Birds. [Paleteer](https://r-graph-gallery.com/color-palette-finder) is a package in which many different palettes across many themes are collated. In this case we can grab a discrete palettes. This means it will have a limited number of options.  
 
-```{R}
+```{r}
+
 library(paletteer)
 my_colors <- paletteer_d("wesanderson::Zissou1")
 
 my_colors
+```
 
-plot(1:length(my_colors), col = my_colors, cex = 5, pch =15)
+```{r, fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
+
+show_col(my_colors)
+
 ```
 
 
 ---
 ## Palettes
 
-R color brewer is another popular option. It has many built-in [palettes](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). What makes this package special though is the abilty to customize continuous color palettes with the *colorRampPalette()* function. 
+R color brewer is another popular option. It has many built-in [palettes](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). What makes this package special though is the ability to customize continuous color palettes with the *colorRampPalette()* function. 
 
-```{r}
+```{r }
 library(RColorBrewer)
 
 my_pal <- colorRampPalette(c("Red","White","Blue"))(25)
+```
 
-plot(1:length(my_pal), col = my_pal, cex = 5, pch =15)
+```{r, fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
+show_col(my_pal)
 
 ```
 
 ---
-## Color blindness and perceptually uniformity 
+## Color blindness + Uniform Perception
 
 Using custom colors is great and can really help a make a piece of work cohesive and stand out. But you have to be careful. 
 
 ~4% of people are color blind. In white males this number raises to ~10%. Considering the demographics in science, there will likely be someone with color blindness in your meeting.
 
-Furthermore when we pick gradients the ability to see patterns in the data varies depending on the color scales used, even in sighted people.
+Furthermore, when we pick gradients the ability to see patterns in the data varies depending on the color scales used, even in sighted people.
 
-![monalisa_palettes](imgs/monalisa.png)
+---
+## Color blindness + Uniform Perception
+
+![palettes](imgs/uniform_colors.png)
+
+(Crameri et al, 2020)
 
 ---
 ## Viridis
@@ -654,6 +656,12 @@ viridis(5)
   
 ![viridis_palettes](imgs/viridis.png)
 
+---
+## Viridis alternatives
+
+Viridis gradients are great, but there is not an good divergent color scheme. 
+
+The [*khroma* package](https://cran.r-project.org/web/packages/khroma/vignettes/crameri.html) is a similarly derived collection of colors, with even more options like divergent palettes. 
   
 ---
 ## Good data visualization
@@ -665,7 +673,7 @@ There are often a trade offs in creating good plots.
 * Does it contain all the information with nothing superfluous?
 * Is it the best way to tell the story I want to tell, without being misleading?
 
-[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
+[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -728,7 +736,7 @@ Sometimes you want to have several data series stacked in a single barplot. The 
 
 Let's read the data from the example_plot.txt data file.  
 
-Read values from tab-delimited example_plot.txt
+Read values from comma-seperated example_plot.txt
 ```{r readTable_basePlotting}
 data <- read.table("data/example_plot.txt", header=T, row.names=1, sep=",")
 ```
@@ -769,7 +777,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
-# Histograms
+# Histograms and Density Plots
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
 
@@ -777,7 +785,7 @@ if(params$isSlides == "yes"){
 "    
   )
 }else{
-  cat("# Histograms
+  cat("# Histograms and Density Plots
 
 ---
 "    
@@ -821,6 +829,34 @@ hist(treatment, col="lightblue",
 ```
   ]
   
+---
+## Density Plot
+
+Unlike histograms, there is not a density plot function within base R. Instead we call the *density()* to calculate the density values. We can then just pass this straight to the basic plot function. 
+
+
+```{r, fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"}
+
+d <- density(treatment) # returns the density data
+plot(d) 
+
+```
+
+
+---
+## Density Plot
+
+Similar to bins, we can alter the resolution using the width argument. 
+
+
+```{r, fig.width=6,fig.height=3,dpi=300,out.width="1000px",height="750px"}
+
+d <- density(treatment,width = 20) # returns the density data
+plot(d) 
+
+```
+
+
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
 if(params$isSlides == "yes"){
@@ -899,7 +935,7 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 
 ---
 ## Read in bigger data
-First lets read in the gene expression data
+First lets read in the gene expression data. This a matrix where each column corresponds toa group of observations that we want to make a single boxplot. 
 ```{r readForBoxplot_basePlotting,eval=T,fig.width=6,fig.height=3,dpi=300,out.width="1920px",height="1080px"}
 exprs <- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
 head(exprs)
@@ -929,6 +965,54 @@ boxplot(log2(exprs),ylab="log2 Expression",
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
 
+# Heatmaps
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Heatmaps
+
+---
+"    
+  )
+  
+}
+
+```
+
+
+## Heatmaps
+
+Heatmaps are really easy to make with the *heatmap()* function. The input required is a numeric matrix, so we can use our expression data set again. But first we must coerce it from a data frame. 
+
+```{r plot_heat ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+
+exprs_mat <- as.matrix(exprs)
+heatmap(exprs_mat, cexCol=0.75)
+
+```
+
+
+## Heatmaps
+
+An issue with this heatmap is there no color scale bar. Unfortunately there is no argument or straightforward alternative for adding it to our plot. Luckily there are specialist packages that compensate for some of the holes in base R.
+
+```{r,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", echo=F}
+
+exprs_mat <- as.matrix(exprs)
+heatmap(exprs_mat, cexCol=0.75)
+
+```
+
+
+---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
 # Going Beyond Base Plotting
 
 <html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
@@ -947,8 +1031,107 @@ if(params$isSlides == "yes"){
 
 ```
 
+## Specialist packages
 
-## Upset, venns, vioplot, density, heatmap
+There are many packages that extend the capabilities of base R. We have mentioned ggplot2 which is a whole different philosophy. But there are many packages that focus on making specific plot types that aren't handled well in base R:
+
+* Heatmaps
+* Violin Plots
+* Venn Diagrams/Euler Plots
+
+
+---
+## Heatmaps
+
+There are several options for making heatmaps in R beyond base R. We will show you *pheatmap*. The result looks similar, but unlike base heatmap, pheatmap does not scale by row. 
+
+```{r plot_heat2 ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+library(pheatmap)
+pheatmap(exprs_mat)
+
+```
+
+---
+## Heatmaps
+
+We can turn the scaling on using the *scale* argument. This will do a by row Zscore. Lets also turn the rownames off as we have too many to read them properly. 
+
+```{r ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+library(pheatmap)
+pheatmap(exprs_mat, scale ="row", show_rownames = F)
+
+```
+
+---
+## Heatmaps
+
+We can use our knowledge of color palettes to customize the heatmaps. In this case we are recoloring it so the 0 values are white. 
+
+To do this we need to specify the number of colors and the breaks for those colors. The breaks are the numeric value for each color on the gradient. 
+
+```{r ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+library(RColorBrewer)
+
+my_pal <- colorRampPalette(c("Blue","White","Red"))(60)
+my_breaks = seq(-1.5,1.5,0.05)
+
+```
+
+---
+## Heatmaps
+
+We can give our new colors and breaks to the pheatmap function. 
+
+```{r ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"}
+pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
+
+```
+
+
+---
+## Violin Plots
+
+Violin plots are often preferred to box plots as they show the underlying distribution.
+
+```{r, warning=F, message=F}
+
+library(vioplot)
+
+```
+
+```{r fig.width=5,fig.height=2.5.5,dpi=300,out.width="1920px",height="1080px"}
+ 
+vioplot(log2(exprs),main="distribution of log2(expression)")
+
+```
+
+---
+## Venn Diagram
+
+We can show overlaps between groups by creating a venn diagram. We can use the eulerr package to create a variant of this, the Euler plot. This provides a good approximation of the relative sizes of overlaps, so the plot is more visually informative. 
+
+```{r}
+library(eulerr)
+mat <- cbind(
+  A = sample(c(TRUE, TRUE, FALSE), 50, TRUE),
+  B = sample(c(TRUE, FALSE), 50, TRUE),
+  C = sample(c(TRUE, FALSE, FALSE, FALSE), 50, TRUE)
+)
+head(mat)
+```
+
+---
+## Venn Diagram
+
+First we cacluate the euler fit with the *euler()* function. Then we can use *plot()* to make the plot. 
+
+```{r ,fig.width=2,fig.height=2,dpi=300,out.width="920px",height="580px"}
+fit2 <- euler(mat)
+plot(fit2)
+
+
+
+```
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -1088,7 +1271,7 @@ abline(a=0, b=1, lty=2)
   
 ---
 ## Shapes
-*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
+*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the density argument there will be a hash fill. 
 
 ```{r,fig.width=8,fig.height=5,dpi=300,out.width="490px",height="270px"}
 plot(control, treatment)
@@ -1124,39 +1307,13 @@ There are many different ways of saving your plots in R.
 
 The easiest way is to use the *export* button in the plot pane in RStudio. This is not good reproducible practice though as the code is not tied to the plot. 
 
-To save plots through the console, the argument you would need is name of file in which you want to save the plot. Plotting commands then can be entered as usual. The output would be redirected to the file. 
+To save plots through the console, the argument you would need is name of file in which you want to save the plot. Plotting commands then can be entered as usual. The output is then redirected to the file, instead of the plotting window. 
 
-When you're done with your plotting commands, enter the dev.off() command. 
+When you're done with your plotting commands, enter the dev.off() command to close the file. 
 
 ```{r save_basePlotting,eval=FALSE}
-bmp(filename, width = 480, height = 480, units = "px", 
-    pointsize = 12)
 jpeg(filename, width = 480, height = 480, units = "px", 
      pointsize  = 12, quality = 75)
-```
-
----
-## Saving in bitmap format
-
-```{r save_bmp_basePlotting,eval=FALSE}
-bmp(file = "control.bmp")
-plot(control)
-dev.off()
-```
-
----
-## Saving in jpeg format
-```{r save_jpeg_basePlotting,eval=FALSE}
-jpeg(file = "control.jpg", quality = 20)
-plot(control)
-dev.off()
-```
-
----
-## Saving in postscript format
-
-```{r save_ps_basePlotting,eval=FALSE}
-postscript(file = "control.ps")
 plot(control)
 dev.off()
 ```
@@ -1186,7 +1343,7 @@ Answers for base plotting can be found [here](../../exercises/answers/Plotting_a
 ---
 ## Help while plotting
 
-* Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+* Data visualization theory - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
 
 * Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
 

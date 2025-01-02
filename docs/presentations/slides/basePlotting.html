@@ -512,10 +512,10 @@ class: inverse, center, middle
 
 ---
 
----
+
 ## Named Colors and hex codes
 
-Most colors can simply be defined by writing them in as a chracter vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
+Most colors can simply be defined by writing them in as a character vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 
 You can also use hex codes: a hexadecimal format for identifying colors. This gives greater variety of options as they use the full color spectrum. Each pair of characters corresponds to the Red, Green and Blue content for the color i.e. #ffe4c4 (also known as Bisque) is composed of 100% red, 89.4% green and 76.9% blue. Resources like this [color picker](https://htmlcolorcodes.com/color-picker/) can be used to help you find specific shades, and even create complementary palettes. 
 
@@ -524,7 +524,7 @@ You can also use hex codes: a hexadecimal format for identifying colors. This gi
 
 Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
 
-Here we acn look at the rainbow palette that comes with R. Often the palettes are functions where we can simply ask for how many colors we want and it pull appropraite numbers back.  
+Here we can look at the rainbow palette that comes with R. Often the palettes are functions where we can simply ask for how many colors we want and it pull appropriate numbers back.  
 
 
 ``` r
@@ -535,7 +535,10 @@ rainbow(2)
 ## [1] "#FF0000" "#00FFFF"
 ```
 
-Rainbow is continuous so we it will pull as many colors as you ask from the color space, along a specifc gradient defined by the palette. 
+---
+## Palettes
+
+Rainbow is continuous so we it will pull as many colors as you ask from the color space, along a specific gradient defined by the palette. 
 
 
 ``` r
@@ -548,6 +551,9 @@ rainbow(6)
 
 ![](basePlotting_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
+
+---
+## Palettes
 
 Many people have created there own palette packages along many themes including famous artworks, Wes Anderson movies and Birds. [Paleteer](https://r-graph-gallery.com/color-palette-finder) is a package in which many different palettes across many themes are collated. In this case we can grab a discrete palettes. This means it will have a limited number of options.  
 
@@ -564,39 +570,38 @@ my_colors
 ## #3B9AB2FF #78B7C5FF #EBCC2AFF #E1AF00FF #F21A00FF
 ```
 
-``` r
-plot(1:length(my_colors), col = my_colors, cex = 5, pch =15)
-```
-
-![](basePlotting_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-10-1.png" width="1920px" /&gt;
 
 
 ---
 ## Palettes
 
-R color brewer is another popular option. It has many built-in [palettes](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). What makes this package special though is the abilty to customize continuous color palettes with the *colorRampPalette()* function. 
+R color brewer is another popular option. It has many built-in [palettes](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html). What makes this package special though is the ability to customize continuous color palettes with the *colorRampPalette()* function. 
 
 
 ``` r
 library(RColorBrewer)
 
 my_pal &lt;- colorRampPalette(c("Red","White","Blue"))(25)
-
-plot(1:length(my_pal), col = my_pal, cex = 5, pch =15)
 ```
 
-![](basePlotting_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-12-1.png" width="1920px" /&gt;
 
 ---
-## Color blindness and perceptually uniformity 
+## Color blindness + Uniform Perception
 
 Using custom colors is great and can really help a make a piece of work cohesive and stand out. But you have to be careful. 
 
 ~4% of people are color blind. In white males this number raises to ~10%. Considering the demographics in science, there will likely be someone with color blindness in your meeting.
 
-Furthermore when we pick gradients the ability to see patterns in the data varies depending on the color scales used, even in sighted people.
+Furthermore, when we pick gradients the ability to see patterns in the data varies depending on the color scales used, even in sighted people.
 
-![monalisa_palettes](imgs/monalisa.png)
+---
+## Color blindness + Uniform Perception
+
+![palettes](imgs/uniform_colors.png)
+
+(Crameri et al, 2020)
 
 ---
 ## Viridis
@@ -621,6 +626,12 @@ viridis(5)
   
 ![viridis_palettes](imgs/viridis.png)
 
+---
+## Viridis alternatives
+
+Viridis gradients are great, but there is not an good divergent color scheme. 
+
+The [*khroma* package](https://cran.r-project.org/web/packages/khroma/vignettes/crameri.html) is a similarly derived collection of colors, with even more options like divergent palettes. 
   
 ---
 ## Good data visualization
@@ -739,7 +750,7 @@ legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
 ---
 class: inverse, center, middle
 
-# Histograms
+# Histograms and Density Plots
 
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
 
@@ -791,6 +802,36 @@ hist(treatment, col="lightblue",
 &lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlottingR_basePlotting-1.png" width="1000px" /&gt;
   ]
   
+---
+## Density Plot
+
+Unlike histograms, there is not a density plot function within base R. Instead we call the *density()* to calculate the density values. We can then just pass this straight to the basic plot function. 
+
+
+
+``` r
+d &lt;- density(treatment) # returns the density data
+plot(d) 
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-18-1.png" width="1000px" /&gt;
+
+
+---
+## Density Plot
+
+Similar to bins, we can alter the resolution using the width argument. 
+
+
+
+``` r
+d &lt;- density(treatment,width = 20) # returns the density data
+plot(d) 
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-19-1.png" width="1000px" /&gt;
+
+
 ---
 class: inverse, center, middle
 
@@ -845,7 +886,7 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 
 ---
 ## Read in bigger data
-First lets read in the gene expression data
+First lets read in the gene expression data. This a matrix where each column corresponds toa group of observations that we want to make a single boxplot. 
 
 ``` r
 exprs &lt;- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
@@ -890,14 +931,160 @@ boxplot(log2(exprs),ylab="log2 Expression",
 ---
 class: inverse, center, middle
 
-# Going Beyond Base Plotting
+# Heatmaps
 
 &lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
 
 ---
 
 
-## Upset, venns, vioplot, density, heatmap
+## Heatmaps
+
+Heatmaps are really easy to make with the *heatmap()* function. The input required is a numeric matrix, so we can use our expression data set again. But first we must coerce it from a data frame. 
+
+
+``` r
+exprs_mat &lt;- as.matrix(exprs)
+heatmap(exprs_mat, cexCol=0.75)
+```
+
+&lt;img src="basePlotting_files/figure-html/plot_heat -1.png" width="1920px" /&gt;
+
+
+## Heatmaps
+
+An issue with this heatmap is there no color scale bar. Unfortunately there is no argument or straightforward alternative for adding it to our plot. Luckily there are specialist packages that compensate for some of the holes in base R.
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-23-1.png" width="1920px" /&gt;
+
+
+---
+class: inverse, center, middle
+
+# Going Beyond Base Plotting
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
+
+---
+
+## Specialist packages
+
+There are many packages that extend the capabilities of base R. We have mentioned ggplot2 which is a whole different philosophy. But there are many packages that focus on making specific plot types that aren't handled well in base R:
+
+* Heatmaps
+* Violin Plots
+* Venn Diagrams/Euler Plots
+
+
+---
+## Heatmaps
+
+There are several options for making heatmaps in R beyond base R. We will show you *pheatmap*. The result looks similar, but unlike base heatmap, pheatmap does not scale by row. 
+
+
+``` r
+library(pheatmap)
+pheatmap(exprs_mat)
+```
+
+&lt;img src="basePlotting_files/figure-html/plot_heat2 -1.png" width="1920px" /&gt;
+
+---
+## Heatmaps
+
+We can turn the scaling on using the *scale* argument. This will do a by row Zscore. Lets also turn the rownames off as we have too many to read them properly. 
+
+
+``` r
+library(pheatmap)
+pheatmap(exprs_mat, scale ="row", show_rownames = F)
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-25-1.png" width="1920px" /&gt;
+
+---
+## Heatmaps
+
+We can use our knowledge of color palettes to customize the heatmaps. In this case we are recoloring it so the 0 values are white. 
+
+To do this we need to specify the number of colors and the breaks for those colors. The breaks are the numeric value for each color on the gradient. 
+
+
+``` r
+library(RColorBrewer)
+
+my_pal &lt;- colorRampPalette(c("Blue","White","Red"))(60)
+my_breaks = seq(-1.5,1.5,0.05)
+```
+
+---
+## Heatmaps
+
+We can give our new colors and breaks to the pheatmap function. 
+
+
+``` r
+pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-27-1.png" width="1920px" /&gt;
+
+
+---
+## Violin Plots
+
+Violin plots are often preferred to box plots as they show the underlying distribution.
+
+
+``` r
+library(vioplot)
+```
+
+
+``` r
+vioplot(log2(exprs),main="distribution of log2(expression)")
+```
+
+![](basePlotting_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+
+---
+## Venn Diagram
+
+We can show overlaps between groups by creating a venn diagram. We can use the eulerr package to create a variant of this, the Euler plot. This provides a good approximation of the relative sizes of overlaps, so the plot is more visually informative. 
+
+
+``` r
+library(eulerr)
+mat &lt;- cbind(
+  A = sample(c(TRUE, TRUE, FALSE), 50, TRUE),
+  B = sample(c(TRUE, FALSE), 50, TRUE),
+  C = sample(c(TRUE, FALSE, FALSE, FALSE), 50, TRUE)
+)
+head(mat)
+```
+
+```
+##          A     B     C
+## [1,]  TRUE  TRUE FALSE
+## [2,]  TRUE  TRUE FALSE
+## [3,]  TRUE  TRUE FALSE
+## [4,]  TRUE  TRUE FALSE
+## [5,] FALSE FALSE FALSE
+## [6,]  TRUE FALSE FALSE
+```
+
+---
+## Venn Diagram
+
+First we cacluate the euler fit with the *euler()* function. Then we can use *plot()* to make the plot. 
+
+
+``` r
+fit2 &lt;- euler(mat)
+plot(fit2)
+```
+
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-31-1.png" width="1920px" /&gt;
 
 ---
 class: inverse, center, middle
@@ -991,7 +1178,7 @@ text(20,60, 'THIS IS MY PLOT', col='red')
 text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-22-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-35-1.png" width="490px" /&gt;
   ]
 ---
 ## Lines
@@ -1012,12 +1199,12 @@ abline(v=50, col='red', lwd=2)
 abline(a=0, b=1, lty=2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-23-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-36-1.png" width="490px" /&gt;
   ]
   
 ---
 ## Shapes
-*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the denisty argument there will be a hash fill. 
+*polygon()* allows you to draw specific polygons. You just need to give it the coordinates of each vertex. Again this is often to highlight specific parts of the plot. This can be filled, or if you give the density argument there will be a hash fill. 
 
 
 ``` r
@@ -1025,7 +1212,7 @@ plot(control, treatment)
 polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-24-1.png" width="490px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-37-1.png" width="490px" /&gt;
 
 ---
 class: inverse, center, middle
@@ -1042,43 +1229,14 @@ There are many different ways of saving your plots in R.
 
 The easiest way is to use the *export* button in the plot pane in RStudio. This is not good reproducible practice though as the code is not tied to the plot. 
 
-To save plots through the console, the argument you would need is name of file in which you want to save the plot. Plotting commands then can be entered as usual. The output would be redirected to the file. 
+To save plots through the console, the argument you would need is name of file in which you want to save the plot. Plotting commands then can be entered as usual. The output is then redirected to the file, instead of the plotting window. 
 
-When you're done with your plotting commands, enter the dev.off() command. 
+When you're done with your plotting commands, enter the dev.off() command to close the file. 
 
 
 ``` r
-bmp(filename, width = 480, height = 480, units = "px", 
-    pointsize = 12)
 jpeg(filename, width = 480, height = 480, units = "px", 
      pointsize  = 12, quality = 75)
-```
-
----
-## Saving in bitmap format
-
-
-``` r
-bmp(file = "control.bmp")
-plot(control)
-dev.off()
-```
-
----
-## Saving in jpeg format
-
-``` r
-jpeg(file = "control.jpg", quality = 20)
-plot(control)
-dev.off()
-```
-
----
-## Saving in postscript format
-
-
-``` r
-postscript(file = "control.ps")
 plot(control)
 dev.off()
 ```
