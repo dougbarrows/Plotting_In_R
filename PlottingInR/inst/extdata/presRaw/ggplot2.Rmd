@@ -365,7 +365,6 @@ if(params$isSlides == "yes"){
 
 ```
 
----
 ## Our first ggplot2 graph
 More typically, the data and aesthetics are defined within ggplot function and geoms applied afterwards. This makes it easier to switch between plot types to find the best way to visualize your data.
 
@@ -406,6 +405,7 @@ pcPlot_line
 
 ---
 ## Smoothed line plots
+
 ```{r, smooth_simple_ggplot2, fig.height=4.5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
@@ -418,6 +418,7 @@ pcPlot_smooth
 
 ---
 ## Bar plots
+
 ```{r, bar_simple_ggplot2, fig.height=5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex))
@@ -431,6 +432,7 @@ pcPlot_bar
 
 ---
 ## Histograms
+
 ```{r, histogram_simple_ggplot2, fig.height=4, fig.width=8,warning=FALSE}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
@@ -443,6 +445,7 @@ pcPlot_hist
 
 ---
 ## Density plots
+
 ```{r, density_simple_ggplot2, fig.height=4.5, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height))
@@ -468,6 +471,7 @@ pcPlot_boxplot
 
 ---
 ## Violin plots
+
 ```{r, violin_simple_ggplot2, fig.height=4.5, fig.width=8}
 
 pcPlot <- ggplot(data=patients_clean,
@@ -479,20 +483,35 @@ pcPlot_violin
 ```
 
 ---
-## Combining geoms in the same plot
-```{r, mult_geom_ggplot2, fig.height=4.5, fig.width=8}
+## Multiple Geoms
 
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Sex,y=Height))
+We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. 
 
-pcPlot_combine <- pcPlot+ geom_boxplot() + geom_jitter(width = 0.25)
+In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
 
-pcPlot_combine
+```{r, multiplegeom_ggplot2}
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter()
 ```
 
 ---
+## Geom paramters
+
+Many Geoms will have some specific arguments for that plot. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
+
+```{r, multiplegeom_ggplot2}
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter(width=0.2)
+```
+
+
+---
 ## There are a world of geoms 
-An overview of geoms and thier arguments can be found in the ggplot2 documentation or within the ggplot2 quick reference guides.
+An overview of geoms and their arguments can be found in the ggplot2 documentation or within the ggplot2 quick reference guides.
 
 - [ggplot2 documentation](https://ggplot2.tidyverse.org/)
 
@@ -583,7 +602,7 @@ pcPlot+geom_point(size=2)
 
 ---
 ## Aesthetics in geom
-The aesthetic mappings may be set directly in the geom_points() function as previously when specifying red. This can allow the same ggplot object to be used by different aesethetic mappings and varying geoms
+The aesthetic mappings may be set directly in the geom_points() function as previously when specifying red. This can allow the same ggplot object to be used by different aesthetic mappings and varying geoms.
 
 ```{r, aes_in_geom_ggplot2,eval=!AsSlides,echo=!AsSlides}
 pcPlot <- ggplot(data=patients_clean)
@@ -596,27 +615,38 @@ pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 ```{r, aes_in_geomFS1_ggplot2,eval=AsSlides,echo=AsSlides}
 pcPlot <- ggplot(data=patients_clean)
 ```
+
 ---
+## Aesthetics in geom
 ```{r, aes_in_geomFS2_ggplot2,eval=AsSlides,echo=AsSlides}
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
-```
----
-```{r, aes_in_geomFS3_ggplot2,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
-```
----
-```{r, aes_in_geomFS4_ggplot2,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
-```
----
-```{r, aes_in_geomFS5_ggplot2,eval=AsSlides,echo=AsSlides}
-pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 ```
 
 ---
 ## Aesthetics in geom
+```{r, aes_in_geomFS3_ggplot2,eval=AsSlides,echo=AsSlides}
+pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
+```
 
-Again, for a comprehensive list of parameters and aesthetic mappings used in geom_*type*  functions see the ggplot2 documentation for individual geoms by using ?geom_*type*
+---
+## Aesthetics in geom
+```{r, aes_in_geomFS4_ggplot2,eval=AsSlides,echo=AsSlides}
+pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
+```
+
+---
+## Aesthetics in geom
+```{r, aes_in_geomFS5_ggplot2,eval=AsSlides,echo=AsSlides}
+pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
+```
+
+
+
+
+---
+## Aesthetics in geom
+
+Again, for a comprehensive list of parameters and aesthetic mappings used in geom_*type* functions see the ggplot2 documentation for individual geoms by using ?geom_*type*
 
 ```{r, helpforArguments_ggplot2}
 ?geom_point
@@ -1857,8 +1887,109 @@ if(params$isSlides == "yes"){
 
 ```
 
+## Interactive Plots
+
+Most of the time when we are drawing plots the aim is to generate a saved file we can use for figures later. Sometimes though we may want to generate a interactive plot. This can be really useful to help parse our data, or if we want to generate dynamic reports to share our work.
+
+
+```{R}
+library(plotly)
+```
+
 
 ---
+## Interactive Plots
+
+```{r, eval=FALSE,fig.height=4, fig.width=9,}
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height))+geom_point()
+
+ggplotly(pcPlot)
+```
+
+---
+## Adding Annotation
+
+To show off how we add additional annotation or work with more complex examples we have a ggplot object to load in. You can use the *load()* function with to read in this object: *data/pcPlot.RData*
+
+```{r}
+load("data/pcPlot.RData")
+
+```
+
+
+---
+## Review the data
+
+We can quickly check what is in the data, the aesthetics mapping, and any plot already in the ggplot object.
+
+```{r}
+
+head(pcPlot$data)
+
+pcPlot$mapping
+
+pcPlot$layers
+```
+
+```{r, echo=FALSE, eval=FALSE,fig.height=4, fig.width=9}
+
+to_plot <- prcomp(assay(toPlot))$rotation-(prcomp(assay(toPlot))$rotation/matrix(rnorm(36), 6, 6)/100)
+
+rownames(to_plot) <- c("A_1","A_2",
+                       "B_1","B_2",
+                       "C_1","C_2")
+to_plot <- as.data.frame(to_plot)
+to_plot$Sample <- rownames(to_plot)
+
+to_plot$Time <- factor(c("0hr","0hr","2hr","2hr","12hr","12hr"), levels = c("0hr","2hr","12hr"))
+to_plot$Rep <- factor(c("1","2","1","2","1","2"))
+pca_res <- to_plot
+pca_res[2,1:2] <- c(0.6090663,  0.5384380)
+pca_res[3,1:2] <- c(0.4596307,  0.5424412)
+pca_res[4,1:2] <- c(0.4190463,  0.4812430)
+pca_res[5,1:2] <- c(0.3220796,  0.5434719)
+pca_res[6,1:2] <- c(0.3130591,  0.4426442)
+pcPlot <- ggplot(data=pca_res,
+        mapping=aes(x=PC1,y=PC2, color= Time, shape=Rep))
+save(pcPlot, file = "../data/pcPlot.RData")
+
+```
+
+---
+## Lets make a plot
+
+The aesthetic mappings are naturally inherited as labels. If we want to add custom labels we can specify it in our plot. 
+
+```{r,fig.height=4, fig.width=9}
+
+ggplotly(pcPlot)
+```
+
+---
+## Extra Annotation
+
+As the aesthetic mappings are naturally inherited as labels,we can just add an additional aesthetic. If we want to add custom labels we can specify it in our plot. 
+
+```{r,fig.height=4, fig.width=9}
+
+ggplotly(pcPlot + geom_point(aes(label = Sample)))
+```
+
+---
+## Extra Annotation
+
+If we want full control over the labeling we can instead use the ggplotly function to take care of this for us by specifying when/what/where labels are shown. 
+
+```{r}
+ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = c("Sample"))
+```
+
+
+
+---
+
 
 Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
 
