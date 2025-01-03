@@ -1,5 +1,5 @@
 ---
-title: "Scales, Statistics and Themes"
+title: "Facets, Scales and Transformations"
 author: "Rockefeller University, Bioinformatics Resource Centre"
 date: "https://rockefelleruniversity.github.io/Plotting_In_R/"
 output: 
@@ -8,23 +8,71 @@ output:
     theme: united  # many options for theme, this one is my favorite.
     highlight: tango  # specifies the syntax highlighting style
 params:
-  toMessage: false  
+  toMessage: false    
 ---
 
 <p>&nbsp;</p>
-These exercise cover the scales, statistics and themes of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
-
+These exercises cover the Facets, Scales and Transformations of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
 
 ```{r, setup,include=FALSE}
 toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
 message(toMessage)
 ```
 
-## Exercise 2
+**Exercise 1** - **Facets**
 
-In these exercises we look at adjusting the scales and themes of our plots.
+- Generate a boxplot of BMIs comparing smokers and non-smokers. Split the BMI vs Weight plot into a grid of plots separated by Smoking status and Sex .
 
-### Scales
+```{r,echo=toMessage}
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=BMI,y=Weight,colour=Height))+geom_point()
+plot+facet_grid(Sex~Smokes)
+```
+
+- Now reproduce the boxplots in exercise 8 (grouped by smoker, coloured by sex) but now include a separate facet for people of different age (using Age column).
+
+```{r,echo=toMessage}
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Smokes,y=BMI,colour=Sex))+
+  geom_boxplot()+
+  facet_wrap(~Age)
+plot
+```
+
+- Produce a similar boxplot of BMIs but this time group data by Sex, colour by Age and facet by Smoking status.
+
+HINT - Discrete values such as in factors are used for categorical data.
+
+```{r,echo=toMessage}
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Sex,y=BMI,colour=factor(Age)))+
+  geom_boxplot()+
+  facet_wrap(~Smokes)
+plot
+```
+
+- Regenerate the solution to exercise 10 but this time using a violin plot.
+
+```{r,echo=toMessage}
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Sex,y=BMI,colour=factor(Age)))+
+  geom_violin()+
+  facet_wrap(~Smokes)
+plot
+```
+
+- Generate a separate density plot of BMI coloured by sex for each Grade,
+
+```{r,echo=toMessage}
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(BMI))+ geom_density(aes(fill=Sex),alpha=0.5)
+plot+facet_wrap(~Grade)
+```
+
+
+**Exercise 2** - **Scales**
 
 1. Using the patient dataset from earlier, generate a scatter plot of BMI versus Weight
 
@@ -116,7 +164,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-### Statistics
+**Exercise 3** - **Statistics**
 
 7. Recreate the scatterplot of BMI by height. Colour by Age group and add fitted lines (but no SE lines) for each Age group. 
 
@@ -130,39 +178,4 @@ plot <- ggplot(data=patients_clean,
 
 plot
 ```
-
-### Themes
-
-8. Remove the legend title from plot in exercise 7, change the background colours of legend panels to white and place legend at bottom of plot.
-
-```{r,echo=toMessage}
-
-
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
-
-plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
-
-plot
-```
-
-9. Add a title to the plot, remove minor grid lines and save to 7 by 7 inch plot on disk.
-
-```{r,echo=toMessage}
-
-
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
-
-plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
-
-plot <- plot+ggtitle("BMI vs Weight")+theme(panel.grid.minor=element_blank())
-
-plot
-
-ggsave(plot,file="BMIvsWeight.png",units = "in",height = 7,width = 7)
-```
-
-10. Produce a Height vs Weight scatter plot with point sizes scaled by BMI. 
-Present only the points and title of plot with all other graph features missing.
 

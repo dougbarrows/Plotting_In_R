@@ -1,0 +1,57 @@
+---
+title: "Themes, Saving and Interactive Plots"
+author: "Rockefeller University, Bioinformatics Resource Centre"
+date: "https://rockefelleruniversity.github.io/Plotting_In_R/"
+output: 
+  html_document:
+    number_sections: false  ## if you want number sections at each table header
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+params:
+  toMessage: false  
+---
+
+<p>&nbsp;</p>
+These exercise cover the scales, statistics and themes of ggplot2 for [Plotting in R](https://rockefelleruniversity.github.io/Plotting_In_R/). 
+
+
+```{r, setup,include=FALSE}
+toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
+message(toMessage)
+```
+
+**Exercise 1** - **Themes**
+
+8. Remove the legend title from plot in exercise 7, change the background colours of legend panels to white and place legend at bottom of plot.
+
+```{r,echo=toMessage}
+
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
+
+plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
+
+plot
+```
+
+9. Add a title to the plot, remove minor grid lines and save to 7 by 7 inch plot on disk.
+
+```{r,echo=toMessage}
+
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
+
+plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
+
+plot <- plot+ggtitle("BMI vs Weight")+theme(panel.grid.minor=element_blank())
+
+plot
+
+ggsave(plot,file="BMIvsWeight.png",units = "in",height = 7,width = 7)
+```
+
+10. Produce a Height vs Weight scatter plot with point sizes scaled by BMI. 
+Present only the points and title of plot with all other graph features missing.
+

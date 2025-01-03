@@ -19,21 +19,20 @@ toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
 message(toMessage)
 ```
 
-## Exercise 1
 
 These first few exercises will run through some of the simple principles of creating a ggplot2 object, assigning aesthetics mappings and geoms.
 
+**Exercise 1** - **Scatterplots**
 
-1. Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
+- Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
 
 ```{r,echo=toMessage}
 getwd()
 patients_clean <- read.delim("./data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
-### Scatterplots
 
-2. Using the patient dataset generate a scatter plot of BMI versus Weight.
+- Using the patient data set generate a scatter plot of BMI versus Weight.
 
 ```{r,echo=toMessage}
 library(ggplot2)
@@ -43,7 +42,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-3. Extending the plot from exercise 2, add a colour scale to the scatterplot based on the Height variable.
+- Extend the plot by adding a color scale to the scatter plot based on the Height variable.
 
 ```{r,echo=toMessage}
 
@@ -52,15 +51,8 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-4. Following from exercise 3, split the BMI vs Weight plot into a grid of plots separated by Smoking status and Sex .
 
-```{r,echo=toMessage}
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=Height))+geom_point()
-plot+facet_grid(Sex~Smokes)
-```
-
-5. Using an additional geom, add an extra layer of a fit line to the solution from exercise 3.
+- Using an additional geom, add an extra layer of a fit line to our scatterplot.
 
 ```{r,echo=toMessage}
 
@@ -70,7 +62,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-6. Does the fit in question 5 look good? Look at the description for ?geom_smooth() and adjust the method for a better fit.
+- Does the fit in look good? Look at the description for ?geom_smooth() and adjust the method for a better fit.
 
 ```{r,echo=toMessage}
 
@@ -80,9 +72,9 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-###Boxplots and Violin plots
+**Exercise 2** - **Boxplots and Violin plots**
 
-7. Generate a boxplot of BMIs comparing smokers and non-smokers.
+- Generate a boxplot of BMIs comparing smokers and non-smokers.
 
 ```{r,echo=toMessage}
 
@@ -92,53 +84,19 @@ plot
 ```
 
 
-8. Following from the boxplot comparing smokers and non-smokers in exercise 7, colour boxplot edges by Sex.
+- Following from the boxplot comparing smokers and non-smokers, color boxplot edges by Sex.
 
 ```{r,echo=toMessage}
 
 plot <- ggplot(data=patients_clean,
-               mapping=aes(x=Smokes,y=BMI,colour=Sex))+geom_boxplot()
+               mapping=aes(x=Smokes,y=BMI,color=Sex))+geom_boxplot()
 
 plot
 ```
 
-9. Now reproduce the boxplots in exercise 8 (grouped by smoker, coloured by sex) but now include a separate facet for people of different age (using Age column).
+**Exercise 3** - **Histogram and Density plots**
 
-```{r,echo=toMessage}
-
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=Smokes,y=BMI,colour=Sex))+
-  geom_boxplot()+
-  facet_wrap(~Age)
-plot
-```
-
-10. Produce a similar boxplot of BMIs but this time group data by Sex, colour by Age and facet by Smoking status.
-
-HINT - Discrete values such as in factors are used for categorical data.
-
-```{r,echo=toMessage}
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=Sex,y=BMI,colour=factor(Age)))+
-  geom_boxplot()+
-  facet_wrap(~Smokes)
-plot
-```
-
-11. Regenerate the solution to exercise 10 but this time using a violin plot.
-
-```{r,echo=toMessage}
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=Sex,y=BMI,colour=factor(Age)))+
-  geom_violin()+
-  facet_wrap(~Smokes)
-plot
-```
-
-
-###Histogram and Density plots
-
-12. Generate a histogram of BMIs with each bar coloured blue.
+- Generate a histogram of BMIs with each bar colored blue.
 
 ```{r,echo=toMessage}
 
@@ -148,23 +106,17 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-13. Generate density plots of BMIs coloured by Sex.
+- Generate density plots of BMIs colored by Sex. Make sure you can see both distributions by adjusting the transparency. 
 
-HINT: alpha can be used to control transparancy.
+HINT: alpha can be used to control transparency.
 
 ```{r,echo=toMessage}
 
 plot <- ggplot(data=patients_clean,
-               mapping=aes(BMI))+ geom_density(aes(fill=Sex),alpha=0.5)
+               mapping=aes(BMI))+ geom_density(aes(fill=Sex), alpha=0.5)
 plot
 ```
 
-14. Generate a separate density plot of BMI coloured by sex for each Grade,
-```{r,echo=toMessage}
 
-plot <- ggplot(data=patients_clean,
-               mapping=aes(BMI))+ geom_density(aes(fill=Sex),alpha=0.5)
-plot+facet_wrap(~Grade)
-```
 
 

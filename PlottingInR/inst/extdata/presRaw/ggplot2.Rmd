@@ -485,28 +485,16 @@ pcPlot_violin
 ---
 ## Multiple Geoms
 
-We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. 
-
-In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
+We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
 
 ```{r, multiplegeom_ggplot2}
 ggplot(data=patients_clean,
-                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+                 mapping=aes(x=Sex, y=Height))+ 
   geom_violin() +
   geom_jitter()
 ```
 
----
-## Geom paramters
 
-Many Geoms will have some specific arguments for that plot. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
-
-```{r, multiplegeom_ggplot2_2}
-ggplot(data=patients_clean,
-                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
-  geom_violin() +
-  geom_jitter(width=0.2)
-```
 
 
 ---
@@ -640,7 +628,17 @@ pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
 pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 ```
 
+---
+## Geom paramters
 
+Many Geoms will have some specific aesthetics for that plot type. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
+
+```{r, multiplegeom_ggplot2_2, fig.height=4, fig.width=7}
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter(width=0.2)
+```
 
 
 ---
