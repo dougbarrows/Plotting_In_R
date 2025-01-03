@@ -271,17 +271,6 @@ legend("topleft",legend=c("treatment","control"),
        col=c("blue","red"), pch=21:22, lty=1:2);  
 
 
-## ----readability_basePlotting,echo=FALSE,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px"----
-
-plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
-axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-axis(2, las=1, at=20*0:g_range[2])
-box()
-
-lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
-legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
-
-
 ## ----plot_together ,fig.width=8,fig.height=3.5,dpi=300,out.width="1920px",height="1080px", eval=F----
 # plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
 # axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
@@ -638,7 +627,7 @@ library(vioplot)
 
 
 
-## -----------------------------------------------------------------------------
+## ----fig.width=5,fig.height=2.5,dpi=300,out.width="1920px",height="1080px"----
  
 vioplot(log2(exprs),main="distribution of log2(expression)")
 
@@ -654,7 +643,7 @@ mat <- cbind(
 head(mat)
 
 
-## ----fig.width=3,fig.height=3,dpi=300,out.width="1920px",height="1080px"------
+## ----fig.width=2,fig.height=2,dpi=300,out.width="920px",height="580px"--------
 fit2 <- euler(mat)
 plot(fit2)
 

@@ -115,6 +115,8 @@ suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(dplyr))
 suppressPackageStartupMessages(library(stringr))
 suppressPackageStartupMessages(library(lubridate))
+suppressPackageStartupMessages(library(ggpubr))
+
 
 
 ## ----present_clean_ggplot2----------------------------------------------------
@@ -268,6 +270,20 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot_violin <- pcPlot+geom_violin() 
 
 pcPlot_violin
+
+
+## ----multiplegeom_ggplot2-----------------------------------------------------
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter()
+
+
+## ----multiplegeom_ggplot2_2---------------------------------------------------
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter(width=0.2)
 
 
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
@@ -542,7 +558,8 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,alpha=BMI))
 pcPlot + geom_point(size=4) + 
   scale_alpha_continuous(range = c(0.5,1))
-                  
+
+                 
 
 
 ## ----facet_grid_height_weight_BMIsize_ggplot2, fig.height=5, fig.width=9------
@@ -609,6 +626,15 @@ pcPlot + geom_point(size=4,alpha=0.8)+
                          name="Body Mass Index")
 
 
+## ----conditional_colors_scales, fig.height=4, fig.width=9---------------------
+pcPlot <- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,shape=Sex, colour=ifelse(BMI > 30, "High",
+                                                                ifelse(BMI < 25, "Low", "Middle"))))
+pcPlot + geom_point(size=4,alpha=0.8) + 
+  scale_shape_discrete(name="Gender") +
+  scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
+
+
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
@@ -634,33 +660,117 @@ if(params$isSlides == "yes"){
 ## ----stat_smooth_ggplot2, fig.height=5, fig.width=9---------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
-pcPlot+geom_point()+stat_smooth()
+pcPlot+geom_point() + 
+  stat_smooth()
 
 
 ## ----stat_smoothlm_ggplot2, fig.height=4, fig.width=9-------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
-pcPlot+geom_point()+stat_smooth(method="lm")
+pcPlot+geom_point() + 
+  stat_smooth(method="lm")
+
 
 
 ## ----stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9-------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
-pcPlot+geom_point()+stat_smooth(method="lm")
+pcPlot+geom_point() +
+  stat_smooth(method="lm")
 
 
 ## ----stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9---------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
-pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
+pcPlot+geom_point()+
+  stat_smooth(aes(x=Weight,y=Height),method="lm",
                                 inherit.aes = F)
+
+
+## ----marginal_ggplot, fig.height=4, fig.width=9, message = F------------------
+library(ggExtra)
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE)
+
+
+## ----marginal_ggplot2, fig.height=4, fig.width=9, message = F-----------------
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
 
 
 ## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height)) + geom_jitter()
-pcPlot + stat_summary(fun=quantile, geom="point",
+pcPlot + 
+  stat_summary(fun=quantile, geom="point",
                     colour="purple", size=8)
+
+
+## ----line_eqn, fig.height=3, fig.width=8--------------------------------------
+library(ggpubr)
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height)) +
+  geom_point() + 
+  stat_smooth(method="lm", formula = y ~ x)  
+pcPlot +
+  stat_regline_equation(label.y = 185, aes(label = after_stat(eq.label)), formula = y ~ x) +
+  stat_regline_equation(label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x)
+
+
+
+## ----line_eqn_groups, fig.height=3, fig.width=8-------------------------------
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height,colour=Sex)) +geom_point()+ stat_smooth(aes(x=Weight,y=Height), method="lm", formula = y ~ x) 
+pcPlot +
+  stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
+                        label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x) + 
+  stat_regline_equation(data = patients_clean[patients_clean$Sex == "Female", ], 
+                        label.x = 80, label.y = 160, aes(label = after_stat(rr.label)), formula = y ~ x)  
+  
+
+
+## ----add_p1, message = F------------------------------------------------------
+library(rstatix)
+# https://rpkgs.datanovia.com/rstatix/
+
+stat.test <- t_test(patients_clean, Height ~ Sex) 
+stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
+
+data.frame(stat.test)
+
+
+## ----add_p2, fig.height=4, fig.width=8----------------------------------------
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Sex,y=Height)) + 
+  geom_boxplot()
+
+# don't inherit aesthetic to make this work 
+pcPlot + stat_pvalue_manual(stat.test, label = "p", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
+
+
+
+## ----grouped_p1---------------------------------------------------------------
+
+grouped_data <- group_by(patients_clean, Sex)
+stat.test <- t_test(grouped_data, formula = Height ~ Smokes) 
+stat.test <- adjust_pvalue(stat.test, method = "BH") 
+stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
+
+data.frame(stat.test)
+
+
+## ----grouped_p2, fig.height=4, fig.width=8------------------------------------
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Sex ,y=Height, fill = Smokes)) + 
+  geom_boxplot() 
+
+# don't inherit aesthetic to make this work 
+pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
 
 
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
@@ -693,6 +803,22 @@ pcPlot
 
 ## ----theme_minimal_ggplot2, fig.height=4, fig.width=4,tidy=FALSE--------------
 pcPlot+theme_minimal()
+
+
+## ----theme_default_ggplot2_2, fig.height=4, fig.width=4-----------------------
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height)) + geom_point()
+pcPlot
+
+
+## ----eval=F-------------------------------------------------------------------
+# install.packages("ggthemes")
+# 
+
+
+## ----ggthemes, fig.height=4, fig.width=4,tidy=FALSE---------------------------
+library(ggthemes)
+pcPlot+theme_wsj()
 
 
 ## ----theme_custom_ggplot2, fig.height=7, fig.width=9,tidy=FALSE---------------
@@ -853,6 +979,100 @@ if(params$isSlides == "yes"){
 # 
 # pcPlot <- ggplot(data=patients_clean,
 #         mapping=aes(x=Weight,y=Height))+geom_point()
+# 
 # ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 #        height = 15,units = "cm")
+
+
+## ----save_pdf_basePlotting,eval=FALSE-----------------------------------------
+# 
+# pdf(file = "anExampleplot.pdf", paper = "A4")
+# plot(control)
+# dev.off()
+
+
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Interactive Plots
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Interactive Plots
+  
+---
+"    
+  )
+  
+}
+
+
+
+## -----------------------------------------------------------------------------
+library(plotly)
+
+
+## ----eval=FALSE,fig.height=4, fig.width=9-------------------------------------
+# 
+# pcPlot <- ggplot(data=patients_clean,
+#         mapping=aes(x=Weight,y=Height))+geom_point()
+# 
+# ggplotly(pcPlot)
+
+
+## -----------------------------------------------------------------------------
+load("data/pcPlot.RData")
+
+
+
+## -----------------------------------------------------------------------------
+
+head(pcPlot$data)
+
+pcPlot$mapping
+
+pcPlot$layers
+
+
+## ----echo=FALSE, eval=FALSE,fig.height=4, fig.width=9-------------------------
+# 
+# to_plot <- prcomp(assay(toPlot))$rotation-(prcomp(assay(toPlot))$rotation/matrix(rnorm(36), 6, 6)/100)
+# 
+# rownames(to_plot) <- c("A_1","A_2",
+#                        "B_1","B_2",
+#                        "C_1","C_2")
+# to_plot <- as.data.frame(to_plot)
+# to_plot$Sample <- rownames(to_plot)
+# 
+# to_plot$Time <- factor(c("0hr","0hr","2hr","2hr","12hr","12hr"), levels = c("0hr","2hr","12hr"))
+# to_plot$Rep <- factor(c("1","2","1","2","1","2"))
+# pca_res <- to_plot
+# pca_res[2,1:2] <- c(0.6090663,  0.5384380)
+# pca_res[3,1:2] <- c(0.4596307,  0.5424412)
+# pca_res[4,1:2] <- c(0.4190463,  0.4812430)
+# pca_res[5,1:2] <- c(0.3220796,  0.5434719)
+# pca_res[6,1:2] <- c(0.3130591,  0.4426442)
+# pcPlot <- ggplot(data=pca_res,
+#         mapping=aes(x=PC1,y=PC2, color= Time, shape=Rep))
+# save(pcPlot, file = "../data/pcPlot.RData")
+# 
+
+
+## ----fig.height=4, fig.width=9------------------------------------------------
+
+ggplotly(pcPlot)
+
+
+## ----fig.height=4, fig.width=9------------------------------------------------
+
+ggplotly(pcPlot + geom_point(aes(label = Sample)))
+
+
+## -----------------------------------------------------------------------------
+ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = c("Sample"))
 

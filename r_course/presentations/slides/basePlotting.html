@@ -480,17 +480,10 @@ legend("topleft",legend=c("treatment","control"),
 &lt;img src="basePlotting_files/figure-html/legendEval_basePlotting-1.png" width="1920px" /&gt;
 
 ---
-## Making plots readable
-
-In our line plot we have already done a good job of making it easier to differentiate the lines as we have different line styles and different shape points. 
-
-Other things we can do is also differentiate thickness.
-
-&lt;img src="basePlotting_files/figure-html/readability_basePlotting-1.png" width="1920px" /&gt;
-
----
 ## Put it all together
-To make that final plot you can see that there are many lines of code we put together. 
+
+Though we can make a okay plot in a single line, this example demonstrates how you can make something custom and ready to share with others. To make that final plot you can see that there are many lines of code we put together. 
+
 
 ``` r
 plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
@@ -643,7 +636,7 @@ There are often a trade offs in creating good plots.
 * Does it contain all the information with nothing superfluous?
 * Is it the best way to tell the story I want to tell, without being misleading?
 
-[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
+[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way. 
 
 ---
 class: inverse, center, middle
@@ -701,7 +694,7 @@ Sometimes you want to have several data series stacked in a single barplot. The 
 
 Let's read the data from the example_plot.txt data file.  
 
-Read values from tab-delimited example_plot.txt
+Read values from comma-seperated example_plot.txt
 
 ``` r
 data &lt;- read.table("data/example_plot.txt", header=T, row.names=1, sep=",")
@@ -1045,7 +1038,7 @@ library(vioplot)
 vioplot(log2(exprs),main="distribution of log2(expression)")
 ```
 
-![](basePlotting_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-29-1.png" width="1920px" /&gt;
 
 ---
 ## Venn Diagram
@@ -1065,12 +1058,12 @@ head(mat)
 
 ```
 ##          A     B     C
-## [1,]  TRUE  TRUE FALSE
-## [2,]  TRUE  TRUE FALSE
-## [3,]  TRUE  TRUE FALSE
-## [4,]  TRUE  TRUE FALSE
-## [5,] FALSE FALSE FALSE
-## [6,]  TRUE FALSE FALSE
+## [1,]  TRUE  TRUE  TRUE
+## [2,] FALSE  TRUE FALSE
+## [3,] FALSE  TRUE FALSE
+## [4,]  TRUE  TRUE  TRUE
+## [5,]  TRUE FALSE FALSE
+## [6,] FALSE  TRUE FALSE
 ```
 
 ---
@@ -1084,7 +1077,7 @@ fit2 &lt;- euler(mat)
 plot(fit2)
 ```
 
-&lt;img src="basePlotting_files/figure-html/unnamed-chunk-31-1.png" width="1920px" /&gt;
+&lt;img src="basePlotting_files/figure-html/unnamed-chunk-31-1.png" width="920px" /&gt;
 
 ---
 class: inverse, center, middle
@@ -1266,7 +1259,7 @@ Answers for base plotting can be found [here](../../exercises/answers/Plotting_a
 ---
 ## Help while plotting
 
-* Data vizualisation theory - [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+* Data visualization theory - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
 
 * Example plots - [R Graph Gallery](https://www.r-graph-gallery.com/)
 
