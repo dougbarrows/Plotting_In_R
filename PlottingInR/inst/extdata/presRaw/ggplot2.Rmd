@@ -501,7 +501,7 @@ ggplot(data=patients_clean,
 
 Many Geoms will have some specific arguments for that plot. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
 
-```{r, multiplegeom_ggplot2}
+```{r, multiplegeom_ggplot2_2}
 ggplot(data=patients_clean,
                  mapping=aes(x=Sex, y=Height, fill=Sex))+ 
   geom_violin() +
