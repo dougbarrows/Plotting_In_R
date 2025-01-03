@@ -6,6 +6,15 @@
     <meta name="author" content="Rockefeller University, Bioinformatics Resource Centre" />
     <script src="libs/header-attrs-2.29/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/plotly-binding-4.10.4/plotly.js"></script>
+    <script src="libs/typedarray-0.1/typedarray.min.js"></script>
+    <script src="libs/jquery-3.5.1/jquery.min.js"></script>
+    <link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+    <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
     <link rel="stylesheet" href="metropolisCustom.css" type="text/css" />
     <link rel="stylesheet" href="metropolis-fontsCustom.css" type="text/css" />
   </head>
@@ -24,6 +33,7 @@ class: center, middle, inverse, title-slide
 ]
 
 ---
+
 
 
 
@@ -107,6 +117,7 @@ ggplot(data = &lt;default data set&gt;,
   theme(plot.title = element_text(color = "gray"),
         ... &lt;other theme elements&gt;)
 ```
+
 ---
 ## What users are required to specify
 
@@ -447,7 +458,6 @@ class: inverse, center, middle
 
 ---
 
----
 ## Our first ggplot2 graph
 More typically, the data and aesthetics are defined within ggplot function and geoms applied afterwards. This makes it easier to switch between plot types to find the best way to visualize your data.
 
@@ -494,6 +504,7 @@ pcPlot_line
 ---
 ## Smoothed line plots
 
+
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
@@ -512,6 +523,7 @@ pcPlot_smooth
 ---
 ## Bar plots
 
+
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex))
@@ -525,6 +537,7 @@ pcPlot_bar
 
 ---
 ## Histograms
+
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
@@ -543,6 +556,7 @@ pcPlot_hist
 
 ---
 ## Density plots
+
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
@@ -573,6 +587,7 @@ pcPlot_boxplot
 ---
 ## Violin plots
 
+
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height))
@@ -585,8 +600,41 @@ pcPlot_violin
 ![](ggplot2_files/figure-html/violin_simple_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
+## Multiple Geoms
+
+We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. 
+
+In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
+
+
+``` r
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter()
+```
+
+![](ggplot2_files/figure-html/multiplegeom_ggplot2-1.png)&lt;!-- --&gt;
+
+---
+## Geom paramters
+
+Many Geoms will have some specific arguments for that plot. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
+
+
+``` r
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter(width=0.2)
+```
+
+![](ggplot2_files/figure-html/multiplegeom_ggplot2_2-1.png)&lt;!-- --&gt;
+
+
+---
 ## There are a world of geoms 
-An overview of geoms and thier arguments can be found in the ggplot2 documentation or within the ggplot2 quick reference guides.
+An overview of geoms and their arguments can be found in the ggplot2 documentation or within the ggplot2 quick reference guides.
 
 - [ggplot2 documentation](https://ggplot2.tidyverse.org/)
 
@@ -669,7 +717,7 @@ pcPlot+geom_point()
 
 ---
 ## Aesthetics in geom
-The aesthetic mappings may be set directly in the geom_points() function as previously when specifying red. This can allow the same ggplot object to be used by different aesethetic mappings and varying geoms
+The aesthetic mappings may be set directly in the geom_points() function as previously when specifying red. This can allow the same ggplot object to be used by different aesthetic mappings and varying geoms.
 
 
 
@@ -677,28 +725,36 @@ The aesthetic mappings may be set directly in the geom_points() function as prev
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean)
 ```
+
 ---
+## Aesthetics in geom
 
 ``` r
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS2_ggplot2-1.png)&lt;!-- --&gt;
+
 ---
+## Aesthetics in geom
 
 ``` r
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS3_ggplot2-1.png)&lt;!-- --&gt;
+
 ---
+## Aesthetics in geom
 
 ``` r
 pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS4_ggplot2-1.png)&lt;!-- --&gt;
+
 ---
+## Aesthetics in geom
 
 ``` r
 pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
@@ -706,10 +762,13 @@ pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 
 ![](ggplot2_files/figure-html/aes_in_geomFS5_ggplot2-1.png)&lt;!-- --&gt;
 
+
+
+
 ---
 ## Aesthetics in geom
 
-Again, for a comprehensive list of parameters and aesthetic mappings used in geom_*type*  functions see the ggplot2 documentation for individual geoms by using ?geom_*type*
+Again, for a comprehensive list of parameters and aesthetic mappings used in geom_*type* functions see the ggplot2 documentation for individual geoms by using ?geom_*type*
 
 
 ``` r
@@ -955,7 +1014,7 @@ pcPlot + geom_point() + facet_grid(Smokes~Sex)+
 
 ---
 ## Discrete axes scales
-Similary control over discrete scales is shown below.
+Similarly control over discrete scales is shown below.
 
 
 ``` r
@@ -966,6 +1025,7 @@ pcPlot +
 ```
 
 ![](ggplot2_files/figure-html/scaleDiscrete_ggplot2, facet_grid_smokesBySex_scaleDisceteX-1.png)&lt;!-- --&gt;
+
 ---
 ## Combining axes scales
 Multiple X/Y scales can be combined to give full control of axis marks.
@@ -1218,6 +1278,24 @@ pcPlot + geom_point(size=4,alpha=0.8)+
 ![](ggplot2_files/figure-html/facet_grid_smokesBySex_scaleDisceteXContinuouswY_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
+
+## Conditional scales and colors
+
+We can also use an ifelse conditional statement to apply discrete color cutoffs for groups of data points that aren't represented by categorical variables in the data set. 
+
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,shape=Sex, colour=ifelse(BMI &gt; 30, "High",
+                                                                ifelse(BMI &lt; 25, "Low", "Middle"))))
+pcPlot + geom_point(size=4,alpha=0.8) + 
+  scale_shape_discrete(name="Gender") +
+  scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
+```
+
+![](ggplot2_files/figure-html/conditional_colors_scales-1.png)&lt;!-- --&gt;
+
+---
 class: inverse, center, middle
 
 # Transformations
@@ -1228,7 +1306,7 @@ class: inverse, center, middle
 
 ## Statistical transformations
 
-In ggplot2 many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
+In ggplot2, many of the statistical transformations are performed without any direct specification e.g. geom_histogram() will use stat_bin() function to generate bin counts to be used in plot.
 
 An example of statistical methods in ggplot2 which are very useful include the stat_smooth() and stat_summary() functions.
 
@@ -1241,7 +1319,8 @@ The stat_smooth() function can be used to fit a line to the data being displayed
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
-pcPlot+geom_point()+stat_smooth()
+pcPlot+geom_point() + 
+  stat_smooth()
 ```
 
 ```
@@ -1258,7 +1337,8 @@ By default a "loess" smooth line is plotted by stat_smooth. Other methods availa
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))
-pcPlot+geom_point()+stat_smooth(method="lm")
+pcPlot+geom_point() + 
+  stat_smooth(method="lm")
 ```
 
 ```
@@ -1277,7 +1357,8 @@ If color by Sex is an aesthetic mapping then two smooth lines are drawn, one for
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
-pcPlot+geom_point()+stat_smooth(method="lm")
+pcPlot+geom_point() +
+  stat_smooth(method="lm")
 ```
 
 ```
@@ -1294,7 +1375,8 @@ This behavior can be overridden by specifying an aes within the stat_smooth() fu
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height,colour=Sex))
-pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
+pcPlot+geom_point()+
+  stat_smooth(aes(x=Weight,y=Height),method="lm",
                                 inherit.aes = F)
 ```
 
@@ -1305,6 +1387,37 @@ pcPlot+geom_point()+stat_smooth(aes(x=Weight,y=Height),method="lm",
 ![](ggplot2_files/figure-html/stat_smoothlmgroupsOverridden_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
+
+## Marginal plots with ggEtxtra
+Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupColour and groupFill arguments carry over the colour aesthetic of the main plot.  
+
+
+``` r
+library(ggExtra)
+pcPlot &lt;- ggplot(data=patients_clean,
+                 mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE)
+```
+
+![](ggplot2_files/figure-html/marginal_ggplot-1.png)&lt;!-- --&gt;
+
+---
+
+## Marginal plots with ggEtxtra
+We can easily turn this into a histogram and only display either X or Y axis.  
+
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+```
+
+![](ggplot2_files/figure-html/marginal_ggplot2-1.png)&lt;!-- --&gt;
+
+
+---
+
 ## Summary statistics
 Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualized.
 
@@ -1314,11 +1427,136 @@ The fun parameter specifies a function to apply to the y variables for every val
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height)) + geom_jitter()
-pcPlot + stat_summary(fun=quantile, geom="point",
+pcPlot + 
+  stat_summary(fun=quantile, geom="point",
                     colour="purple", size=8)
 ```
 
 ![](ggplot2_files/figure-html/stat_summary_ggplot2-1.png)&lt;!-- --&gt;
+
+---
+
+## Displaying fitted line statistics
+The ggpubr package contains functions to make publication quality graphics by displaying statistics. Here we add the equation and the R squared value for the line of best fit. 
+
+The after_stat function is required to tell ggplot to map the aesthetics after a function has computed the relevant statistics. 
+ 
+
+
+``` r
+library(ggpubr)
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height)) +
+  geom_point() + 
+  stat_smooth(method="lm", formula = y ~ x)  
+pcPlot +
+  stat_regline_equation(label.y = 185, aes(label = after_stat(eq.label)), formula = y ~ x) +
+  stat_regline_equation(label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x)
+```
+
+![](ggplot2_files/figure-html/line_eqn-1.png)&lt;!-- --&gt;
+
+---
+
+## Displaying fitted line statistics
+By giving subsets of the data to the stat_regline_equation() function, we can display statistics for each group that we make a line of best fit. 
+
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height,colour=Sex)) +geom_point()+ stat_smooth(aes(x=Weight,y=Height), method="lm", formula = y ~ x) 
+pcPlot +
+  stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
+                        label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x) + 
+  stat_regline_equation(data = patients_clean[patients_clean$Sex == "Female", ], 
+                        label.x = 80, label.y = 160, aes(label = after_stat(rr.label)), formula = y ~ x)  
+```
+
+![](ggplot2_files/figure-html/line_eqn_groups-1.png)&lt;!-- --&gt;
+
+---
+
+## Displaying stats on the plot
+The ggpubr package also has useful functions that allows the display p-values on plots when combined with the rstatix package. 
+
+Here we use rstatix to create a data frame with relevant statistics for our desired comparison, and then we add x and y position information. [Check out](https://rpkgs.datanovia.com/rstatix/) the the many other functions rstatix has to add information to this table (adhusted p, otehr stats tests, etc.)
+
+
+``` r
+library(rstatix)
+# https://rpkgs.datanovia.com/rstatix/
+
+stat.test &lt;- t_test(patients_clean, Height ~ Sex) 
+stat.test &lt;- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
+
+data.frame(stat.test)
+```
+
+```
+##      .y. group1 group2 n1 n2 statistic       df        p y.position
+## 1 Height   Male Female 45 55  14.01073 60.55786 1.16e-20    187.278
+##         groups xmin xmax
+## 1 Male, Female    1    2
+```
+
+---
+
+## Displaying stats on the plot
+This data frame can then be used in the stat_pvalue_manual() function from ggpubr to add the pvalue. 
+
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Sex,y=Height)) + 
+  geom_boxplot()
+
+# don't inherit aesthetic to make this work 
+pcPlot + stat_pvalue_manual(stat.test, label = "p", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
+```
+
+![](ggplot2_files/figure-html/add_p2-1.png)&lt;!-- --&gt;
+
+---
+
+## Displaying stats for grouped data
+
+By grouping the dataframe, we can look for differences between smokers within sex. We also add an adjusted p-value. 
+
+``` r
+grouped_data &lt;- group_by(patients_clean, Sex)
+stat.test &lt;- t_test(grouped_data, formula = Height ~ Smokes) 
+stat.test &lt;- adjust_pvalue(stat.test, method = "BH") 
+stat.test &lt;- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
+
+data.frame(stat.test)
+```
+
+```
+##      Sex    .y.     group1 group2 n1 n2  statistic       df      p  p.adj
+## 1   Male Height Non-Smoker Smoker 35 10 -0.6542605 14.42848 0.5230 0.5230
+## 2 Female Height Non-Smoker Smoker 43 12 -1.8289039 16.20010 0.0859 0.1718
+##   y.position       groups x xmin xmax
+## 1   187.4928 Non-Smok.... 1  0.8  1.2
+## 2   172.0928 Non-Smok.... 2  1.8  2.2
+```
+
+---
+
+## Displaying stats for grouped data
+
+We can also modify the label of the p-values by putting the column used for the p-value inside curly brackets {} within a string. 
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Sex ,y=Height, fill = Smokes)) + 
+  geom_boxplot() 
+
+# don't inherit aesthetic to make this work 
+pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
+```
+
+![](ggplot2_files/figure-html/grouped_p2-1.png)&lt;!-- --&gt;
+
 
 ---
 class: inverse, center, middle
@@ -1370,7 +1608,7 @@ pcPlot+theme_minimal()
 ---
 ## Predefined themes
 
-Several predifined themes are available within ggplot2 including:
+Several predefined themes are available within ggplot2 including:
 
 - theme_bw
 
@@ -1386,7 +1624,56 @@ Several predifined themes are available within ggplot2 including:
 
 - theme_minimal
 
-Packages such as [ggthemes](https://github.com/jrnold/ggthemes) also contain many useful collections of predined theme_*style* functions.
+You can review them [here](https://ggplot2.tidyverse.org/reference/ggtheme.html)
+
+---
+## Theme packages
+
+There are many themes you can gain access to through installing additional packages. Packages such as [ggthemes](https://github.com/jrnold/ggthemes) also contain many useful collections of predefined theme_*style* functions.
+
+Other alternatives include:
+* [hrbrthemes](https://github.com/hrbrmstr/hrbrthemes) - focuses on controlling typography
+* [ggthemr](https://github.com/Mikata-Project/ggthemr) - A large collection of themes - includes dark options
+* [ggpomologica](https://www.garrickadenbuie.com/project/ggpomological/) - Hand drawn plots
+* [tvthemes](https://ryo-n7.github.io/tvthemes/) - TV shows
+
+
+---
+## ggthemes
+
+After we have loaded in the ggthemes packages we can then simply use the new themes available to using the theme_*style* convention of function.
+
+.pull-left[
+
+Here is a scatter with the default theme...
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height)) + geom_point()
+pcPlot
+```
+
+![](ggplot2_files/figure-html/theme_default_ggplot2_2-1.png)&lt;!-- --&gt;
+
+  ]
+.pull-right[
+
+...and the same scatter plot with the Wall Street Journal theme.
+
+
+``` r
+install.packages("ggthemes")
+```
+
+
+``` r
+library(ggthemes)
+pcPlot+theme_wsj()
+```
+
+![](ggplot2_files/figure-html/ggthemes-1.png)&lt;!-- --&gt;
+  ]
+
 
 ---
 ## Custom themes
@@ -1744,11 +2031,206 @@ By default ggsave() will use the size of your current graphics window when savin
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
+
 ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
        height = 15,units = "cm")
 ```
 
+
 ---
+## Saving in pdf format
+
+PDFs are maybe the most useful format to export into. PDFs are vector-based so each part of the plot is saved as scalable cooridnates as opposed to specific pixels. 
+
+PDFs can then be opened in imaging software like illustrator or [inkscape](https://inkscape.org/) (this is a open source and free equivalent). When you open a PDF in these programs you can fully customize the plots to your aesthetic with a graphic user interface. Furthermore as they are vector-based, they can be easily assembled into publication quality figures without resolution issues and pixelation. 
+
+
+``` r
+pdf(file = "anExampleplot.pdf", paper = "A4")
+plot(control)
+dev.off()
+```
+
+---
+class: inverse, center, middle
+
+# Interactive Plots
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
+
+---
+
+## Interactive Plots
+
+Most of the time when we are drawing plots the aim is to generate a saved file we can use for figures later. Sometimes though we may want to generate a interactive plot. This can be really useful to help parse our data, or if we want to generate dynamic reports to share our work.
+
+
+
+``` r
+library(plotly)
+```
+
+```
+## 
+## Attaching package: 'plotly'
+```
+
+```
+## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot
+```
+
+```
+## The following object is masked from 'package:IRanges':
+## 
+##     slice
+```
+
+```
+## The following object is masked from 'package:S4Vectors':
+## 
+##     rename
+```
+
+```
+## The following object is masked from 'package:stats':
+## 
+##     filter
+```
+
+```
+## The following object is masked from 'package:graphics':
+## 
+##     layout
+```
+
+
+---
+## Interactive Plots
+
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height))+geom_point()
+
+ggplotly(pcPlot)
+```
+
+---
+## Adding Annotation
+
+To show off how we add additional annotation or work with more complex examples we have a ggplot object to load in. You can use the *load()* function with to read in this object: *data/pcPlot.RData*
+
+
+``` r
+load("data/pcPlot.RData")
+```
+
+
+---
+## Review the data
+
+We can quickly check what is in the data, the aesthetics mapping, and any plot already in the ggplot object.
+
+
+``` r
+head(pcPlot$data)
+```
+
+```
+##           PC1       PC2         PC3        PC4         PC5        PC6 Sample
+## A_1 0.6367280 0.6163906  0.08484202 -0.2844121  0.07083379 -0.5845692    A_1
+## A_2 0.6090663 0.5384380  0.51330734 -0.4480145 -0.36444039  0.4824065    A_2
+## B_1 0.4596307 0.5424412 -0.20859717  0.1143239  0.67195612  0.5775545    B_1
+## B_2 0.4190463 0.4812430  0.49898282  0.7603890  0.04205184 -0.2294964    B_2
+## C_1 0.3220796 0.5434719 -0.59606139  0.2760484 -0.64316800  0.1058694    C_1
+## C_2 0.3130591 0.4426442 -0.31284107 -0.3514908  0.21796029 -0.3125952    C_2
+##     Time Rep
+## A_1  0hr   1
+## A_2  0hr   2
+## B_1  2hr   1
+## B_2  2hr   2
+## C_1 12hr   1
+## C_2 12hr   2
+```
+
+``` r
+pcPlot$mapping
+```
+
+```
+## Aesthetic mapping: 
+## * `x`      -&gt; `PC1`
+## * `y`      -&gt; `PC2`
+## * `colour` -&gt; `Time`
+## * `shape`  -&gt; `Rep`
+```
+
+``` r
+pcPlot$layers
+```
+
+```
+## [[1]]
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity
+```
+
+
+
+---
+## Lets make a plot
+
+The aesthetic mappings are naturally inherited as labels. If we want to add custom labels we can specify it in our plot. 
+
+
+``` r
+ggplotly(pcPlot)
+```
+
+<div class="plotly html-widget html-fill-item" id="htmlwidget-734a642ef93a8f758ae2" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-734a642ef93a8f758ae2">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"206b5b708be8":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"}},"cur_data":"206b5b708be8","visdat":{"206b5b708be8":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+---
+## Extra Annotation
+
+As the aesthetic mappings are naturally inherited as labels,we can just add an additional aesthetic. If we want to add custom labels we can specify it in our plot. 
+
+
+``` r
+ggplotly(pcPlot + geom_point(aes(label = Sample)))
+```
+
+```
+## Warning in geom_point(aes(label = Sample)): Ignoring unknown aesthetics: label
+```
+
+<div class="plotly html-widget html-fill-item" id="htmlwidget-260f9ff900b4270da15b" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-260f9ff900b4270da15b">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1<br />Sample: A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2<br />Sample: A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1<br />Sample: B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2<br />Sample: B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1<br />Sample: C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2<br />Sample: C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"206b238f1d7b":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"206b28edd4be":{"x":{},"y":{},"colour":{},"shape":{},"label":{}}},"cur_data":"206b238f1d7b","visdat":{"206b238f1d7b":["function (y) ","x"],"206b28edd4be":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+---
+## Extra Annotation
+
+If we want full control over the labeling we can instead use the ggplotly function to take care of this for us by specifying when/what/where labels are shown. 
+
+
+``` r
+ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = c("Sample"))
+```
+
+```
+## Warning in geom_point(aes(text = Sample)): Ignoring unknown aesthetics: text
+```
+
+<div class="plotly html-widget html-fill-item" id="htmlwidget-29fb2fcdb3f913dab775" style="width:504px;height:504px;"></div>
+<script type="application/json" data-for="htmlwidget-29fb2fcdb3f913dab775">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"select","attrs":{"206b7cee46c3":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"206b6066073":{"x":{},"y":{},"colour":{},"shape":{},"text":{}}},"cur_data":"206b7cee46c3","visdat":{"206b7cee46c3":["function (y) ","x"],"206b6066073":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+
+
+---
+
 
 Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
 
