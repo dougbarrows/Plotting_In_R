@@ -22,6 +22,12 @@ message(toMessage)
 
 **Exercise 1** - **Themes**
 
+- Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
+
+```{r,echo=toMessage}
+patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
+```
+
 8. Remove the legend title from plot in exercise 7, change the background colours of legend panels to white and place legend at bottom of plot.
 
 ```{r,echo=toMessage}

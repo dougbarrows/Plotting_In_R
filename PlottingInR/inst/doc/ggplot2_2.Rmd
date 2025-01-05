@@ -19,7 +19,15 @@ toMessage <- ifelse(!is.null(params$toMessage),params$toMessage,FALSE)
 message(toMessage)
 ```
 
+
+
 **Exercise 1** - **Facets**
+
+- Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
+
+```{r,echo=toMessage}
+patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
+```
 
 - Generate a boxplot of BMIs comparing smokers and non-smokers. Split the BMI vs Weight plot into a grid of plots separated by Smoking status and Sex .
 

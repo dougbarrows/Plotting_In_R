@@ -27,8 +27,7 @@ These first few exercises will run through some of the simple principles of crea
 - Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
 
 ```{r,echo=toMessage}
-getwd()
-patients_clean <- read.delim("./data/patients_clean_ggplot2.txt",sep="\t")
+patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
 
