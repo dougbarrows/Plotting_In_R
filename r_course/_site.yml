@@ -42,6 +42,12 @@ navbar:
         href: exercises/exercises/ggplot2_2_exercise.html
       - text: Solution
         href: exercises/answers/ggplot2_2_answers.html
+    - text: ggplot2_3
+      menu:
+      - text: Exercise
+        href: exercises/exercises/ggplot2_3_exercise.html
+      - text: Solution
+        href: exercises/answers/ggplot2_3_answers.html
   right:
   - text: Getting help!
     href: https://github.com//RockefellerUniversity/Plotting_In_R/issues

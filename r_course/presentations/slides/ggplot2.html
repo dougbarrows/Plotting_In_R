@@ -134,7 +134,7 @@ ggplot(data = &lt;default data set&gt;,
 
 ``` r
 ggplot(data=patients_clean,
-       aes(y=Weight,x=Height,colour=Sex,
+       aes(y=Weight,x=Height,color=Sex,
            size=BMI,shape=Pet)) + 
   geom_point()
 ```
@@ -602,34 +602,19 @@ pcPlot_violin
 ---
 ## Multiple Geoms
 
-We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. 
-
-In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
+We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
 
 
 ``` r
 ggplot(data=patients_clean,
-                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+                 mapping=aes(x=Sex, y=Height))+ 
   geom_violin() +
   geom_jitter()
 ```
 
 ![](ggplot2_files/figure-html/multiplegeom_ggplot2-1.png)&lt;!-- --&gt;
 
----
-## Geom paramters
 
-Many Geoms will have some specific arguments for that plot. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
-
-
-``` r
-ggplot(data=patients_clean,
-                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
-  geom_violin() +
-  geom_jitter(width=0.2)
-```
-
-![](ggplot2_files/figure-html/multiplegeom_ggplot2_2-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -658,10 +643,10 @@ In order to change the property on an aesthetic of a plot into a *constant* valu
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
                  mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point(colour="red")
+pcPlot+geom_point(color="red")
 ```
 
-![](ggplot2_files/figure-html/scatter_coloured_ggplot2-1.png)&lt;!-- --&gt;
+![](ggplot2_files/figure-html/scatter_colored_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
 ## Plot properties
@@ -688,7 +673,7 @@ pcPlot+geom_point()
 
 ---
 ## Color
-Now we can adjust the aes mapping by supplying an argument to the color parameter in the aes function. (Note that ggplot2 accepts "color" or "colour" as parameter name)
+Now we can adjust the aes mapping by supplying an argument to the color parameter in the aes function. (Note that ggplot2 accepts "color" or "color" as parameter name)
 
 
 This simple adjustment allows for identification of the separation between male and female measurements for height and weight.
@@ -730,7 +715,7 @@ pcPlot &lt;- ggplot(data=patients_clean)
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
+pcPlot+geom_point(aes(x=Height,y=Weight,color=Sex))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS2_ggplot2-1.png)&lt;!-- --&gt;
@@ -739,7 +724,7 @@ pcPlot+geom_point(aes(x=Height,y=Weight,colour=Sex))
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
+pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS3_ggplot2-1.png)&lt;!-- --&gt;
@@ -748,7 +733,7 @@ pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes))
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_point(aes(x=Height,y=Weight,colour=Smokes,shape=Sex))
+pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes,shape=Sex))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS4_ggplot2-1.png)&lt;!-- --&gt;
@@ -762,7 +747,20 @@ pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
 
 ![](ggplot2_files/figure-html/aes_in_geomFS5_ggplot2-1.png)&lt;!-- --&gt;
 
+---
+## Geom paramters
 
+Many Geoms will have some specific aesthetics for that plot type. In this case we may want to adjust the width of our jitter to make it a bit more narrow and focused.
+
+
+``` r
+ggplot(data=patients_clean,
+                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
+  geom_violin() +
+  geom_jitter(width=0.2)
+```
+
+![](ggplot2_files/figure-html/multiplegeom_ggplot2_2-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -781,6 +779,13 @@ or visit the ggplot2 documentations pages and quick reference:
 
 - [Quick Reference](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
+
+---
+Exercise on the principles of ggplot can be found [here](../../exercises/exercises/ggplot2_1_exercise.html)
+
+---
+
+Answers for the principles of ggplot can be found [here](../../exercises/answers/ggplot2_1_answers.html)
 
 ---
 class: inverse, center, middle
@@ -812,7 +817,7 @@ facet_grid(Rows~Columns)
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot + facet_grid(Smokes~Sex)
 ```
 
@@ -829,7 +834,7 @@ facet_grid(~Columns)
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot + facet_grid(~Sex)
 ```
 
@@ -847,7 +852,7 @@ facet_grid(Rows~.)
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot + facet_grid(Sex~.)
 ```
 
@@ -863,7 +868,7 @@ For *facet_wrap()* we follow as similar syntax to *facet_grid()*.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot + facet_wrap(~Smokes)
 ```
 
@@ -878,7 +883,7 @@ For more complex faceting both *facet_grid* and *facet_wrap* can accept combinat
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 ```
 
@@ -946,12 +951,7 @@ ggplot(patients_clean,aes(x=Sex, y=Weight)) + geom_boxplot()
 
 
 
----
-Exercise on the principles of ggplot can be found [here](../../exercises/exercises/ggplot2_1_exercise.html)
 
----
-
-Answers for the principles of ggplot can be found [here](../../exercises/answers/ggplot2_1_answers.html)
 
 ---
 class: inverse, center, middle
@@ -1049,13 +1049,13 @@ When using fill, color, linetype, shape, size or alpha aesthetic mappings the sc
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=Sex))
+                 aes(x=Height,y=Weight,color=Sex))
 pcPlot + geom_point(size=4)
 ```
 
 ![](ggplot2_files/figure-html/scaleOthers_ggplot2, facet_grid_height_weight-1.png)&lt;!-- --&gt;
 
-In the above example the discrete colours for the Sex variable was selected by default.
+In the above example the discrete colors for the Sex variable was selected by default.
 
 ---
 ## Manual discrete color scale
@@ -1066,41 +1066,41 @@ Additionally in this example an updated name for the legend is provided.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=Sex))
+                 aes(x=Height,y=Weight,color=Sex))
 pcPlot + geom_point(size=4) + 
-  scale_colour_manual(values = c("Green","Purple"),
+  scale_color_manual(values = c("Green","Purple"),
                      name="Gender")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_manualScale_ggplot2-1.png)&lt;!-- --&gt;
+
 ---
-## Colorbrewer for color scales
+## Named Colors and hex codes
 
-Here we have specified the colours to be used (hence the manual) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colours from a scale of our choice.
+Most colors can simply be defined by writing them in as a character vector i.e. "green". There are a wide variety of named colors available in R. From "darkgoldenrod" to "bisque". And 100 different shades of gray. You can find an extensive list of R colors [here](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf).
 
-The brewer set of scale functions allow the user to make use of a range of palettes available from colorbrewer.
+You can also use hex codes: a hexadecimal format for identifying colors. This gives greater variety of options as they use the full color spectrum. Each pair of characters corresponds to the Red, Green and Blue content for the color i.e. #ffe4c4 (also known as Bisque) is composed of 100% red, 89.4% green and 76.9% blue. Resources like this [color picker](https://htmlcolorcodes.com/color-picker/) can be used to help you find specific shades, and even create complementary palettes. 
 
-- **Diverging**
 
- *BrBG, PiYG, PRGn, PuOr, RdBu, RdGy, RdYlBu, RdYlGn, Spectral*
 
-- **Qualitative**
+---
+## Packages for color scales
 
- *Accent, Dark2, Paired, Pastel1, Pastel2, Set1, Set2, Set3*
+Here we have specified the colors to be used (hence the scale_color_**manual**) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colors from a scale of our choice.
 
-- **Sequential**
-
- *Blues, BuGn, BuPu, GnBu, Greens, Greys, Oranges, OrRd, PuBu, PuBuGn, PuRd, Purples, RdPu, Reds, YlGn, YlGnBu, YlOrBr, YlOrRd*
+There are a number of collections of in-built and installable package palettes in ggplot2, namely [colorbrewer](http://colorbrewer2.org/), [paleteer](https://r-graph-gallery.com/color-palette-finder) and [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
 
 ---
 ## scale_color_brewer
 
+Colorbrewer comes with ggplot
+
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=Pet))
+                 aes(x=Height,y=Weight,color=Pet))
 pcPlot + geom_point(size=4) + 
-  scale_colour_brewer(palette = "Set2")
+  scale_color_brewer(palette = "Set2")
 ```
 
 ```
@@ -1111,12 +1111,72 @@ pcPlot + geom_point(size=4) +
 ![](ggplot2_files/figure-html/facet_grid_height_weight_brewerScale_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
-## Colorbrewer palettes
+## scale_color_paletteer_d
+
+Paletteer is a collection of user-defined palettes that have been collated. They have wildly different rationales including famous artworks, Wes Anderson movies and Birds.
+
+
+``` r
+library(paletteer)
+pcPlot &lt;- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,color=Pet))
+pcPlot + geom_point(size=4) + 
+  scale_color_paletteer_d(palette = "wesanderson::Zissou1")
+```
+
+```
+## Warning: Removed 5 rows containing missing values or values outside the scale range
+## (`geom_point()`).
+```
+
+![](ggplot2_files/figure-html/cale_color_paletteer_d-1.png)&lt;!-- --&gt;
+
+---
+## scale_color_viridis_d
+
+Viridis is a collection scientifically designed color palette to help with color blindness and to accurately show the dynamic range in data sets. 
+
+
+``` r
+pcPlot &lt;- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,color=Pet))
+pcPlot + geom_point(size=4) + 
+  scale_color_viridis_d()
+```
+
+```
+## Warning: Removed 5 rows containing missing values or values outside the scale range
+## (`geom_point()`).
+```
+
+![](ggplot2_files/figure-html/scale_color_viridis_d-1.png)&lt;!-- --&gt;
+
+---
+## Color blindness + Uniform Perception
+
+Using custom colors is great and can really help a make a piece of work cohesive and stand out. But you have to be careful. 
+
+~4% of people are color blind. In white males this number raises to ~10%. Considering the demographics in science, there will likely be someone with color blindness in your meeting.
+
+Furthermore, when we pick gradients the ability to see patterns in the data varies depending on the color scales used, even in sighted people.
+
+---
+## Color blindness + Uniform Perception
+
+![palettes](imgs/uniform_colors.png)
+
+(Crameri et al, 2020)
+
+
+
+---
+## Palettes
 
 For more details on palette sizes and styles visit the colorbrewer website and ggplot2 reference page.
 
 - [Colorbrewer](http://colorbrewer2.org/)
-
+- [Paleteer](https://r-graph-gallery.com/color-palette-finder)
+- [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 - [ggplot2 color scales](https://ggplot2.tidyverse.org/reference/scale_brewer.html)
 
 ---
@@ -1200,15 +1260,15 @@ pcPlot + geom_point() +
 Control of color/fill scales can be best achieved through the **gradient** subfunctions of scale.
 
 
-- scale_(colour/fill)_*gradient* - 2 colour gradient (eg. low to high BMI)
+- scale_(color/fill)_*gradient* - 2 color gradient (eg. low to high BMI)
 
-- scale\_(colour/fill)\_*gradient2* - Diverging colour scale with a midpoint colour (e.g. Down, No Change, Up)
+- scale\_(color/fill)\_*gradient2* - Diverging color scale with a midpoint color (e.g. Down, No Change, Up)
 
 Both functions take a common set of arguments:-
 
-- low - colour for low end of gradient scale
-- high - colour for high end of gradient scale.
-- na.value - colour for any NA values.
+- low - color for low end of gradient scale
+- high - color for high end of gradient scale.
+- na.value - color for any NA values.
 
 ---
 ## Color
@@ -1218,9 +1278,9 @@ An example using scale\_color\_gradient below sets the low and high end colors t
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=BMI))
+                 aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_colour_gradient(low = "White",high="Red")
+  scale_color_gradient(low = "White",high="Red")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient_ggplot2-1.png)&lt;!-- --&gt;
@@ -1232,9 +1292,9 @@ Similarly we can use the scale_color_gradient2 function which allows for the spe
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=BMI))
+                 aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_colour_gradient2(low = "Blue",mid="Black", high="Red",
+  scale_color_gradient2(low = "Blue",mid="Black", high="Red",
                          midpoint = median(patients_clean$BMI))
 ```
 
@@ -1247,9 +1307,9 @@ As with previous continuous scales, limits and custom labels in scale legend can
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=BMI))
+                 aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_colour_gradient2(low = "Blue",
+  scale_color_gradient2(low = "Blue",
                          mid="Black",
                          high="Red",
                          midpoint = median(patients_clean$BMI),
@@ -1266,10 +1326,10 @@ Multiple scales may be combined to create high customizable plots and scales
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,colour=BMI,shape=Sex))
+                 aes(x=Height,y=Weight,color=BMI,shape=Sex))
 pcPlot + geom_point(size=4,alpha=0.8)+ 
   scale_shape_discrete(name="Gender") +
-  scale_colour_gradient2(low = "Blue",mid="Black",high="Red",
+  scale_color_gradient2(low = "Blue",mid="Black",high="Red",
                          midpoint = median(patients_clean$BMI),
                          breaks=c(25,30),labels=c("Low","High"),
                          name="Body Mass Index")
@@ -1286,7 +1346,7 @@ We can also use an ifelse conditional statement to apply discrete color cutoffs 
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,shape=Sex, colour=ifelse(BMI &gt; 30, "High",
+                 aes(x=Height,y=Weight,shape=Sex, color=ifelse(BMI &gt; 30, "High",
                                                                 ifelse(BMI &lt; 25, "Low", "Middle"))))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_shape_discrete(name="Gender") +
@@ -1356,7 +1416,7 @@ If color by Sex is an aesthetic mapping then two smooth lines are drawn, one for
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,colour=Sex))
+        mapping=aes(x=Weight,y=Height,color=Sex))
 pcPlot+geom_point() +
   stat_smooth(method="lm")
 ```
@@ -1374,7 +1434,7 @@ This behavior can be overridden by specifying an aes within the stat_smooth() fu
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,colour=Sex))
+        mapping=aes(x=Weight,y=Height,color=Sex))
 pcPlot+geom_point()+
   stat_smooth(aes(x=Weight,y=Height),method="lm",
                                 inherit.aes = F)
@@ -1389,14 +1449,34 @@ pcPlot+geom_point()+
 ---
 
 ## Marginal plots with ggEtxtra
-Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupColour and groupFill arguments carry over the colour aesthetic of the main plot.  
+Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
 
 
 ``` r
 library(ggExtra)
 pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE)
+                 mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE)
+```
+
+```
+## Warning in ggplot2::geom_density(colour = "NA", ...): Ignoring unknown
+## parameters: `groupcolour`
+```
+
+```
+## Warning in (function (mapping = NULL, data = NULL, stat = "identity", position
+## = "identity", : Ignoring unknown parameters: `groupcolour`
+```
+
+```
+## Warning in ggplot2::geom_density(colour = "NA", ...): Ignoring unknown
+## parameters: `groupcolour`
+```
+
+```
+## Warning in (function (mapping = NULL, data = NULL, stat = "identity", position
+## = "identity", : Ignoring unknown parameters: `groupcolour`
 ```
 
 ![](ggplot2_files/figure-html/marginal_ggplot-1.png)&lt;!-- --&gt;
@@ -1409,8 +1489,13 @@ We can easily turn this into a histogram and only display either X or Y axis.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,colour=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColour = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+        mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+```
+
+```
+## Warning in (function (mapping = NULL, data = NULL, stat = "bin", position =
+## "stack", : Ignoring unknown parameters: `groupcolour`
 ```
 
 ![](ggplot2_files/figure-html/marginal_ggplot2-1.png)&lt;!-- --&gt;
@@ -1429,7 +1514,7 @@ pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height)) + geom_jitter()
 pcPlot + 
   stat_summary(fun=quantile, geom="point",
-                    colour="purple", size=8)
+                    color="purple", size=8)
 ```
 
 ![](ggplot2_files/figure-html/stat_summary_ggplot2-1.png)&lt;!-- --&gt;
@@ -1464,7 +1549,7 @@ By giving subsets of the data to the stat_regline_equation() function, we can di
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,colour=Sex)) +geom_point()+ stat_smooth(aes(x=Weight,y=Height), method="lm", formula = y ~ x) 
+        mapping=aes(x=Weight,y=Height,color=Sex)) +geom_point()+ stat_smooth(aes(x=Weight,y=Height), method="lm", formula = y ~ x) 
 pcPlot +
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
                         label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x) + 
@@ -1559,6 +1644,16 @@ pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) +
 
 
 ---
+
+
+Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
+
+---
+
+Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
+
+
+---
 class: inverse, center, middle
 
 # Themes
@@ -1570,7 +1665,7 @@ class: inverse, center, middle
 ## Themes
 
 Themes specify the details of data independent elements of the plot. 
-This includes titles, background colour, text fonts etc.
+This includes titles, background color, text fonts etc.
 
 The graphs created so far have all used the default themes, `theme_grey()`, 
 but ggplot2 allows for the specification of theme used.
@@ -1723,7 +1818,7 @@ A detailed description of controlling elements within a theme can be seen at the
 ## Customizing your theme
 .pull-left[
 
-To demonstrate customizing a theme, in the example below we alter one element of theme. Here we will change the text colour for the plot.
+To demonstrate customizing a theme, in the example below we alter one element of theme. Here we will change the text color for the plot.
 
 - Note because we are changing a *text* element we use the *element_text()* function.
 
@@ -1738,7 +1833,7 @@ pcPlot &lt;- ggplot(data=patients_clean,
   geom_point()
 pcPlot+
   theme(
-    text = element_text(colour="red")
+    text = element_text(color="red")
       )
 ```
 
@@ -1753,7 +1848,7 @@ If we wished to set the y-axis label to be at an angle we can adjust that as wel
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot + theme(text = element_text(colour="red"),
+pcPlot + theme(text = element_text(color="red"),
         axis.title.y = element_text(angle=0))
 ```
 
@@ -1762,7 +1857,7 @@ pcPlot + theme(text = element_text(colour="red"),
 ---
 ## Customizing your theme
 
-Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background colour.
+Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background color.
 
 
 ``` r
@@ -1772,7 +1867,7 @@ pcPlot &lt;- ggplot(data=patients_clean,
   facet_grid(Sex~Smokes)
 pcPlot+
   theme(
-    text = element_text(colour="red"),
+    text = element_text(color="red"),
     axis.title.y = element_text(angle=0),
     axis.line = element_line(linetype = 0),
     panel.background=element_rect(fill="white"),
@@ -1782,7 +1877,7 @@ pcPlot+
 
 ---
 ## Customizing your theme
-Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background colour.
+Finally we may wish to remove axis line, set the background of plot panels to be white and give the strips (title above facet) a cyan background color.
 
 ![](ggplot2_files/figure-html/theme_custom22_ggplot2-1.png)&lt;!-- --&gt;
 
@@ -1795,7 +1890,7 @@ By default the legend is in right of plot.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot
 ```
 
@@ -1810,7 +1905,7 @@ By modifying the theme we can control the legend positioning.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
+                                         color=Sex))+geom_point()
 pcPlot+theme(legend.position="left")
 ```
 
@@ -1824,8 +1919,8 @@ We can control all aspects of a legend as we can for other theme elements.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         colour=Sex))+geom_point()
-pcPlot+theme(legend.text = element_text(colour="darkred"),
+                                         color=Sex))+geom_point()
+pcPlot+theme(legend.text = element_text(color="darkred"),
              legend.title = element_text(size=20),
              legend.position = "bottom"
              )
@@ -1848,13 +1943,13 @@ This makes the **+** operator useful for building up from old themes.
 
 ---
 ## The **+** operator 
-In the example below, we maintain all elements set by theme_bw() but overwrite the theme element attribute of the colour of text.
+In the example below, we maintain all elements set by theme_bw() but overwrite the theme element attribute of the color of text.
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
 pcPlot+
-  theme(text = element_text(colour="red"))
+  theme(text = element_text(color="red"))
 ```
 
 ![](ggplot2_files/figure-html/theme_custom8_ggplot2-1.png)&lt;!-- --&gt;
@@ -1877,10 +1972,10 @@ When using the **%+replace%** operator:
   oldTheme &lt;- theme_bw()
   
   newTheme_Plus &lt;- theme_bw() +
-  theme(text = element_text(colour="red"))
+  theme(text = element_text(color="red"))
   
   newTheme_Replace &lt;- theme_bw() %+replace%
-  theme(text = element_text(colour="red"))
+  theme(text = element_text(color="red"))
 ```
 
 
@@ -2190,8 +2285,8 @@ The aesthetic mappings are naturally inherited as labels. If we want to add cust
 ggplotly(pcPlot)
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-734a642ef93a8f758ae2" style="width:648px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-734a642ef93a8f758ae2">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"206b5b708be8":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"}},"cur_data":"206b5b708be8","visdat":{"206b5b708be8":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-ac2fb0fca5d62350529c" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-ac2fb0fca5d62350529c">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"16922f17f1c7":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"}},"cur_data":"16922f17f1c7","visdat":{"16922f17f1c7":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Extra Annotation
@@ -2207,8 +2302,8 @@ ggplotly(pcPlot + geom_point(aes(label = Sample)))
 ## Warning in geom_point(aes(label = Sample)): Ignoring unknown aesthetics: label
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-260f9ff900b4270da15b" style="width:648px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-260f9ff900b4270da15b">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1<br />Sample: A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2<br />Sample: A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1<br />Sample: B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2<br />Sample: B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1<br />Sample: C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2<br />Sample: C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"206b238f1d7b":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"206b28edd4be":{"x":{},"y":{},"colour":{},"shape":{},"label":{}}},"cur_data":"206b238f1d7b","visdat":{"206b238f1d7b":["function (y) ","x"],"206b28edd4be":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-1ab3016edb5dbfa62449" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-1ab3016edb5dbfa62449">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1<br />Sample: A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2<br />Sample: A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1<br />Sample: B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2<br />Sample: B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1<br />Sample: C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2<br />Sample: C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"169217e38450":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"1692163ff1cd":{"x":{},"y":{},"colour":{},"shape":{},"label":{}}},"cur_data":"169217e38450","visdat":{"169217e38450":["function (y) ","x"],"1692163ff1cd":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Extra Annotation
@@ -2224,19 +2319,19 @@ ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = 
 ## Warning in geom_point(aes(text = Sample)): Ignoring unknown aesthetics: text
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-29fb2fcdb3f913dab775" style="width:504px;height:504px;"></div>
-<script type="application/json" data-for="htmlwidget-29fb2fcdb3f913dab775">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"select","attrs":{"206b7cee46c3":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"206b6066073":{"x":{},"y":{},"colour":{},"shape":{},"text":{}}},"cur_data":"206b7cee46c3","visdat":{"206b7cee46c3":["function (y) ","x"],"206b6066073":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-fe67a663ae78eaa380ef" style="width:504px;height:504px;"></div>
+<script type="application/json" data-for="htmlwidget-fe67a663ae78eaa380ef">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.305936073059364,"r":7.3059360730593621,"b":37.260273972602747,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"select","attrs":{"16925392f4ed":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"16921a0c840a":{"x":{},"y":{},"colour":{},"shape":{},"text":{}}},"cur_data":"16925392f4ed","visdat":{"16925392f4ed":["function (y) ","x"],"16921a0c840a":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 
 
 ---
 
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
+Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_3_exercise.html)
 
 ---
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
+Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_3_answers.html)
 
 ---
 ## References
@@ -2252,6 +2347,8 @@ Exercise on scales and themes in ggplot can be found [here](../../exercises/answ
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
+
+- [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way, though there is no R code. 
 
 ---
 ## Contact
