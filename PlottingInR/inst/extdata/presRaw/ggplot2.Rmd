@@ -998,7 +998,7 @@ pcPlot + geom_point(size=4) +
 
 Paletteer is a collection of user-defined palettes that have been collated. They have wildly different rationales including famous artworks, Wes Anderson movies and Birds.
 
-```{r, facet_grid_height_weight_brewerScale_ggplot2_2, fig.height=5, fig.width=9}
+```{r, cale_color_paletteer_d, fig.height=5, fig.width=9}
 library(paletteer)
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -1012,7 +1012,7 @@ pcPlot + geom_point(size=4) +
 
 Viridis is a collection scientifically designed color palette to help with color blindness and to accurately show the dynamic range in data sets. 
 
-```{r, facet_grid_height_weight_brewerScale_ggplot2_2, fig.height=5, fig.width=9}
+```{r, scale_color_viridis_d, fig.height=5, fig.width=9}
 
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
