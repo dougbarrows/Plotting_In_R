@@ -23,21 +23,24 @@ message(toMessage)
 
 **Exercise 1** - **Facets**
 
-- Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
+1.1 - Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
 
 ```{r,echo=toMessage}
 patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
-- Generate a boxplot of BMIs comparing smokers and non-smokers. Split the BMI vs Weight plot into a grid of plots separated by Smoking status and Sex .
+1.2 - Generate a scatter plot of BMI vs Weight and split (or facet) the data into a grid of plots separated by Smoking status and Sex .
 
 ```{r,echo=toMessage}
+library(ggplot2)
 plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=Height))+geom_point()
+               mapping=aes(x=BMI,y=Weight))+geom_point()
 plot+facet_grid(Sex~Smokes)
 ```
 
-- Now reproduce the boxplots in exercise 8 (grouped by smoker, coloured by sex) but now include a separate facet for people of different age (using Age column).
+ 
+
+1.3 - Make a boxplot that is grouped by smoker and colored by sex, then include a separate facet for people of different age (using Age column).
 
 ```{r,echo=toMessage}
 
@@ -48,7 +51,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-- Produce a similar boxplot of BMIs but this time group data by Sex, colour by Age and facet by Smoking status.
+1.4 - Produce a similar boxplot of BMIs but this time group data by Sex, colour by Age and facet by Smoking status.
 
 HINT - Discrete values such as in factors are used for categorical data.
 
@@ -60,7 +63,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-- Regenerate the solution to exercise 10 but this time using a violin plot.
+1.5 - Regenerate the previous solution from exercise 1.4, but this time using a violin plot.
 
 ```{r,echo=toMessage}
 plot <- ggplot(data=patients_clean,
@@ -70,7 +73,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-- Generate a separate density plot of BMI coloured by sex for each Grade,
+1.6 - Generate a separate density plot of BMI coloured by sex for each Grade,
 
 ```{r,echo=toMessage}
 
@@ -82,19 +85,19 @@ plot+facet_wrap(~Grade)
 
 **Exercise 2** - **Scales**
 
-1. Using the patient dataset from earlier, generate a scatter plot of BMI versus Weight
+2.1 - Using the patient dataset, generate a scatter plot of BMI versus Weight
 
 ```{r,echo=toMessage}
 library(ggplot2)
 
-patients_clean <- read.delim("./data/patients_clean_ggplot2.txt",sep="\t")
+patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 
 plot <- ggplot(data=patients_clean,
                mapping=aes(x=BMI,y=Weight))+geom_point()
 plot
 ```
 
-2. With the plot above, from exercise 1, adjust the BMI axis to show only labels for 20, 30, 40 and the weight axis to show breaks for 60 to 100 in steps of 5 as well as to specify units in y axis label. 
+2.2 - With the plot above, from exercise 2.1, adjust the BMI axis to show only labels for 20, 30, 40 and the weight axis to show breaks for 60 to 100 in steps of 5 as well as to specify units in y axis label. 
 
 
 ```{r,echo=toMessage}
@@ -107,15 +110,16 @@ plot+scale_x_continuous(breaks=c(20,30,40),label=c(20,30,40),limits=c(20,40))+
 
 
 
-3. Create a violin plot of BMI by Age where violins are filled using a sequential colour palette.
+2.3 - Create a violin plot of BMI by Age where violins are filled using a sequential colour palette.
 
 ```{r,echo=toMessage}
 plot <- ggplot(data=patients_clean,
                mapping=aes(x=factor(Age),y=BMI))+geom_violin(aes(fill=factor(Age)))+
                scale_fill_brewer(palette="Blues", na.value="black")
+plot
 ```            
 
-4. Create a scatterplot of BMI versus Weight and add a continuous colour scale for the height. Make the colour scale  with a midpoint (set to mean point) colour of gray and extremes of blue (low) and yellow (high).
+2.4 - Create a scatterplot of BMI versus Weight and add a continuous colour scale for the height. Make the colour scale with a midpoint (set to mean point) colour of gray and extremes of blue (low) and yellow (high).
 
 
 ```{r,echo=toMessage}
@@ -127,7 +131,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-5. Adjust the plot from exercise 4 using scales to remove values greater than 180.
+2.5 - Adjust the plot from exercise 2.4 using scales to remove values greater than 180.
 
 ```{r,echo=toMessage}
 library(ggplot2)
@@ -141,7 +145,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-6. Adjust the scale legend from plot in exercise 4 to show only 75%, median and min values in scale legend.
+2.6 - Adjust the scale legend from plot in exercise 2.4 to show only 75%, median and min values in scale legend.
 
 ```{r,echo=toMessage}
 library(ggplot2)
@@ -160,7 +164,7 @@ plot
 ```
 
 
-6. With the plot from exercise 4, create another scatterplot with Count variable mapped to transparency/alpha and size illustrating whether a person is overweight. 
+2.7 - With the plot from exercise 2.4, create another scatterplot with Count variable mapped to transparency/alpha and size illustrating whether a person is overweight. 
 Is there a better combination of aesthetic mappings?
 
 ```{r,echo=toMessage}
@@ -174,7 +178,7 @@ plot
 
 **Exercise 3** - **Statistics**
 
-7. Recreate the scatterplot of BMI by height. Colour by Age group and add fitted lines (but no SE lines) for each Age group. 
+3.1 - Recreate the scatterplot of BMI by height. Colour by Age group and add fitted lines (but no SE lines) for each Age group. 
 
 
 ```{r,echo=toMessage}
@@ -183,6 +187,37 @@ library(ggplot2)
 
 plot <- ggplot(data=patients_clean,
                mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
+
+plot
+```
+
+3.2 - Show the equation for the fitted line made for each age group in exercise 3.1
+
+```{r,echo=toMessage}
+library(ggpubr)
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)+ 
+  stat_regline_equation(data = patients_clean[patients_clean$Age == 43, ], label.y = 95, aes(label = after_stat(eq.label)), formula = y ~ x) + 
+  stat_regline_equation(data = patients_clean[patients_clean$Age == 44, ], label.y = 93, aes(label = after_stat(eq.label)), formula = y ~ x) +
+  stat_regline_equation(data = patients_clean[patients_clean$Age == 45, ], label.y = 91, aes(label = after_stat(eq.label)), formula = y ~ x)
+
+plot
+```
+
+3.3 - Make a boxplot of BMI that is grouped by smoker and colored by sex. On the plot, include the adjusted pvalues for the comparisons of BMI between Sex within each smoking group. 
+
+```{r,echo=toMessage}
+library(rstatix)
+
+grouped_data <- group_by(patients_clean, Smokes)
+stat.test <- t_test(grouped_data, formula = BMI ~ Sex) 
+stat.test <- adjust_pvalue(stat.test, method = "BH") 
+stat.test <- add_xy_position(stat.test, x = "Smokes", dodge = 0.8)
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Smokes,y=BMI,colour=Sex))+
+  geom_boxplot() + 
+  stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
 
 plot
 ```

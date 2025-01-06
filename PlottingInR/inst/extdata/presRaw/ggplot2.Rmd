@@ -779,6 +779,31 @@ Or in a nice grid format using facet_grid() and the Smokes variable against a co
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
+---
+
+## Marginal plots with ggEtxtra
+Another way to highlight differences between groups is with a marginal plot. Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
+
+```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F, warning = F}
+library(ggExtra)
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
+
+```
+
+---
+
+## Marginal plots with ggEtxtra
+We can easily turn this into a histogram and only display either X or Y axis.  
+
+```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F}
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+```
+
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -899,15 +924,16 @@ scale\_**(x/y)**\_**(continuous/discrete)**
 
 ---
 ## Continuous axes scales
-In this example we control the continuous scale on the x-axis by providing a name, X-axis limits, the positions of breaks (ticks/labels) and the  labels to place at breaks.
+In this example we control the continuous scale on the x-axis by providing a name, x-axis limits, the positions of breaks (ticks/labels) and the  labels to place at breaks.
 
 ```{r scaleCont_ggplot2, facet_grid_smokesBySex_scalex, fig.height=4.5, fig.width=9}
-
-pcPlot + geom_point() + facet_grid(Smokes~Sex)+
-  scale_x_continuous(name="height ('cm')",
-                     limits = c(100,200),
-                     breaks=c(125,150,175),
-                     labels=c("small","justright","tall"))
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+pcPlot + geom_point() +
+  scale_x_continuous(name="height ('cm')", 
+                   limits = c(150,200),
+                   breaks=c(160,180),
+                   labels=c("Short", "Tall"))
 
 ```
 
@@ -985,7 +1011,7 @@ There are a number of collections of in-built and installable package palettes i
 
 Colorbrewer comes with ggplot
 
-```{r, facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9}
+```{r, facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9, message = F, warning = F}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
 pcPlot + geom_point(size=4) + 
@@ -998,7 +1024,7 @@ pcPlot + geom_point(size=4) +
 
 Paletteer is a collection of user-defined palettes that have been collated. They have wildly different rationales including famous artworks, Wes Anderson movies and Birds.
 
-```{r, cale_color_paletteer_d, fig.height=5, fig.width=9}
+```{r, cale_color_paletteer_d, fig.height=5, fig.width=9, message = F, warning = F}
 library(paletteer)
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -1012,7 +1038,7 @@ pcPlot + geom_point(size=4) +
 
 Viridis is a collection scientifically designed color palette to help with color blindness and to accurately show the dynamic range in data sets. 
 
-```{r, scale_color_viridis_d, fig.height=5, fig.width=9}
+```{r, scale_color_viridis_d, fig.height=5, fig.width=9, message = F, warning = F}
 
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -1253,7 +1279,7 @@ The stat_smooth() function can be used to fit a line to the data being displayed
 
 ```{r, stat_smooth_ggplot2, fig.height=5, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))
+        mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point() + 
   stat_smooth()
 ```
@@ -1264,7 +1290,7 @@ By default a "loess" smooth line is plotted by stat_smooth. Other methods availa
 
 ```{r, stat_smoothlm_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))
+        mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point() + 
   stat_smooth(method="lm")
 
@@ -1278,7 +1304,7 @@ If color by Sex is an aesthetic mapping then two smooth lines are drawn, one for
 
 ```{r, stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex))
+        mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot+geom_point() +
   stat_smooth(method="lm")
 ```
@@ -1289,34 +1315,10 @@ This behavior can be overridden by specifying an aes within the stat_smooth() fu
 
 ```{r, stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex))
+        mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot+geom_point()+
-  stat_smooth(aes(x=Weight,y=Height),method="lm",
+  stat_smooth(aes(x=Height,y=Weight),method="lm",
                                 inherit.aes = F)
-```
-
----
-
-## Marginal plots with ggEtxtra
-Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
-
-```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F}
-library(ggExtra)
-pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE)
-```
-
----
-
-## Marginal plots with ggEtxtra
-We can easily turn this into a histogram and only display either X or Y axis.  
-
-```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F}
-
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
 ```
 
 
@@ -1346,12 +1348,12 @@ The after_stat function is required to tell ggplot to map the aesthetics after a
 ```{r, line_eqn, fig.height=3, fig.width=8}
 library(ggpubr)
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height)) +
+        mapping=aes(x=Height,y=Weight)) +
   geom_point() + 
   stat_smooth(method="lm", formula = y ~ x)  
 pcPlot +
-  stat_regline_equation(label.y = 185, aes(label = after_stat(eq.label)), formula = y ~ x) +
-  stat_regline_equation(label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x)
+  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
+  stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
 
 ```
 
@@ -1362,12 +1364,12 @@ By giving subsets of the data to the stat_regline_equation() function, we can di
 
 ```{r, line_eqn_groups, fig.height=3, fig.width=8}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex)) +geom_point()+ stat_smooth(aes(x=Weight,y=Height), method="lm", formula = y ~ x) 
+        mapping=aes(x=Height,y=Weight,color=Sex)) +geom_point()+ stat_smooth(aes(x=Height,y=Weight), method="lm", formula = y ~ x) 
 pcPlot +
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
-                        label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x) + 
+                        label.y = 90, aes(label = after_stat(rr.label)), formula = y ~ x) + 
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Female", ], 
-                        label.x = 80, label.y = 160, aes(label = after_stat(rr.label)), formula = y ~ x)  
+                        label.x = 175, label.y = 65, aes(label = after_stat(rr.label)), formula = y ~ x)  
   
 ```
 
@@ -1438,11 +1440,11 @@ pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) +
 ---
 
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
+Exercise on scales and transformations in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
 
 ---
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
+Exercise on scales and transformations in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
 
 
 ---
