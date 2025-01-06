@@ -28,28 +28,29 @@ message(toMessage)
 patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
-8. Remove the legend title from plot in exercise 7, change the background colours of legend panels to white and place legend at bottom of plot.
+-  Using the patient data set generate a scatter plot of BMI versus Weight. Add a color scale to the scatter plot based on the Height variable. Use an additional geom, add an extra layer of a fit line to our scatterplot (use lm method).
+
 
 ```{r,echo=toMessage}
 
-
+library(ggplot2)
 plot <- ggplot(data=patients_clean,
                mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
+plot
+```
+
+- Remove the legend title from the plot, change the background colors of legend panels to white and place legend at bottom of plot.
+
+```{r,echo=toMessage}
 
 plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
 
 plot
 ```
 
-9. Add a title to the plot, remove minor grid lines and save to 7 by 7 inch plot on disk.
+- Add a title to the plot, remove minor grid lines and save to 7 by 7 inch png file.
 
 ```{r,echo=toMessage}
-
-
-plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
-
-plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
 
 plot <- plot+ggtitle("BMI vs Weight")+theme(panel.grid.minor=element_blank())
 
@@ -58,6 +59,6 @@ plot
 ggsave(plot,file="BMIvsWeight.png",units = "in",height = 7,width = 7)
 ```
 
-10. Produce a Height vs Weight scatter plot with point sizes scaled by BMI. 
+- Produce a Height vs Weight scatter plot with point sizes scaled by BMI. 
 Present only the points and title of plot with all other graph features missing.
 
