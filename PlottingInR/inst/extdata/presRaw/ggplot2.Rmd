@@ -930,10 +930,7 @@ In this example we control the continuous scale on the x-axis by providing a nam
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
 pcPlot + geom_point() +
-  scale_x_continuous(name="height ('cm')", 
-                   limits = c(150,200),
-                   breaks=c(160,180),
-                   labels=c("Short", "Tall"))
+  scale_x_continuous(name="height ('cm')", limits = c(150,200), breaks=c(160,180),labels=c("Short", "Tall"))
 
 ```
 
@@ -1024,7 +1021,7 @@ pcPlot + geom_point(size=4) +
 
 Paletteer is a collection of user-defined palettes that have been collated. They have wildly different rationales including famous artworks, Wes Anderson movies and Birds.
 
-```{r, cale_color_paletteer_d, fig.height=5, fig.width=9, message = F, warning = F}
+```{r, cale_color_paletteer_d, fig.height=4, fig.width=8, message = F, warning = F}
 library(paletteer)
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -1277,7 +1274,7 @@ An example of statistical methods in ggplot2 which are very useful include the s
 
 The stat_smooth() function can be used to fit a line to the data being displayed.
 
-```{r, stat_smooth_ggplot2, fig.height=5, fig.width=9}
+```{r, stat_smooth_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point() + 
@@ -1291,16 +1288,13 @@ By default a "loess" smooth line is plotted by stat_smooth. Other methods availa
 ```{r, stat_smoothlm_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point() + 
-  stat_smooth(method="lm")
+pcPlot+geom_point() + stat_smooth(method="lm")
 
 ```
 
 ---
 ## Fitting lines in groups
-A useful feature of ggplot2 is that it uses previously defined grouping when performing smoothing.
-
-If color by Sex is an aesthetic mapping then two smooth lines are drawn, one for each sex.
+A useful feature of ggplot2 is that it uses previously defined grouping when performing smoothing. If coloring by Sex is an aesthetic mapping then two smooth lines are drawn, one for each sex.
 
 ```{r, stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9}
 pcPlot <- ggplot(data=patients_clean,
@@ -1314,8 +1308,7 @@ pcPlot+geom_point() +
 This behavior can be overridden by specifying an aes within the stat_smooth() function and setting inherit.aes to FALSE.
 
 ```{r, stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex))
+pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot+geom_point()+
   stat_smooth(aes(x=Height,y=Weight),method="lm",
                                 inherit.aes = F)
@@ -1330,8 +1323,7 @@ Another useful method is stat_summary() which allows for a custom statistical fu
 The fun parameter specifies a function to apply to the y variables for every value of x. In this example we use it to plot the quantiles of the Female and Male Height data
 
 ```{r, stat_summary_ggplot2, fig.height=3.5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Sex,y=Height)) + geom_jitter()
+pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
 pcPlot + 
   stat_summary(fun=quantile, geom="point",
                     color="purple", size=8)
@@ -1345,14 +1337,10 @@ The ggpubr package contains functions to make publication quality graphics by di
 The after_stat function is required to tell ggplot to map the aesthetics after a function has computed the relevant statistics. 
  
 
-```{r, line_eqn, fig.height=3, fig.width=8}
+```{r, line_eqn, fig.height=2.5, fig.width=7}
 library(ggpubr)
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight)) +
-  geom_point() + 
-  stat_smooth(method="lm", formula = y ~ x)  
-pcPlot +
-  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
+pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
+pcPlot + stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
   stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
 
 ```
