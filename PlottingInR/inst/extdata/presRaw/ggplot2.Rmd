@@ -779,6 +779,30 @@ Or in a nice grid format using facet_grid() and the Smokes variable against a co
 pcPlot + facet_grid(Smokes~Sex+Pet)
 ```
 
+---
+
+## Marginal plots with ggEtxtra
+Another way to highlight differences between groups is with a marginal plot. Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
+
+```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F, warning = F}
+library(ggExtra)
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE)
+```
+
+---
+
+## Marginal plots with ggEtxtra
+We can easily turn this into a histogram and only display either X or Y axis.  
+
+```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F}
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+```
+
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -985,7 +1009,7 @@ There are a number of collections of in-built and installable package palettes i
 
 Colorbrewer comes with ggplot
 
-```{r, facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9}
+```{r, facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9, message = F, warning = F}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
 pcPlot + geom_point(size=4) + 
@@ -998,7 +1022,7 @@ pcPlot + geom_point(size=4) +
 
 Paletteer is a collection of user-defined palettes that have been collated. They have wildly different rationales including famous artworks, Wes Anderson movies and Birds.
 
-```{r, cale_color_paletteer_d, fig.height=5, fig.width=9}
+```{r, cale_color_paletteer_d, fig.height=5, fig.width=9, message = F, warning = F}
 library(paletteer)
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -1012,7 +1036,7 @@ pcPlot + geom_point(size=4) +
 
 Viridis is a collection scientifically designed color palette to help with color blindness and to accurately show the dynamic range in data sets. 
 
-```{r, scale_color_viridis_d, fig.height=5, fig.width=9}
+```{r, scale_color_viridis_d, fig.height=5, fig.width=9, message = F, warning = F}
 
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -1295,30 +1319,6 @@ pcPlot+geom_point()+
                                 inherit.aes = F)
 ```
 
----
-
-## Marginal plots with ggEtxtra
-Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
-
-```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F}
-library(ggExtra)
-pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE)
-```
-
----
-
-## Marginal plots with ggEtxtra
-We can easily turn this into a histogram and only display either X or Y axis.  
-
-```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F}
-
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
-```
-
 
 ---
 
@@ -1438,11 +1438,11 @@ pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) +
 ---
 
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
+Exercise on scales and transformations in ggplot can be found [here](../../exercises/exercises/ggplot2_2_exercise.html)
 
 ---
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
+Exercise on scales and transformations in ggplot can be found [here](../../exercises/answers/ggplot2_2_answers.html)
 
 
 ---
