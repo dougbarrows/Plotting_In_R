@@ -417,6 +417,21 @@ pcPlot + facet_wrap(~Pet+Smokes+Sex)
 pcPlot + facet_grid(Smokes~Sex+Pet)
 
 
+## ----marginal_ggplot, fig.height=4, fig.width=9, message = F, warning = F-----
+library(ggExtra)
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
+
+
+
+## ----marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F------
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+
+
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
@@ -482,12 +497,13 @@ if(params$isSlides == "yes"){
 
 
 ## ----scaleCont_ggplot2, facet_grid_smokesBySex_scalex, fig.height=4.5, fig.width=9----
-
-pcPlot + geom_point() + facet_grid(Smokes~Sex)+
-  scale_x_continuous(name="height ('cm')",
-                     limits = c(100,200),
-                     breaks=c(125,150,175),
-                     labels=c("small","justright","tall"))
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+pcPlot + geom_point() +
+  scale_x_continuous(name="height ('cm')", 
+                   limits = c(150,200),
+                   breaks=c(160,180),
+                   labels=c("Short", "Tall"))
 
 
 
@@ -523,7 +539,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ----facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9----
+## ----facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9, message = F, warning = F----
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
 pcPlot + geom_point(size=4) + 
@@ -531,7 +547,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ----cale_color_paletteer_d, fig.height=5, fig.width=9------------------------
+## ----cale_color_paletteer_d, fig.height=5, fig.width=9, message = F, warning = F----
 library(paletteer)
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -540,7 +556,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ----scale_color_viridis_d, fig.height=5, fig.width=9-------------------------
+## ----scale_color_viridis_d, fig.height=5, fig.width=9, message = F, warning = F----
 
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -677,14 +693,14 @@ if(params$isSlides == "yes"){
 
 ## ----stat_smooth_ggplot2, fig.height=5, fig.width=9---------------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))
+        mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point() + 
   stat_smooth()
 
 
 ## ----stat_smoothlm_ggplot2, fig.height=4, fig.width=9-------------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))
+        mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point() + 
   stat_smooth(method="lm")
 
@@ -692,31 +708,17 @@ pcPlot+geom_point() +
 
 ## ----stat_smoothlmgroups_ggplot2, fig.height=4, fig.width=9-------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex))
+        mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot+geom_point() +
   stat_smooth(method="lm")
 
 
 ## ----stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9---------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex))
+        mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot+geom_point()+
-  stat_smooth(aes(x=Weight,y=Height),method="lm",
+  stat_smooth(aes(x=Height,y=Weight),method="lm",
                                 inherit.aes = F)
-
-
-## ----marginal_ggplot, fig.height=4, fig.width=9, message = F------------------
-library(ggExtra)
-pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE)
-
-
-## ----marginal_ggplot2, fig.height=4, fig.width=9, message = F-----------------
-
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupcolor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
 
 
 ## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
@@ -730,23 +732,23 @@ pcPlot +
 ## ----line_eqn, fig.height=3, fig.width=8--------------------------------------
 library(ggpubr)
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height)) +
+        mapping=aes(x=Height,y=Weight)) +
   geom_point() + 
   stat_smooth(method="lm", formula = y ~ x)  
 pcPlot +
-  stat_regline_equation(label.y = 185, aes(label = after_stat(eq.label)), formula = y ~ x) +
-  stat_regline_equation(label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x)
+  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
+  stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
 
 
 
 ## ----line_eqn_groups, fig.height=3, fig.width=8-------------------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height,color=Sex)) +geom_point()+ stat_smooth(aes(x=Weight,y=Height), method="lm", formula = y ~ x) 
+        mapping=aes(x=Height,y=Weight,color=Sex)) +geom_point()+ stat_smooth(aes(x=Height,y=Weight), method="lm", formula = y ~ x) 
 pcPlot +
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
-                        label.y = 183, aes(label = after_stat(rr.label)), formula = y ~ x) + 
+                        label.y = 90, aes(label = after_stat(rr.label)), formula = y ~ x) + 
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Female", ], 
-                        label.x = 80, label.y = 160, aes(label = after_stat(rr.label)), formula = y ~ x)  
+                        label.x = 175, label.y = 65, aes(label = after_stat(rr.label)), formula = y ~ x)  
   
 
 
