@@ -500,10 +500,7 @@ if(params$isSlides == "yes"){
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
 pcPlot + geom_point() +
-  scale_x_continuous(name="height ('cm')", 
-                   limits = c(150,200),
-                   breaks=c(160,180),
-                   labels=c("Short", "Tall"))
+  scale_x_continuous(name="height ('cm')", limits = c(150,200), breaks=c(160,180),labels=c("Short", "Tall"))
 
 
 
@@ -547,7 +544,7 @@ pcPlot + geom_point(size=4) +
                   
 
 
-## ----cale_color_paletteer_d, fig.height=5, fig.width=9, message = F, warning = F----
+## ----cale_color_paletteer_d, fig.height=4, fig.width=8, message = F, warning = F----
 library(paletteer)
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=Pet))
@@ -691,7 +688,7 @@ if(params$isSlides == "yes"){
 
 
 
-## ----stat_smooth_ggplot2, fig.height=5, fig.width=9---------------------------
+## ----stat_smooth_ggplot2, fig.height=4, fig.width=9---------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
 pcPlot+geom_point() + 
@@ -701,8 +698,7 @@ pcPlot+geom_point() +
 ## ----stat_smoothlm_ggplot2, fig.height=4, fig.width=9-------------------------
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point() + 
-  stat_smooth(method="lm")
+pcPlot+geom_point() + stat_smooth(method="lm")
 
 
 
@@ -714,29 +710,23 @@ pcPlot+geom_point() +
 
 
 ## ----stat_smoothlmgroupsOverridden_ggplot2, fig.height=4, fig.width=9---------
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex))
+pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Height,y=Weight,color=Sex))
 pcPlot+geom_point()+
   stat_smooth(aes(x=Height,y=Weight),method="lm",
                                 inherit.aes = F)
 
 
 ## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Sex,y=Height)) + geom_jitter()
+pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
 pcPlot + 
   stat_summary(fun=quantile, geom="point",
                     color="purple", size=8)
 
 
-## ----line_eqn, fig.height=3, fig.width=8--------------------------------------
+## ----line_eqn, fig.height=2.5, fig.width=7------------------------------------
 library(ggpubr)
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight)) +
-  geom_point() + 
-  stat_smooth(method="lm", formula = y ~ x)  
-pcPlot +
-  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
+pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
+pcPlot + stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
   stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
 
 
