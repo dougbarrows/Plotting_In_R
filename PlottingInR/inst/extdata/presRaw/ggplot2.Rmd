@@ -1038,6 +1038,24 @@ Furthermore, when we pick gradients the ability to see patterns in the data vari
 (Crameri et al, 2020)
 
 
+---
+## Color blindness and ggplot2 defaults
+
+![palettes](imgs/example_ggplot_defulats.jpg)
+
+
+([@dichromat-chloe.bsky.social](https://bsky.app/profile/dichromat-chloe.bsky.social/post/3lbrtas6luc2r))
+
+---
+## Picking Colors
+
+Sticking with default colors maybe easy, but it is important to switch things up before you present the data in any way for multiple reasons. There's no singular correct answer but remember the aim:
+
+* Visually faithful to the dynamic scale of the underlying data
+* Translates well to greyscale (printing)
+* Is accessible to those with color blindness.
+
+
 
 ---
 ## Palettes
@@ -1203,7 +1221,6 @@ pcPlot + geom_point(size=4,alpha=0.8)+
 ```
 
 ---
-
 ## Conditional scales and colors
 
 We can also use an ifelse conditional statement to apply discrete color cutoffs for groups of data points that aren't represented by categorical variables in the data set. 
@@ -1217,6 +1234,35 @@ pcPlot + geom_point(size=4,alpha=0.8) +
   scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
 ```
 
+---
+## Continuous scales and palettes
+
+There are similar continuous palettes to use with ggplot2. You can just modify the palette function to end with *_c*  for paletteer and viridis.
+
+.pull-left[
+```{r}
+pcPlot <- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,color=BMI))
+pcPlot + geom_point(size=4,alpha=0.8) + 
+  scale_color_viridis_c()
+
+
+```
+  ]
+  
+.pull-right[
+```{r}
+pcPlot <- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,color=BMI))
+pcPlot + geom_point(size=4,alpha=0.8) + 
+  scale_color_paletteer_c(palette = "grDevices::Temps")
+
+```
+  ]
+  
+  
+  
+  
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
 if(params$isSlides == "yes"){
