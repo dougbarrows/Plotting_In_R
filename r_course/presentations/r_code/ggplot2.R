@@ -3,8 +3,11 @@ list(isSlides = "no")
 
 ## ----setup, include=FALSE-----------------------------------------------------
 suppressPackageStartupMessages(require(knitr))
+suppressPackageStartupMessages(require(plotly))
 knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
+
+
 
 
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
@@ -665,7 +668,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
   scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
 
 
-## ----fig.height=3, fig.width=3------------------------------------------------
+## ----fig.height=3.5, fig.width=3.5--------------------------------------------
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -674,7 +677,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 
 
 
-## ----fig.height=3, fig.width=3------------------------------------------------
+## ----fig.height=3.5, fig.width=3.5--------------------------------------------
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
