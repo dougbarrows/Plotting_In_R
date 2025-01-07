@@ -2132,10 +2132,12 @@ mydimplot$layers
 ---
 ## Seurat
 
-We can use the layout information to recreate the original ggplot, and then add some modifications i.e. add a size argument. 
+We can use the layout information to recreate the original ggplot, and then add some modifications i.e. add a size argument. We must also remove the original plot stored in the layers slot first.
 
 ```{r}
-mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw
+mydimplot$layers <- NULL
+
+mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
 
 ```
 

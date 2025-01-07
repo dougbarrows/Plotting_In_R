@@ -25,17 +25,34 @@ message(toMessage)
 - Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
 
 ```{r,echo=toMessage}
-patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
+#patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
--  Using the patient data set generate a scatter plot of BMI versus Weight. Add a color scale to the scatter plot based on the Height variable. Use an additional geom, add an extra layer of a fit line to our scatterplot (use lm method).
-
+-  Set the global theme to use theme_bw(). Using the patient data set generate a scatter plot of BMI versus Weight. Add a color scale to the scatter plot based on the Pet variable. Use an additional geom to add an extra layer of a fit line to our scatterplot (use lm method). Lets also add a nice color palette of your choice from Colorbrewer, Paleteer or Viridis. 
 
 ```{r,echo=toMessage}
 
 library(ggplot2)
+
+theme_set(theme_bw())
+
 plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=factor(Age)))+geom_point()+stat_smooth(method="lm",se=F)
+               mapping=aes(x=BMI,y=Weight,colour=factor(Pet)))+
+  geom_point()+
+  stat_smooth(method="lm",se=F) + scale_color_viridis_d(option="plasma")
+plot
+
+```
+
+- Remove the legend title from the plot, change the background colors of legend panels to gray and place legend at bottom of plot.
+
+```{r,echo=toMessage}
+
+plot <- plot + theme(legend.title=element_blank(),
+                   legend.background=element_rect(fill="gray"),
+                   legend.key=element_rect(fill="gray"),
+                   legend.position="bottom")
+
 plot
 ```
 
@@ -43,7 +60,7 @@ plot
 
 ```{r,echo=toMessage}
 
-plot <- plot+theme(legend.title=element_blank(),legend.background=element_rect(fill="white"),legend.key=element_rect(fill="white"),legend.position="bottom")
+plot <- plot+facet_wrap(~Pet)
 
 plot
 ```
@@ -52,13 +69,133 @@ plot
 
 ```{r,echo=toMessage}
 
-plot <- plot+ggtitle("BMI vs Weight")+theme(panel.grid.minor=element_blank())
+plot <- plot+ggtitle("BMI vs Weight - By Pet")+theme(panel.grid.minor=element_blank())
 
 plot
 
 ggsave(plot,file="BMIvsWeight.png",units = "in",height = 7,width = 7)
 ```
 
-- Produce a Height vs Weight scatter plot with point sizes scaled by BMI. 
-Present only the points and title of plot with all other graph features missing.
+- Save our current theme then try out some alternative themes. Try one theme included with ggplot2 and one from ggthemes.
+
+```{r,echo=toMessage}
+myTheme <- plot$theme
+
+plot + theme_linedraw()
+
+
+library(ggthemes)
+plot + theme_fivethirtyeight()
+
+```
+
+- Take at least one element from each theme you just tried out and add it to our existing theme.
+
+```{r,echo=toMessage}
+
+myTheme <- myTheme + theme(strip.background = element_rect(fill = "black"), # from theme_linedraw
+            strip.text = element_text(colour = "white", size = rel(0.8)), # from theme_linedraw
+             panel.grid = element_line(colour = NULL), # from theme_fivethirtyeight
+            panel.grid.major = element_line(colour = "#D2D2D2"), # from theme_fivethirtyeight
+            panel.grid.minor = element_blank(),# from theme_fivethirtyeight
+            rect = element_rect(fill = "#F0F0F0", # from theme_fivethirtyeight
+            linetype = 0, colour = NA))# from theme_fivethirtyeight
+
+```
+
+- Use the + to update our plot to use the new theme
+
+```{r,echo=toMessage}
+
+plot + myTheme
+
+```
+
+- Save the final plot as a pdf. 
+
+```{r,echo=toMessage}
+ggsave(plot, file="BMIvsWeight.pdf")
+
+
+```
+
+
+- Reset the theme to the default: theme_gray()
+
+```{r,echo=toMessage}
+theme_set(theme_gray())
+
+plot
+
+```
+
+**Exercise 2** - **External Packages**
+
+- Load in the data from "data/DESeq2_PCA.RData". This contains a ggplot object that is produced by the package DESeq2. It is a PCA plot produced from differential gene expression analysis. Review the object. Check the plot, data, aesthetics etc. 
+
+```{r, eval=F, echo=F}
+dds <- makeExampleDESeqDataSet(betaSD=1)
+rld <- rlog(dds)
+plotPCA(rld)
+
+# also possible to perform custom transformation:
+dds <- estimateSizeFactors(dds)
+# shifted log of normalized counts
+se <- SummarizedExperiment(log2(counts(dds, normalized=TRUE) + 1),
+                           colData=colData(dds))
+# the call to DESeqTransform() is needed to
+# trigger our plotPCA method.
+test <- plotPCA( DESeqTransform( se ) )
+test$data$condition <- rep(c(rep("Ctrl",3),rep("Mut",3)),2)
+deseq_pca_example <- test
+save(deseq_pca_example, file ="../extdata/data/DESeq2_PCA.RData")
+```
+
+```{r,echo=toMessage}
+load("data/DESeq2_PCA.RData")
+
+deseq_pca_example
+
+deseq_pca_example$data
+
+deseq_pca_example$mapping
+```
+
+- Lets change the color scheme and add a title. 
+
+```{R}
+
+deseq_pca_example + scale_fill_viridis_d() + ggtitle("PCA plot of DGE in A and B groups")
+
+```
+
+- When we look at the data column we can see there is an additional column contained in the metadata - condition. Lets add this to the plot. 
+
+```{r}
+deseq_replot <- deseq_pca_example
+deseq_replot$layers <- NULL
+
+deseq_replot <- deseq_replot + geom_point(aes(x=PC1, y=PC2, color=group, shape=condition)) + scale_fill_viridis_d() + ggtitle("PCA plot of DGE in A and B groups")
+
+```
+
+**Exercise 3** - **Interactive Plots**
+
+- Turn our PCA plot into an interactive plot. 
+
+```{r}
+library(plotly)
+
+ggplotly(deseq_replot)
+```
+
+
+- Add the names of each sample from the orginal data object to the interactive labeling. 
+
+```{r}
+ggplotly(deseq_replot + geom_point(aes(label = name)))
+
+
+```
+
 
