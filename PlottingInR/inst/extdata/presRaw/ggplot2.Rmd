@@ -1179,8 +1179,6 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_color_gradient(low = "White",high="Red")
   
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient(low = "White",high="Red", limits = c(27, 30))                
 ```
 
 ---
