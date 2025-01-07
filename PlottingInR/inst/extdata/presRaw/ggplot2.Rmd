@@ -1265,7 +1265,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 There are similar continuous palettes to use with ggplot2. You can just modify the palette function to end with *_c*  for paletteer and viridis.
 
 .pull-left[
-```{r, fig.height=3, fig.width=3}
+```{r, fig.height=3.5, fig.width=3.5}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -1276,7 +1276,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
   ]
   
 .pull-right[
-```{r, fig.height=3, fig.width=3}
+```{r, fig.height=3.5, fig.width=3.5}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
