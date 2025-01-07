@@ -487,7 +487,7 @@ pcPlot_violin
 
 We can also provide multiple geoms. Often we may want to do this to add complexity to our plot. In this case we often may like to see the data points driving our violin plot. So we also add a jitter on top. 
 
-```{r, multiplegeom_ggplot2}
+```{r, multiplegeom_ggplot2, fig.height=4.5, fig.width=8}
 ggplot(data=patients_clean,
                  mapping=aes(x=Sex, y=Height))+ 
   geom_violin() +
@@ -769,6 +769,7 @@ For more complex faceting both *facet_grid* and *facet_wrap* can accept combinat
 pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
                                          color=Sex))+geom_point()
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
+
 ```
 
 ---
@@ -942,7 +943,7 @@ Similarly control over discrete scales is shown below.
 pcPlot <- ggplot(data=patients_clean,aes(x=Sex,y=Height))
 pcPlot +
   geom_violin(aes(x=Sex,y=Height)) +
-  scale_x_discrete(labels=c("Women", "Men"))
+  scale_x_discrete(labels=c("Men", "Women"))
 
 ```
 
@@ -954,7 +955,7 @@ Multiple X/Y scales can be combined to give full control of axis marks.
 pcPlot <- ggplot(data=patients_clean,aes(x=Sex,y=Height,fill=Smokes))
 pcPlot +
   geom_violin(aes(x=Sex,y=Height)) +
-  scale_x_discrete(labels=c("Women", "Men"))+
+  scale_x_discrete(labels=c("Men", "Women"))+
   scale_y_continuous(breaks=c(160,180),labels=c("Short", "Tall"))
 ```
 
@@ -1001,7 +1002,7 @@ You can also use hex codes: a hexadecimal format for identifying colors. This gi
 
 Here we have specified the colors to be used (hence the scale_color_**manual**) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colors from a scale of our choice.
 
-There are a number of collections of in-built and installable package palettes in ggplot2, namely [colorbrewer](http://colorbrewer2.org/), [paleteer](https://r-graph-gallery.com/color-palette-finder) and [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
+There are a number of collections of in-built and installable package palettes in ggplot2, namely [colorbrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html), [paleteer](https://r-graph-gallery.com/color-palette-finder) and [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
 
 ---
 ## scale_color_brewer
@@ -1067,7 +1068,7 @@ Furthermore, when we pick gradients the ability to see patterns in the data vari
 
 For more details on palette sizes and styles visit the colorbrewer website and ggplot2 reference page.
 
-- [Colorbrewer](http://colorbrewer2.org/)
+- [Colorbrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
 - [Paleteer](https://r-graph-gallery.com/color-palette-finder)
 - [Viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 - [ggplot2 color scales](https://ggplot2.tidyverse.org/reference/scale_brewer.html)
@@ -1115,8 +1116,6 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,alpha=BMI))
 pcPlot + geom_point(size=4) + 
   scale_alpha_continuous(range = c(0.5,1))
-
-                 
 ```
 
 ---
@@ -1138,7 +1137,7 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
                                               limits = c(25,40))
-                  
+ 
 ```
 
 ---
@@ -1179,7 +1178,7 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_color_gradient(low = "White",high="Red")
-                  
+  
 ```
 
 ---
@@ -1340,7 +1339,8 @@ The after_stat function is required to tell ggplot to map the aesthetics after a
 ```{r, line_eqn, fig.height=2.5, fig.width=7}
 library(ggpubr)
 pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
-pcPlot + stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
+pcPlot + 
+  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
   stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
 
 ```
@@ -1366,7 +1366,7 @@ pcPlot +
 ## Displaying stats on the plot
 The ggpubr package also has useful functions that allows the display p-values on plots when combined with the rstatix package. 
 
-Here we use rstatix to create a data frame with relevant statistics for our desired comparison, and then we add x and y position information. [Check out](https://rpkgs.datanovia.com/rstatix/) the the many other functions rstatix has to add information to this table (adhusted p, otehr stats tests, etc.)
+Here we use rstatix to create an object with relevant statistics for our desired comparison, and then we add x and y position information. [Check out](https://rpkgs.datanovia.com/rstatix/) the the many other functions rstatix has to add information to this object (adjusted p, other stats tests, etc.)
 
 ```{r, add_p1, message = F}
 library(rstatix)
@@ -1375,13 +1375,13 @@ library(rstatix)
 stat.test <- t_test(patients_clean, Height ~ Sex) 
 stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
 
-data.frame(stat.test)
+data.frame(stat.test) # show object as dataframe
 ```
 
 ---
 
 ## Displaying stats on the plot
-This data frame can then be used in the stat_pvalue_manual() function from ggpubr to add the pvalue. 
+The output from the rstatix functions can then be used in the stat_pvalue_manual() function from ggpubr to add the pvalue. 
 
 ```{r, add_p2, fig.height=4, fig.width=8}
 
@@ -1398,7 +1398,7 @@ pcPlot + stat_pvalue_manual(stat.test, label = "p", inherit.aes = F) + scale_y_c
 
 ## Displaying stats for grouped data
 
-By grouping the dataframe, we can look for differences between smokers within sex. We also add an adjusted p-value. 
+By grouping the initial dataframe, we can look for differences between smokers within sex. We also add an adjusted p-value. 
 ```{r, grouped_p1}
 
 grouped_data <- group_by(patients_clean, Sex)
