@@ -665,6 +665,23 @@ pcPlot + geom_point(size=4,alpha=0.8) +
   scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
 
 
+## -----------------------------------------------------------------------------
+pcPlot <- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,color=BMI))
+pcPlot + geom_point(size=4,alpha=0.8) + 
+  scale_color_viridis_c()
+
+
+
+
+## -----------------------------------------------------------------------------
+pcPlot <- ggplot(data=patients_clean,
+                 aes(x=Height,y=Weight,color=BMI))
+pcPlot + geom_point(size=4,alpha=0.8) + 
+  scale_color_paletteer_c(palette = "grDevices::Temps")
+
+
+
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
