@@ -782,7 +782,7 @@ pcPlot + facet_grid(Smokes~Sex+Pet)
 
 ---
 
-## Marginal plots with ggEtxtra
+## Marginal plots with ggExtra
 Another way to highlight differences between groups is with a marginal plot. Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
 
 ```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F, warning = F}
@@ -795,7 +795,7 @@ ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
 
 ---
 
-## Marginal plots with ggEtxtra
+## Marginal plots with ggExtra
 We can easily turn this into a histogram and only display either X or Y axis.  
 
 ```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F}
