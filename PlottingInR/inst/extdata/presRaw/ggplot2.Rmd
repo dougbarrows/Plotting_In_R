@@ -22,8 +22,11 @@ params:
 ---
 ```{r setup, include=FALSE}
 suppressPackageStartupMessages(require(knitr))
+suppressPackageStartupMessages(require(plotly))
 knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
+
+
 ```
 
 
