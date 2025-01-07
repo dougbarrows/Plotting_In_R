@@ -1149,6 +1149,7 @@ pcPlot + geom_point(alpha=0.8) +
   scale_size_continuous(range = c(3,6))
                   
 ```
+
 ---
 ## Limits
 The limits of the scale can also be controlled but it is important to note data outside of scale is removed from plot.
@@ -1525,7 +1526,7 @@ Predefined themes can be applied to a ggplot2 object using a family of functions
 Here is a scatter with the default theme...
 ```{r, theme_default_ggplot2, fig.height=4, fig.width=4}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot
 ```
 
@@ -1582,7 +1583,7 @@ After we have loaded in the ggthemes packages we can then simply use the new the
 Here is a scatter with the default theme...
 ```{r, theme_default_ggplot2_2, fig.height=4, fig.width=4}
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height)) + geom_point()
+        mapping=aes(x=Height,y=Weight)) + geom_point()
 pcPlot
 ```
 
@@ -1664,7 +1665,7 @@ A detailed description of which elements are available and their associated elem
 ```{r, theme_custom_ggplot2, fig.height=7, fig.width=9,tidy=FALSE}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
+        mapping=aes(x=Height,y=Weight))+
   geom_point()
 pcPlot+
   theme(
@@ -1680,7 +1681,7 @@ If we wished to set the y-axis label to be at an angle we can adjust that as wel
 ```{r, theme_custom1_ggplot2, fig.height=4.5, fig.width=9}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot + theme(text = element_text(color="red"),
         axis.title.y = element_text(angle=0))
 ```
@@ -1693,7 +1694,7 @@ Finally we may wish to remove axis line, set the background of plot panels to be
 ```{r, theme_custom2_ggplot2, fig.height=3, fig.width=9,eval=FALSE}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
+        mapping=aes(x=Height,y=Weight))+
   geom_point()+
   facet_grid(Sex~Smokes)
 pcPlot+
@@ -1713,7 +1714,7 @@ Finally we may wish to remove axis line, set the background of plot panels to be
 ```{r, theme_custom22_ggplot2, fig.height=3, fig.width=9,eval=TRUE,echo=FALSE}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
+        mapping=aes(x=Height,y=Weight))+
   geom_point()+
   facet_grid(Sex~Smokes)
 pcPlot+
@@ -1783,7 +1784,7 @@ In the example below, we maintain all elements set by theme_bw() but overwrite t
 ```{r, theme_custom8_ggplot2, fig.height=5, fig.width=9}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
+        mapping=aes(x=Height,y=Weight))+geom_point()+theme_bw()
 pcPlot+
   theme(text = element_text(color="red"))
 ```
@@ -1891,7 +1892,7 @@ So far no plot titles have been specified. Plot titles can be specified using th
 ```{r, theme_labs_ggplot2,fig.height=5, fig.width=9,}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 ```
 
@@ -1941,7 +1942,7 @@ By default ggsave() will use the size of your current graphics window when savin
 ```{r, ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9,}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 
 ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
        height = 15,units = "cm")
@@ -1961,6 +1962,183 @@ pdf(file = "anExampleplot.pdf", paper = "A4")
 plot(control)
 dev.off()
 ```
+
+---
+```{r, results='asis',include=TRUE,echo=FALSE}
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Other external packages
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Other external packages
+  
+---
+"    
+  )
+  
+}
+
+```
+
+## Extending ggplot
+
+We have introduced you to several packages that extend the capabilities of ggplot2 either by adding additional plotting capabilities or providing pre-built color/theme options. 
+
+There are also several packages that specialize in creating specific plots or additional geoms not included within ggplot2 i.e. [UpSet](https://github.com/hms-dbmi/UpSetR) [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), [ggridges](https://wilkelab.org/ggridges/)
+
+We will quickly review UpSet plots. 
+
+---
+## Upset Plots
+
+Upset plots are used for looking at overlaps between sets. They are considered to be a better way to visualize data then the more traditionally used Venn Diagram. 
+
+We can use the package demo data which is presence absence of mutants in different clones. 
+
+```{r}
+library(UpSetR)
+mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
+mutations[1:10,1:10]
+```
+
+
+---
+## Upset Plots
+
+The Upset Plot will show us the number of intersections between different groups. For example EGFR and TTN only are present in 12 clones. The size of the set is also shown on the left to give additional context. This gives a good quantitative basis from which to understand set intersections.  
+
+```{r}
+upset(mutations)
+
+```
+
+---
+## Upset Plots customization
+
+You may have noticed that only a few genes are present. This is because by default only the top 5 biggest sets are included. We can increase this number easily or directly specify which sets to include using the *nsets* parameter.
+
+
+```{R}
+
+upset(mutations, nsets=10)
+
+```
+
+
+---
+## UpsetR and ggplot2
+
+Though ggplot2 is being used under the hood, the ggplot identity is lost in the final plot. Instead we have made an *upset* object. Unfortunately this means we cannot modify our upset plots using what we have learnt. Luckily the upset function has lots of arguments to allow for customization. 
+
+```{r}
+myupset <- upset(mutations)
+class(myupset)
+```
+
+
+---
+## Modifying plots from other packages
+
+As with UpsetR, most packages make plots using ggplot2. There are >2000 packages on CRAN that use ggplot2 and many more on Bioconductor. If a package is using ggplot2 most of the time the ggplot identity is maintained. This means that you can interact and modify that plot just as if you made the ggobject yourself. 
+
+Lets look at some examples. We will look at two popular packages: clusterProfiler and Seurat.
+
+---
+## clusterProfiler
+
+clusterProfiler is a package that is mostly used to check for enrichment of genes within data sets i.e. GO term analysis and GSEA. One of the main outputs is a dotplot that shows the top hits. We have an example here:
+
+```{r}
+
+library(clusterProfiler)
+load("data/clusterprofiler_result.RData")
+```
+
+```{r}
+dotplot(cp_res)
+
+```
+
+---
+## clusterProfiler
+
+The dotplot function is a clusterProfiler specific function that is using ggplot2 to make a nice output plot. We can see the result of this is a ggplot object.
+
+
+```{r}
+myplot <- dotplot(x)
+class(myplot)
+```
+
+---
+## Modifying clusterProfiler
+
+As it is a ggplot object, we can customize it in the same way. Here we can change the colors and title. 
+
+```{r}
+myplot + ggtitle("GO term enrichment") + scale_fill_viridis_c()
+
+```
+
+---
+## Seurat
+
+Seurat is one of the most popular packages for analyzing scRNAseq data. Often we look at the dimension reduction (tSNE or UMAP typically).
+
+```{R}
+library(Seurat)
+data("pbmc_small")
+DimPlot(object = pbmc_small)
+```
+
+---
+## Seurat
+
+We created this using the DimPlot() function. Again this is specific to Seurat but it is using ggplot under the hood. 
+
+```{R}
+mydimplot <- DimPlot(object = pbmc_small)
+class(mydimplot)
+```
+
+---
+## Seurat
+
+As it is a ggplot object, we can customize it in the same way. Here we can change the theme, title and colors again (this time the scale is discrete). 
+
+```{r}
+mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw
+
+```
+
+---
+## Seurat
+
+You can typically only modify the scale of variables that you have aesthetic mappings. So if the function is not specifying that aesthetic i.e. size we cannot modify it.
+
+Instead we can go back and redefine our ggplot. The information regarding setup can be found in the layout slot ggplot 
+
+```{r}
+
+mydimplot$layers
+```
+
+---
+## Seurat
+
+We can use the layout information to recreate the original ggplot, and then add some modifications i.e. add a size argument. 
+
+```{r}
+mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw
+
+```
+
 
 ---
 ```{r, results='asis',include=TRUE,echo=FALSE}
@@ -2001,7 +2179,7 @@ library(plotly)
 ```{r, eval=T,fig.height=4, fig.width=9,}
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 
 ggplotly(pcPlot)
 ```
@@ -2119,6 +2297,8 @@ Exercise on scales and themes in ggplot can be found [here](../../exercises/answ
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
+
+- [R Graph Gallery](https://r-graph-gallery.com)
 
 - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way, though there is no R code. 
 
