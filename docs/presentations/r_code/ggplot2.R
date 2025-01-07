@@ -665,7 +665,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
   scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=3, fig.width=3------------------------------------------------
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -674,7 +674,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=3, fig.width=3------------------------------------------------
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -838,12 +838,14 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot
 
 
-## ----eval=F-------------------------------------------------------------------
+## ----eval=F, fig.height=3.5, fig.width=4,tidy=FALSE---------------------------
 # install.packages("ggthemes")
+# library(ggthemes)
+# pcPlot+theme_wsj()
 # 
 
 
-## ----ggthemes, fig.height=4, fig.width=4,tidy=FALSE---------------------------
+## ----ggthemes, fig.height=3.5, fig.width=4,tidy=FALSE, echo=F-----------------
 library(ggthemes)
 pcPlot+theme_wsj()
 
@@ -1040,16 +1042,16 @@ if(params$isSlides == "yes"){
 
 
 
-## -----------------------------------------------------------------------------
+## ----warnings=F, messages=F---------------------------------------------------
 library(plotly)
 
 
-## ----eval=FALSE,fig.height=4, fig.width=9-------------------------------------
-# 
-# pcPlot <- ggplot(data=patients_clean,
-#         mapping=aes(x=Weight,y=Height))+geom_point()
-# 
-# ggplotly(pcPlot)
+## ----eval=T,fig.height=4, fig.width=9-----------------------------------------
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Weight,y=Height))+geom_point()
+
+ggplotly(pcPlot)
 
 
 ## -----------------------------------------------------------------------------
@@ -1060,6 +1062,10 @@ load("data/pcPlot.RData")
 ## -----------------------------------------------------------------------------
 
 head(pcPlot$data)
+
+
+
+## -----------------------------------------------------------------------------
 
 pcPlot$mapping
 
@@ -1100,6 +1106,6 @@ ggplotly(pcPlot)
 ggplotly(pcPlot + geom_point(aes(label = Sample)))
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=4, fig.width=9------------------------------------------------
 ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = c("Sample"))
 
