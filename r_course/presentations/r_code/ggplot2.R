@@ -272,7 +272,7 @@ pcPlot_violin <- pcPlot+geom_violin()
 pcPlot_violin
 
 
-## ----multiplegeom_ggplot2-----------------------------------------------------
+## ----multiplegeom_ggplot2, fig.height=4.5, fig.width=8------------------------
 ggplot(data=patients_clean,
                  mapping=aes(x=Sex, y=Height))+ 
   geom_violin() +
@@ -413,6 +413,7 @@ pcPlot <- ggplot(data=patients_clean,aes(x=Height,y=Weight,
 pcPlot + facet_wrap(~Pet+Smokes+Sex)
 
 
+
 ## ----facet_grid_smokesBySexandPet_ggplot2_2, fig.height=5, fig.width=12-------
 pcPlot + facet_grid(Smokes~Sex+Pet)
 
@@ -508,7 +509,7 @@ pcPlot + geom_point() +
 pcPlot <- ggplot(data=patients_clean,aes(x=Sex,y=Height))
 pcPlot +
   geom_violin(aes(x=Sex,y=Height)) +
-  scale_x_discrete(labels=c("Women", "Men"))
+  scale_x_discrete(labels=c("Men", "Women"))
 
 
 
@@ -516,7 +517,7 @@ pcPlot +
 pcPlot <- ggplot(data=patients_clean,aes(x=Sex,y=Height,fill=Smokes))
 pcPlot +
   geom_violin(aes(x=Sex,y=Height)) +
-  scale_x_discrete(labels=c("Women", "Men"))+
+  scale_x_discrete(labels=c("Men", "Women"))+
   scale_y_continuous(breaks=c(160,180),labels=c("Short", "Tall"))
 
 
@@ -590,8 +591,6 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot + geom_point(size=4) + 
   scale_alpha_continuous(range = c(0.5,1))
 
-                 
-
 
 ## ----facet_grid_height_weight_BMIsize_ggplot2, fig.height=5, fig.width=9------
 pcPlot <- ggplot(data=patients_clean,
@@ -606,7 +605,7 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,size=BMI))
 pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
                                               limits = c(25,40))
-                  
+ 
 
 
 ## ----facet_grid_height_weight_BMIsizewithBreaks_ggplot2, fig.height=4, fig.width=9----
@@ -623,7 +622,7 @@ pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
   scale_color_gradient(low = "White",high="Red")
-                  
+  
 
 
 ## ----facet_grid_height_weight_BMIgradient2_ggplot2, fig.height=4, fig.width=9----
@@ -726,7 +725,8 @@ pcPlot +
 ## ----line_eqn, fig.height=2.5, fig.width=7------------------------------------
 library(ggpubr)
 pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
-pcPlot + stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
+pcPlot + 
+  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
   stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
 
 
@@ -749,7 +749,7 @@ library(rstatix)
 stat.test <- t_test(patients_clean, Height ~ Sex) 
 stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
 
-data.frame(stat.test)
+data.frame(stat.test) # show object as dataframe
 
 
 ## ----add_p2, fig.height=4, fig.width=8----------------------------------------
