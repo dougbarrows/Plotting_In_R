@@ -1262,7 +1262,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 There are similar continuous palettes to use with ggplot2. You can just modify the palette function to end with *_c*  for paletteer and viridis.
 
 .pull-left[
-```{r}
+```{r, fig.height=3, fig.width=3}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -1273,7 +1273,7 @@ pcPlot + geom_point(size=4,alpha=0.8) +
   ]
   
 .pull-right[
-```{r}
+```{r, fig.height=3, fig.width=3}
 pcPlot <- ggplot(data=patients_clean,
                  aes(x=Height,y=Weight,color=BMI))
 pcPlot + geom_point(size=4,alpha=0.8) + 
@@ -1588,12 +1588,14 @@ pcPlot
 
 ...and the same scatter plot with the Wall Street Journal theme.
 
-```{r, eval=F}
+```{r, eval=F, fig.height=3.5, fig.width=4,tidy=FALSE}
 install.packages("ggthemes")
+library(ggthemes)
+pcPlot+theme_wsj()
 
 ```
 
-```{r, ggthemes, fig.height=4, fig.width=4,tidy=FALSE}
+```{r, ggthemes, fig.height=3.5, fig.width=4,tidy=FALSE, echo=F}
 library(ggthemes)
 pcPlot+theme_wsj()
 ```
@@ -1985,7 +1987,7 @@ if(params$isSlides == "yes"){
 Most of the time when we are drawing plots the aim is to generate a saved file we can use for figures later. Sometimes though we may want to generate a interactive plot. This can be really useful to help parse our data, or if we want to generate dynamic reports to share our work.
 
 
-```{R}
+```{R, warnings=F, messages=F}
 library(plotly)
 ```
 
@@ -1993,7 +1995,7 @@ library(plotly)
 ---
 ## Interactive Plots
 
-```{r, eval=FALSE,fig.height=4, fig.width=9,}
+```{r, eval=T,fig.height=4, fig.width=9,}
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Weight,y=Height))+geom_point()
@@ -2015,16 +2017,26 @@ load("data/pcPlot.RData")
 ---
 ## Review the data
 
-We can quickly check what is in the data, the aesthetics mapping, and any plot already in the ggplot object.
+We can quickly check what is in the data.
 
 ```{r}
 
 head(pcPlot$data)
 
+```
+
+---
+## Review the data
+
+We can also check the aesthetics mapping, and any plots already in the ggplot object.
+
+```{r}
+
 pcPlot$mapping
 
 pcPlot$layers
 ```
+
 
 ```{r, echo=FALSE, eval=FALSE,fig.height=4, fig.width=9}
 
@@ -2075,7 +2087,7 @@ ggplotly(pcPlot + geom_point(aes(label = Sample)))
 
 If we want full control over the labeling we can instead use the ggplotly function to take care of this for us by specifying when/what/where labels are shown. 
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = c("Sample"))
 ```
 
