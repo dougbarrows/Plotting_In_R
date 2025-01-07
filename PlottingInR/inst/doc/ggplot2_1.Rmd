@@ -37,7 +37,7 @@ patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 library(ggplot2)
 
 plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight))+geom_point()
+               mapping=aes(x=BMI,y=Weight)) + geom_point()
 plot
 ```
 
@@ -46,17 +46,17 @@ plot
 ```{r,echo=toMessage}
 
 plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=Height))+geom_point()
+               mapping=aes(x=BMI,y=Weight,colour=Height)) + geom_point()
 plot
 ```
 
 
-- Using an additional geom, add an extra layer of a fit line to our scatterplot.
+- Using an additional geom, add an extra layer of a fit line to our scatter plot.
 
 ```{r,echo=toMessage}
 
 plot <- ggplot(data=patients_clean,
-               mapping=aes(x=BMI,y=Weight,colour=Height))+geom_point()+
+               mapping=aes(x=BMI,y=Weight,colour=Height)) + geom_point() +
   geom_smooth()
 plot
 ```
@@ -71,7 +71,7 @@ plot <- ggplot(data=patients_clean,
 plot
 ```
 
-**Exercise 2** - **Boxplots and Violin plots**
+**Exercise 2** - **Boxplots, Violin and Jitter plots**
 
 - Generate a boxplot of BMIs comparing smokers and non-smokers.
 
@@ -83,7 +83,7 @@ plot
 ```
 
 
-- Following from the boxplot comparing smokers and non-smokers, color boxplot edges by Sex.
+- Following from the boxplot comparing smokers and non-smokers, color the boxplot edges by Sex.
 
 ```{r,echo=toMessage}
 
@@ -92,6 +92,44 @@ plot <- ggplot(data=patients_clean,
 
 plot
 ```
+
+- Create a violin plot comparing the BMI between people with different pets.
+
+```{r,echo=toMessage}
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Pet,y=BMI))+geom_violin()
+plot
+```
+
+- Try out a different smoothing kernel for estimating the density. Use ?geom_violin find out more.
+
+```{r,echo=toMessage}
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Pet,y=BMI))+geom_violin(kernel="epanechnikov")
+plot
+```
+
+
+- Add both different color fills for each violin, and a jitter plot overlay. 
+
+```{r,echo=toMessage}
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Pet,y=BMI, fill= Pet))+ geom_violin(kernel="epanechnikov") + geom_jitter()
+plot
+```
+
+- Reduce the amount of jitter, so that points are a little more narrow.  
+
+```{r,echo=toMessage}
+
+plot <- ggplot(data=patients_clean,
+               mapping=aes(x=Pet,y=BMI, fill= Pet))+ geom_violin(kernel="epanechnikov")  + geom_jitter(width=0.2)
+plot
+```
+
 
 **Exercise 3** - **Histogram and Density plots**
 
@@ -117,5 +155,22 @@ plot
 ```
 
 
+**Exercise 4** - **GGplot object**
+
+- Take your last plot object and extract out the data from it. 
+
+```{r,echo=toMessage}
+
+plot_data <- plot$data
+
+head(plot_data)
+```
+
+- Now check the aesthetic mappings
+
+```{r,echo=toMessage}
+
+plot$mapping
 
 
+```

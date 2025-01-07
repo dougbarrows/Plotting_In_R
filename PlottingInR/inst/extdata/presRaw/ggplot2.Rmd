@@ -1068,7 +1068,7 @@ Furthermore, when we pick gradients the ability to see patterns in the data vari
 ---
 ## Color blindness and ggplot2 defaults
 
-![palettes](imgs/example_ggplot_defulats.jpg)
+![palettes](imgs/example_ggplot_defulats.jpg){width=75%}
 
 
 ([@dichromat-chloe.bsky.social](https://bsky.app/profile/dichromat-chloe.bsky.social/post/3lbrtas6luc2r))
