@@ -2290,9 +2290,7 @@ Exercise on scales and themes in ggplot can be found [here](../../exercises/answ
 
 - [Layered grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.pdf)
 
-- [ggplot2 documentation](http://docs.ggplot2.org/current/)
-
-- [ggplot2 wiki](https://github.com/hadley/ggplot2/wiki)
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 
 - [ggplot2 mailing list](http://groups.google.com/group/ggplot2)
 
