@@ -4,6 +4,7 @@ list(isSlides = "no")
 ## ----setup, include=FALSE-----------------------------------------------------
 suppressPackageStartupMessages(require(knitr))
 suppressPackageStartupMessages(require(plotly))
+suppressPackageStartupMessages(require(Seurat))
 knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 
@@ -120,6 +121,11 @@ suppressPackageStartupMessages(library(stringr))
 suppressPackageStartupMessages(library(lubridate))
 suppressPackageStartupMessages(library(ggpubr))
 
+
+
+## ----setwd_introtoR,eval=F----------------------------------------------------
+# setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
+# # e.g. setwd("/Users/mattpaul/Downloads/Intro_To_R_1Day/r_course")
 
 
 ## ----present_clean_ggplot2----------------------------------------------------
@@ -485,11 +491,12 @@ if(params$isSlides == "yes"){
 
 
 
-## ----scaleCont_ggplot2, facet_grid_smokesBySex_scalex, fig.height=4.5, fig.width=9----
+## ----scaleCont_ggplot2, facet_grid_smokesBySex_scalex, fig.height=4, fig.width=9----
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
 pcPlot + geom_point() +
-  scale_x_continuous(name="height ('cm')", limits = c(150,200), breaks=c(160,180),labels=c("Short", "Tall"))
+  scale_x_continuous(name="height ('cm')", limits = c(150,200),
+                     breaks=c(160,180),labels=c("Short", "Tall"))
 
 
 
@@ -720,12 +727,18 @@ pcPlot+geom_point()+
                                 inherit.aes = F)
 
 
-## ----line_eqn, fig.height=2.5, fig.width=7------------------------------------
+## ----line_eqn, fig.height=3, fig.width=7--------------------------------------
 library(ggpubr)
-pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
+pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x) 
+pcPlot + stat_regline_equation(aes(label = after_stat(eq.label))) 
+
+
+
+## ----line_eqn2, fig.height=4, fig.width=8-------------------------------------
+
 pcPlot + 
-  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
-  stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
+  stat_regline_equation(label.y = 94, aes(label = after_stat(eq.label))) +
+  stat_regline_equation(label.y = 91, aes(label = after_stat(rr.label)))
 
 
 
@@ -734,9 +747,9 @@ pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight,color=Sex)) +geom_point()+ stat_smooth(aes(x=Height,y=Weight), method="lm", formula = y ~ x) 
 pcPlot +
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
-                        label.y = 90, aes(label = after_stat(rr.label)), formula = y ~ x) + 
+                        label.y = 90, aes(label = after_stat(rr.label))) + 
   stat_regline_equation(data = patients_clean[patients_clean$Sex == "Female", ], 
-                        label.x = 175, label.y = 65, aes(label = after_stat(rr.label)), formula = y ~ x)  
+                        label.x = 175, label.y = 65, aes(label = after_stat(rr.label)))  
   
 
 
@@ -744,10 +757,10 @@ pcPlot +
 library(rstatix)
 # https://rpkgs.datanovia.com/rstatix/
 
-stat.test <- t_test(patients_clean, Height ~ Sex) 
-stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
+stat_test <- t_test(patients_clean, Height ~ Sex) 
+stat_test <- add_xy_position(stat_test, x = "Sex", dodge = 0.8)
 
-data.frame(stat.test) # show object as dataframe
+data.frame(stat_test) # show object as dataframe
 
 
 ## ----add_p2, fig.height=4, fig.width=8----------------------------------------
@@ -756,19 +769,18 @@ pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Sex,y=Height)) + 
   geom_boxplot()
 
-# don't inherit aesthetic to make this work 
-pcPlot + stat_pvalue_manual(stat.test, label = "p", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
+pcPlot + stat_pvalue_manual(stat_test, label = "p") 
 
 
 
 ## ----grouped_p1---------------------------------------------------------------
 
 grouped_data <- group_by(patients_clean, Sex)
-stat.test <- t_test(grouped_data, formula = Height ~ Smokes) 
-stat.test <- adjust_pvalue(stat.test, method = "BH") 
-stat.test <- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
+stat_test_grp <- t_test(grouped_data, formula = Height ~ Smokes) 
+stat_test_grp <- adjust_pvalue(stat_test_grp, method = "BH") 
+stat_test_grp <- add_xy_position(stat_test_grp, x = "Sex", dodge = 0.8)
 
-data.frame(stat.test)
+data.frame(stat_test_grp)
 
 
 ## ----grouped_p2, fig.height=4, fig.width=8------------------------------------
@@ -778,7 +790,7 @@ pcPlot <- ggplot(data=patients_clean,
   geom_boxplot() 
 
 # don't inherit aesthetic to make this work 
-pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
+pcPlot + stat_pvalue_manual(stat_test_grp, label = "p = {p.adj}", inherit.aes = F)
 
 
 ## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
@@ -1051,12 +1063,12 @@ mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR
 mutations[1:10,1:10]
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=4, fig.width=9------------------------------------------------
 upset(mutations)
 
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=4, fig.width=9------------------------------------------------
 
 upset(mutations, nsets=10)
 
@@ -1078,7 +1090,7 @@ mydimplot <- DimPlot(object = pbmc_small)
 class(mydimplot)
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=4, fig.width=9------------------------------------------------
 mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
 
 
@@ -1088,7 +1100,7 @@ mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme
 mydimplot$layers
 
 
-## -----------------------------------------------------------------------------
+## ----fig.height=4, fig.width=9------------------------------------------------
 mydimplot$layers <- NULL
 
 mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
