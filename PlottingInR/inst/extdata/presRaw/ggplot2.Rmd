@@ -23,6 +23,7 @@ params:
 ```{r setup, include=FALSE}
 suppressPackageStartupMessages(require(knitr))
 suppressPackageStartupMessages(require(plotly))
+suppressPackageStartupMessages(require(Seurat))
 knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 
@@ -186,7 +187,7 @@ if(params$isSlides == "yes"){
 
 ```
 
-## Getting started with ggplot2
+## Setting the Working directory
 
 ```{r load_packages_ggplot2, echo=FALSE, eval=TRUE,warning=F,message=F}
 suppressPackageStartupMessages(library(tidyr))
@@ -198,7 +199,23 @@ suppressPackageStartupMessages(library(ggpubr))
 
 ```
 
-First we need a dataset. Here we read some data from the *data* directory using the **read.delim()** function.
+First we need a dataset. If you downloaded the course material you we have some data in there. 
+
+Your current working directory is typically your *HOME* directory. We want to set our working directory to be in the downloaded course material, so everyone is in the same place. 
+
+**Session -> Set Working Directory -> Choose Directory**
+
+or in the console.
+
+```{r setwd_introtoR,eval=F} 
+setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
+# e.g. setwd("/Users/mattpaul/Downloads/Intro_To_R_1Day/r_course")
+```
+
+---
+## Getting our data
+
+Now lets get our data set. Here we read some data from the *data* directory using the **read.delim()** function.
 
 We can use the **class()** function to get the data.type of our table and **dim()**  function to get the numbers of row and column.
 
@@ -1958,7 +1975,7 @@ The ggsave() function allows for additional arguments to be specified including 
 
 By default ggsave() will use the size of your current graphics window when saving plots so it may be important to specify width and height arguments desired. 
 
-```{r, ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9,}
+```{r, ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9}
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
@@ -2009,7 +2026,7 @@ if(params$isSlides == "yes"){
 
 We have introduced you to several packages that extend the capabilities of ggplot2 either by adding additional plotting capabilities or providing pre-built color/theme options. 
 
-There are also several packages that specialize in creating specific plots or additional geoms not included within ggplot2 i.e. [UpSet](https://github.com/hms-dbmi/UpSetR) [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), [ggridges](https://wilkelab.org/ggridges/)
+There are also several packages that specialize in creating specific plots or additional geoms not included within ggplot2 i.e. [UpSet](https://github.com/hms-dbmi/UpSetR), [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), [ggridges](https://wilkelab.org/ggridges/)
 
 We will quickly review UpSet plots. 
 
@@ -2032,7 +2049,7 @@ mutations[1:10,1:10]
 
 The Upset Plot will show us the number of intersections between different groups. For example EGFR and TTN only are present in 12 clones. The size of the set is also shown on the left to give additional context. This gives a good quantitative basis from which to understand set intersections.  
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 upset(mutations)
 
 ```
@@ -2043,7 +2060,7 @@ upset(mutations)
 You may have noticed that only a few genes are present. This is because by default only the top 5 biggest sets are included. We can increase this number easily or directly specify which sets to include using the *nsets* parameter.
 
 
-```{R}
+```{R,fig.height=4, fig.width=9}
 
 upset(mutations, nsets=10)
 
@@ -2066,44 +2083,7 @@ class(myupset)
 
 As with UpsetR, most packages make plots using ggplot2. There are >2000 packages on CRAN that use ggplot2 and many more on Bioconductor. If a package is using ggplot2 most of the time the ggplot identity is maintained. This means that you can interact and modify that plot just as if you made the ggobject yourself. 
 
-Lets look at some examples. We will look at two popular packages: clusterProfiler and Seurat.
-
----
-## clusterProfiler
-
-clusterProfiler is a package that is mostly used to check for enrichment of genes within data sets i.e. GO term analysis and GSEA. One of the main outputs is a dotplot that shows the top hits. We have an example here:
-
-```{r}
-
-library(clusterProfiler)
-load("data/clusterprofiler_result.RData")
-```
-
-```{r}
-dotplot(cp_res)
-
-```
-
----
-## clusterProfiler
-
-The dotplot function is a clusterProfiler specific function that is using ggplot2 to make a nice output plot. We can see the result of this is a ggplot object.
-
-
-```{r}
-myplot <- dotplot(cp_res)
-class(myplot)
-```
-
----
-## Modifying clusterProfiler
-
-As it is a ggplot object, we can customize it in the same way. Here we can change the colors and title. 
-
-```{r}
-myplot + ggtitle("GO term enrichment") + scale_fill_viridis_c()
-
-```
+Lets look at some examples. We will look at the popular package: Seurat.
 
 ---
 ## Seurat
@@ -2119,7 +2099,7 @@ DimPlot(object = pbmc_small)
 ---
 ## Seurat
 
-We created this using the DimPlot() function. Again this is specific to Seurat but it is using ggplot under the hood. 
+We created this using the DimPlot() function. This is specific plotting function for Seurat, but it is using ggplot under the hood. 
 
 ```{R}
 mydimplot <- DimPlot(object = pbmc_small)
@@ -2129,9 +2109,9 @@ class(mydimplot)
 ---
 ## Seurat
 
-As it is a ggplot object, we can customize it in the same way. Here we can change the theme, title and colors again (this time the scale is discrete). 
+As it is a ggplot object, we can customize it. Here we can change the theme, title and colors. 
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
 
 ```
@@ -2153,7 +2133,7 @@ mydimplot$layers
 
 We can use the layout information to recreate the original ggplot, and then add some modifications i.e. add a size argument. We must also remove the original plot stored in the layers slot first.
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 mydimplot$layers <- NULL
 
 mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
@@ -2298,11 +2278,11 @@ ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = 
 ---
 
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_3_exercise.html)
+Exercises on themes, saving and interactive plots in ggplot can be found [here](../../exercises/exercises/ggplot2_3_exercise.html)
 
 ---
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_3_answers.html)
+Answers on themes, saving and interactive plots in ggplot can be found [here](../../exercises/answers/ggplot2_3_answers.html)
 
 ---
 ## References
