@@ -150,7 +150,7 @@ ggplot(data = <default data set>,
 ```{r present_cleanEralt_ggplot2, echo=FALSE}
 library(ggplot2)
 
-patients_clean <- read.delim("data/patient-data-cleaned.txt",
+patients_clean <- read.delim("../data/patient-data-cleaned.txt",
                              sep="\t")
 
 ```
@@ -204,7 +204,7 @@ We can use the **class()** function to get the data.type of our table and **dim(
 
 ```{r present_clean_ggplot2}
 library(ggplot2)
-patients_clean <- read.delim("data/patient-data-cleaned.txt",sep="\t")
+patients_clean <- read.delim("../data/patient-data-cleaned.txt",sep="\t")
 
 class(patients_clean)
 dim(patients_clean)
@@ -697,7 +697,11 @@ This allows you to produce several plots that subset by variables in your data.
 
 To facet our data into multiple plots we can use the *facet_wrap* or *facet_grid* function specifying the variable we split by.
 
-The *facet_grid* function is well suited to splitting the data by two factors.
+The *facet_grid* function is well suited to splitting the data by two factors while *facet_wrap* simply wraps the data in a 2d format based on factor levels.
+
+<img src="imgs/facet_wrap_vs_grid.png" width="350">
+
+(https://ggplot2-book.org/)
 
 ---
 ## Split by 2 factors
@@ -781,31 +785,6 @@ Or in a nice grid format using facet_grid() and the Smokes variable against a co
 
 ```{r, facet_grid_smokesBySexandPet_ggplot2_2, fig.height=5, fig.width=12}
 pcPlot + facet_grid(Smokes~Sex+Pet)
-```
-
----
-
-## Marginal plots with ggExtra
-Another way to highlight differences between groups is with a marginal plot. Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
-
-```{r, marginal_ggplot, fig.height=4, fig.width=9, message = F, warning = F}
-library(ggExtra)
-pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
-
-```
-
----
-
-## Marginal plots with ggExtra
-We can easily turn this into a histogram and only display either X or Y axis.  
-
-```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F}
-
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
 ```
 
 
@@ -988,7 +967,7 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot + geom_point(size=4) + 
   scale_color_manual(values = c("Green","Purple"),
                      name="Gender")
-                  
+                
 ```
 
 ---
@@ -1003,7 +982,7 @@ You can also use hex codes: a hexadecimal format for identifying colors. This gi
 ---
 ## Packages for color scales
 
-Here we have specified the colors to be used (hence the scale_color_**manual**) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colors from a scale of our choice.
+Here we have specified the colors to be used (hence the scale\_color\_**manual**) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colors from a scale of our choice.
 
 There are a number of collections of in-built and installable package palettes in ggplot2, namely [colorbrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html), [paleteer](https://r-graph-gallery.com/color-palette-finder) and [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
 
@@ -1068,10 +1047,11 @@ Furthermore, when we pick gradients the ability to see patterns in the data vari
 ---
 ## Color blindness and ggplot2 defaults
 
-![palettes](imgs/example_ggplot_defulats.jpg){width=75%}
+<img src="imgs/example_ggplot_defulats.jpg" width="550">
 
 
 ([@dichromat-chloe.bsky.social](https://bsky.app/profile/dichromat-chloe.bsky.social/post/3lbrtas6luc2r))
+
 
 ---
 ## Picking Colors
@@ -1180,7 +1160,7 @@ pcPlot + geom_point() +
 Control of color/fill scales can be best achieved through the **gradient** subfunctions of scale.
 
 
-- scale_(color/fill)_*gradient* - 2 color gradient (eg. low to high BMI)
+- scale\_(color/fill)\_*gradient* - 2 color gradient (eg. low to high BMI)
 
 - scale\_(color/fill)\_*gradient2* - Diverging color scale with a midpoint color (e.g. Down, No Change, Up)
 
@@ -1366,20 +1346,6 @@ pcPlot+geom_point()+
 
 ---
 
-## Summary statistics
-Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualized.
-
-The fun parameter specifies a function to apply to the y variables for every value of x. In this example we use it to plot the quantiles of the Female and Male Height data
-
-```{r, stat_summary_ggplot2, fig.height=3.5, fig.width=9}
-pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
-pcPlot + 
-  stat_summary(fun=quantile, geom="point",
-                    color="purple", size=8)
-```
-
----
-
 ## Displaying fitted line statistics
 The ggpubr package contains functions to make publication quality graphics by displaying statistics. Here we add the equation and the R squared value for the line of best fit. 
 
@@ -1474,6 +1440,46 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
 ```
 
+---
+
+## Summary statistics
+Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualized.
+
+The fun parameter specifies a function to apply to the y variables for every value of x. In this example we use it to plot the quantiles of the Female and Male Height data
+
+```{r, stat_summary_ggplot2, fig.height=3.5, fig.width=9}
+pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
+pcPlot + 
+  stat_summary(fun=quantile, geom="point",
+                    color="purple", size=8)
+```
+
+---
+
+## Marginal plots with ggExtra
+Another way to highlight differences between groups is with a marginal plot for the the X or Y axis variables. 
+
+By default this is a line and the groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
+
+```{r, marginal_ggplot, fig.height=3, fig.width=8, message = F, warning = F}
+library(ggExtra)
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
+
+```
+
+---
+
+## Marginal plots with ggExtra
+We can easily turn this into a histogram and only display either X or Y axis.  
+
+```{r, marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F}
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+```
 
 ---
 
@@ -2057,7 +2063,7 @@ clusterProfiler is a package that is mostly used to check for enrichment of gene
 ```{r}
 
 library(clusterProfiler)
-load("data/clusterprofiler_result.RData")
+load("../data/clusterprofiler_result.RData")
 ```
 
 ```{r}
@@ -2072,7 +2078,7 @@ The dotplot function is a clusterProfiler specific function that is using ggplot
 
 
 ```{r}
-myplot <- dotplot(x)
+myplot <- dotplot(cp_res)
 class(myplot)
 ```
 
@@ -2113,7 +2119,7 @@ class(mydimplot)
 As it is a ggplot object, we can customize it in the same way. Here we can change the theme, title and colors again (this time the scale is discrete). 
 
 ```{r}
-mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw
+mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
 
 ```
 
@@ -2189,10 +2195,10 @@ ggplotly(pcPlot)
 ---
 ## Adding Annotation
 
-To show off how we add additional annotation or work with more complex examples we have a ggplot object to load in. You can use the *load()* function with to read in this object: *data/pcPlot.RData*
+To show off how we add additional annotation or work with more complex examples we have a ggplot object to load in. You can use the *load()* function with to read in this object: *../data/pcPlot.RData*
 
 ```{r}
-load("data/pcPlot.RData")
+load("../data/pcPlot.RData")
 
 ```
 
@@ -2241,7 +2247,7 @@ pca_res[5,1:2] <- c(0.3220796,  0.5434719)
 pca_res[6,1:2] <- c(0.3130591,  0.4426442)
 pcPlot <- ggplot(data=pca_res,
         mapping=aes(x=PC1,y=PC2, color= Time, shape=Rep))
-save(pcPlot, file = "../data/pcPlot.RData")
+save(pcPlot, file = "../../data/pcPlot.RData")
 
 ```
 
