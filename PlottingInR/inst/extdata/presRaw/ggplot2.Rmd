@@ -150,7 +150,7 @@ ggplot(data = <default data set>,
 ```{r present_cleanEralt_ggplot2, echo=FALSE}
 library(ggplot2)
 
-patients_clean <- read.delim("../data/patient-data-cleaned.txt",
+patients_clean <- read.delim("data/patient-data-cleaned.txt",
                              sep="\t")
 
 ```
@@ -204,7 +204,7 @@ We can use the **class()** function to get the data.type of our table and **dim(
 
 ```{r present_clean_ggplot2}
 library(ggplot2)
-patients_clean <- read.delim("../data/patient-data-cleaned.txt",sep="\t")
+patients_clean <- read.delim("data/patient-data-cleaned.txt",sep="\t")
 
 class(patients_clean)
 dim(patients_clean)
@@ -2063,7 +2063,7 @@ clusterProfiler is a package that is mostly used to check for enrichment of gene
 ```{r}
 
 library(clusterProfiler)
-load("../data/clusterprofiler_result.RData")
+load("data/clusterprofiler_result.RData")
 ```
 
 ```{r}
@@ -2195,10 +2195,10 @@ ggplotly(pcPlot)
 ---
 ## Adding Annotation
 
-To show off how we add additional annotation or work with more complex examples we have a ggplot object to load in. You can use the *load()* function with to read in this object: *../data/pcPlot.RData*
+To show off how we add additional annotation or work with more complex examples we have a ggplot object to load in. You can use the *load()* function with to read in this object: *data/pcPlot.RData*
 
 ```{r}
-load("../data/pcPlot.RData")
+load("data/pcPlot.RData")
 
 ```
 
@@ -2247,7 +2247,7 @@ pca_res[5,1:2] <- c(0.3220796,  0.5434719)
 pca_res[6,1:2] <- c(0.3130591,  0.4426442)
 pcPlot <- ggplot(data=pca_res,
         mapping=aes(x=PC1,y=PC2, color= Time, shape=Rep))
-save(pcPlot, file = "../../data/pcPlot.RData")
+save(pcPlot, file = "../data/pcPlot.RData")
 
 ```
 
