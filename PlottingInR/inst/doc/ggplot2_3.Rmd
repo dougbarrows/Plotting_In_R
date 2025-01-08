@@ -243,7 +243,7 @@ library(plotly)
 
 goi <- c("Gm8714","Pas1b","Rab39","Tmc2","Ttpal","Ctdsp1")
 
-my_plot <- ggplot(my_res, aes(x=log2FoldChange, 
+myplot <- ggplot(my_res, aes(x=log2FoldChange, 
                    y=-log10(pvalue), 
                    color = ifelse(pvalue > 0.05, "NS",
                                  ifelse(log2FoldChange > 1, "SigUp", 
@@ -256,7 +256,7 @@ my_plot <- ggplot(my_res, aes(x=log2FoldChange,
   geom_vline(xintercept=c((-1),1), lty =3, color="gray") + 
   geom_text(aes(label=ifelse(SYMBOL %in% goi, as.character(SYMBOL),''))) + xlim(-4.5,4.5)
 
-my_plot
+myplot
 
 ggsave(myplot, "DESeq2_volcanoplot.pdf")
 ```
