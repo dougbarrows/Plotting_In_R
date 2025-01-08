@@ -133,7 +133,7 @@ plot
 
 - Load in the data from "data/DESeq2_PCA.RData". This contains a ggplot object that is produced by the package DESeq2. It is a PCA plot produced from differential gene expression analysis. Review the object. Check the plot, data, aesthetics etc. 
 
-```{r, eval=F, echo=F}
+```{r, eval=F, echo=F, include =F}
 dds <- makeExampleDESeqDataSet(betaSD=1)
 rld <- rlog(dds)
 plotPCA(rld)
@@ -149,6 +149,24 @@ test <- plotPCA( DESeqTransform( se ) )
 test$data$condition <- rep(c(rep("Ctrl",3),rep("Mut",3)),2)
 deseq_pca_example <- test
 save(deseq_pca_example, file ="data/DESeq2_PCA.RData")
+
+dds <- DESeq(dds)
+
+library(org.Mm.eg.db)
+
+
+
+my_res <- results(dds, contrast = c("condition", "A","B"))
+
+rownames(my_res) <- sample(keys(org.Mm.eg.db, keytype = "SYMBOL"),1000)
+
+my_res <- as.data.frame(my_res)
+
+my_res$pvalue[is.na(my_res$pvalue)] <- rep(0.5,5)
+
+my_res$SYMBOL <- rownames(my_res)
+
+save(my_res,file="../extdata/data/DESeq2_Result.RData")
 ```
 
 ```{r,echo=toMessage}
@@ -163,7 +181,7 @@ deseq_pca_example$mapping
 
 - Lets change the color scheme and add a title. 
 
-```{R}
+```{r,echo=toMessage}
 
 deseq_pca_example + scale_fill_viridis_d() + ggtitle("PCA plot of DGE in A and B groups")
 
@@ -171,7 +189,7 @@ deseq_pca_example + scale_fill_viridis_d() + ggtitle("PCA plot of DGE in A and B
 
 - When we look at the data column we can see there is an additional column contained in the metadata - condition. Lets add this to the plot. 
 
-```{r}
+```{r,echo=toMessage}
 deseq_replot <- deseq_pca_example
 deseq_replot$layers <- NULL
 
@@ -183,7 +201,7 @@ deseq_replot <- deseq_replot + geom_point(aes(x=PC1, y=PC2, color=group, shape=c
 
 - Turn our PCA plot into an interactive plot. 
 
-```{r}
+```{r,echo=toMessage}
 library(plotly)
 
 ggplotly(deseq_replot)
@@ -192,10 +210,98 @@ ggplotly(deseq_replot)
 
 - Add the names of each sample from the orginal data object to the interactive labeling. 
 
-```{r}
+```{r,echo=toMessage}
 ggplotly(deseq_replot + geom_point(aes(label = name)))
 
 
+```
+
+**Exercise 4** - **Working Example**
+
+In this final exercise we will run through a common example: making a volcano plot.
+
+A volcano plot consists of:
+1) log2FC on the x axis
+2) -log10(pval) on the y axis
+
+It is also good to add some additional customization:
+- Highlight significant genes i.e. pval <0.05
+- Highlight genes above a certain threshold log2FC i.e. >1
+- Add lines to denote these thresholds
+- Label some genes of interest directly: "Gm8714","Pas1b","Rab39","Tmc2","Ttpal","Ctdsp1"
+- Use a simple theme to also give the plot a simple look
+- Export the plot as a pdf
+
+```{r,echo=toMessage}
+
+load("data/DESeq2_Result.RData")
+```
+
+
+```{r,echo=toMessage}
+library(plotly)
+
+goi <- c("Gm8714","Pas1b","Rab39","Tmc2","Ttpal","Ctdsp1")
+
+my_plot <- ggplot(my_res, aes(x=log2FoldChange, 
+                   y=-log10(pvalue), 
+                   color = ifelse(pvalue > 0.05, "NS",
+                                 ifelse(log2FoldChange > 1, "SigUp", 
+                                        ifelse(log2FoldChange < (-1), "SigDown", "Sig"))))) +
+  geom_point(size=0.5, alpha=0.5) +
+  scale_color_manual(name = "Significance", breaks=c("NS", "Sig", "SigUp", "SigDown"), values = c("black", "green","blue", "red")) +
+  theme_bw() + 
+  ggtitle("Volcano Plot showing significance of \ngene expression changes following DESeq analysis") + 
+  geom_hline(yintercept=(-log10(0.05)), lty =3, color="gray") + 
+  geom_vline(xintercept=c((-1),1), lty =3, color="gray") + 
+  geom_text(aes(label=ifelse(SYMBOL %in% goi, as.character(SYMBOL),''))) + xlim(-4.5,4.5)
+
+my_plot
+
+ggsave(myplot, "DESeq2_volcanoplot.pdf")
+```
+
+- To improve labeling on ggplot there is an additional package that can be useful: ggrepel. Try installing ggrepel and using geom_text_repel.
+
+```{r,echo=toMessage}
+library(ggrepel)
+
+goi <- c("Gm8714","Pas1b","Rab39","Tmc2","Ttpal","Ctdsp1")
+
+ggplot(my_res, aes(x=log2FoldChange, 
+                   y=-log10(pvalue), 
+                   color = ifelse(pvalue > 0.05, "NS",
+                                 ifelse(log2FoldChange > 1, "SigUp", 
+                                        ifelse(log2FoldChange < (-1), "SigDown", "Sig"))))) +
+  geom_point(size=0.5, alpha=0.5) +
+  scale_color_manual(name = "Significance", breaks=c("NS", "Sig", "SigUp", "SigDown"), values = c("black", "green","blue", "red")) +
+  theme_bw() + 
+  ggtitle("Volcano Plot showing significance of \ngene expression changes following DESeq analysis") + 
+  geom_hline(yintercept=(-log10(0.05)), lty =3, color="gray") + 
+  geom_vline(xintercept=c((-1),1), lty =3, color="gray") + 
+  geom_text_repel(aes(label=ifelse(SYMBOL %in% goi, as.character(SYMBOL),'')),  min.segment.length = 0, seed = 42, box.padding = 0.2, max.time	=3,max.overlaps = Inf) + xlim(-4.5,4.5)
+
+```
+
+- Make it dynamic and interactive with plotly just labeling the SYMBOL information.
+
+```{r}
+
+
+myplot <- ggplot(my_res, aes(x=log2FoldChange, 
+                   y=-log10(pvalue), 
+                   color = ifelse(pvalue > 0.05, "NS",
+                                 ifelse(log2FoldChange > 1, "SigUp", 
+                                        ifelse(log2FoldChange < (-1), "SigDown", "Sig"))))) +
+  geom_point(size=0.5, alpha=0.5) +
+  scale_color_manual(name = "Significance", breaks=c("NS", "Sig", "SigUp", "SigDown"), values = c("black", "green","blue", "red")) +
+  theme_bw() + 
+  ggtitle("Volcano Plot showing significance of \ngene expression changes following DESeq analysis") + 
+  geom_hline(yintercept=(-log10(0.05)), lty =3, color="gray") + 
+  geom_vline(xintercept=c((-1),1), lty =3, color="gray") + 
+  theme(text = element_text(size = 8))
+
+ggplotly(myplot + geom_point(aes(text = SYMBOL )), source = "select", tooltip = c("SYMBOL"))
 ```
 
 
