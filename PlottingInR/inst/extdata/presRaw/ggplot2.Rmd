@@ -23,6 +23,7 @@ params:
 ```{r setup, include=FALSE}
 suppressPackageStartupMessages(require(knitr))
 suppressPackageStartupMessages(require(plotly))
+suppressPackageStartupMessages(require(Seurat))
 knitr::opts_chunk$set(echo = TRUE, tidy = T)
 if(params$isSlides == "yes"){AsSlides=T}else{AsSlides=F}
 
@@ -1945,7 +1946,7 @@ The ggsave() function allows for additional arguments to be specified including 
 
 By default ggsave() will use the size of your current graphics window when saving plots so it may be important to specify width and height arguments desired. 
 
-```{r, ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9,}
+```{r, ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9}
 
 pcPlot <- ggplot(data=patients_clean,
         mapping=aes(x=Height,y=Weight))+geom_point()
@@ -1996,7 +1997,7 @@ if(params$isSlides == "yes"){
 
 We have introduced you to several packages that extend the capabilities of ggplot2 either by adding additional plotting capabilities or providing pre-built color/theme options. 
 
-There are also several packages that specialize in creating specific plots or additional geoms not included within ggplot2 i.e. [UpSet](https://github.com/hms-dbmi/UpSetR) [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), [ggridges](https://wilkelab.org/ggridges/)
+There are also several packages that specialize in creating specific plots or additional geoms not included within ggplot2 i.e. [UpSet](https://github.com/hms-dbmi/UpSetR), [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), [ggridges](https://wilkelab.org/ggridges/)
 
 We will quickly review UpSet plots. 
 
@@ -2019,7 +2020,7 @@ mutations[1:10,1:10]
 
 The Upset Plot will show us the number of intersections between different groups. For example EGFR and TTN only are present in 12 clones. The size of the set is also shown on the left to give additional context. This gives a good quantitative basis from which to understand set intersections.  
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 upset(mutations)
 
 ```
@@ -2030,7 +2031,7 @@ upset(mutations)
 You may have noticed that only a few genes are present. This is because by default only the top 5 biggest sets are included. We can increase this number easily or directly specify which sets to include using the *nsets* parameter.
 
 
-```{R}
+```{R,fig.height=4, fig.width=9}
 
 upset(mutations, nsets=10)
 
@@ -2081,7 +2082,7 @@ class(mydimplot)
 
 As it is a ggplot object, we can customize it. Here we can change the theme, title and colors. 
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
 
 ```
@@ -2103,7 +2104,7 @@ mydimplot$layers
 
 We can use the layout information to recreate the original ggplot, and then add some modifications i.e. add a size argument. We must also remove the original plot stored in the layers slot first.
 
-```{r}
+```{r,fig.height=4, fig.width=9}
 mydimplot$layers <- NULL
 
 mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
@@ -2248,11 +2249,11 @@ ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = 
 ---
 
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/exercises/ggplot2_3_exercise.html)
+Exercises on themes, saving and interactive plots in ggplot can be found [here](../../exercises/exercises/ggplot2_3_exercise.html)
 
 ---
 
-Exercise on scales and themes in ggplot can be found [here](../../exercises/answers/ggplot2_3_answers.html)
+Answers on themes, saving and interactive plots in ggplot can be found [here](../../exercises/answers/ggplot2_3_answers.html)
 
 ---
 ## References
