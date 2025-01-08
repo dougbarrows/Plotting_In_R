@@ -187,7 +187,7 @@ if(params$isSlides == "yes"){
 
 ```
 
-## Getting started with ggplot2
+## Setting the Working directory
 
 ```{r load_packages_ggplot2, echo=FALSE, eval=TRUE,warning=F,message=F}
 suppressPackageStartupMessages(library(tidyr))
@@ -199,7 +199,23 @@ suppressPackageStartupMessages(library(ggpubr))
 
 ```
 
-First we need a dataset. Here we read some data from the *data* directory using the **read.delim()** function.
+First we need a dataset. If you downloaded the course material you we have some data in there. 
+
+Your current working directory is typically your *HOME* directory. We want to set our working directory to be in the downloaded course material, so everyone is in the same place. 
+
+**Session -> Set Working Directory -> Choose Directory**
+
+or in the console.
+
+```{r setwd_introtoR,eval=F} 
+setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
+# e.g. setwd("/Users/mattpaul/Downloads/Intro_To_R_1Day/r_course")
+```
+
+---
+## Getting our data
+
+Now lets get our data set. Here we read some data from the *data* directory using the **read.delim()** function.
 
 We can use the **class()** function to get the data.type of our table and **dim()**  function to get the numbers of row and column.
 
