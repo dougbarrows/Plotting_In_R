@@ -25,7 +25,7 @@ message(toMessage)
 - Read in the cleaned patients dataset as we saw in ggplot2 course earlier ("patients_clean_ggplot2.txt")
 
 ```{r,echo=toMessage}
-#patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
+patients_clean <- read.delim("data/patients_clean_ggplot2.txt",sep="\t")
 ```
 
 -  Set the global theme to use theme_bw(). Using the patient data set generate a scatter plot of BMI versus Weight. Add a color scale to the scatter plot based on the Pet variable. Use an additional geom to add an extra layer of a fit line to our scatterplot (use lm method). Lets also add a nice color palette of your choice from Colorbrewer, Paleteer or Viridis. 
@@ -148,7 +148,7 @@ se <- SummarizedExperiment(log2(counts(dds, normalized=TRUE) + 1),
 test <- plotPCA( DESeqTransform( se ) )
 test$data$condition <- rep(c(rep("Ctrl",3),rep("Mut",3)),2)
 deseq_pca_example <- test
-save(deseq_pca_example, file ="../extdata/data/DESeq2_PCA.RData")
+save(deseq_pca_example, file ="data/DESeq2_PCA.RData")
 ```
 
 ```{r,echo=toMessage}
