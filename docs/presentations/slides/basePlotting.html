@@ -69,7 +69,7 @@ or in the console.
 
 ``` r
 setwd("/PathToMyDownload/Plotting_In_R-master/r_course")
-# e.g. setwd("~/Downloads/Plotting_In_R-master/r_course")
+# e.g. setwd('~/Downloads/Plotting_In_R-master/r_course')
 ```
 
 ---
@@ -114,7 +114,7 @@ First we'll produce a very simple graph using the values in a numeric vector:
 
 
 ``` r
-treatment &lt;- c(0.02,1.8, 17.5, 55,75.7, 80)
+treatment &lt;- c(0.02, 1.8, 17.5, 55, 75.7, 80)
 ```
 
 ---
@@ -154,7 +154,7 @@ First we can plot treatment using points overlayed by a line. We control this wi
 
 
 ``` r
-plot(treatment, type="o")
+plot(treatment, type = "o")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotType_basePlotting-1.png" width="1000px" /&gt;
@@ -167,7 +167,7 @@ To see a complete list we can use **?plot**
 .pull-left[
 
 ``` r
-plot(treatment, type="l")
+plot(treatment, type = "l")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotTypeSEval_basePlotting-1.png" width="1000px" /&gt;
@@ -175,7 +175,7 @@ plot(treatment, type="l")
 .pull-right[
 
 ``` r
-plot(treatment, type="p")
+plot(treatment, type = "p")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotTypeS_basePlotting-1.png" width="1000px" /&gt;
@@ -188,7 +188,7 @@ We can control the size of points in our plot using the **cex** parameter.
 .pull-left[
 
 ``` r
-plot(treatment, cex=2)
+plot(treatment, cex = 2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisCexL_basePlotting-1.png" width="1000px" /&gt;
@@ -196,7 +196,7 @@ plot(treatment, cex=2)
 .pull-right[
 
 ``` r
-plot(treatment, cex=0.5)
+plot(treatment, cex = 0.5)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisCexR_basePlotting-1.png" width="1000px" /&gt;
@@ -209,7 +209,7 @@ We can control the type of points in our plot using the **pch** parameter.
 .pull-left[
 
 ``` r
-plot(treatment, pch=1)
+plot(treatment, pch = 1)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisPchL_basePlotting-1.png" width="1000px" /&gt;
@@ -217,7 +217,7 @@ plot(treatment, pch=1)
 .pull-right[
 
 ``` r
-plot(treatment, pch=20)
+plot(treatment, pch = 20)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisPchR_basePlotting-1.png" width="1000px" /&gt;
@@ -231,7 +231,7 @@ Similarly when plotting a line we control size with **lwd** parameter.
 .pull-left[
 
 ``` r
-plot(treatment, type="l",lwd=10)
+plot(treatment, type = "l", lwd = 10)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLwdL_basePlotting-1.png" width="1000px" /&gt;
@@ -239,7 +239,7 @@ plot(treatment, type="l",lwd=10)
 .pull-right[
 
 ``` r
-plot(treatment, type="l",lwd=0.5)
+plot(treatment, type = "l", lwd = 0.5)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLwdR_basePlotting-1.png" width="1000px" /&gt;
@@ -252,7 +252,7 @@ We can also control the type of line with **lty** parameter.
 .pull-left[
 
 ``` r
-plot(treatment, type="l",lty=1)
+plot(treatment, type = "l", lty = 1)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLtyL_basePlotting-1.png" width="1000px" /&gt;
@@ -260,7 +260,7 @@ plot(treatment, type="l",lty=1)
 .pull-right[
 
 ``` r
-plot(treatment, type="l",lty=2)
+plot(treatment, type = "l", lty = 2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLtyR_basePlotting-1.png" width="1000px" /&gt;
@@ -274,7 +274,7 @@ An important parameter we can control is color. We can control color or lines or
 .pull-left[
 
 ``` r
-plot(treatment, type="l", col="red")
+plot(treatment, type = "l", col = "red")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotColL_basePlotting-1.png" width="1000px" /&gt;
@@ -282,7 +282,7 @@ plot(treatment, type="l", col="red")
 .pull-right[
 
 ``` r
-plot(treatment, type="l", col="blue")
+plot(treatment, type = "l", col = "blue")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotColR_basePlotting-1.png" width="1000px" /&gt;
@@ -295,7 +295,7 @@ We add a title with **main** argument and or a sub-title with the **sub** argume
 
 
 ``` r
-plot(treatment, main="My Plot", sub="a plot")
+plot(treatment, main = "My Plot", sub = "a plot")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotLabels_basePlotting-1.png" width="1000px" /&gt;
@@ -306,7 +306,7 @@ We can customize our x and y axis label with the **xlab** and **ylab** arguments
 
 
 ``` r
-plot(treatment, xlab="Position", ylab="score")
+plot(treatment, xlab = "Position", ylab = "score")
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLabels_basePlotting-1.png" width="1000px" /&gt;
@@ -318,7 +318,7 @@ We can control the orientation of labels on axis using **las** argument.
 .pull-left[
 
 ``` r
-plot(treatment, las=1)
+plot(treatment, las = 1)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLasL_basePlotting-1.png" width="1000px" /&gt;
@@ -326,7 +326,7 @@ plot(treatment, las=1)
 .pull-right[
 
 ``` r
-plot(treatment, las=2)
+plot(treatment, las = 2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotAsisLasR_basePlotting-1.png" width="1000px" /&gt;
@@ -346,8 +346,8 @@ The **plot** function vector will accept two vectors to be plotted against each 
 
 
 ``` r
-control &lt;- c(0, 20, 40, 60, 80,100)
-plot(treatment,control)
+control &lt;- c(0, 20, 40, 60, 80, 100)
+plot(treatment, control)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotTwoVectors_basePlotting-1.png" width="1000px" /&gt;
@@ -361,8 +361,8 @@ We can add an additional line to our existing plot using the **lines()** functio
 
 
 ``` r
-plot(treatment, type="o", col="blue")
-lines(control, type="o", pch=22, lty=2, col="red")
+plot(treatment, type = "o", col = "blue")
+lines(control, type = "o", pch = 22, lty = 2, col = "red")
 ```
 
 &lt;img src="basePlotting_files/figure-html/lines_basePlotting-1.png" width="1000px" /&gt;
@@ -376,9 +376,9 @@ We can extend our x or y axis by specifying values to **xlim** **ylim** argument
 
 
 ``` r
-control &lt;- c(0, 20, 40, 60, 80,100)
-plot(treatment, type="o", col="blue",ylim=c(0,100))
-lines(control, type="o", pch=22, lty=2, col="red")
+control &lt;- c(0, 20, 40, 60, 80, 100)
+plot(treatment, type = "o", col = "blue", ylim = c(0, 100))
+lines(control, type = "o", pch = 22, lty = 2, col = "red")
 ```
 
 &lt;img src="basePlotting_files/figure-html/yxlim_basePlotting-1.png" width="1000px" /&gt;
@@ -409,8 +409,7 @@ To be able to customize axes we need to turn off axes and annotations (axis labe
 
 
 ``` r
-plot(treatment, type="o", col="blue", 
-     ylim=g_range, axes=FALSE, ann=FALSE)
+plot(treatment, type = "o", col = "blue", ylim = g_range, axes = FALSE, ann = FALSE)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plotNoAxesNoAnnotation_basePlotting-1.png" width="1000px" /&gt;
@@ -422,7 +421,7 @@ We can create our own X axis by using the **axis()** function. We specify the **
 
 
 ``` r
-axis(side=1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+axis(side = 1, at = 1:6, lab = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
 ```
 
 &lt;img src="basePlotting_files/figure-html/axisEval_basePlotting-1.png" width="1000px" /&gt;
@@ -436,7 +435,7 @@ We specify our **side** and use **seq()** function to make axis tick postions fo
 
 
 ``` r
-axis(2, las=1, at=seq(0,g_range[2],by=20))
+axis(2, las = 1, at = seq(0, g_range[2], by = 20))
 ```
 
 &lt;img src="basePlotting_files/figure-html/axisSidesEval_basePlotting-1.png" width="1000px" /&gt;
@@ -458,7 +457,7 @@ Now I can add my control data using lines argument.
 
 
 ``` r
-lines(control, type="o", pch=22, lty=2, col="red")
+lines(control, type = "o", pch = 22, lty = 2, col = "red")
 
 ```
 
@@ -473,8 +472,8 @@ We need to specify where to place legend in plot, the names in legend to **legen
 
 
 ``` r
-legend("topleft",legend=c("treatment","control"),
-       col=c("blue","red"), pch=21:22, lty=1:2);  
+legend("topleft", legend = c("treatment", "control"), col = c("blue", "red"), pch = 21:22,
+    lty = 1:2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/legendEval_basePlotting-1.png" width="1920px" /&gt;
@@ -486,13 +485,15 @@ Though we can make a okay plot in a single line, this example demonstrates how y
 
 
 ``` r
-plot(treatment, type="o", col="blue", lwd=1, ylim=g_range,axes=FALSE, ann=FALSE)
-axis(1, at=1:6, lab=c("Mon","Tue","Wed","Thu","Fri","Sat"))
-axis(2, las=1, at=20*0:g_range[2])
+plot(treatment, type = "o", col = "blue", lwd = 1, ylim = g_range, axes = FALSE,
+    ann = FALSE)
+axis(1, at = 1:6, lab = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
+axis(2, las = 1, at = 20 * 0:g_range[2])
 box()
 
-lines(control, type="o", pch=22, lty=2, col="red", lwd=2.5)
-legend("topleft",legend=c("treatment","control"),col=c("blue","red"), pch=21:22, lty=1:2, lwd=c(1,2.5))
+lines(control, type = "o", pch = 22, lty = 2, col = "red", lwd = 2.5)
+legend("topleft", legend = c("treatment", "control"), col = c("blue", "red"), pch = 21:22,
+    lty = 1:2, lwd = c(1, 2.5))
 ```
 
 
@@ -575,7 +576,7 @@ R color brewer is another popular option. It has many built-in [palettes](https:
 ``` r
 library(RColorBrewer)
 
-my_pal &lt;- colorRampPalette(c("Red","White","Blue"))(25)
+my_pal &lt;- colorRampPalette(c("Red", "White", "Blue"))(25)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-12-1.png" width="1920px" /&gt;
@@ -606,7 +607,7 @@ The [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to
 
 
 ``` r
-install.packages('viridis')
+install.packages("viridis")
 library(viridis)
 viridis(5)
 ```
@@ -666,8 +667,7 @@ The **barplot()** function hasn't added any labels by default. We can speciy our
 
 
 ``` r
-barplot(treatment,
-        names.arg=c("Mon","Tue","Wed","Thu","Fri","Sat"))
+barplot(treatment, names.arg = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat"))
 ```
 
 &lt;img src="basePlotting_files/figure-html/barplotNames_basePlotting-1.png" width="1920px" /&gt;
@@ -680,7 +680,7 @@ If my vector was named however, then my vectors names would be used for labels. 
 
 
 ``` r
-names(treatment) &lt;- c("Mon","Tue","Wed","Thu","Fri","Sat")
+names(treatment) &lt;- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat")
 barplot(treatment)
 ```
 
@@ -697,7 +697,7 @@ Let's read the data from the example_plot.txt data file.
 Read values from comma-seperated example_plot.txt
 
 ``` r
-data &lt;- read.table("data/example_plot.txt", header=T, row.names=1, sep=",")
+data &lt;- read.table("data/example_plot.txt", header = T, row.names = 1, sep = ",")
 ```
 
 ---
@@ -719,7 +719,7 @@ Now we can plot data from a matrix with grouped barchart using the **beside** ar
 
 
 ``` r
-barplot(as.matrix(data),beside=TRUE)
+barplot(as.matrix(data), beside = TRUE)
 ```
 
 &lt;img src="basePlotting_files/figure-html/barplotMatrixBeside_basePlotting-1.png" width="1920px" /&gt;
@@ -731,10 +731,9 @@ Though a different function to plot(), barplot can be customized in much the sam
 
 
 ``` r
-barplot(as.matrix(data), main="Daily progression of X in\nControl and Treatment", ylab= "Total", beside=TRUE, 
-        col= viridis(6))
-legend("topleft", c("Mon","Tue","Wed","Thu","Fri","Sat"), cex=0.8,
-        fill=  viridis(6))
+barplot(as.matrix(data), main = "Daily progression of X in\nControl and Treatment",
+    ylab = "Total", beside = TRUE, col = viridis(6))
+legend("topleft", c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat"), cex = 0.8, fill = viridis(6))
 ```
 
 &lt;img src="basePlotting_files/figure-html/barplotComplexEval_basePlotting-1.png" width="1920px" /&gt;
@@ -754,7 +753,7 @@ Base graphics has a useful built-in function for histograms too. This is the **h
 
 
 ``` r
-hist(treatment)  
+hist(treatment)
 ```
 
 &lt;img src="basePlotting_files/figure-html/hist_basePlotting-1.png" width="1920px" /&gt;
@@ -764,7 +763,7 @@ hist(treatment)
 Similar customization exists as for other plots.
 
 ``` r
-hist(treatment, col="lightblue", ylim=c(0,5),cex.main=0.8)
+hist(treatment, col = "lightblue", ylim = c(0, 5), cex.main = 0.8)
 ```
 
 &lt;img src="basePlotting_files/figure-html/histcolorYlim_basePlotting-1.png" width="1920px" /&gt;
@@ -776,9 +775,7 @@ We can create more fine grained histogram by specify the number of required bins
 .pull-left[
 
 ``` r
-hist(treatment, col="lightblue", 
-     ylim=c(0,5), cex.main=0.8, 
-     breaks = 2)
+hist(treatment, col = "lightblue", ylim = c(0, 5), cex.main = 0.8, breaks = 2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlottingL_basePlotting-1.png" width="1000px" /&gt;
@@ -787,9 +784,7 @@ hist(treatment, col="lightblue",
 .pull-right[
 
 ``` r
-hist(treatment, col="lightblue", 
-     ylim=c(0,5), cex.main=0.8, 
-     breaks = 10)
+hist(treatment, col = "lightblue", ylim = c(0, 5), cex.main = 0.8, breaks = 10)
 ```
 
 &lt;img src="basePlotting_files/figure-html/histBreaksEval_basePlottingR_basePlotting-1.png" width="1000px" /&gt;
@@ -803,8 +798,8 @@ Unlike histograms, there is not a density plot function within base R. Instead w
 
 
 ``` r
-d &lt;- density(treatment) # returns the density data
-plot(d) 
+d &lt;- density(treatment)  # returns the density data
+plot(d)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-18-1.png" width="1000px" /&gt;
@@ -818,8 +813,8 @@ Similar to bins, we can alter the resolution using the width argument.
 
 
 ``` r
-d &lt;- density(treatment,width = 20) # returns the density data
-plot(d) 
+d &lt;- density(treatment, width = 20)  # returns the density data
+plot(d)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-19-1.png" width="1000px" /&gt;
@@ -842,7 +837,7 @@ We use the function **t** to return the transpose of a matrix. This means rows a
 
 
 ``` r
-dotchart(t(data))  
+dotchart(t(data))
 ```
 
 &lt;img src="basePlotting_files/figure-html/dotchartEval_basePlotting-1.png" width="1000px" /&gt;
@@ -855,7 +850,7 @@ Now we create a colored dotchart for autos with smaller labels.
 
 
 ``` r
-dotchart(t(data), color=c("red","blue"),main="Dotchart", cex=0.5)
+dotchart(t(data), color = c("red", "blue"), main = "Dotchart", cex = 0.5)
 ```
 
 &lt;img src="basePlotting_files/figure-html/dotchartColEval_basePlotting-1.png" width="1000px" /&gt;
@@ -882,7 +877,7 @@ Boxplots allow you to quickly review data distributions, showing the median and 
 First lets read in the gene expression data. This a matrix where each column corresponds toa group of observations that we want to make a single boxplot. 
 
 ``` r
-exprs &lt;- read.delim("data/gene_data.txt",sep="\t",h=T,row.names = 1)
+exprs &lt;- read.delim("data/gene_data.txt", sep = "\t", h = T, row.names = 1)
 head(exprs)
 ```
 
@@ -915,8 +910,7 @@ Perhaps it would look better on a log scale. We can add addition colors and labe
 
 
 ``` r
-boxplot(log2(exprs),ylab="log2 Expression",
-        col=c("red","red","blue","blue"))
+boxplot(log2(exprs), ylab = "log2 Expression", col = c("red", "red", "blue", "blue"))
 ```
 
 &lt;img src="basePlotting_files/figure-html/BoxplotEval_basePlotting-1.png" width="1920px" /&gt;
@@ -938,7 +932,7 @@ Heatmaps are really easy to make with the *heatmap()* function. The input requir
 
 ``` r
 exprs_mat &lt;- as.matrix(exprs)
-heatmap(exprs_mat, cexCol=0.75)
+heatmap(exprs_mat, cexCol = 0.75)
 ```
 
 &lt;img src="basePlotting_files/figure-html/plot_heat -1.png" width="1920px" /&gt;
@@ -990,7 +984,7 @@ We can turn the scaling on using the *scale* argument. This will do a by row Zsc
 
 ``` r
 library(pheatmap)
-pheatmap(exprs_mat, scale ="row", show_rownames = F)
+pheatmap(exprs_mat, scale = "row", show_rownames = F)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-25-1.png" width="1920px" /&gt;
@@ -1006,8 +1000,8 @@ To do this we need to specify the number of colors and the breaks for those colo
 ``` r
 library(RColorBrewer)
 
-my_pal &lt;- colorRampPalette(c("Blue","White","Red"))(60)
-my_breaks = seq(-1.5,1.5,0.05)
+my_pal &lt;- colorRampPalette(c("Blue", "White", "Red"))(60)
+my_breaks = seq(-1.5, 1.5, 0.05)
 ```
 
 ---
@@ -1017,7 +1011,7 @@ We can give our new colors and breaks to the pheatmap function.
 
 
 ``` r
-pheatmap(exprs_mat, scale ="row", show_rownames = F, breaks = my_breaks, color = my_pal)
+pheatmap(exprs_mat, scale = "row", show_rownames = F, breaks = my_breaks, color = my_pal)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-27-1.png" width="1920px" /&gt;
@@ -1035,7 +1029,7 @@ library(vioplot)
 
 
 ``` r
-vioplot(log2(exprs),main="distribution of log2(expression)")
+vioplot(log2(exprs), main = "distribution of log2(expression)")
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-29-1.png" width="1920px" /&gt;
@@ -1048,20 +1042,17 @@ We can show overlaps between groups by creating a venn diagram. We can use the e
 
 ``` r
 library(eulerr)
-mat &lt;- cbind(
-  A = sample(c(TRUE, TRUE, FALSE), 50, TRUE),
-  B = sample(c(TRUE, FALSE), 50, TRUE),
-  C = sample(c(TRUE, FALSE, FALSE, FALSE), 50, TRUE)
-)
+mat &lt;- cbind(A = sample(c(TRUE, TRUE, FALSE), 50, TRUE), B = sample(c(TRUE, FALSE),
+    50, TRUE), C = sample(c(TRUE, FALSE, FALSE, FALSE), 50, TRUE))
 head(mat)
 ```
 
 ```
 ##          A     B     C
-## [1,]  TRUE  TRUE FALSE
+## [1,] FALSE  TRUE FALSE
 ## [2,]  TRUE FALSE FALSE
-## [3,]  TRUE  TRUE  TRUE
-## [4,]  TRUE FALSE  TRUE
+## [3,] FALSE  TRUE FALSE
+## [4,]  TRUE FALSE FALSE
 ## [5,] FALSE FALSE FALSE
 ## [6,]  TRUE FALSE FALSE
 ```
@@ -1098,7 +1089,7 @@ Define a layout with 2 rows and 2 columns
 
 
 ``` r
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 ```
 
 ---
@@ -1109,7 +1100,7 @@ Plot histograms for different columns in the data frame separately. This is not 
 
 
 ``` r
-par(mfrow=c(2,2))
+par(mfrow = c(2, 2))
 hist(exprs$Untreated1)
 hist(exprs$Untreated2)
 hist(exprs$Treated1)
@@ -1125,9 +1116,9 @@ You could also do it more efficiently using a for loop.
 
 
 ``` r
-par(mfrow=c(2,2))
-for (i in 1:4){
-hist(exprs[,i])
+par(mfrow = c(2, 2))
+for (i in 1:4) {
+    hist(exprs[, i])
 }
 ```
 
@@ -1167,8 +1158,8 @@ Any labels to be added to the margin need to use *mtext()* instead.
 
 ``` r
 plot(control, treatment)
-text(20,60, 'THIS IS MY PLOT', col='red')
-text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
+text(20, 60, "THIS IS MY PLOT", col = "red")
+text(control, treatment, letters[1:6], adj = c(0, -1), col = "blue")
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-35-1.png" width="490px" /&gt;
@@ -1187,9 +1178,9 @@ text(control, treatment, letters[1:6], adj=c(0,-1), col='blue')
 
 ``` r
 plot(control, treatment)
-abline(h=10, col='blue')
-abline(v=50, col='red', lwd=2)
-abline(a=0, b=1, lty=2)
+abline(h = 10, col = "blue")
+abline(v = 50, col = "red", lwd = 2)
+abline(a = 0, b = 1, lty = 2)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-36-1.png" width="490px" /&gt;
@@ -1202,7 +1193,7 @@ abline(a=0, b=1, lty=2)
 
 ``` r
 plot(control, treatment)
-polygon(c(50,50,100,100),c(50,80,80,50), col='gray', density=5)
+polygon(c(50, 50, 100, 100), c(50, 80, 80, 50), col = "gray", density = 5)
 ```
 
 &lt;img src="basePlotting_files/figure-html/unnamed-chunk-37-1.png" width="490px" /&gt;
@@ -1228,8 +1219,7 @@ When you're done with your plotting commands, enter the dev.off() command to clo
 
 
 ``` r
-jpeg(filename, width = 480, height = 480, units = "px", 
-     pointsize  = 12, quality = 75)
+jpeg(filename, width = 480, height = 480, units = "px", pointsize = 12, quality = 75)
 plot(control)
 dev.off()
 ```

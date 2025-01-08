@@ -421,21 +421,6 @@ pcPlot + facet_wrap(~Pet+Smokes+Sex)
 pcPlot + facet_grid(Smokes~Sex+Pet)
 
 
-## ----marginal_ggplot, fig.height=4, fig.width=9, message = F, warning = F-----
-library(ggExtra)
-pcPlot <- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
-
-
-
-## ----marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F------
-
-pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
-
-
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
@@ -537,7 +522,7 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot + geom_point(size=4) + 
   scale_color_manual(values = c("Green","Purple"),
                      name="Gender")
-                  
+                
 
 
 ## ----facet_grid_height_weight_brewerScale_ggplot2, fig.height=5, fig.width=9, message = F, warning = F----
@@ -735,13 +720,6 @@ pcPlot+geom_point()+
                                 inherit.aes = F)
 
 
-## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
-pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
-pcPlot + 
-  stat_summary(fun=quantile, geom="point",
-                    color="purple", size=8)
-
-
 ## ----line_eqn, fig.height=2.5, fig.width=7------------------------------------
 library(ggpubr)
 pcPlot <- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
@@ -803,6 +781,28 @@ pcPlot <- ggplot(data=patients_clean,
 pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
 
 
+## ----stat_summary_ggplot2, fig.height=3.5, fig.width=9------------------------
+pcPlot <- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
+pcPlot + 
+  stat_summary(fun=quantile, geom="point",
+                    color="purple", size=8)
+
+
+## ----marginal_ggplot, fig.height=3, fig.width=8, message = F, warning = F-----
+library(ggExtra)
+pcPlot <- ggplot(data=patients_clean,
+                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
+
+
+
+## ----marginal_ggplot2, fig.height=4, fig.width=9, message = F, warning=F------
+
+pcPlot <- ggplot(data=patients_clean,
+        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+
+
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
 if(params$isSlides == "yes"){
   cat("class: inverse, center, middle
@@ -827,7 +827,7 @@ if(params$isSlides == "yes"){
 
 ## ----theme_default_ggplot2, fig.height=4, fig.width=4-------------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot
 
 
@@ -837,7 +837,7 @@ pcPlot+theme_minimal()
 
 ## ----theme_default_ggplot2_2, fig.height=4, fig.width=4-----------------------
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height)) + geom_point()
+        mapping=aes(x=Height,y=Weight)) + geom_point()
 pcPlot
 
 
@@ -856,7 +856,7 @@ pcPlot+theme_wsj()
 ## ----theme_custom_ggplot2, fig.height=7, fig.width=9,tidy=FALSE---------------
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
+        mapping=aes(x=Height,y=Weight))+
   geom_point()
 pcPlot+
   theme(
@@ -867,7 +867,7 @@ pcPlot+
 ## ----theme_custom1_ggplot2, fig.height=4.5, fig.width=9-----------------------
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot + theme(text = element_text(color="red"),
         axis.title.y = element_text(angle=0))
 
@@ -875,7 +875,7 @@ pcPlot + theme(text = element_text(color="red"),
 ## ----theme_custom2_ggplot2, fig.height=3, fig.width=9,eval=FALSE--------------
 # 
 # pcPlot <- ggplot(data=patients_clean,
-#         mapping=aes(x=Weight,y=Height))+
+#         mapping=aes(x=Height,y=Weight))+
 #   geom_point()+
 #   facet_grid(Sex~Smokes)
 # pcPlot+
@@ -891,7 +891,7 @@ pcPlot + theme(text = element_text(color="red"),
 ## ----theme_custom22_ggplot2, fig.height=3, fig.width=9,eval=TRUE,echo=FALSE----
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
+        mapping=aes(x=Height,y=Weight))+
   geom_point()+
   facet_grid(Sex~Smokes)
 pcPlot+
@@ -928,7 +928,7 @@ pcPlot+theme(legend.text = element_text(color="darkred"),
 ## ----theme_custom8_ggplot2, fig.height=5, fig.width=9-------------------------
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
+        mapping=aes(x=Height,y=Weight))+geom_point()+theme_bw()
 pcPlot+
   theme(text = element_text(color="red"))
 
@@ -974,7 +974,7 @@ if(params$isSlides == "yes"){
 ## ----theme_labs_ggplot2,fig.height=5, fig.width=9-----------------------------
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 pcPlot+labs(title="Weight vs Height",y="Height (cm)")
 
 
@@ -1010,7 +1010,7 @@ if(params$isSlides == "yes"){
 ## ----ggsaving_ggplot2, eval=FALSE,fig.height=4, fig.width=9-------------------
 # 
 # pcPlot <- ggplot(data=patients_clean,
-#         mapping=aes(x=Weight,y=Height))+geom_point()
+#         mapping=aes(x=Height,y=Weight))+geom_point()
 # 
 # ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
 #        height = 15,units = "cm")
@@ -1021,6 +1021,99 @@ if(params$isSlides == "yes"){
 # pdf(file = "anExampleplot.pdf", paper = "A4")
 # plot(control)
 # dev.off()
+
+
+## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
+if(params$isSlides == "yes"){
+  cat("class: inverse, center, middle
+
+# Other external packages
+
+<html><div style='float:left'></div><hr color='#EB811B' size=1px width=720px></html> 
+
+---
+"    
+  )
+}else{
+  cat("# Other external packages
+  
+---
+"    
+  )
+  
+}
+
+
+
+## -----------------------------------------------------------------------------
+library(UpSetR)
+mutations <- read.csv( system.file("extdata", "mutations.csv", package = "UpSetR"), header=T, sep = ",")
+mutations[1:10,1:10]
+
+
+## -----------------------------------------------------------------------------
+upset(mutations)
+
+
+
+## -----------------------------------------------------------------------------
+
+upset(mutations, nsets=10)
+
+
+
+## -----------------------------------------------------------------------------
+myupset <- upset(mutations)
+class(myupset)
+
+
+## -----------------------------------------------------------------------------
+
+library(clusterProfiler)
+load("data/clusterprofiler_result.RData")
+
+
+## -----------------------------------------------------------------------------
+dotplot(cp_res)
+
+
+
+## -----------------------------------------------------------------------------
+myplot <- dotplot(cp_res)
+class(myplot)
+
+
+## -----------------------------------------------------------------------------
+myplot + ggtitle("GO term enrichment") + scale_fill_viridis_c()
+
+
+
+## -----------------------------------------------------------------------------
+library(Seurat)
+data("pbmc_small")
+DimPlot(object = pbmc_small)
+
+
+## -----------------------------------------------------------------------------
+mydimplot <- DimPlot(object = pbmc_small)
+class(mydimplot)
+
+
+## -----------------------------------------------------------------------------
+mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
+
+
+
+## -----------------------------------------------------------------------------
+
+mydimplot$layers
+
+
+## -----------------------------------------------------------------------------
+mydimplot$layers <- NULL
+
+mydimplot + geom_point(aes(x=tSNE_1, y=tSNE_2, color=ident, size=2)) + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
+
 
 
 ## ----results='asis',include=TRUE,echo=FALSE-----------------------------------
@@ -1052,7 +1145,7 @@ library(plotly)
 ## ----eval=T,fig.height=4, fig.width=9-----------------------------------------
 
 pcPlot <- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+        mapping=aes(x=Height,y=Weight))+geom_point()
 
 ggplotly(pcPlot)
 

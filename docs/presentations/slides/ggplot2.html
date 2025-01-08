@@ -133,10 +133,8 @@ ggplot(data = &lt;default data set&gt;,
 
 
 ``` r
-ggplot(data=patients_clean,
-       aes(y=Weight,x=Height,color=Sex,
-           size=BMI,shape=Pet)) + 
-  geom_point()
+ggplot(data = patients_clean, aes(y = Weight, x = Height, color = Sex, size = BMI,
+    shape = Pet)) + geom_point()
 ```
 
 ![](ggplot2_files/figure-html/simple_ggplot2-1.png)&lt;!-- --&gt;
@@ -161,7 +159,7 @@ We can use the **class()** function to get the data.type of our table and **dim(
 
 ``` r
 library(ggplot2)
-patients_clean &lt;- read.delim("data/patient-data-cleaned.txt",sep="\t")
+patients_clean &lt;- read.delim("data/patient-data-cleaned.txt", sep = "\t")
 
 class(patients_clean)
 ```
@@ -186,7 +184,7 @@ We can just review the first two rows to get an idea of the content of data
 
 
 ``` r
-patients_clean[1:2,]
+patients_clean[1:2, ]
 ```
 
 ```
@@ -291,7 +289,7 @@ In the code below we define the data as our cleaned patients data frame.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean)
+pcPlot &lt;- ggplot(data = patients_clean)
 class(pcPlot)
 ```
 
@@ -307,7 +305,7 @@ Now we can see that we have gg/ggplot object (pcPlot).
 Within this gg/ggplot object the data has been defined.
 
 ``` r
-pcPlot$data[1:4,]
+pcPlot$data[1:4, ]
 ```
 
 ```
@@ -359,9 +357,9 @@ pcPlot$layers
 The information to map the data to the plot can be added now using the aes() function.
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean)
+pcPlot &lt;- ggplot(data = patients_clean)
 
-pcPlot &lt;- pcPlot+aes(x=Height,y=Weight)
+pcPlot &lt;- pcPlot + aes(x = Height, y = Weight)
 
 pcPlot$mapping
 ```
@@ -398,10 +396,10 @@ Below the geom_point function is used to specify a point plot, a scatter plot of
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean)
+pcPlot &lt;- ggplot(data = patients_clean)
 
-pcPlot &lt;- pcPlot+aes(x=Height,y=Weight)
-pcPlot &lt;- pcPlot+geom_point()
+pcPlot &lt;- pcPlot + aes(x = Height, y = Weight)
+pcPlot &lt;- pcPlot + geom_point()
 ```
 
 ---
@@ -463,9 +461,8 @@ More typically, the data and aesthetics are defined within ggplot function and g
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight))
+pcPlot + geom_point()
 ```
 
 ![](ggplot2_files/figure-html/ggplot_simple_geom_point_ggplot2-1.png)&lt;!-- --&gt;
@@ -491,10 +488,9 @@ There are many geoms available in ggplot2:
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight))
 
-pcPlot_line &lt;- pcPlot+geom_line() 
+pcPlot_line &lt;- pcPlot + geom_line()
 
 pcPlot_line
 ```
@@ -506,10 +502,9 @@ pcPlot_line
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight))
 
-pcPlot_smooth &lt;- pcPlot+geom_smooth() 
+pcPlot_smooth &lt;- pcPlot + geom_smooth()
 
 pcPlot_smooth
 ```
@@ -525,10 +520,9 @@ pcPlot_smooth
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Sex))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Sex))
 
-pcPlot_bar &lt;- pcPlot+geom_bar() 
+pcPlot_bar &lt;- pcPlot + geom_bar()
 
 pcPlot_bar
 ```
@@ -540,10 +534,9 @@ pcPlot_bar
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height))
 
-pcPlot_hist &lt;- pcPlot+geom_histogram() 
+pcPlot_hist &lt;- pcPlot + geom_histogram()
 
 pcPlot_hist
 ```
@@ -559,10 +552,9 @@ pcPlot_hist
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height))
 
-pcPlot_density &lt;- pcPlot+geom_density() 
+pcPlot_density &lt;- pcPlot + geom_density()
 
 pcPlot_density
 ```
@@ -574,10 +566,9 @@ pcPlot_density
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Sex,y=Height))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height))
 
-pcPlot_boxplot &lt;- pcPlot+geom_boxplot() 
+pcPlot_boxplot &lt;- pcPlot + geom_boxplot()
 
 pcPlot_boxplot
 ```
@@ -589,10 +580,9 @@ pcPlot_boxplot
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Sex,y=Height))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height))
 
-pcPlot_violin &lt;- pcPlot+geom_violin() 
+pcPlot_violin &lt;- pcPlot + geom_violin()
 
 pcPlot_violin
 ```
@@ -606,10 +596,8 @@ We can also provide multiple geoms. Often we may want to do this to add complexi
 
 
 ``` r
-ggplot(data=patients_clean,
-                 mapping=aes(x=Sex, y=Height))+ 
-  geom_violin() +
-  geom_jitter()
+ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height)) + geom_violin() +
+    geom_jitter()
 ```
 
 ![](ggplot2_files/figure-html/multiplegeom_ggplot2-1.png)&lt;!-- --&gt;
@@ -641,9 +629,8 @@ In order to change the property on an aesthetic of a plot into a *constant* valu
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point(color="red")
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight))
+pcPlot + geom_point(color = "red")
 ```
 
 ![](ggplot2_files/figure-html/scatter_colored_ggplot2-1.png)&lt;!-- --&gt;
@@ -680,8 +667,7 @@ This simple adjustment allows for identification of the separation between male 
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight,color=Sex))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex))
 pcPlot + geom_point()
 ```
 
@@ -693,9 +679,8 @@ Similarly the shape of points may be adjusted.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight,shape=Sex))
-pcPlot+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, shape = Sex))
+pcPlot + geom_point()
 ```
 
 ![](ggplot2_files/figure-html/scatter_aes_sexShapeB_ggplot2-1.png)&lt;!-- --&gt;
@@ -708,14 +693,14 @@ The aesthetic mappings may be set directly in the geom_points() function as prev
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean)
+pcPlot &lt;- ggplot(data = patients_clean)
 ```
 
 ---
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_point(aes(x=Height,y=Weight,color=Sex))
+pcPlot + geom_point(aes(x = Height, y = Weight, color = Sex))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS2_ggplot2-1.png)&lt;!-- --&gt;
@@ -724,7 +709,7 @@ pcPlot+geom_point(aes(x=Height,y=Weight,color=Sex))
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes))
+pcPlot + geom_point(aes(x = Height, y = Weight, color = Smokes))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS3_ggplot2-1.png)&lt;!-- --&gt;
@@ -733,7 +718,7 @@ pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes))
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes,shape=Sex))
+pcPlot + geom_point(aes(x = Height, y = Weight, color = Smokes, shape = Sex))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS4_ggplot2-1.png)&lt;!-- --&gt;
@@ -742,7 +727,7 @@ pcPlot+geom_point(aes(x=Height,y=Weight,color=Smokes,shape=Sex))
 ## Aesthetics in geom
 
 ``` r
-pcPlot+geom_violin(aes(x=Sex,y=Height,fill=Smokes))
+pcPlot + geom_violin(aes(x = Sex, y = Height, fill = Smokes))
 ```
 
 ![](ggplot2_files/figure-html/aes_in_geomFS5_ggplot2-1.png)&lt;!-- --&gt;
@@ -754,10 +739,8 @@ Many Geoms will have some specific aesthetics for that plot type. In this case w
 
 
 ``` r
-ggplot(data=patients_clean,
-                 mapping=aes(x=Sex, y=Height, fill=Sex))+ 
-  geom_violin() +
-  geom_jitter(width=0.2)
+ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height, fill = Sex)) + geom_violin() +
+    geom_jitter(width = 0.2)
 ```
 
 ![](ggplot2_files/figure-html/multiplegeom_ggplot2_2-1.png)&lt;!-- --&gt;
@@ -770,7 +753,7 @@ Again, for a comprehensive list of parameters and aesthetic mappings used in geo
 
 
 ``` r
-?geom_point
+`?`(geom_point)
 ```
 
 or visit the ggplot2 documentations pages and quick reference:
@@ -803,7 +786,11 @@ This allows you to produce several plots that subset by variables in your data.
 
 To facet our data into multiple plots we can use the *facet_wrap* or *facet_grid* function specifying the variable we split by.
 
-The *facet_grid* function is well suited to splitting the data by two factors.
+The *facet_grid* function is well suited to splitting the data by two factors while *facet_wrap* simply wraps the data in a 2d format based on factor levels.
+
+&lt;img src="imgs/facet_wrap_vs_grid.png" width="350"&gt;
+
+(https://ggplot2-book.org/)
 
 ---
 ## Split by 2 factors
@@ -816,9 +803,9 @@ facet_grid(Rows~Columns)
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
-pcPlot + facet_grid(Smokes~Sex)
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+pcPlot + facet_grid(Smokes ~ Sex)
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_SmokesBySex_ggplot2-1.png)&lt;!-- --&gt;
@@ -833,8 +820,8 @@ facet_grid(~Columns)
 &lt;/div&gt; 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
 pcPlot + facet_grid(~Sex)
 ```
 
@@ -851,9 +838,9 @@ facet_grid(Rows~.)
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
-pcPlot + facet_grid(Sex~.)
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+pcPlot + facet_grid(Sex ~ .)
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_SexBy_ggplot2-1.png)&lt;!-- --&gt;
@@ -867,8 +854,8 @@ For *facet_wrap()* we follow as similar syntax to *facet_grid()*.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
 pcPlot + facet_wrap(~Smokes)
 ```
 
@@ -882,9 +869,9 @@ For more complex faceting both *facet_grid* and *facet_wrap* can accept combinat
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
-pcPlot + facet_wrap(~Pet+Smokes+Sex)
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+pcPlot + facet_wrap(~Pet + Smokes + Sex)
 ```
 
 ![](ggplot2_files/figure-html/facet_wrap_smokesBySexandPet_ggplot2-1.png)&lt;!-- --&gt;
@@ -895,39 +882,10 @@ Or in a nice grid format using facet_grid() and the Smokes variable against a co
 
 
 ``` r
-pcPlot + facet_grid(Smokes~Sex+Pet)
+pcPlot + facet_grid(Smokes ~ Sex + Pet)
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_smokesBySexandPet_ggplot2_2-1.png)&lt;!-- --&gt;
-
----
-
-## Marginal plots with ggExtra
-Another way to highlight differences between groups is with a marginal plot. Plots for either the X or Y axis variables can easily be added to the margins of the plot to display the distributions of variables. By default this is a line. The groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
-
-
-``` r
-library(ggExtra)
-pcPlot &lt;- ggplot(data=patients_clean,
-                 mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
-```
-
-![](ggplot2_files/figure-html/marginal_ggplot-1.png)&lt;!-- --&gt;
-
----
-
-## Marginal plots with ggExtra
-We can easily turn this into a histogram and only display either X or Y axis.  
-
-
-``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
-```
-
-![](ggplot2_files/figure-html/marginal_ggplot2-1.png)&lt;!-- --&gt;
 
 
 ---
@@ -945,7 +903,7 @@ We will shortly discuss how to change various aspects of the plot layout and app
 
 
 ``` r
-ggplot(patients_clean, aes(x=Sex, y=Weight)) + geom_boxplot()
+ggplot(patients_clean, aes(x = Sex, y = Weight)) + geom_boxplot()
 ```
 
 ![](ggplot2_files/figure-html/plotOrderBoxplot_ggplot2-1.png)&lt;!-- --&gt;
@@ -970,9 +928,8 @@ Depending on the message we want the plot to convey, we might want control over 
 
 
 ``` r
-patients_clean$Sex &lt;- factor(patients_clean$Sex, 
-                             levels=c("Male","Female"))
-ggplot(patients_clean,aes(x=Sex, y=Weight)) + geom_boxplot()
+patients_clean$Sex &lt;- factor(patients_clean$Sex, levels = c("Male", "Female"))
+ggplot(patients_clean, aes(x = Sex, y = Weight)) + geom_boxplot()
 ```
 
 ![](ggplot2_files/figure-html/plotOrderControlBoxplot_ggplot2-1.png)&lt;!-- --&gt;
@@ -1032,10 +989,10 @@ In this example we control the continuous scale on the x-axis by providing a nam
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex)) + geom_point()
-pcPlot + geom_point() +
-  scale_x_continuous(name="height ('cm')", limits = c(150,200), breaks=c(160,180),labels=c("Short", "Tall"))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+pcPlot + geom_point() + scale_x_continuous(name = "height ('cm')", limits = c(150,
+    200), breaks = c(160, 180), labels = c("Short", "Tall"))
 ```
 
 ![](ggplot2_files/figure-html/scaleCont_ggplot2, facet_grid_smokesBySex_scalex-1.png)&lt;!-- --&gt;
@@ -1046,10 +1003,9 @@ Similarly control over discrete scales is shown below.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Sex,y=Height))
-pcPlot +
-  geom_violin(aes(x=Sex,y=Height)) +
-  scale_x_discrete(labels=c("Men", "Women"))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Sex, y = Height))
+pcPlot + geom_violin(aes(x = Sex, y = Height)) + scale_x_discrete(labels = c("Men",
+    "Women"))
 ```
 
 ![](ggplot2_files/figure-html/scaleDiscrete_ggplot2, facet_grid_smokesBySex_scaleDisceteX-1.png)&lt;!-- --&gt;
@@ -1060,11 +1016,9 @@ Multiple X/Y scales can be combined to give full control of axis marks.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Sex,y=Height,fill=Smokes))
-pcPlot +
-  geom_violin(aes(x=Sex,y=Height)) +
-  scale_x_discrete(labels=c("Men", "Women"))+
-  scale_y_continuous(breaks=c(160,180),labels=c("Short", "Tall"))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Sex, y = Height, fill = Smokes))
+pcPlot + geom_violin(aes(x = Sex, y = Height)) + scale_x_discrete(labels = c("Men",
+    "Women")) + scale_y_continuous(breaks = c(160, 180), labels = c("Short", "Tall"))
 ```
 
 ![](ggplot2_files/figure-html/scaleFullControl_ggplot2, facet_grid_smokesBySex_scaleDisceteXContinuousY-1.png)&lt;!-- --&gt;
@@ -1076,9 +1030,8 @@ When using fill, color, linetype, shape, size or alpha aesthetic mappings the sc
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Sex))
-pcPlot + geom_point(size=4)
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex))
+pcPlot + geom_point(size = 4)
 ```
 
 ![](ggplot2_files/figure-html/scaleOthers_ggplot2, facet_grid_height_weight-1.png)&lt;!-- --&gt;
@@ -1093,11 +1046,9 @@ Additionally in this example an updated name for the legend is provided.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Sex))
-pcPlot + geom_point(size=4) + 
-  scale_color_manual(values = c("Green","Purple"),
-                     name="Gender")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex))
+pcPlot + geom_point(size = 4) + scale_color_manual(values = c("Green", "Purple"),
+    name = "Gender")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_manualScale_ggplot2-1.png)&lt;!-- --&gt;
@@ -1114,7 +1065,7 @@ You can also use hex codes: a hexadecimal format for identifying colors. This gi
 ---
 ## Packages for color scales
 
-Here we have specified the colors to be used (hence the scale_color_**manual**) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colors from a scale of our choice.
+Here we have specified the colors to be used (hence the scale\_color\_**manual**) but when the number of levels to a variable are high this may be impractical and often we would like ggplot2 to choose colors from a scale of our choice.
 
 There are a number of collections of in-built and installable package palettes in ggplot2, namely [colorbrewer](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html), [paleteer](https://r-graph-gallery.com/color-palette-finder) and [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html). Palettes are prebuilt collections of colors. They can consist of a various numbers of colors and can have different properties i.e. continuous/discrete or divergent
 
@@ -1125,10 +1076,8 @@ Colorbrewer comes with ggplot
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Pet))
-pcPlot + geom_point(size=4) + 
-  scale_color_brewer(palette = "Set2")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Pet))
+pcPlot + geom_point(size = 4) + scale_color_brewer(palette = "Set2")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_brewerScale_ggplot2-1.png)&lt;!-- --&gt;
@@ -1141,10 +1090,8 @@ Paletteer is a collection of user-defined palettes that have been collated. They
 
 ``` r
 library(paletteer)
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Pet))
-pcPlot + geom_point(size=4) + 
-  scale_color_paletteer_d(palette = "wesanderson::Zissou1")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Pet))
+pcPlot + geom_point(size = 4) + scale_color_paletteer_d(palette = "wesanderson::Zissou1")
 ```
 
 ![](ggplot2_files/figure-html/cale_color_paletteer_d-1.png)&lt;!-- --&gt;
@@ -1156,10 +1103,8 @@ Viridis is a collection scientifically designed color palette to help with color
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=Pet))
-pcPlot + geom_point(size=4) + 
-  scale_color_viridis_d()
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Pet))
+pcPlot + geom_point(size = 4) + scale_color_viridis_d()
 ```
 
 ![](ggplot2_files/figure-html/scale_color_viridis_d-1.png)&lt;!-- --&gt;
@@ -1184,10 +1129,11 @@ Furthermore, when we pick gradients the ability to see patterns in the data vari
 ---
 ## Color blindness and ggplot2 defaults
 
-![palettes](imgs/example_ggplot_defulats.jpg)
+&lt;img src="imgs/example_ggplot_defulats.jpg" width="550"&gt;
 
 
 ([@dichromat-chloe.bsky.social](https://bsky.app/profile/dichromat-chloe.bsky.social/post/3lbrtas6luc2r))
+
 
 ---
 ## Picking Colors
@@ -1236,10 +1182,8 @@ Below the range of alpha to be used in plot is limited to between 0.5 and 1.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,alpha=BMI))
-pcPlot + geom_point(size=4) + 
-  scale_alpha_continuous(range = c(0.5,1))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, alpha = BMI))
+pcPlot + geom_point(size = 4) + scale_alpha_continuous(range = c(0.5, 1))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIalpha_ggplot2-1.png)&lt;!-- --&gt;
@@ -1249,23 +1193,20 @@ pcPlot + geom_point(size=4) +
 Below the range of sizes to be used in plot is limited to between 3 and 6.
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,size=BMI))
-pcPlot + geom_point(alpha=0.8) + 
-  scale_size_continuous(range = c(3,6))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, size = BMI))
+pcPlot + geom_point(alpha = 0.8) + scale_size_continuous(range = c(3, 6))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsize_ggplot2-1.png)&lt;!-- --&gt;
+
 ---
 ## Limits
 The limits of the scale can also be controlled but it is important to note data outside of scale is removed from plot.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,size=BMI))
-pcPlot + geom_point() + scale_size_continuous(range = c(3,6),
-                                              limits = c(25,40))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, size = BMI))
+pcPlot + geom_point() + scale_size_continuous(range = c(3, 6), limits = c(25, 40))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsizeLimits_ggplot2-1.png)&lt;!-- --&gt;
@@ -1276,12 +1217,9 @@ What points of scale to be labeled and labels text can also be controlled.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,size=BMI))
-pcPlot + geom_point() + 
-  scale_size_continuous(range = c(3,6), 
-                        breaks=c(25,30), 
-                        labels=c("Good","Good but not 25"))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, size = BMI))
+pcPlot + geom_point() + scale_size_continuous(range = c(3, 6), breaks = c(25, 30),
+    labels = c("Good", "Good but not 25"))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIsizewithBreaks_ggplot2-1.png)&lt;!-- --&gt;
@@ -1291,7 +1229,7 @@ pcPlot + geom_point() +
 Control of color/fill scales can be best achieved through the **gradient** subfunctions of scale.
 
 
-- scale_(color/fill)_*gradient* - 2 color gradient (eg. low to high BMI)
+- scale\_(color/fill)\_*gradient* - 2 color gradient (eg. low to high BMI)
 
 - scale\_(color/fill)\_*gradient2* - Diverging color scale with a midpoint color (e.g. Down, No Change, Up)
 
@@ -1308,10 +1246,9 @@ An example using scale\_color\_gradient below sets the low and high end colors t
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient(low = "White",high="Red")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = BMI))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_color_gradient(low = "White",
+    high = "Red")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient_ggplot2-1.png)&lt;!-- --&gt;
@@ -1322,11 +1259,9 @@ Similarly we can use the scale_color_gradient2 function which allows for the spe
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient2(low = "Blue",mid="Black", high="Red",
-                         midpoint = median(patients_clean$BMI))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = BMI))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_color_gradient2(low = "Blue",
+    mid = "Black", high = "Red", midpoint = median(patients_clean$BMI))
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient2_ggplot2-1.png)&lt;!-- --&gt;
@@ -1337,15 +1272,10 @@ As with previous continuous scales, limits and custom labels in scale legend can
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_gradient2(low = "Blue",
-                         mid="Black",
-                         high="Red",
-                         midpoint = median(patients_clean$BMI),
-                         breaks=c(25,30),labels=c("Low","High"),
-                         name="Body Mass Index")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = BMI))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_color_gradient2(low = "Blue",
+    mid = "Black", high = "Red", midpoint = median(patients_clean$BMI), breaks = c(25,
+        30), labels = c("Low", "High"), name = "Body Mass Index")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_height_weight_BMIgradient2plus_ggplot2-1.png)&lt;!-- --&gt;
@@ -1356,14 +1286,11 @@ Multiple scales may be combined to create high customizable plots and scales
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI,shape=Sex))
-pcPlot + geom_point(size=4,alpha=0.8)+ 
-  scale_shape_discrete(name="Gender") +
-  scale_color_gradient2(low = "Blue",mid="Black",high="Red",
-                         midpoint = median(patients_clean$BMI),
-                         breaks=c(25,30),labels=c("Low","High"),
-                         name="Body Mass Index")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = BMI,
+    shape = Sex))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_shape_discrete(name = "Gender") +
+    scale_color_gradient2(low = "Blue", mid = "Black", high = "Red", midpoint = median(patients_clean$BMI),
+        breaks = c(25, 30), labels = c("Low", "High"), name = "Body Mass Index")
 ```
 
 ![](ggplot2_files/figure-html/facet_grid_smokesBySex_scaleDisceteXContinuouswY_ggplot2-1.png)&lt;!-- --&gt;
@@ -1375,12 +1302,10 @@ We can also use an ifelse conditional statement to apply discrete color cutoffs 
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,shape=Sex, color=ifelse(BMI &gt; 30, "High",
-                                                                ifelse(BMI &lt; 25, "Low", "Middle"))))
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_shape_discrete(name="Gender") +
-  scale_color_manual(name = "BMI category", values=c("red", "blue", "grey"))
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, shape = Sex,
+    color = ifelse(BMI &gt; 30, "High", ifelse(BMI &lt; 25, "Low", "Middle"))))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_shape_discrete(name = "Gender") +
+    scale_color_manual(name = "BMI category", values = c("red", "blue", "grey"))
 ```
 
 ![](ggplot2_files/figure-html/conditional_colors_scales-1.png)&lt;!-- --&gt;
@@ -1393,10 +1318,8 @@ There are similar continuous palettes to use with ggplot2. You can just modify t
 .pull-left[
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_viridis_c()
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = BMI))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_color_viridis_c()
 ```
 
 ![](ggplot2_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
@@ -1405,10 +1328,8 @@ pcPlot + geom_point(size=4,alpha=0.8) +
 .pull-right[
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-                 aes(x=Height,y=Weight,color=BMI))
-pcPlot + geom_point(size=4,alpha=0.8) + 
-  scale_color_paletteer_c(palette = "grDevices::Temps")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = BMI))
+pcPlot + geom_point(size = 4, alpha = 0.8) + scale_color_paletteer_c(palette = "grDevices::Temps")
 ```
 
 ![](ggplot2_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
@@ -1439,10 +1360,8 @@ The stat_smooth() function can be used to fit a line to the data being displayed
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point() + 
-  stat_smooth()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight))
+pcPlot + geom_point() + stat_smooth()
 ```
 
 ```
@@ -1457,9 +1376,8 @@ By default a "loess" smooth line is plotted by stat_smooth. Other methods availa
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight))
-pcPlot+geom_point() + stat_smooth(method="lm")
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight))
+pcPlot + geom_point() + stat_smooth(method = "lm")
 ```
 
 ```
@@ -1474,10 +1392,8 @@ A useful feature of ggplot2 is that it uses previously defined grouping when per
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex))
-pcPlot+geom_point() +
-  stat_smooth(method="lm")
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex))
+pcPlot + geom_point() + stat_smooth(method = "lm")
 ```
 
 ```
@@ -1492,10 +1408,8 @@ This behavior can be overridden by specifying an aes within the stat_smooth() fu
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean, mapping=aes(x=Height,y=Weight,color=Sex))
-pcPlot+geom_point()+
-  stat_smooth(aes(x=Height,y=Weight),method="lm",
-                                inherit.aes = F)
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex))
+pcPlot + geom_point() + stat_smooth(aes(x = Height, y = Weight), method = "lm", inherit.aes = F)
 ```
 
 ```
@@ -1504,23 +1418,6 @@ pcPlot+geom_point()+
 
 ![](ggplot2_files/figure-html/stat_smoothlmgroupsOverridden_ggplot2-1.png)&lt;!-- --&gt;
 
-
----
-
-## Summary statistics
-Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualized.
-
-The fun parameter specifies a function to apply to the y variables for every value of x. In this example we use it to plot the quantiles of the Female and Male Height data
-
-
-``` r
-pcPlot &lt;- ggplot(data=patients_clean, mapping=aes(x=Sex,y=Height)) + geom_jitter()
-pcPlot + 
-  stat_summary(fun=quantile, geom="point",
-                    color="purple", size=8)
-```
-
-![](ggplot2_files/figure-html/stat_summary_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -1533,10 +1430,11 @@ The after_stat function is required to tell ggplot to map the aesthetics after a
 
 ``` r
 library(ggpubr)
-pcPlot &lt;- ggplot(data=patients_clean,mapping=aes(x=Height,y=Weight)) +geom_point() + stat_smooth(method="lm", formula = y ~ x)  
-pcPlot + 
-  stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~ x) +
-  stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~ x)
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point() + stat_smooth(method = "lm", formula = y ~ x)
+pcPlot + stat_regline_equation(label.y = 90, aes(label = after_stat(eq.label)), formula = y ~
+    x) + stat_regline_equation(label.y = 87, aes(label = after_stat(rr.label)), formula = y ~
+    x)
 ```
 
 ![](ggplot2_files/figure-html/line_eqn-1.png)&lt;!-- --&gt;
@@ -1548,13 +1446,13 @@ By giving subsets of the data to the stat_regline_equation() function, we can di
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight,color=Sex)) +geom_point()+ stat_smooth(aes(x=Height,y=Weight), method="lm", formula = y ~ x) 
-pcPlot +
-  stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male", ], 
-                        label.y = 90, aes(label = after_stat(rr.label)), formula = y ~ x) + 
-  stat_regline_equation(data = patients_clean[patients_clean$Sex == "Female", ], 
-                        label.x = 175, label.y = 65, aes(label = after_stat(rr.label)), formula = y ~ x)  
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex)) +
+    geom_point() + stat_smooth(aes(x = Height, y = Weight), method = "lm", formula = y ~
+    x)
+pcPlot + stat_regline_equation(data = patients_clean[patients_clean$Sex == "Male",
+    ], label.y = 90, aes(label = after_stat(rr.label)), formula = y ~ x) + stat_regline_equation(data = patients_clean[patients_clean$Sex ==
+    "Female", ], label.x = 175, label.y = 65, aes(label = after_stat(rr.label)),
+    formula = y ~ x)
 ```
 
 ![](ggplot2_files/figure-html/line_eqn_groups-1.png)&lt;!-- --&gt;
@@ -1571,10 +1469,10 @@ Here we use rstatix to create an object with relevant statistics for our desired
 library(rstatix)
 # https://rpkgs.datanovia.com/rstatix/
 
-stat.test &lt;- t_test(patients_clean, Height ~ Sex) 
+stat.test &lt;- t_test(patients_clean, Height ~ Sex)
 stat.test &lt;- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
 
-data.frame(stat.test) # show object as dataframe
+data.frame(stat.test)  # show object as dataframe
 ```
 
 ```
@@ -1591,11 +1489,9 @@ The output from the rstatix functions can then be used in the stat_pvalue_manual
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Sex,y=Height)) + 
-  geom_boxplot()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height)) + geom_boxplot()
 
-# don't inherit aesthetic to make this work 
+# don't inherit aesthetic to make this work
 pcPlot + stat_pvalue_manual(stat.test, label = "p", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
 ```
 
@@ -1609,8 +1505,8 @@ By grouping the initial dataframe, we can look for differences between smokers w
 
 ``` r
 grouped_data &lt;- group_by(patients_clean, Sex)
-stat.test &lt;- t_test(grouped_data, formula = Height ~ Smokes) 
-stat.test &lt;- adjust_pvalue(stat.test, method = "BH") 
+stat.test &lt;- t_test(grouped_data, formula = Height ~ Smokes)
+stat.test &lt;- adjust_pvalue(stat.test, method = "BH")
 stat.test &lt;- add_xy_position(stat.test, x = "Sex", dodge = 0.8)
 
 data.frame(stat.test)
@@ -1632,16 +1528,61 @@ data.frame(stat.test)
 We can also modify the label of the p-values by putting the column used for the p-value inside curly brackets {} within a string. 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Sex ,y=Height, fill = Smokes)) + 
-  geom_boxplot() 
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height, fill = Smokes)) +
+    geom_boxplot()
 
-# don't inherit aesthetic to make this work 
-pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) + scale_y_continuous(expand = expansion(mult = 0.1))
+# don't inherit aesthetic to make this work
+pcPlot + stat_pvalue_manual(stat.test, label = "p = {p.adj}", inherit.aes = F) +
+    scale_y_continuous(expand = expansion(mult = 0.1))
 ```
 
 ![](ggplot2_files/figure-html/grouped_p2-1.png)&lt;!-- --&gt;
 
+---
+
+## Summary statistics
+Another useful method is stat_summary() which allows for a custom statistical function to be performed and then visualized.
+
+The fun parameter specifies a function to apply to the y variables for every value of x. In this example we use it to plot the quantiles of the Female and Male Height data
+
+
+``` r
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Sex, y = Height)) + geom_jitter()
+pcPlot + stat_summary(fun = quantile, geom = "point", color = "purple", size = 8)
+```
+
+![](ggplot2_files/figure-html/stat_summary_ggplot2-1.png)&lt;!-- --&gt;
+
+---
+
+## Marginal plots with ggExtra
+Another way to highlight differences between groups is with a marginal plot for the the X or Y axis variables. 
+
+By default this is a line and the groupcolor and groupFill arguments carry over the color aesthetic of the main plot.  
+
+
+``` r
+library(ggExtra)
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE)
+```
+
+![](ggplot2_files/figure-html/marginal_ggplot-1.png)&lt;!-- --&gt;
+
+---
+
+## Marginal plots with ggExtra
+We can easily turn this into a histogram and only display either X or Y axis.  
+
+
+``` r
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+ggMarginal(pcPlot, groupColor = TRUE, groupFill = TRUE, type = "histogram", margins = "x")
+```
+
+![](ggplot2_files/figure-html/marginal_ggplot2-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -1680,8 +1621,8 @@ Predefined themes can be applied to a ggplot2 object using a family of functions
 Here is a scatter with the default theme...
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
 pcPlot
 ```
 
@@ -1743,8 +1684,8 @@ After we have loaded in the ggthemes packages we can then simply use the new the
 Here is a scatter with the default theme...
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height)) + geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
 pcPlot
 ```
 
@@ -1825,7 +1766,7 @@ A detailed description of which elements are available and their associated elem
 
 ``` r
 pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
+        mapping=aes(x=Height,y=Weight))+
   geom_point()
 pcPlot+
   theme(
@@ -1842,10 +1783,9 @@ If we wished to set the y-axis label to be at an angle we can adjust that as wel
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot + theme(text = element_text(color="red"),
-        axis.title.y = element_text(angle=0))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
+pcPlot + theme(text = element_text(color = "red"), axis.title.y = element_text(angle = 0))
 ```
 
 ![](ggplot2_files/figure-html/theme_custom1_ggplot2-1.png)&lt;!-- --&gt;
@@ -1857,18 +1797,11 @@ Finally we may wish to remove axis line, set the background of plot panels to be
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+
-  geom_point()+
-  facet_grid(Sex~Smokes)
-pcPlot+
-  theme(
-    text = element_text(color="red"),
-    axis.title.y = element_text(angle=0),
-    axis.line = element_line(linetype = 0),
-    panel.background=element_rect(fill="white"),
-    strip.background=element_rect(fill="cyan")
-    )
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point() + facet_grid(Sex ~ Smokes)
+pcPlot + theme(text = element_text(color = "red"), axis.title.y = element_text(angle = 0),
+    axis.line = element_line(linetype = 0), panel.background = element_rect(fill = "white"),
+    strip.background = element_rect(fill = "cyan"))
 ```
 
 ---
@@ -1885,8 +1818,8 @@ By default the legend is in right of plot.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
 pcPlot
 ```
 
@@ -1900,9 +1833,9 @@ By modifying the theme we can control the legend positioning.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
-pcPlot+theme(legend.position="left")
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+pcPlot + theme(legend.position = "left")
 ```
 
 ![](ggplot2_files/figure-html/legendleft_ggplot2-1.png)&lt;!-- --&gt;
@@ -1914,12 +1847,10 @@ We can control all aspects of a legend as we can for other theme elements.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,aes(x=Height,y=Weight,
-                                         color=Sex))+geom_point()
-pcPlot+theme(legend.text = element_text(color="darkred"),
-             legend.title = element_text(size=20),
-             legend.position = "bottom"
-             )
+pcPlot &lt;- ggplot(data = patients_clean, aes(x = Height, y = Weight, color = Sex)) +
+    geom_point()
+pcPlot + theme(legend.text = element_text(color = "darkred"), legend.title = element_text(size = 20),
+    legend.position = "bottom")
 ```
 
 ![](ggplot2_files/figure-html/legendText_ggplot2-1.png)&lt;!-- --&gt;
@@ -1942,10 +1873,9 @@ This makes the **+** operator useful for building up from old themes.
 In the example below, we maintain all elements set by theme_bw() but overwrite the theme element attribute of the color of text.
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()+theme_bw()
-pcPlot+
-  theme(text = element_text(color="red"))
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point() + theme_bw()
+pcPlot + theme(text = element_text(color = "red"))
 ```
 
 ![](ggplot2_files/figure-html/theme_custom8_ggplot2-1.png)&lt;!-- --&gt;
@@ -1965,13 +1895,11 @@ When using the **%+replace%** operator:
 
 
 ``` r
-  oldTheme &lt;- theme_bw()
-  
-  newTheme_Plus &lt;- theme_bw() +
-  theme(text = element_text(color="red"))
-  
-  newTheme_Replace &lt;- theme_bw() %+replace%
-  theme(text = element_text(color="red"))
+oldTheme &lt;- theme_bw()
+
+newTheme_Plus &lt;- theme_bw() + theme(text = element_text(color = "red"))
+
+newTheme_Replace &lt;- theme_bw() %+replace% theme(text = element_text(color = "red"))
 ```
 
 
@@ -1980,7 +1908,7 @@ When using the **%+replace%** operator:
 ### Original theme 
 
 ``` r
-  oldTheme$text
+oldTheme$text
 ```
 
 ```
@@ -2005,7 +1933,7 @@ When using the **%+replace%** operator:
 
 
 ``` r
-  newTheme_Plus$text
+newTheme_Plus$text
 ```
 
 ```
@@ -2030,7 +1958,7 @@ When using the **%+replace%** operator:
 
 
 ``` r
-  newTheme_Replace$text
+newTheme_Replace$text
 ```
 
 ```
@@ -2080,9 +2008,9 @@ So far no plot titles have been specified. Plot titles can be specified using th
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
-pcPlot+labs(title="Weight vs Height",y="Height (cm)")
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
+pcPlot + labs(title = "Weight vs Height", y = "Height (cm)")
 ```
 
 ![](ggplot2_files/figure-html/theme_labs_ggplot2-1.png)&lt;!-- --&gt;
@@ -2094,9 +2022,9 @@ You can also specify titles using the ggtitle and xlab/ylab functions.
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Height,y=Weight))+geom_point()
-pcPlot+ggtitle("Weight vs Height")+ylab("Height (cm)")
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
+pcPlot + ggtitle("Weight vs Height") + ylab("Height (cm)")
 ```
 
 ![](ggplot2_files/figure-html/theme_ggtitle_ggplot2-1.png)&lt;!-- --&gt;
@@ -2120,11 +2048,10 @@ By default ggsave() will use the size of your current graphics window when savin
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
 
-ggsave(pcPlot,filename = "anExampleplot.png",width = 15,
-       height = 15,units = "cm")
+ggsave(pcPlot, filename = "anExampleplot.png", width = 15, height = 15, units = "cm")
 ```
 
 
@@ -2141,6 +2068,324 @@ pdf(file = "anExampleplot.pdf", paper = "A4")
 plot(control)
 dev.off()
 ```
+
+---
+class: inverse, center, middle
+
+# Other external packages
+
+&lt;html&gt;&lt;div style='float:left'&gt;&lt;/div&gt;&lt;hr color='#EB811B' size=1px width=720px&gt;&lt;/html&gt; 
+
+---
+
+## Extending ggplot
+
+We have introduced you to several packages that extend the capabilities of ggplot2 either by adding additional plotting capabilities or providing pre-built color/theme options. 
+
+There are also several packages that specialize in creating specific plots or additional geoms not included within ggplot2 i.e. [UpSet](https://github.com/hms-dbmi/UpSetR) [ggbeeswarm](https://github.com/eclarke/ggbeeswarm), [ggridges](https://wilkelab.org/ggridges/)
+
+We will quickly review UpSet plots. 
+
+---
+## Upset Plots
+
+Upset plots are used for looking at overlaps between sets. They are considered to be a better way to visualize data then the more traditionally used Venn Diagram. 
+
+We can use the package demo data which is presence absence of mutants in different clones. 
+
+
+``` r
+library(UpSetR)
+mutations &lt;- read.csv(system.file("extdata", "mutations.csv", package = "UpSetR"),
+    header = T, sep = ",")
+mutations[1:10, 1:10]
+```
+
+```
+##    Identifier TTN PTEN TP53 EGFR MUC16 FLG RYR2 PCLO PIK3R1
+## 1     02-0003   0    0    1    1     0   0    0    0      1
+## 2     02-0033   0    0    1    0     0   0    0    0      0
+## 3     02-0047   0    0    0    0     0   0    1    0      0
+## 4     02-0055   1    1    1    0     0   0    0    0      0
+## 5     02-2470   0    1    0    0     0   0    1    0      0
+## 6     02-2483   0    0    1    0     0   0    0    1      0
+## 7     02-2485   0    0    1    1     1   1    0    0      0
+## 8     02-2486   0    0    0    0     0   0    0    0      0
+## 9     06-0119   1    0    0    0     0   0    0    0      0
+## 10    06-0122   1    0    0    0     0   0    1    1      0
+```
+
+
+---
+## Upset Plots
+
+The Upset Plot will show us the number of intersections between different groups. For example EGFR and TTN only are present in 12 clones. The size of the set is also shown on the left to give additional context. This gives a good quantitative basis from which to understand set intersections.  
+
+
+``` r
+upset(mutations)
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+---
+## Upset Plots customization
+
+You may have noticed that only a few genes are present. This is because by default only the top 5 biggest sets are included. We can increase this number easily or directly specify which sets to include using the *nsets* parameter.
+
+
+
+``` r
+upset(mutations, nsets = 10)
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+
+
+---
+## UpsetR and ggplot2
+
+Though ggplot2 is being used under the hood, the ggplot identity is lost in the final plot. Instead we have made an *upset* object. Unfortunately this means we cannot modify our upset plots using what we have learnt. Luckily the upset function has lots of arguments to allow for customization. 
+
+
+``` r
+myupset &lt;- upset(mutations)
+class(myupset)
+```
+
+```
+## [1] "upset"
+```
+
+
+---
+## Modifying plots from other packages
+
+As with UpsetR, most packages make plots using ggplot2. There are &gt;2000 packages on CRAN that use ggplot2 and many more on Bioconductor. If a package is using ggplot2 most of the time the ggplot identity is maintained. This means that you can interact and modify that plot just as if you made the ggobject yourself. 
+
+Lets look at some examples. We will look at two popular packages: clusterProfiler and Seurat.
+
+---
+## clusterProfiler
+
+clusterProfiler is a package that is mostly used to check for enrichment of genes within data sets i.e. GO term analysis and GSEA. One of the main outputs is a dotplot that shows the top hits. We have an example here:
+
+
+``` r
+library(clusterProfiler)
+```
+
+```
+## Warning: package 'clusterProfiler' was built under R version 4.4.1
+```
+
+```
+## 
+```
+
+```
+## clusterProfiler v4.12.6 Learn more at https://yulab-smu.top/contribution-knowledge-mining/
+## 
+## Please cite:
+## 
+## G Yu. Thirteen years of clusterProfiler. The Innovation. 2024,
+## 5(6):100722
+```
+
+```
+## 
+## Attaching package: 'clusterProfiler'
+```
+
+```
+## The following object is masked from 'package:IRanges':
+## 
+##     slice
+```
+
+```
+## The following object is masked from 'package:S4Vectors':
+## 
+##     rename
+```
+
+```
+## The following object is masked from 'package:stats':
+## 
+##     filter
+```
+
+``` r
+load("data/clusterprofiler_result.RData")
+```
+
+
+``` r
+dotplot(cp_res)
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-23-1.png)&lt;!-- --&gt;
+
+---
+## clusterProfiler
+
+The dotplot function is a clusterProfiler specific function that is using ggplot2 to make a nice output plot. We can see the result of this is a ggplot object.
+
+
+
+``` r
+myplot &lt;- dotplot(cp_res)
+class(myplot)
+```
+
+```
+## [1] "enrichplotDot" "gg"            "ggplot"
+```
+
+---
+## Modifying clusterProfiler
+
+As it is a ggplot object, we can customize it in the same way. Here we can change the colors and title. 
+
+
+``` r
+myplot + ggtitle("GO term enrichment") + scale_fill_viridis_c()
+```
+
+```
+## Scale for fill is already present.
+## Adding another scale for fill, which will replace the existing scale.
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-25-1.png)&lt;!-- --&gt;
+
+---
+## Seurat
+
+Seurat is one of the most popular packages for analyzing scRNAseq data. Often we look at the dimension reduction (tSNE or UMAP typically).
+
+
+``` r
+library(Seurat)
+```
+
+```
+## Loading required package: SeuratObject
+```
+
+```
+## Loading required package: sp
+```
+
+```
+## 
+## Attaching package: 'sp'
+```
+
+```
+## The following object is masked from 'package:IRanges':
+## 
+##     %over%
+```
+
+```
+## 
+## Attaching package: 'SeuratObject'
+```
+
+```
+## The following object is masked from 'package:IRanges':
+## 
+##     intersect
+```
+
+```
+## The following object is masked from 'package:S4Vectors':
+## 
+##     intersect
+```
+
+```
+## The following object is masked from 'package:BiocGenerics':
+## 
+##     intersect
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, t
+```
+
+``` r
+data("pbmc_small")
+DimPlot(object = pbmc_small)
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
+
+---
+## Seurat
+
+We created this using the DimPlot() function. Again this is specific to Seurat but it is using ggplot under the hood. 
+
+
+``` r
+mydimplot &lt;- DimPlot(object = pbmc_small)
+class(mydimplot)
+```
+
+```
+## [1] "patchwork" "gg"        "ggplot"
+```
+
+---
+## Seurat
+
+As it is a ggplot object, we can customize it in the same way. Here we can change the theme, title and colors again (this time the scale is discrete). 
+
+
+``` r
+mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-28-1.png)&lt;!-- --&gt;
+
+---
+## Seurat
+
+You can typically only modify the scale of variables that you have aesthetic mappings. So if the function is not specifying that aesthetic i.e. size we cannot modify it.
+
+Instead we can go back and redefine our ggplot. The information regarding setup can be found in the layout slot ggplot 
+
+
+``` r
+mydimplot$layers
+```
+
+```
+## [[1]]
+## mapping: colour = ~ident, shape = NULL, alpha = NULL, x = ~tSNE_1, y = ~tSNE_2 
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity
+```
+
+---
+## Seurat
+
+We can use the layout information to recreate the original ggplot, and then add some modifications i.e. add a size argument. We must also remove the original plot stored in the layers slot first.
+
+
+``` r
+mydimplot$layers &lt;- NULL
+
+mydimplot + geom_point(aes(x = tSNE_1, y = tSNE_2, color = ident, size = 2)) + ggtitle("tSNE of scRNAseq - PBMC") +
+    scale_color_viridis_d() + theme_bw()
+```
+
+![](ggplot2_files/figure-html/unnamed-chunk-30-1.png)&lt;!-- --&gt;
+
 
 ---
 class: inverse, center, middle
@@ -2167,14 +2412,14 @@ library(plotly)
 
 
 ``` r
-pcPlot &lt;- ggplot(data=patients_clean,
-        mapping=aes(x=Weight,y=Height))+geom_point()
+pcPlot &lt;- ggplot(data = patients_clean, mapping = aes(x = Height, y = Weight)) +
+    geom_point()
 
 ggplotly(pcPlot)
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-e4d9698041ec2d2c38ce" style="width:648px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-e4d9698041ec2d2c38ce">{"x":{"data":[{"x":[76.569999999999993,80.430000000000007,75.480000000000004,94.540000000000006,71.780000000000001,69.900000000000006,68.849999999999994,70.439999999999998,76.900000000000006,79.060000000000002,72.370000000000005,67.340000000000003,92.219999999999999,75.689999999999998,65.760000000000005,72.329999999999998,73.299999999999997,97.670000000000002,72.200000000000003,75.719999999999999,75.540000000000006,69.920000000000002,90.629999999999995,63.539999999999999,69.569999999999993,74.840000000000003,83.359999999999999,82.060000000000002,83.930000000000007,79.540000000000006,64.299999999999997,76.719999999999999,96.909999999999997,71.879999999999995,74.040000000000006,70.459999999999994,83.650000000000006,64.769999999999996,76.829999999999998,67.409999999999997,83.590000000000003,67.989999999999995,65.189999999999998,71.769999999999996,66.680000000000007,69.640000000000001,72.989999999999995,72.890000000000001,87.230000000000004,70.840000000000003,67.670000000000002,66.709999999999994,73.549999999999997,65.930000000000007,97.049999999999997,68.310000000000002,67.920000000000002,66.030000000000001,77.299999999999997,88.25,64.920000000000002,84.349999999999994,69.969999999999999,81.700000000000003,79.060000000000002,67.459999999999994,90.079999999999998,66.560000000000002,84.150000000000006,68.200000000000003,66.469999999999999,88.819999999999993,80.930000000000007,65.140000000000001,67.620000000000005,69.959999999999994,90.760000000000005,90.409999999999997,71.469999999999999,68.939999999999998,72.719999999999999,69.760000000000005,82.109999999999999,69.799999999999997,69.719999999999999,67.810000000000002,70.370000000000005,84.290000000000006,64.469999999999999,82.469999999999999,88.700000000000003,72.510000000000005,70.680000000000007,73.629999999999995,73.989999999999995,66.209999999999994,70.659999999999997,66.959999999999994,71.489999999999995,68.069999999999993],"y":[182.87,179.12,169.15000000000001,175.66,164.47,158.27000000000001,161.69,165.84,181.31999999999999,167.37,160.06,166.47999999999999,175.38999999999999,164.69999999999999,163.78999999999999,181.13,169.24000000000001,176.22,174.09,180.11000000000001,179.24000000000001,161.91999999999999,169.84999999999999,160.56999999999999,168.24000000000001,177.75,183.21000000000001,167.75,181.15000000000001,181.56,160.03,165.62,181.63999999999999,159.66999999999999,177.03,163.34999999999999,175.21000000000001,160.80000000000001,166.46000000000001,157.94999999999999,180.61000000000001,159.52000000000001,163.00999999999999,165.80000000000001,170.03,157.16,164.58000000000001,163.47,185.43000000000001,165.34,163.44999999999999,163.97,161.38,160.09,178.63999999999999,159.78,161.56999999999999,161.83000000000001,169.66,166.84,159.31999999999999,170.50999999999999,161.84,171.41,166.75,166.19,169.16,157.00999999999999,167.50999999999999,160.47,162.33000000000001,175.66999999999999,174.25,158.94,172.72,159.22999999999999,176.53999999999999,184.34,163.94,160.09,162.31999999999999,162.59,171.94,158.06999999999999,158.34999999999999,162.18000000000001,159.38,171.44999999999999,163.16999999999999,183.09999999999999,177.13999999999999,171.08000000000001,159.33000000000001,185.43000000000001,162.65000000000001,159.44,164.11000000000001,159.13,160.58000000000001,164.88],"text":["Weight: 76.57<br />Height: 182.87","Weight: 80.43<br />Height: 179.12","Weight: 75.48<br />Height: 169.15","Weight: 94.54<br />Height: 175.66","Weight: 71.78<br />Height: 164.47","Weight: 69.90<br />Height: 158.27","Weight: 68.85<br />Height: 161.69","Weight: 70.44<br />Height: 165.84","Weight: 76.90<br />Height: 181.32","Weight: 79.06<br />Height: 167.37","Weight: 72.37<br />Height: 160.06","Weight: 67.34<br />Height: 166.48","Weight: 92.22<br />Height: 175.39","Weight: 75.69<br />Height: 164.70","Weight: 65.76<br />Height: 163.79","Weight: 72.33<br />Height: 181.13","Weight: 73.30<br />Height: 169.24","Weight: 97.67<br />Height: 176.22","Weight: 72.20<br />Height: 174.09","Weight: 75.72<br />Height: 180.11","Weight: 75.54<br />Height: 179.24","Weight: 69.92<br />Height: 161.92","Weight: 90.63<br />Height: 169.85","Weight: 63.54<br />Height: 160.57","Weight: 69.57<br />Height: 168.24","Weight: 74.84<br />Height: 177.75","Weight: 83.36<br />Height: 183.21","Weight: 82.06<br />Height: 167.75","Weight: 83.93<br />Height: 181.15","Weight: 79.54<br />Height: 181.56","Weight: 64.30<br />Height: 160.03","Weight: 76.72<br />Height: 165.62","Weight: 96.91<br />Height: 181.64","Weight: 71.88<br />Height: 159.67","Weight: 74.04<br />Height: 177.03","Weight: 70.46<br />Height: 163.35","Weight: 83.65<br />Height: 175.21","Weight: 64.77<br />Height: 160.80","Weight: 76.83<br />Height: 166.46","Weight: 67.41<br />Height: 157.95","Weight: 83.59<br />Height: 180.61","Weight: 67.99<br />Height: 159.52","Weight: 65.19<br />Height: 163.01","Weight: 71.77<br />Height: 165.80","Weight: 66.68<br />Height: 170.03","Weight: 69.64<br />Height: 157.16","Weight: 72.99<br />Height: 164.58","Weight: 72.89<br />Height: 163.47","Weight: 87.23<br />Height: 185.43","Weight: 70.84<br />Height: 165.34","Weight: 67.67<br />Height: 163.45","Weight: 66.71<br />Height: 163.97","Weight: 73.55<br />Height: 161.38","Weight: 65.93<br />Height: 160.09","Weight: 97.05<br />Height: 178.64","Weight: 68.31<br />Height: 159.78","Weight: 67.92<br />Height: 161.57","Weight: 66.03<br />Height: 161.83","Weight: 77.30<br />Height: 169.66","Weight: 88.25<br />Height: 166.84","Weight: 64.92<br />Height: 159.32","Weight: 84.35<br />Height: 170.51","Weight: 69.97<br />Height: 161.84","Weight: 81.70<br />Height: 171.41","Weight: 79.06<br />Height: 166.75","Weight: 67.46<br />Height: 166.19","Weight: 90.08<br />Height: 169.16","Weight: 66.56<br />Height: 157.01","Weight: 84.15<br />Height: 167.51","Weight: 68.20<br />Height: 160.47","Weight: 66.47<br />Height: 162.33","Weight: 88.82<br />Height: 175.67","Weight: 80.93<br />Height: 174.25","Weight: 65.14<br />Height: 158.94","Weight: 67.62<br />Height: 172.72","Weight: 69.96<br />Height: 159.23","Weight: 90.76<br />Height: 176.54","Weight: 90.41<br />Height: 184.34","Weight: 71.47<br />Height: 163.94","Weight: 68.94<br />Height: 160.09","Weight: 72.72<br />Height: 162.32","Weight: 69.76<br />Height: 162.59","Weight: 82.11<br />Height: 171.94","Weight: 69.80<br />Height: 158.07","Weight: 69.72<br />Height: 158.35","Weight: 67.81<br />Height: 162.18","Weight: 70.37<br />Height: 159.38","Weight: 84.29<br />Height: 171.45","Weight: 64.47<br />Height: 163.17","Weight: 82.47<br />Height: 183.10","Weight: 88.70<br />Height: 177.14","Weight: 72.51<br />Height: 171.08","Weight: 70.68<br />Height: 159.33","Weight: 73.63<br />Height: 185.43","Weight: 73.99<br />Height: 162.65","Weight: 66.21<br />Height: 159.44","Weight: 70.66<br />Height: 164.11","Weight: 66.96<br />Height: 159.13","Weight: 71.49<br />Height: 160.58","Weight: 68.07<br />Height: 164.88"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":43.105022831050235},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[61.833500000000001,99.376500000000007],"tickmode":"array","ticktext":["70","80","90"],"tickvals":[70,80,90],"categoryorder":"array","categoryarray":["70","80","90"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Weight","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[155.589,186.851],"tickmode":"array","ticktext":["160","170","180"],"tickvals":[160,170,180],"categoryorder":"array","categoryarray":["160","170","180"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Height","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1692730d7e85":{"x":{},"y":{},"type":"scatter"}},"cur_data":"1692730d7e85","visdat":{"1692730d7e85":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-755609589552e9ea45d9" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-755609589552e9ea45d9">{"x":{"data":[{"x":[182.87,179.12,169.15000000000001,175.66,164.47,158.27000000000001,161.69,165.84,181.31999999999999,167.37,160.06,166.47999999999999,175.38999999999999,164.69999999999999,163.78999999999999,181.13,169.24000000000001,176.22,174.09,180.11000000000001,179.24000000000001,161.91999999999999,169.84999999999999,160.56999999999999,168.24000000000001,177.75,183.21000000000001,167.75,181.15000000000001,181.56,160.03,165.62,181.63999999999999,159.66999999999999,177.03,163.34999999999999,175.21000000000001,160.80000000000001,166.46000000000001,157.94999999999999,180.61000000000001,159.52000000000001,163.00999999999999,165.80000000000001,170.03,157.16,164.58000000000001,163.47,185.43000000000001,165.34,163.44999999999999,163.97,161.38,160.09,178.63999999999999,159.78,161.56999999999999,161.83000000000001,169.66,166.84,159.31999999999999,170.50999999999999,161.84,171.41,166.75,166.19,169.16,157.00999999999999,167.50999999999999,160.47,162.33000000000001,175.66999999999999,174.25,158.94,172.72,159.22999999999999,176.53999999999999,184.34,163.94,160.09,162.31999999999999,162.59,171.94,158.06999999999999,158.34999999999999,162.18000000000001,159.38,171.44999999999999,163.16999999999999,183.09999999999999,177.13999999999999,171.08000000000001,159.33000000000001,185.43000000000001,162.65000000000001,159.44,164.11000000000001,159.13,160.58000000000001,164.88],"y":[76.569999999999993,80.430000000000007,75.480000000000004,94.540000000000006,71.780000000000001,69.900000000000006,68.849999999999994,70.439999999999998,76.900000000000006,79.060000000000002,72.370000000000005,67.340000000000003,92.219999999999999,75.689999999999998,65.760000000000005,72.329999999999998,73.299999999999997,97.670000000000002,72.200000000000003,75.719999999999999,75.540000000000006,69.920000000000002,90.629999999999995,63.539999999999999,69.569999999999993,74.840000000000003,83.359999999999999,82.060000000000002,83.930000000000007,79.540000000000006,64.299999999999997,76.719999999999999,96.909999999999997,71.879999999999995,74.040000000000006,70.459999999999994,83.650000000000006,64.769999999999996,76.829999999999998,67.409999999999997,83.590000000000003,67.989999999999995,65.189999999999998,71.769999999999996,66.680000000000007,69.640000000000001,72.989999999999995,72.890000000000001,87.230000000000004,70.840000000000003,67.670000000000002,66.709999999999994,73.549999999999997,65.930000000000007,97.049999999999997,68.310000000000002,67.920000000000002,66.030000000000001,77.299999999999997,88.25,64.920000000000002,84.349999999999994,69.969999999999999,81.700000000000003,79.060000000000002,67.459999999999994,90.079999999999998,66.560000000000002,84.150000000000006,68.200000000000003,66.469999999999999,88.819999999999993,80.930000000000007,65.140000000000001,67.620000000000005,69.959999999999994,90.760000000000005,90.409999999999997,71.469999999999999,68.939999999999998,72.719999999999999,69.760000000000005,82.109999999999999,69.799999999999997,69.719999999999999,67.810000000000002,70.370000000000005,84.290000000000006,64.469999999999999,82.469999999999999,88.700000000000003,72.510000000000005,70.680000000000007,73.629999999999995,73.989999999999995,66.209999999999994,70.659999999999997,66.959999999999994,71.489999999999995,68.069999999999993],"text":["Height: 182.87<br />Weight: 76.57","Height: 179.12<br />Weight: 80.43","Height: 169.15<br />Weight: 75.48","Height: 175.66<br />Weight: 94.54","Height: 164.47<br />Weight: 71.78","Height: 158.27<br />Weight: 69.90","Height: 161.69<br />Weight: 68.85","Height: 165.84<br />Weight: 70.44","Height: 181.32<br />Weight: 76.90","Height: 167.37<br />Weight: 79.06","Height: 160.06<br />Weight: 72.37","Height: 166.48<br />Weight: 67.34","Height: 175.39<br />Weight: 92.22","Height: 164.70<br />Weight: 75.69","Height: 163.79<br />Weight: 65.76","Height: 181.13<br />Weight: 72.33","Height: 169.24<br />Weight: 73.30","Height: 176.22<br />Weight: 97.67","Height: 174.09<br />Weight: 72.20","Height: 180.11<br />Weight: 75.72","Height: 179.24<br />Weight: 75.54","Height: 161.92<br />Weight: 69.92","Height: 169.85<br />Weight: 90.63","Height: 160.57<br />Weight: 63.54","Height: 168.24<br />Weight: 69.57","Height: 177.75<br />Weight: 74.84","Height: 183.21<br />Weight: 83.36","Height: 167.75<br />Weight: 82.06","Height: 181.15<br />Weight: 83.93","Height: 181.56<br />Weight: 79.54","Height: 160.03<br />Weight: 64.30","Height: 165.62<br />Weight: 76.72","Height: 181.64<br />Weight: 96.91","Height: 159.67<br />Weight: 71.88","Height: 177.03<br />Weight: 74.04","Height: 163.35<br />Weight: 70.46","Height: 175.21<br />Weight: 83.65","Height: 160.80<br />Weight: 64.77","Height: 166.46<br />Weight: 76.83","Height: 157.95<br />Weight: 67.41","Height: 180.61<br />Weight: 83.59","Height: 159.52<br />Weight: 67.99","Height: 163.01<br />Weight: 65.19","Height: 165.80<br />Weight: 71.77","Height: 170.03<br />Weight: 66.68","Height: 157.16<br />Weight: 69.64","Height: 164.58<br />Weight: 72.99","Height: 163.47<br />Weight: 72.89","Height: 185.43<br />Weight: 87.23","Height: 165.34<br />Weight: 70.84","Height: 163.45<br />Weight: 67.67","Height: 163.97<br />Weight: 66.71","Height: 161.38<br />Weight: 73.55","Height: 160.09<br />Weight: 65.93","Height: 178.64<br />Weight: 97.05","Height: 159.78<br />Weight: 68.31","Height: 161.57<br />Weight: 67.92","Height: 161.83<br />Weight: 66.03","Height: 169.66<br />Weight: 77.30","Height: 166.84<br />Weight: 88.25","Height: 159.32<br />Weight: 64.92","Height: 170.51<br />Weight: 84.35","Height: 161.84<br />Weight: 69.97","Height: 171.41<br />Weight: 81.70","Height: 166.75<br />Weight: 79.06","Height: 166.19<br />Weight: 67.46","Height: 169.16<br />Weight: 90.08","Height: 157.01<br />Weight: 66.56","Height: 167.51<br />Weight: 84.15","Height: 160.47<br />Weight: 68.20","Height: 162.33<br />Weight: 66.47","Height: 175.67<br />Weight: 88.82","Height: 174.25<br />Weight: 80.93","Height: 158.94<br />Weight: 65.14","Height: 172.72<br />Weight: 67.62","Height: 159.23<br />Weight: 69.96","Height: 176.54<br />Weight: 90.76","Height: 184.34<br />Weight: 90.41","Height: 163.94<br />Weight: 71.47","Height: 160.09<br />Weight: 68.94","Height: 162.32<br />Weight: 72.72","Height: 162.59<br />Weight: 69.76","Height: 171.94<br />Weight: 82.11","Height: 158.07<br />Weight: 69.80","Height: 158.35<br />Weight: 69.72","Height: 162.18<br />Weight: 67.81","Height: 159.38<br />Weight: 70.37","Height: 171.45<br />Weight: 84.29","Height: 163.17<br />Weight: 64.47","Height: 183.10<br />Weight: 82.47","Height: 177.14<br />Weight: 88.70","Height: 171.08<br />Weight: 72.51","Height: 159.33<br />Weight: 70.68","Height: 185.43<br />Weight: 73.63","Height: 162.65<br />Weight: 73.99","Height: 159.44<br />Weight: 66.21","Height: 164.11<br />Weight: 70.66","Height: 159.13<br />Weight: 66.96","Height: 160.58<br />Weight: 71.49","Height: 164.88<br />Weight: 68.07"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":37.260273972602747},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[155.589,186.851],"tickmode":"array","ticktext":["160","170","180"],"tickvals":[160,170,180],"categoryorder":"array","categoryarray":["160","170","180"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"Height","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[61.833500000000001,99.376500000000007],"tickmode":"array","ticktext":["70","80","90"],"tickvals":[70,80,90],"categoryorder":"array","categoryarray":["70","80","90"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"Weight","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1dc23026b21f":{"x":{},"y":{},"type":"scatter"}},"cur_data":"1dc23026b21f","visdat":{"1dc23026b21f":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Adding Annotation
@@ -2256,8 +2501,8 @@ The aesthetic mappings are naturally inherited as labels. If we want to add cust
 ggplotly(pcPlot)
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-6d28fe0f635c807f4dac" style="width:648px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-6d28fe0f635c807f4dac">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"16925a894e29":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"}},"cur_data":"16925a894e29","visdat":{"16925a894e29":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-87ddd9ade003d293a4e2" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-87ddd9ade003d293a4e2">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1dc238430c0e":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"}},"cur_data":"1dc238430c0e","visdat":{"1dc238430c0e":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Extra Annotation
@@ -2273,8 +2518,8 @@ ggplotly(pcPlot + geom_point(aes(label = Sample)))
 ## Warning in geom_point(aes(label = Sample)): Ignoring unknown aesthetics: label
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-37fb35ae581a19b6aec7" style="width:648px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-37fb35ae581a19b6aec7">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1<br />Sample: A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2<br />Sample: A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1<br />Sample: B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2<br />Sample: B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1<br />Sample: C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2<br />Sample: C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"169259387545":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"16922f595d51":{"x":{},"y":{},"colour":{},"shape":{},"label":{}}},"cur_data":"169259387545","visdat":{"169259387545":["function (y) ","x"],"16922f595d51":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-00016b9ecb35e2ac8b0d" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-00016b9ecb35e2ac8b0d">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"PC1: 0.6367280<br />PC2: 0.6163906<br />Time: 0hr<br />Rep: 1<br />Sample: A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"PC1: 0.6090663<br />PC2: 0.5384380<br />Time: 0hr<br />Rep: 2<br />Sample: A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"PC1: 0.4596307<br />PC2: 0.5424412<br />Time: 2hr<br />Rep: 1<br />Sample: B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"PC1: 0.4190463<br />PC2: 0.4812430<br />Time: 2hr<br />Rep: 2<br />Sample: B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"PC1: 0.3220796<br />PC2: 0.5434719<br />Time: 12hr<br />Rep: 1<br />Sample: C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"PC1: 0.3130591<br />PC2: 0.4426442<br />Time: 12hr<br />Rep: 2<br />Sample: C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"1dc24c710c1d":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"1dc24232d5f7":{"x":{},"y":{},"colour":{},"shape":{},"label":{}}},"cur_data":"1dc24c710c1d","visdat":{"1dc24c710c1d":["function (y) ","x"],"1dc24232d5f7":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 ---
 ## Extra Annotation
@@ -2283,15 +2528,15 @@ If we want full control over the labeling we can instead use the ggplotly functi
 
 
 ``` r
-ggplotly(pcPlot + geom_point(aes(text = Sample )), source = "select", tooltip = c("Sample"))
+ggplotly(pcPlot + geom_point(aes(text = Sample)), source = "select", tooltip = c("Sample"))
 ```
 
 ```
 ## Warning in geom_point(aes(text = Sample)): Ignoring unknown aesthetics: text
 ```
 
-<div class="plotly html-widget html-fill-item" id="htmlwidget-ff04af130575603eae47" style="width:648px;height:288px;"></div>
-<script type="application/json" data-for="htmlwidget-ff04af130575603eae47">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"select","attrs":{"16924a0e8758":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"16927db6c6cb":{"x":{},"y":{},"colour":{},"shape":{},"text":{}}},"cur_data":"16924a0e8758","visdat":{"16924a0e8758":["function (y) ","x"],"16927db6c6cb":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-9cf08def446fa2879761" style="width:648px;height:288px;"></div>
+<script type="application/json" data-for="htmlwidget-9cf08def446fa2879761">{"x":{"data":[{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.63672798475643777],"y":[0.61639057522774621],"text":"A_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,1)","legendgroup":"(0hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.60906629999999995],"y":[0.53843799999999997],"text":"A_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"(0hr,2)","legendgroup":"(0hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.4596307],"y":[0.54244119999999996],"text":"B_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,1)","legendgroup":"(2hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.41904629999999998],"y":[0.48124299999999998],"text":"B_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,56,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(0,186,56,1)"}},"hoveron":"points","name":"(2hr,2)","legendgroup":"(2hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.32207960000000002],"y":[0.54347190000000001],"text":"C_1","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,1)","legendgroup":"(12hr,1)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0.31305909999999998],"y":[0.44264419999999999],"text":"C_2","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(97,156,255,1)","opacity":1,"size":5.6692913385826778,"symbol":"triangle-up","line":{"width":1.8897637795275593,"color":"rgba(97,156,255,1)"}},"hoveron":"points","name":"(12hr,2)","legendgroup":"(12hr,2)","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":32.438356164383563,"r":7.3059360730593621,"b":46.392694063926953,"l":48.949771689497723},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.29687565576217811,0.65291142899425969],"tickmode":"array","ticktext":["0.3","0.4","0.5","0.6"],"tickvals":[0.30000000000000004,0.40000000000000002,0.5,0.60000000000000009],"categoryorder":"array","categoryarray":["0.3","0.4","0.5","0.6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"PC1","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4339568812386127,0.62507789398913349],"tickmode":"array","ticktext":["0.45","0.50","0.55","0.60"],"tickvals":[0.45000000000000001,0.5,0.55000000000000004,0.60000000000000009],"categoryorder":"array","categoryarray":["0.45","0.50","0.55","0.60"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"PC2","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"Time<br />Rep","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"select","attrs":{"1dc26af93b3f":{"x":{},"y":{},"colour":{},"shape":{},"type":"scatter"},"1dc27bb05ae3":{"x":{},"y":{},"colour":{},"shape":{},"text":{}}},"cur_data":"1dc26af93b3f","visdat":{"1dc26af93b3f":["function (y) ","x"],"1dc27bb05ae3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 
 
 
@@ -2309,15 +2554,15 @@ Exercise on scales and themes in ggplot can be found [here](../../exercises/answ
 
 - [Layered grammar of graphics](http://vita.had.co.nz/papers/layered-grammar.pdf)
 
-- [ggplot2 documentation](http://docs.ggplot2.org/current/)
-
-- [ggplot2 wiki](https://github.com/hadley/ggplot2/wiki)
+- [ggplot2 documentation](https://ggplot2.tidyverse.org/reference/)
 
 - [ggplot2 mailing list](http://groups.google.com/group/ggplot2)
 
 - [Cheatsheet](http://sape.inf.usi.ch/quick-reference/ggplot2/geom)
 
 - [Even more material](http://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html)
+
+- [R Graph Gallery](https://r-graph-gallery.com)
 
 - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/) by Claus O. Wilke is a good resource on the theory of making data visualizations the right way, though there is no R code. 
 
