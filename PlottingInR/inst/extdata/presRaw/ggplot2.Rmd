@@ -2053,44 +2053,7 @@ class(myupset)
 
 As with UpsetR, most packages make plots using ggplot2. There are >2000 packages on CRAN that use ggplot2 and many more on Bioconductor. If a package is using ggplot2 most of the time the ggplot identity is maintained. This means that you can interact and modify that plot just as if you made the ggobject yourself. 
 
-Lets look at some examples. We will look at two popular packages: clusterProfiler and Seurat.
-
----
-## clusterProfiler
-
-clusterProfiler is a package that is mostly used to check for enrichment of genes within data sets i.e. GO term analysis and GSEA. One of the main outputs is a dotplot that shows the top hits. We have an example here:
-
-```{r}
-
-library(clusterProfiler)
-load("data/clusterprofiler_result.RData")
-```
-
-```{r}
-dotplot(cp_res)
-
-```
-
----
-## clusterProfiler
-
-The dotplot function is a clusterProfiler specific function that is using ggplot2 to make a nice output plot. We can see the result of this is a ggplot object.
-
-
-```{r}
-myplot <- dotplot(cp_res)
-class(myplot)
-```
-
----
-## Modifying clusterProfiler
-
-As it is a ggplot object, we can customize it in the same way. Here we can change the colors and title. 
-
-```{r}
-myplot + ggtitle("GO term enrichment") + scale_fill_viridis_c()
-
-```
+Lets look at some examples. We will look at the popular package: Seurat.
 
 ---
 ## Seurat
@@ -2106,7 +2069,7 @@ DimPlot(object = pbmc_small)
 ---
 ## Seurat
 
-We created this using the DimPlot() function. Again this is specific to Seurat but it is using ggplot under the hood. 
+We created this using the DimPlot() function. This is specific plotting function for Seurat, but it is using ggplot under the hood. 
 
 ```{R}
 mydimplot <- DimPlot(object = pbmc_small)
@@ -2116,7 +2079,7 @@ class(mydimplot)
 ---
 ## Seurat
 
-As it is a ggplot object, we can customize it in the same way. Here we can change the theme, title and colors again (this time the scale is discrete). 
+As it is a ggplot object, we can customize it. Here we can change the theme, title and colors. 
 
 ```{r}
 mydimplot + ggtitle("tSNE of scRNAseq - PBMC") + scale_color_viridis_d() + theme_bw()
