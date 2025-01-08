@@ -258,7 +258,7 @@ myplot <- ggplot(my_res, aes(x=log2FoldChange,
 
 myplot
 
-ggsave(myplot, "DESeq2_volcanoplot.pdf")
+ggsave(myplot, file="DESeq2_volcanoplot.pdf")
 ```
 
 - To improve labeling on ggplot there is an additional package that can be useful: ggrepel. Try installing ggrepel and using geom_text_repel.
